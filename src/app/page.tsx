@@ -12,22 +12,22 @@ import PlatformsSection from "@/components/PlatformsSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <HeroSection />
-        <FeaturesSection />
-        <HorizontalScrollSection />
-        <UseCasesSection />
-        <StatsSection />
-        <TestimonialsSection />
-        <SecuritySection />
-        <PricingSection />
-        <CtaSection />
-        <PlatformsSection />
-      </main>
-      <Footer />
-    </div>
-  );
+	return (
+		<div className="min-h-screen bg-background">
+			<Header />
+			<main>
+				<HeroSection />
+				<FeaturesSection />
+				<HorizontalScrollSection />
+				<UseCasesSection />
+				<StatsSection />
+				<TestimonialsSection />
+				<SecuritySection />
+				<PricingSection />
+				<CtaSection />
+				<PlatformsSection />
+			</main>
+			<Footer />
+		</div>
+	);
 }
