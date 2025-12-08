@@ -1,60 +1,84 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
+import { GlowingBorderCard, RevealOnScroll } from "@/components/ui/aceternity";
 
 const industryUseCases = [
 	{
 		title: "Technology",
-		description: "Placeholder description for technology industry use case.",
+		description:
+			"Ship faster with AI-powered code reviews, sprint planning, and real-time collaboration across distributed engineering teams.",
+		gradient: "from-violet-500/20 via-purple-500/10",
 	},
 	{
 		title: "Healthcare",
-		description: "Placeholder description for healthcare industry use case.",
+		description:
+			"Secure, HIPAA-compliant communication for care teams. Coordinate patient handoffs and share critical updates instantly.",
+		gradient: "from-emerald-500/20 via-green-500/10",
 	},
 	{
 		title: "Finance",
-		description: "Placeholder description for finance industry use case.",
+		description:
+			"Enterprise-grade security meets lightning-fast deal flow. Track approvals and compliance in real-time.",
+		gradient: "from-blue-500/20 via-cyan-500/10",
 	},
 	{
 		title: "Education",
-		description: "Placeholder description for education industry use case.",
+		description:
+			"Virtual classrooms that feel alive. Engage students with interactive content and seamless group projects.",
+		gradient: "from-amber-500/20 via-yellow-500/10",
 	},
 	{
 		title: "Retail",
-		description: "Placeholder description for retail industry use case.",
+		description:
+			"Unify store operations with HQ. Sync inventory, share visual merchandising guides, and train staff at scale.",
+		gradient: "from-pink-500/20 via-rose-500/10",
 	},
 	{
 		title: "Manufacturing",
-		description: "Placeholder description for manufacturing industry use case.",
+		description:
+			"Connect the shop floor to the boardroom. Real-time production updates and quality control workflows.",
+		gradient: "from-slate-500/20 via-gray-500/10",
 	},
 ];
 
 const roleUseCases = [
 	{
 		title: "Product Teams",
-		description: "Placeholder description for product teams use case.",
+		description:
+			"From roadmap to launch, keep everyone aligned. Integrate user feedback, specs, and designs in one place.",
+		gradient: "from-indigo-500/20 via-blue-500/10",
 	},
 	{
 		title: "Engineering",
-		description: "Placeholder description for engineering teams use case.",
+		description:
+			"Async-first collaboration with context. Link PRs, track incidents, and keep technical discussions organized.",
+		gradient: "from-cyan-500/20 via-teal-500/10",
 	},
 	{
 		title: "Marketing",
-		description: "Placeholder description for marketing teams use case.",
+		description:
+			"Launch campaigns faster. Coordinate content, track assets, and measure impact—all in one workspace.",
+		gradient: "from-orange-500/20 via-amber-500/10",
 	},
 	{
 		title: "Sales",
-		description: "Placeholder description for sales teams use case.",
+		description:
+			"Close deals with real-time deal rooms. Share proposals, track engagement, and collaborate with customers.",
+		gradient: "from-green-500/20 via-emerald-500/10",
 	},
 	{
 		title: "HR & People",
-		description: "Placeholder description for HR teams use case.",
+		description:
+			"Onboard new hires seamlessly. Build culture with channels, polls, and company-wide announcements.",
+		gradient: "from-purple-500/20 via-violet-500/10",
 	},
 	{
 		title: "Operations",
-		description: "Placeholder description for operations teams use case.",
+		description:
+			"Automate workflows, manage resources, and keep every process running smoothly across teams.",
+		gradient: "from-red-500/20 via-rose-500/10",
 	},
 ];
 
@@ -69,10 +93,11 @@ const containerVariants = {
 };
 
 const itemVariants = {
-	hidden: { opacity: 0, y: 20 },
+	hidden: { opacity: 0, y: 20, scale: 0.95 },
 	visible: {
 		opacity: 1,
 		y: 0,
+		scale: 1,
 		transition: { duration: 0.4 },
 	},
 };
@@ -80,58 +105,90 @@ const itemVariants = {
 function UseCaseCard({
 	title,
 	description,
+	gradient,
 }: {
 	title: string;
 	description: string;
+	gradient: string;
 }) {
 	return (
 		<motion.div variants={itemVariants}>
-			<Card className="group h-full overflow-hidden border bg-card hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1">
+			<GlowingBorderCard className="h-full">
 				{/* Image Placeholder */}
-				<div className="aspect-[16/10] w-full bg-muted/50 flex items-center justify-center border-b">
-					<span className="text-sm text-muted-foreground font-medium text-center px-4">
-						USE CASE ILLUSTRATION + UI PLACEHOLDER
-					</span>
+				<div
+					className={`relative aspect-[16/10] w-full bg-gradient-to-br ${gradient} to-transparent flex items-center justify-center overflow-hidden rounded-t-xl`}
+				>
+					<div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:20px_20px] opacity-20" />
+					<motion.div
+						className="w-14 h-14 rounded-full border-2 border-primary/30 bg-primary/10 relative z-10"
+						whileHover={{ scale: 1.1 }}
+						transition={{ type: "spring", stiffness: 400, damping: 10 }}
+					/>
 				</div>
 				{/* Content */}
-				<div className="p-6">
+				<div className="p-6 bg-card rounded-b-xl">
 					<h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
 						{title}
 					</h3>
-					<p className="mt-2 text-sm text-muted-foreground">{description}</p>
+					<p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+						{description}
+					</p>
 				</div>
-			</Card>
+			</GlowingBorderCard>
 		</motion.div>
 	);
 }
 
 export default function UseCasesSection() {
 	return (
-		<section id="use-cases" className="py-20 sm:py-32 bg-background">
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<motion.section
+			id="use-cases"
+			className="py-20 sm:py-32 bg-background relative overflow-hidden"
+			initial={{ opacity: 0 }}
+			whileInView={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			viewport={{ once: true, margin: "-100px" }}
+			transition={{ duration: 0.6 }}
+		>
+			{/* Background decoration */}
+			<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,32,32,0.03)_0%,transparent_70%)]" />
+
+			<div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.5 }}
-					className="text-center mb-12"
-				>
-					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-						Use Cases Section Title Placeholder
+				<RevealOnScroll className="text-center mb-12">
+					<motion.span
+						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						viewport={{ once: true }}
+					>
+						Use Cases
+					</motion.span>
+					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+						Built for how you work
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						This is a placeholder subtitle explaining how different teams and
-						industries use Melp.
+						Whether you&apos;re a startup or enterprise, Melp adapts to your
+						team&apos;s unique workflow
 					</p>
-				</motion.div>
+				</RevealOnScroll>
 
 				{/* Tabs */}
 				<Tabs defaultValue="industry" className="w-full">
 					<div className="flex justify-center mb-10">
-						<TabsList className="grid w-full max-w-md grid-cols-2">
-							<TabsTrigger value="industry">By Industry</TabsTrigger>
-							<TabsTrigger value="role">By Role</TabsTrigger>
+						<TabsList className="bg-muted/50 p-1 rounded-full">
+							<TabsTrigger
+								value="industry"
+								className="rounded-full px-6 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
+							>
+								By Industry
+							</TabsTrigger>
+							<TabsTrigger
+								value="role"
+								className="rounded-full px-6 py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
+							>
+								By Role
+							</TabsTrigger>
 						</TabsList>
 					</div>
 
@@ -144,11 +201,7 @@ export default function UseCasesSection() {
 							className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
 						>
 							{industryUseCases.map((useCase, index) => (
-								<UseCaseCard
-									key={index}
-									title={useCase.title}
-									description={useCase.description}
-								/>
+								<UseCaseCard key={index} {...useCase} />
 							))}
 						</motion.div>
 					</TabsContent>
@@ -162,16 +215,12 @@ export default function UseCasesSection() {
 							className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
 						>
 							{roleUseCases.map((useCase, index) => (
-								<UseCaseCard
-									key={index}
-									title={useCase.title}
-									description={useCase.description}
-								/>
+								<UseCaseCard key={index} {...useCase} />
 							))}
 						</motion.div>
 					</TabsContent>
 				</Tabs>
 			</div>
-		</section>
+		</motion.section>
 	);
 }

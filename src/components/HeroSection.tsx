@@ -2,131 +2,256 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import {
+	MagneticButton,
+	TextShimmer,
+	HoverTiltCard,
+} from "@/components/ui/aceternity";
 
 const clientLogos = [
-	"Logo 1",
-	"Logo 2",
-	"Logo 3",
-	"Logo 4",
-	"Logo 5",
-	"Logo 6",
+	"Acme Corp",
+	"Globex",
+	"Initech",
+	"Umbrella",
+	"Stark Ind",
+	"Wayne Ent",
 ];
 
 export default function HeroSection() {
+	const containerRef = useRef<HTMLDivElement>(null);
+	const { scrollYProgress } = useScroll({
+		target: containerRef,
+		offset: ["start start", "end start"],
+	});
+
+	const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+	const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
+
 	return (
-		<section className="relative overflow-hidden bg-gradient-to-b from-background to-muted/30 py-16 sm:py-24 lg:py-32">
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<section
+			ref={containerRef}
+			className="relative min-h-screen overflow-hidden bg-background"
+		>
+			{/* Grid Background */}
+			<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+
+			<motion.div
+				style={{ y, opacity }}
+				className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-32 lg:pt-40"
+			>
 				<div className="flex flex-col items-center text-center">
 					{/* Badge */}
 					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5 }}
+						initial={{ opacity: 0, y: 30, scale: 0.9 }}
+						animate={{ opacity: 1, y: 0, scale: 1 }}
+						transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
 					>
 						<Badge
 							variant="secondary"
-							className="mb-6 px-4 py-1.5 text-sm font-medium"
+							className="mb-8 px-5 py-2 text-sm font-medium border border-border/50 bg-background/80 backdrop-blur-sm shadow-lg cursor-pointer group hover:border-primary/30 transition-all duration-300"
 						>
-							✨ Announcing our new AI features — Learn more
+							<motion.span
+								className="flex items-center gap-2"
+								whileHover={{ scale: 1.02 }}
+							>
+								<span className="relative flex h-2 w-2">
+									<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+									<span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+								</span>
+								<span>Announcing our new AI features</span>
+								<motion.span
+									className="text-primary"
+									whileHover={{ x: 3 }}
+									transition={{ type: "spring", stiffness: 400 }}
+								>
+									→
+								</motion.span>
+							</motion.span>
 						</Badge>
 					</motion.div>
 
 					{/* Main Heading */}
 					<motion.h1
-						initial={{ opacity: 0, y: 20 }}
+						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: 0.1 }}
-						className="max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+						transition={{
+							duration: 0.8,
+							delay: 0.1,
+							ease: [0.21, 0.47, 0.32, 0.98],
+						}}
+						className="max-w-5xl text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl leading-[1.1]"
 					>
-						Hero Headline Placeholder
+						The workspace for{" "}
+						<TextShimmer className="font-bold">modern teams</TextShimmer>
 					</motion.h1>
 
 					{/* Subheading */}
 					<motion.p
-						initial={{ opacity: 0, y: 20 }}
+						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: 0.2 }}
-						className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl"
+						transition={{
+							duration: 0.8,
+							delay: 0.2,
+							ease: [0.21, 0.47, 0.32, 0.98],
+						}}
+						className="mt-8 max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed"
 					>
-						This is a placeholder description text that explains the main value
-						proposition in one or two compelling lines.
+						Bring your team together with AI-powered communication, seamless
+						collaboration, and intelligent workflows—all in one place.
 					</motion.p>
 
 					{/* CTA Buttons */}
 					<motion.div
-						initial={{ opacity: 0, y: 20 }}
+						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5, delay: 0.3 }}
-						className="mt-10 flex flex-col sm:flex-row items-center gap-4"
+						transition={{
+							duration: 0.8,
+							delay: 0.3,
+							ease: [0.21, 0.47, 0.32, 0.98],
+						}}
+						className="mt-12 flex flex-col sm:flex-row items-center gap-4"
 					>
-						<Button size="lg" className="px-8">
-							Primary CTA Placeholder
-						</Button>
-						<Button size="lg" variant="ghost" className="px-8">
-							Secondary CTA Placeholder
-						</Button>
+						<MagneticButton>
+							<Button
+								size="lg"
+								className="px-8 h-12 text-base shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 group"
+							>
+								<span className="flex items-center gap-2">
+									Start for free
+									<motion.svg
+										width="16"
+										height="16"
+										viewBox="0 0 16 16"
+										fill="none"
+										className="group-hover:translate-x-1 transition-transform"
+									>
+										<path
+											d="M3 8H13M13 8L8 3M13 8L8 13"
+											stroke="currentColor"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</motion.svg>
+								</span>
+							</Button>
+						</MagneticButton>
+						<motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+							<Button
+								size="lg"
+								variant="outline"
+								className="px-8 h-12 text-base border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all duration-300"
+							>
+								Watch demo
+							</Button>
+						</motion.div>
 					</motion.div>
 
 					{/* Trust Line */}
-					<motion.p
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ duration: 0.5, delay: 0.4 }}
-						className="mt-10 text-sm text-muted-foreground"
-					>
-						Trusted by placeholder companies worldwide
-					</motion.p>
-
-					{/* Client Logos */}
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
-						transition={{ duration: 0.5, delay: 0.5 }}
-						className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-8"
+						transition={{ duration: 0.8, delay: 0.5 }}
+						className="mt-16"
 					>
-						{clientLogos.map((logo, index) => (
-							<div
-								key={index}
-								className="flex h-10 w-24 items-center justify-center rounded-md bg-muted/50 text-xs text-muted-foreground"
-							>
-								{logo}
-							</div>
-						))}
+						<p className="text-sm text-muted-foreground mb-6">
+							Trusted by 10,000+ teams worldwide
+						</p>
+						{/* Client Logos */}
+						<div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+							{clientLogos.map((logo, index) => (
+								<motion.div
+									key={index}
+									initial={{ opacity: 0, y: 10 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+									whileHover={{ scale: 1.05, y: -2 }}
+									className="flex h-10 items-center justify-center px-4 text-sm font-medium text-muted-foreground/60 hover:text-muted-foreground transition-colors cursor-pointer"
+								>
+									{logo}
+								</motion.div>
+							))}
+						</div>
 					</motion.div>
 
 					{/* Hero Video Placeholder */}
 					<motion.div
-						initial={{ opacity: 0, y: 40 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.7, delay: 0.6 }}
-						className="mt-16 w-full max-w-5xl"
+						initial={{ opacity: 0, y: 60, scale: 0.95 }}
+						animate={{ opacity: 1, y: 0, scale: 1 }}
+						transition={{
+							duration: 1,
+							delay: 0.7,
+							ease: [0.21, 0.47, 0.32, 0.98],
+						}}
+						className="mt-20 w-full max-w-6xl"
 					>
-						<div className="relative aspect-video w-full rounded-xl border bg-muted/50 shadow-2xl shadow-primary/5 overflow-hidden">
+						<div className="relative aspect-[16/10] w-full rounded-2xl border border-border/50 bg-muted/30 shadow-2xl overflow-hidden">
+							{/* Grid pattern inside */}
+							<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear_gradient(to_bottom,#22202008_1px,transparent_1px)] bg-[size:30px_30px]" />
+
+							{/* Content */}
 							<div className="absolute inset-0 flex items-center justify-center">
 								<div className="text-center">
-									<div className="mb-4 flex justify-center">
-										<div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+									<motion.div
+										className="mb-6 flex justify-center"
+										whileHover={{ scale: 1.05 }}
+										whileTap={{ scale: 0.95 }}
+									>
+										<div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 border border-primary/20 cursor-pointer hover:bg-primary/20 transition-all duration-300">
 											<svg
-												className="h-8 w-8 text-primary"
+												className="h-8 w-8 text-primary ml-1"
 												fill="currentColor"
 												viewBox="0 0 24 24"
 											>
 												<path d="M8 5v14l11-7z" />
 											</svg>
 										</div>
-									</div>
+									</motion.div>
 									<p className="text-lg font-medium text-muted-foreground">
-										HERO PRODUCT VIDEO PLACEHOLDER
+										PRODUCT DEMO VIDEO
+									</p>
+									<p className="text-sm text-muted-foreground/60 mt-2">
+										Click to play
 									</p>
 								</div>
 							</div>
-							{/* Decorative gradient overlay */}
-							<div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
+
+							{/* Decorative elements */}
+							<div className="absolute top-4 left-4 flex gap-2">
+								<div className="w-3 h-3 rounded-full bg-red-400/60" />
+								<div className="w-3 h-3 rounded-full bg-yellow-400/60" />
+								<div className="w-3 h-3 rounded-full bg-green-400/60" />
+							</div>
 						</div>
 					</motion.div>
 				</div>
-			</div>
+			</motion.div>
+
+			{/* Scroll indicator */}
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ delay: 1.5 }}
+				className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+			>
+				<span className="text-sm text-muted-foreground">Scroll to explore</span>
+				<motion.div
+					animate={{ y: [0, 8, 0] }}
+					transition={{ duration: 1.5, repeat: Infinity }}
+					className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2"
+				>
+					<motion.div
+						animate={{ y: [0, 12, 0] }}
+						transition={{ duration: 1.5, repeat: Infinity }}
+						className="w-1.5 h-1.5 rounded-full bg-primary"
+					/>
+				</motion.div>
+			</motion.div>
+
+			{/* Bottom fade */}
+			<div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
 		</section>
 	);
 }

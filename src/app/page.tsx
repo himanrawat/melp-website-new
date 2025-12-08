@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
+import HowItWorksSection from "@/components/HowItWorksSection";
 import HorizontalScrollSection from "@/components/HorizontalScrollSection";
+import CollaborationSection from "@/components/CollaborationSection";
 import UseCasesSection from "@/components/UseCasesSection";
 import StatsSection from "@/components/StatsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -10,6 +12,8 @@ import PricingSection from "@/components/PricingSection";
 import CtaSection from "@/components/CtaSection";
 import PlatformsSection from "@/components/PlatformsSection";
 import Footer from "@/components/Footer";
+import IntegrationsSection from "@/components/IntegrationsSection";
+import SavingsCalculatorSection from "@/components/SavingsCalculatorSection";
 
 export default function Home() {
 	return (
@@ -18,7 +22,11 @@ export default function Home() {
 			<main>
 				<HeroSection />
 				<FeaturesSection />
+				<HowItWorksSection />
 				<HorizontalScrollSection />
+				<CollaborationSection />
+				<IntegrationsSection />
+				<SavingsCalculatorSection />
 				<UseCasesSection />
 				<StatsSection />
 				<TestimonialsSection />

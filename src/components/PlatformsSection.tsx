@@ -3,6 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import {
+	RevealOnScroll,
+	GlowingBorderCard,
+	MagneticButton,
+} from "@/components/ui/aceternity";
 
 const platforms = [
 	{ label: "App Store", variant: "outline" as const },
@@ -13,24 +18,36 @@ const platforms = [
 
 export default function PlatformsSection() {
 	return (
-		<section className="py-20 sm:py-32 bg-background">
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<motion.section
+			className="py-20 sm:py-32 bg-background relative overflow-hidden"
+			initial={{ opacity: 0 }}
+			whileInView={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			viewport={{ once: true, margin: "-100px" }}
+			transition={{ duration: 0.6 }}
+		>
+			{/* Background decoration */}
+			<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,32,32,0.02)_0%,transparent_70%)]" />
+
+			<div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.5 }}
-					className="text-center mb-16"
-				>
-					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-						Melp on All Platforms
+				<RevealOnScroll className="text-center mb-16">
+					<motion.span
+						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						viewport={{ once: true }}
+					>
+						Available Everywhere
+					</motion.span>
+					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+						Melp on all your devices
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Placeholder description about accessing Melp from any device,
-						anywhere.
+						Stay connected wherever you are. Native apps for every platform,
+						synced in real-time.
 					</p>
-				</motion.div>
+				</RevealOnScroll>
 
 				{/* Device Lineup */}
 				<motion.div
@@ -40,43 +57,76 @@ export default function PlatformsSection() {
 					transition={{ duration: 0.6, delay: 0.1 }}
 					className="relative flex items-end justify-center gap-4 sm:gap-8 mb-12"
 				>
-					{/* Tablet (optional, hidden on small screens) */}
-					<div className="hidden lg:flex flex-col items-center">
-						<div className="w-48 h-64 rounded-xl border-4 border-muted bg-muted/30 flex items-center justify-center">
-							<span className="text-xs text-muted-foreground text-center px-2">
-								TABLET UI PLACEHOLDER
-							</span>
-						</div>
+					{/* Tablet */}
+					<motion.div
+						className="hidden lg:flex flex-col items-center"
+						initial={{ opacity: 0, x: -30 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						viewport={{ once: true }}
+						transition={{ delay: 0.2 }}
+					>
+						<GlowingBorderCard>
+							<div className="w-48 h-64 rounded-xl bg-gradient-to-br from-muted/50 to-muted/20 flex items-center justify-center overflow-hidden">
+								<div className="text-center p-4">
+									<div className="w-12 h-12 rounded-full border-2 border-primary/30 bg-primary/10 mx-auto mb-2" />
+									<span className="text-xs text-muted-foreground">
+										Tablet App
+									</span>
+								</div>
+							</div>
+						</GlowingBorderCard>
 						<Badge variant="secondary" className="mt-3">
 							Tablet
 						</Badge>
-					</div>
+					</motion.div>
 
 					{/* Laptop (center, largest) */}
-					<div className="flex flex-col items-center">
-						<div className="w-64 sm:w-80 lg:w-96 aspect-[16/10] rounded-lg border-4 border-muted bg-muted/30 flex items-center justify-center shadow-xl">
-							<span className="text-sm text-muted-foreground text-center px-4">
-								DESKTOP UI PLACEHOLDER
-							</span>
-						</div>
+					<motion.div
+						className="flex flex-col items-center"
+						initial={{ opacity: 0, y: 30 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ delay: 0.1 }}
+					>
+						<GlowingBorderCard>
+							<div className="w-64 sm:w-80 lg:w-96 aspect-[16/10] rounded-lg bg-gradient-to-br from-muted/50 to-muted/20 flex items-center justify-center overflow-hidden">
+								<div className="text-center p-4">
+									<div className="w-16 h-16 rounded-full border-2 border-primary/30 bg-primary/10 mx-auto mb-2" />
+									<span className="text-sm text-muted-foreground">
+										Desktop Experience
+									</span>
+								</div>
+							</div>
+						</GlowingBorderCard>
 						{/* Laptop base */}
-						<div className="w-72 sm:w-88 lg:w-[26rem] h-3 bg-muted rounded-b-lg border-x-4 border-b-4 border-muted" />
+						<div className="w-72 sm:w-88 lg:w-[26rem] h-3 bg-gradient-to-r from-muted via-muted/80 to-muted rounded-b-lg" />
 						<Badge variant="secondary" className="mt-3">
 							Desktop
 						</Badge>
-					</div>
+					</motion.div>
 
-					{/* Phone (front, overlapping) */}
-					<div className="flex flex-col items-center -ml-8 sm:-ml-12 lg:-ml-16 z-10">
-						<div className="w-20 sm:w-24 h-40 sm:h-48 rounded-2xl border-4 border-muted bg-background flex items-center justify-center shadow-lg">
-							<span className="text-[10px] text-muted-foreground text-center px-1">
-								MOBILE UI PLACEHOLDER
-							</span>
-						</div>
+					{/* Phone */}
+					<motion.div
+						className="flex flex-col items-center -ml-8 sm:-ml-12 lg:-ml-16 z-10"
+						initial={{ opacity: 0, x: 30 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						viewport={{ once: true }}
+						transition={{ delay: 0.3 }}
+					>
+						<GlowingBorderCard>
+							<div className="w-20 sm:w-24 h-40 sm:h-48 rounded-2xl bg-gradient-to-br from-background to-muted/30 flex items-center justify-center overflow-hidden">
+								<div className="text-center p-2">
+									<div className="w-8 h-8 rounded-full border-2 border-primary/30 bg-primary/10 mx-auto mb-1" />
+									<span className="text-[8px] text-muted-foreground">
+										Mobile
+									</span>
+								</div>
+							</div>
+						</GlowingBorderCard>
 						<Badge variant="secondary" className="mt-3">
 							Mobile
 						</Badge>
-					</div>
+					</motion.div>
 				</motion.div>
 
 				{/* Platform Buttons */}
@@ -84,16 +134,30 @@ export default function PlatformsSection() {
 					initial={{ opacity: 0 }}
 					whileInView={{ opacity: 1 }}
 					viewport={{ once: true }}
-					transition={{ duration: 0.5, delay: 0.3 }}
+					transition={{ duration: 0.5, delay: 0.4 }}
 					className="flex flex-wrap items-center justify-center gap-3"
 				>
 					{platforms.map((platform, index) => (
-						<Button key={index} variant={platform.variant} size="sm">
-							{platform.label}
-						</Button>
+						<motion.div
+							key={index}
+							whileHover={{ scale: 1.05, y: -2 }}
+							whileTap={{ scale: 0.95 }}
+						>
+							{platform.variant === "default" ? (
+								<MagneticButton>
+									<Button variant={platform.variant} size="sm">
+										{platform.label}
+									</Button>
+								</MagneticButton>
+							) : (
+								<Button variant={platform.variant} size="sm">
+									{platform.label}
+								</Button>
+							)}
+						</motion.div>
 					))}
 				</motion.div>
 			</div>
-		</section>
+		</motion.section>
 	);
 }

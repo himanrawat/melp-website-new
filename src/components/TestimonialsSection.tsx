@@ -1,26 +1,32 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { GlowingBorderCard, RevealOnScroll } from "@/components/ui/aceternity";
 
 const testimonials = [
 	{
-		name: "Name Placeholder",
-		role: "Role Placeholder, Company",
+		name: "Sarah Chen",
+		role: "VP of Engineering, TechFlow",
 		quote:
-			"This is a placeholder testimonial quote. It demonstrates how customers describe their positive experience using Melp for their team collaboration needs.",
+			"Melp transformed how our 200+ engineering team collaborates. We've cut meeting time by 40% while shipping faster than ever. The AI features are genuinely useful, not gimmicky.",
+		avatar: "SC",
+		rating: 5,
 	},
 	{
-		name: "Name Placeholder",
-		role: "Role Placeholder, Company",
+		name: "Marcus Rodriguez",
+		role: "Head of Product, GrowthLabs",
 		quote:
-			"This is a placeholder testimonial quote. It demonstrates how customers describe their positive experience using Melp for their team collaboration needs.",
+			"We evaluated every tool out there. Melp is the only one that actually understands modern product teams. Our roadmap-to-launch cycle dropped from weeks to days.",
+		avatar: "MR",
+		rating: 5,
 	},
 	{
-		name: "Name Placeholder",
-		role: "Role Placeholder, Company",
+		name: "Emily Watson",
+		role: "CEO, CreativeStudio",
 		quote:
-			"This is a placeholder testimonial quote. It demonstrates how customers describe their positive experience using Melp for their team collaboration needs.",
+			"Finally, one tool that replaces our messy stack of Slack, Notion, and Asana. Our remote team feels more connected than when we were in the office.",
+		avatar: "EW",
+		rating: 5,
 	},
 ];
 
@@ -35,77 +41,112 @@ const containerVariants = {
 };
 
 const itemVariants = {
-	hidden: { opacity: 0, y: 20 },
+	hidden: { opacity: 0, y: 20, scale: 0.95 },
 	visible: {
 		opacity: 1,
 		y: 0,
+		scale: 1,
 		transition: { duration: 0.5 },
 	},
 };
 
 export default function TestimonialsSection() {
 	return (
-		<section className="py-20 sm:py-32 bg-background">
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<motion.section
+			className="py-20 sm:py-32 bg-background relative overflow-hidden"
+			initial={{ opacity: 0, y: 50 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			exit={{ opacity: 0, y: -50 }}
+			viewport={{ once: false, margin: "-100px" }}
+			transition={{ duration: 0.6, ease: "easeOut" }}
+		>
+			{/* Background decoration */}
+			<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,32,32,0.03)_0%,transparent_50%)]" />
+
+			<div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.5 }}
-					className="text-center mb-16"
-				>
-					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-						Testimonials Section Title Placeholder
+				<RevealOnScroll className="text-center mb-16">
+					<motion.span
+						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: false }}
+						transition={{ duration: 0.4 }}
+					>
+						Testimonials
+					</motion.span>
+					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+						Loved by teams everywhere
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Placeholder subtitle about what customers say about using Melp.
+						See what leaders at top companies say about transforming their
+						workflows with Melp
 					</p>
-				</motion.div>
+				</RevealOnScroll>
 
 				{/* Testimonials Grid */}
 				<motion.div
 					variants={containerVariants}
 					initial="hidden"
 					whileInView="visible"
-					viewport={{ once: true }}
-					className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+					viewport={{ once: false, margin: "-50px" }}
+					className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch"
 				>
 					{testimonials.map((testimonial, index) => (
-						<motion.div key={index} variants={itemVariants}>
-							<Card className="relative h-full p-6 bg-card border hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-								{/* Mini Product Shot Placeholder */}
-								<div className="absolute top-4 right-4 w-16 h-10 rounded bg-muted/50 flex items-center justify-center">
-									<span className="text-[8px] text-muted-foreground text-center leading-tight">
-										MINI PRODUCT SHOT
-									</span>
-								</div>
-
-								{/* Avatar and Info */}
-								<div className="flex items-center gap-4 mb-6">
-									{/* Avatar Placeholder */}
-									<div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground flex-shrink-0">
-										Avatar
+						<motion.div key={index} variants={itemVariants} className="h-full">
+							<GlowingBorderCard className="h-full">
+								<div className="relative h-full p-6 lg:p-8 bg-card rounded-xl flex flex-col">
+									{/* Rating Stars */}
+									<div className="flex gap-1 mb-4">
+										{[...Array(testimonial.rating)].map((_, i) => (
+											<motion.svg
+												key={i}
+												className="w-5 h-5 text-amber-400"
+												fill="currentColor"
+												viewBox="0 0 20 20"
+												initial={{ opacity: 0, scale: 0 }}
+												animate={{ opacity: 1, scale: 1 }}
+												transition={{ delay: 0.5 + i * 0.1 }}
+											>
+												<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+											</motion.svg>
+										))}
 									</div>
-									<div className="pr-16">
-										<div className="font-semibold text-foreground">
-											{testimonial.name}
-										</div>
-										<div className="text-sm text-muted-foreground">
-											{testimonial.role}
+
+									{/* Quote */}
+									<blockquote className="text-foreground leading-relaxed flex-1">
+										&ldquo;{testimonial.quote}&rdquo;
+									</blockquote>
+
+									{/* Author */}
+									<div className="flex items-center gap-4 mt-6 pt-6 border-t border-border">
+										{/* Avatar */}
+										<motion.div
+											className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-sm font-semibold text-primary"
+											whileHover={{ scale: 1.1 }}
+											transition={{
+												type: "spring",
+												stiffness: 400,
+												damping: 10,
+											}}
+										>
+											{testimonial.avatar}
+										</motion.div>
+										<div>
+											<div className="font-semibold text-foreground">
+												{testimonial.name}
+											</div>
+											<div className="text-sm text-muted-foreground">
+												{testimonial.role}
+											</div>
 										</div>
 									</div>
 								</div>
-
-								{/* Quote */}
-								<blockquote className="text-muted-foreground">
-									&ldquo;{testimonial.quote}&rdquo;
-								</blockquote>
-							</Card>
+							</GlowingBorderCard>
 						</motion.div>
 					))}
 				</motion.div>
 			</div>
-		</section>
+		</motion.section>
 	);
 }
