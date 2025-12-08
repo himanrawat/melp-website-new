@@ -99,7 +99,7 @@ export default function HeroSection() {
 						className="mt-8 max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed"
 					>
 						Bring your team together with AI-powered communication, seamless
-						collaboration, and intelligent workflows—all in one place.
+						collaboration, and intelligent workflows all in one place.
 					</motion.p>
 
 					{/* CTA Buttons */}

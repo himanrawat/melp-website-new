@@ -59,7 +59,7 @@ const roleUseCases = [
 	{
 		title: "Marketing",
 		description:
-			"Launch campaigns faster. Coordinate content, track assets, and measure impact—all in one workspace.",
+			"Launch campaigns faster. Coordinate content, track assets, and measure impact all in one workspace.",
 		gradient: "from-orange-500/20 via-amber-500/10",
 	},
 	{

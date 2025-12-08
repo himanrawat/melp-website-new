@@ -106,7 +106,7 @@ export default function StatsSection() {
 						Measurable impact for your team
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Don&apos;t just take our word for it—see the real results teams
+						Don&apos;t just take our word for it see the real results teams
 						achieve with Melp
 					</p>
 				</RevealOnScroll>

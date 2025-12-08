@@ -96,8 +96,8 @@ export default function CtaSection() {
 						transition={{ delay: 0.5 }}
 						className="mt-6 text-sm text-muted-foreground"
 					>
-						✨ Free forever for small teams • No credit card required • Setup in
-						2 minutes
+						• One platform, one price • No credit card required • Setup in 2
+						minutes
 					</motion.p>
 				</motion.div>
 			</div>
