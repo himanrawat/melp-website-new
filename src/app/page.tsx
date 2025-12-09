@@ -14,6 +14,7 @@ import PlatformsSection from "@/components/PlatformsSection";
 import Footer from "@/components/Footer";
 import IntegrationsSection from "@/components/IntegrationsSection";
 import SavingsCalculatorSection from "@/components/SavingsCalculatorSection";
+import StackingCardsSection from "@/components/StackingCardsSection";
 
 export default function Home() {
 	return (
@@ -22,6 +23,7 @@ export default function Home() {
 			<main>
 				<HeroSection />
 				<FeaturesSection />
+				<StackingCardsSection />
 				<HowItWorksSection />
 				<HorizontalScrollSection />
 				<CollaborationSection />

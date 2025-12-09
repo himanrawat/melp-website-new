@@ -73,12 +73,12 @@ const replacedApps = [
 		description: "Video conferencing",
 	},
 	{
-		id: "gmeet",
-		name: "Google Meet",
-		logo: "/apps/gmeet.svg",
-		monthlyPrice: 6.0,
-		category: "video",
-		description: "Video meetings",
+		id: "googleworkspace",
+		name: "Google Workspace",
+		logo: "/apps/googleworkspace.svg",
+		monthlyPrice: 12.0,
+		category: "productivity",
+		description: "Productivity suite",
 	},
 	{
 		id: "calendly",
@@ -87,14 +87,6 @@ const replacedApps = [
 		monthlyPrice: 10.0,
 		category: "scheduling",
 		description: "Scheduling",
-	},
-	{
-		id: "gdrive",
-		name: "Google Drive",
-		logo: "/apps/gdrive.svg",
-		monthlyPrice: 2.99,
-		category: "storage",
-		description: "Cloud storage",
 	},
 	{
 		id: "onedrive",
@@ -122,7 +114,7 @@ export default function SavingsCalculatorSection() {
 		"slack",
 		"zoom",
 		"calendly",
-		"gdrive",
+		"googleworkspace",
 	]);
 	const [teamSize, setTeamSize] = useState(5);
 	const [viewMode, setViewMode] = useState<"monthly" | "yearly">("yearly");
