@@ -25,7 +25,7 @@ export default function Home() {
 				<FeaturesSection />
 				<StackingCardsSection />
 				<HowItWorksSection />
-				<HorizontalScrollSection />
+				{/* <HorizontalScrollSection /> */}
 				<CollaborationSection />
 				<IntegrationsSection />
 				<SavingsCalculatorSection />

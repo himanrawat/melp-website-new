@@ -91,7 +91,7 @@ function StackingCard({
 			className="sticky top-20 h-[80vh] min-h-[500px] flex items-center justify-center px-4"
 		>
 			<motion.div
-				className={`relative w-full max-w-5xl rounded-3xl border border-border bg-card overflow-hidden`}
+				className={`relative w-full max-w-5xl rounded-3xl border border-white/20 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl backdrop-saturate-150 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]`}
 				style={{
 					boxShadow: useTransform(
 						shadowOpacity,
@@ -101,8 +101,14 @@ function StackingCard({
 			>
 				{/* Gradient overlay for subtle color tint */}
 				<div
-					className={`absolute inset-0 bg-gradient-to-br ${card.color} pointer-events-none`}
+					className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-60 pointer-events-none`}
 				/>
+
+				{/* Glass highlight effect */}
+				<div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/10 pointer-events-none" />
+
+				{/* Inner glow border */}
+				<div className="absolute inset-[1px] rounded-[23px] border border-white/30 dark:border-white/5 pointer-events-none" />
 
 				{/* Card inner shadow overlay when covered */}
 				<motion.div
@@ -115,7 +121,7 @@ function StackingCard({
 						{/* Left Content */}
 						<div className="space-y-6">
 							<div
-								className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-background/80 ${card.iconColor}`}
+								className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/70 dark:bg-white/10 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-lg ${card.iconColor}`}
 							>
 								<Icon className="w-7 h-7" />
 							</div>
@@ -190,7 +196,7 @@ function StackingCard({
 										repeat: Infinity,
 										ease: "easeInOut",
 									}}
-									className="absolute top-1/4 left-1/4 w-20 h-20 rounded-2xl bg-background/90 border border-border shadow-lg flex items-center justify-center"
+									className="absolute top-1/4 left-1/4 w-20 h-20 rounded-2xl bg-gradient-to-br from-white/90 to-white/50 dark:from-white/20 dark:to-white/5 backdrop-blur-xl border border-white/60 dark:border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_2px_0_rgba(255,255,255,0.6)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] flex items-center justify-center"
 								>
 									<Icon className={`w-8 h-8 ${card.iconColor}`} />
 								</motion.div>
@@ -206,7 +212,7 @@ function StackingCard({
 										ease: "easeInOut",
 										delay: 0.5,
 									}}
-									className="absolute top-1/3 right-1/4 w-16 h-16 rounded-xl bg-background/90 border border-border shadow-lg flex items-center justify-center"
+									className="absolute top-1/3 right-1/4 w-16 h-16 rounded-xl bg-gradient-to-br from-white/90 to-white/50 dark:from-white/20 dark:to-white/5 backdrop-blur-xl border border-white/60 dark:border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_2px_0_rgba(255,255,255,0.6)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] flex items-center justify-center"
 								>
 									<Zap className={`w-6 h-6 ${card.iconColor}`} />
 								</motion.div>
@@ -222,7 +228,7 @@ function StackingCard({
 										ease: "easeInOut",
 										delay: 1,
 									}}
-									className="absolute bottom-1/4 left-1/3 w-24 h-24 rounded-2xl bg-background/90 border border-border shadow-lg flex items-center justify-center"
+									className="absolute bottom-1/4 left-1/3 w-24 h-24 rounded-2xl bg-gradient-to-br from-white/90 to-white/50 dark:from-white/20 dark:to-white/5 backdrop-blur-xl border border-white/60 dark:border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_2px_0_rgba(255,255,255,0.6)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] flex items-center justify-center"
 								>
 									<Shield className={`w-10 h-10 ${card.iconColor}`} />
 								</motion.div>
@@ -237,7 +243,7 @@ function StackingCard({
 										ease: "easeInOut",
 										delay: 0.8,
 									}}
-									className="absolute bottom-1/3 right-1/3 w-14 h-14 rounded-xl bg-background/90 border border-border shadow-lg flex items-center justify-center"
+									className="absolute bottom-1/3 right-1/3 w-14 h-14 rounded-xl bg-gradient-to-br from-white/90 to-white/50 dark:from-white/20 dark:to-white/5 backdrop-blur-xl border border-white/60 dark:border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_2px_0_rgba(255,255,255,0.6)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] flex items-center justify-center"
 								>
 									<Globe className={`w-5 h-5 ${card.iconColor}`} />
 								</motion.div>

@@ -19,6 +19,8 @@ const clientLogos = [
 	"Wayne Ent",
 ];
 
+import heroimg from "/s1.png";
+
 export default function HeroSection() {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const { scrollYProgress } = useScroll({
@@ -176,7 +178,7 @@ export default function HeroSection() {
 						</div>
 					</motion.div>
 
-					{/* Hero Video Placeholder */}
+					{/* Hero Image in Desktop Frame */}
 					<motion.div
 						initial={{ opacity: 0, y: 60, scale: 0.95 }}
 						animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -188,42 +190,19 @@ export default function HeroSection() {
 						className="mt-20 w-full max-w-6xl"
 					>
 						<div className="relative aspect-[16/10] w-full rounded-2xl border border-border/50 bg-muted/30 shadow-2xl overflow-hidden">
-							{/* Grid pattern inside */}
-							<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear_gradient(to_bottom,#22202008_1px,transparent_1px)] bg-[size:30px_30px]" />
-
-							{/* Content */}
-							<div className="absolute inset-0 flex items-center justify-center">
-								<div className="text-center">
-									<motion.div
-										className="mb-6 flex justify-center"
-										whileHover={{ scale: 1.05 }}
-										whileTap={{ scale: 0.95 }}
-									>
-										<div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 border border-primary/20 cursor-pointer hover:bg-primary/20 transition-all duration-300">
-											<svg
-												className="h-8 w-8 text-primary ml-1"
-												fill="currentColor"
-												viewBox="0 0 24 24"
-											>
-												<path d="M8 5v14l11-7z" />
-											</svg>
-										</div>
-									</motion.div>
-									<p className="text-lg font-medium text-muted-foreground">
-										PRODUCT DEMO VIDEO
-									</p>
-									<p className="text-sm text-muted-foreground/60 mt-2">
-										Click to play
-									</p>
-								</div>
-							</div>
-
-							{/* Decorative elements */}
-							<div className="absolute top-4 left-4 flex gap-2">
+							{/* Decorative elements - Desktop window buttons */}
+							<div className="absolute top-4 left-4 flex gap-2 z-10">
 								<div className="w-3 h-3 rounded-full bg-red-400/60" />
 								<div className="w-3 h-3 rounded-full bg-yellow-400/60" />
 								<div className="w-3 h-3 rounded-full bg-green-400/60" />
 							</div>
+
+							{/* Hero Image */}
+							<img
+								src="/dark-s1.png"
+								alt="Product screenshot"
+								className="absolute inset-0 w-full h-full object-contain object-top pt-8"
+							/>
 						</div>
 					</motion.div>
 				</div>
@@ -234,7 +213,7 @@ export default function HeroSection() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ delay: 1.5 }}
-				className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+				className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
 			>
 				<span className="text-sm text-muted-foreground">Scroll to explore</span>
 				<motion.div
