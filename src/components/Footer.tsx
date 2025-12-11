@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 
 const footerLinks = {
 	Product: [
@@ -38,6 +40,13 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+	const { resolvedTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
 	return (
 		<footer className="bg-muted/30 border-t relative overflow-hidden">
 			{/* Background decoration */}
@@ -52,7 +61,11 @@ export default function Footer() {
 							whileHover={{ scale: 1.02 }}
 						>
 							<Image
-								src="/logo.svg"
+								src={
+									mounted && resolvedTheme === "dark"
+										? "/logo-dark.svg"
+										: "/logo.svg"
+								}
 								alt="Melp Logo"
 								width={80}
 								height={0}

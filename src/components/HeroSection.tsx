@@ -3,7 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import {
 	MagneticButton,
 	TextShimmer,
@@ -23,6 +24,13 @@ import heroimg from "/s1.png";
 
 export default function HeroSection() {
 	const containerRef = useRef<HTMLDivElement>(null);
+	const { resolvedTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
 		offset: ["start start", "end start"],
@@ -199,7 +207,11 @@ export default function HeroSection() {
 
 							{/* Hero Image */}
 							<img
-								src="/dark-s1.png"
+								src={
+									mounted && resolvedTheme === "dark"
+										? "/dark-s1.png"
+										: "/s1.png"
+								}
 								alt="Product screenshot"
 								className="absolute inset-0 w-full h-full object-contain object-top pt-8"
 							/>
@@ -209,11 +221,11 @@ export default function HeroSection() {
 			</motion.div>
 
 			{/* Scroll indicator */}
-			<motion.div
+			{/* <motion.div
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ delay: 1.5 }}
-				className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+				className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
 			>
 				<span className="text-sm text-muted-foreground">Scroll to explore</span>
 				<motion.div
@@ -227,7 +239,7 @@ export default function HeroSection() {
 						className="w-1.5 h-1.5 rounded-full bg-primary"
 					/>
 				</motion.div>
-			</motion.div>
+			</motion.div> */}
 
 			{/* Bottom fade */}
 			<div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />

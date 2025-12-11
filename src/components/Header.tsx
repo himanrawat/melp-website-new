@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/aceternity";
 import { motion, AnimatePresence } from "framer-motion";
@@ -656,6 +657,12 @@ interface MobileMenuProps {
 
 function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 	const [expandedItem, setExpandedItem] = useState<string | null>(null);
+	const { resolvedTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	const toggleItem = (label: string) => {
 		setExpandedItem(expandedItem === label ? null : label);
@@ -686,11 +693,14 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 						{/* Header */}
 						<div className="flex items-center justify-between p-4 border-b border-border/60">
 							<Image
-								src="/logo.svg"
+								src={
+									mounted && resolvedTheme === "dark"
+										? "/logo-dark.svg"
+										: "/logo.svg"
+								}
 								alt="Melp"
 								width={90}
 								height={28}
-								className="dark:invert"
 							/>
 							<motion.button
 								onClick={onClose}
@@ -833,6 +843,12 @@ export default function Header() {
 	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+	const { resolvedTheme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	const handleOpenDropdown = useCallback((label: string) => {
 		// Clear any pending close timeout
@@ -870,7 +886,11 @@ export default function Header() {
 						className="flex items-center gap-2.5"
 					>
 						<Image
-							src="/logo.svg"
+							src={
+								mounted && resolvedTheme === "dark"
+									? "/logo-dark.svg"
+									: "/logo.svg"
+							}
 							alt="Melp"
 							width={100}
 							height={32}
