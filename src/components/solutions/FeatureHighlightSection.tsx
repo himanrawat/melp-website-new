@@ -112,7 +112,7 @@ export default function FeatureHighlightSection({
 						transition={{ duration: 0.6 }}
 						className={reversed ? "lg:order-1" : "lg:order-2"}
 					>
-						<div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 overflow-hidden shadow-2xl">
+						<div className="relative aspect-[4/3] rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 overflow-hidden shadow-2xl">
 							<div className="absolute inset-0 flex items-center justify-center">
 								<div className="w-3/4 h-3/4 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 animate-pulse" />
 							</div>
