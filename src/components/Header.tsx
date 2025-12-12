@@ -64,6 +64,12 @@ interface NavItemConfig {
 	label: string;
 	href?: string;
 	categories?: DropdownCategory[];
+	inputSection?: {
+		title: string;
+		placeholder: string;
+		buttonText: string;
+		icon: LucideIcon;
+	};
 	featured?: {
 		title: string;
 		description: string;
@@ -82,65 +88,77 @@ const navItems: NavItemConfig[] = [
 		label: "Platform",
 		categories: [
 			{
-				title: "Features",
+				title: "Collaboration",
 				items: [
 					{
-						label: "Messaging & Channels",
-						href: "/platform/messaging",
-						description: "Real-time messaging with organized channels",
-						icon: MessageCircle,
-					},
-					{
-						label: "Meetings & Calls",
-						href: "/platform/meetings",
-						description: "HD video conferencing and voice calls",
+						label: "Audio-Video Conferencing",
+						href: "/platform/conferencing",
+						description: "HD video meetings and voice calls",
 						icon: Video,
 					},
 					{
-						label: "File Sharing",
-						href: "/platform/files",
-						description: "Share and collaborate on files seamlessly",
-						icon: Cloud,
+						label: "Team Chat",
+						href: "/platform/chat",
+						description: "Real-time messaging for teams",
+						icon: MessageCircle,
 					},
 					{
-						label: "AI Assistant",
+						label: "Networking",
+						href: "/platform/networking",
+						description: "Connect and build relationships",
+						icon: Users,
+					},
+					{
+						label: "Scheduling & Calendar",
+						href: "/platform/calendar",
+						description: "Smart scheduling for your team",
+						icon: FolderKanban,
+					},
+					{
+						label: "Melp Drive",
+						href: "/platform/drive",
+						description: "Secure file storage and sharing",
+						icon: Cloud,
+					},
+				],
+			},
+			{
+				title: "Productivity",
+				items: [
+					{
+						label: "AI",
 						href: "/platform/ai",
 						description: "Smart workflows powered by AI",
 						icon: Sparkles,
 						badge: "New",
 					},
-				],
-			},
-			{
-				title: "Capabilities",
-				items: [
 					{
-						label: "Enterprise Search",
-						href: "/platform/search",
-						description: "Find answers instantly",
-						icon: Search,
+						label: "Docs",
+						href: "/platform/docs",
+						description: "Create and collaborate on documents",
+						icon: FileText,
 					},
 					{
-						label: "Automation",
-						href: "/platform/automation",
-						description: "Handles manual tasks automatically",
-						icon: Bot,
+						label: "Translations",
+						href: "/platform/translations",
+						description: "Real-time translation in 90+ languages",
+						icon: Globe,
 					},
 					{
-						label: "Projects",
-						href: "/platform/projects",
-						description: "Manage any project with ease",
-						icon: FolderKanban,
-					},
-					{
-						label: "Integrations",
-						href: "/platform/integrations",
-						description: "Connect with 500+ apps",
-						icon: Puzzle,
+						label: "Mobile & Desktop App",
+						href: "/platform/apps",
+						description: "Work from anywhere",
+						icon: Download,
 					},
 				],
 			},
 		],
+		inputSection: {
+			title: "Enter Meeting Link",
+			placeholder: "Paste meeting link here...",
+			buttonText: "Join",
+			icon: Video,
+		},
 		featured: {
 			title: "Try Melp Desktop App",
 			description: "For a faster, more seamless experience",
@@ -153,51 +171,22 @@ const navItems: NavItemConfig[] = [
 		label: "Solutions",
 		categories: [
 			{
-				title: "By Industry",
-				items: [
-					{
-						label: "Technology",
-						href: "/solutions/technology",
-						description: "Built for tech teams",
-						icon: Zap,
-					},
-					{
-						label: "Healthcare",
-						href: "/solutions/healthcare",
-						description: "HIPAA-compliant communication",
-						icon: Heart,
-					},
-					{
-						label: "Education",
-						href: "/solutions/education",
-						description: "Connect classrooms and campuses",
-						icon: GraduationCap,
-					},
-					{
-						label: "Government",
-						href: "/solutions/government",
-						description: "Secure solutions for public sector",
-						icon: Landmark,
-					},
-				],
-			},
-			{
 				title: "By Company Size",
 				items: [
 					{
-						label: "Enterprise",
-						href: "/solutions/enterprise",
+						label: "Enterprises",
+						href: "/solutions/enterprises",
 						description: "Scale across your organization",
 						icon: Building2,
 					},
 					{
-						label: "Small & Medium Business",
-						href: "/solutions/smb",
+						label: "Small & Medium-Sized Businesses",
+						href: "/solutions/smes",
 						description: "Powerful tools for growing teams",
 						icon: TrendingUp,
 					},
 					{
-						label: "Startups",
+						label: "Start-ups",
 						href: "/solutions/startups",
 						description: "Move fast and stay connected",
 						icon: Rocket,
@@ -205,40 +194,47 @@ const navItems: NavItemConfig[] = [
 				],
 			},
 			{
-				title: "By Use Case",
-				highlighted: true,
+				title: "By Industry",
 				items: [
 					{
-						label: "Remote Teams",
-						href: "/solutions/remote",
-						description: "Unite distributed workforces",
-						icon: Globe,
+						label: "IT & Technology",
+						href: "/solutions/it-technology",
+						description: "Built for tech teams",
+						icon: Zap,
 					},
 					{
-						label: "Collaboration",
-						href: "/solutions/collaboration",
-						description: "Work better together",
-						icon: Users,
+						label: "Pharma & Life Sciences",
+						href: "/solutions/pharma",
+						description: "Secure R&D collaboration",
+						icon: Heart,
 					},
 					{
-						label: "Project Management",
-						href: "/solutions/projects",
-						description: "Deliver projects on time",
-						icon: FolderKanban,
+						label: "Legal & Law Firms",
+						href: "/solutions/legal",
+						description: "Confidential client communication",
+						icon: Landmark,
 					},
 					{
-						label: "Sales & Business",
-						href: "/solutions/sales",
-						description: "Close deals faster",
+						label: "Financial Services",
+						href: "/solutions/financial-services",
+						description: "Compliant financial solutions",
 						icon: Briefcase,
+					},
+					{
+						label: "Creative & Media",
+						href: "/solutions/creative-media",
+						description: "Collaborate on creative projects",
+						icon: Sparkles,
+					},
+					{
+						label: "View All Solutions",
+						href: "/solutions",
+						description: "Explore all solutions",
+						icon: ArrowRight,
 					},
 				],
 			},
 		],
-	},
-	{
-		label: "Pricing",
-		href: "/pricing",
 	},
 	{
 		label: "Resources",
@@ -253,10 +249,10 @@ const navItems: NavItemConfig[] = [
 						icon: HelpCircle,
 					},
 					{
-						label: "Documentation",
-						href: "/resources/docs",
-						description: "Technical guides and API reference",
-						icon: FileText,
+						label: "Success Stories",
+						href: "/resources/success-stories",
+						description: "See how teams succeed with Melp",
+						icon: BarChart3,
 					},
 					{
 						label: "Blog",
@@ -264,29 +260,46 @@ const navItems: NavItemConfig[] = [
 						description: "Insights and industry trends",
 						icon: Newspaper,
 					},
-				],
-			},
-			{
-				title: "Discover",
-				items: [
-					{
-						label: "Case Studies",
-						href: "/resources/case-studies",
-						description: "Success stories from customers",
-						icon: BarChart3,
-					},
-					{
-						label: "Release Notes",
-						href: "/resources/releases",
-						description: "Latest updates and features",
-						icon: Tag,
-						badge: "v2.5",
-					},
 					{
 						label: "Webinars",
 						href: "/resources/webinars",
 						description: "Live and on-demand sessions",
 						icon: Mic,
+					},
+					{
+						label: "FAQs",
+						href: "/resources/faqs",
+						description: "Frequently asked questions",
+						icon: HelpCircle,
+					},
+				],
+			},
+			{
+				title: "Legal",
+				items: [
+					{
+						label: "Privacy",
+						href: "/privacy",
+						description: "How we protect your data",
+						icon: Building2,
+					},
+					{
+						label: "Terms",
+						href: "/terms",
+						description: "Terms of service",
+						icon: FileText,
+					},
+					{
+						label: "Security",
+						href: "/security",
+						description: "Enterprise-grade protection",
+						icon: Building2,
+					},
+					{
+						label: "Cookies",
+						href: "/cookies",
+						description: "Cookie policy",
+						icon: FileText,
 					},
 				],
 			},
@@ -298,6 +311,10 @@ const navItems: NavItemConfig[] = [
 			href: "/contact",
 			icon: Mail,
 		},
+	},
+	{
+		label: "Pricing",
+		href: "/pricing",
 	},
 ];
 
@@ -478,11 +495,19 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 		return (
 			<Link href={item.href || "/"}>
 				<motion.span
-					className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg cursor-pointer inline-block"
-					whileHover={{ y: -2 }}
+					className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg cursor-pointer inline-block group"
+					whileHover={{ y: -1 }}
 					whileTap={{ scale: 0.98 }}
 				>
-					{item.label}
+					<span className="relative">
+						{item.label}
+						<motion.span
+							className="absolute -bottom-0.5 left-0 h-[2px] bg-primary rounded-full"
+							initial={{ width: 0 }}
+							whileHover={{ width: "100%" }}
+							transition={{ duration: 0.2 }}
+						/>
+					</span>
 				</motion.span>
 			</Link>
 		);
@@ -504,10 +529,19 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 						? "text-foreground"
 						: "text-muted-foreground hover:text-foreground"
 				}`}
-				whileHover={{ y: -2 }}
+				whileHover={{ y: -1 }}
 				whileTap={{ scale: 0.98 }}
 			>
-				{item.label}
+				<span className="relative">
+					{item.label}
+					<motion.span
+						className="absolute -bottom-0.5 left-0 h-[2px] bg-primary rounded-full"
+						initial={{ width: 0 }}
+						animate={{ width: isOpen ? "100%" : 0 }}
+						whileHover={{ width: "100%" }}
+						transition={{ duration: 0.2 }}
+					/>
+				</span>
 				<motion.div
 					animate={{ rotate: isOpen ? 180 : 0 }}
 					transition={{ duration: 0.2, ease: "easeInOut" }}
@@ -601,42 +635,89 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 									</motion.div>
 								)}
 
-								{/* Featured Section */}
-								{item.featured && !hasHighlightedCategory && (
-									<motion.div
-										variants={itemVariants}
-										className="w-72 bg-muted/30 border-l border-border/50 p-8 flex flex-col"
-									>
-										<div className="flex-1">
-											<motion.div
-												className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-5"
-												whileHover={{ scale: 1.05 }}
-												transition={{ type: "spring", stiffness: 400 }}
-											>
-												<item.featured.icon
-													className="w-7 h-7 text-primary"
-													strokeWidth={1.5}
-												/>
-											</motion.div>
-											<h4 className="text-lg font-semibold text-foreground mb-2">
-												{item.featured.title}
-											</h4>
-											<p className="text-sm text-muted-foreground leading-relaxed mb-6">
-												{item.featured.description}
-											</p>
-										</div>
-										<Link href={item.featured.href} onClick={onClose}>
-											<motion.button
-												className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-												whileHover={{ x: 4 }}
-												transition={{ type: "spring", stiffness: 400 }}
-											>
-												{item.featured.cta}
-												<ArrowRight className="w-4 h-4" />
-											</motion.button>
-										</Link>
-									</motion.div>
-								)}
+								{/* Input Section + Featured Section */}
+								{(item.inputSection || item.featured) &&
+									!hasHighlightedCategory && (
+										<motion.div
+											variants={itemVariants}
+											className="w-72 bg-muted/30 border-l border-border/50 p-8 flex flex-col"
+										>
+											{/* Input Section */}
+											{item.inputSection && (
+												<div className="mb-6 pb-6 border-b border-border/50">
+													<div className="flex items-center gap-2 mb-3">
+														<item.inputSection.icon
+															className="w-4 h-4 text-primary"
+															strokeWidth={1.75}
+														/>
+														<h4 className="text-sm font-semibold text-foreground">
+															{item.inputSection.title}
+														</h4>
+													</div>
+													<form
+														onSubmit={(e) => {
+															e.preventDefault();
+															const form = e.target as HTMLFormElement;
+															const input = form.elements.namedItem(
+																"meetingLink"
+															) as HTMLInputElement;
+															if (input.value) {
+																window.location.href = input.value;
+															}
+														}}
+														className="flex flex-col gap-2"
+													>
+														<input
+															type="text"
+															name="meetingLink"
+															placeholder={item.inputSection.placeholder}
+															className="w-full px-3 py-2 text-sm rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+														/>
+														<Button
+															type="submit"
+															size="sm"
+															className="w-full h-9 bg-primary hover:bg-primary/90 font-medium"
+														>
+															{item.inputSection.buttonText}
+														</Button>
+													</form>
+												</div>
+											)}
+											{/* Featured Section */}
+											{item.featured && (
+												<div className="flex-1 flex flex-col">
+													<div className="flex-1">
+														<motion.div
+															className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-5"
+															whileHover={{ scale: 1.05 }}
+															transition={{ type: "spring", stiffness: 400 }}
+														>
+															<item.featured.icon
+																className="w-7 h-7 text-primary"
+																strokeWidth={1.5}
+															/>
+														</motion.div>
+														<h4 className="text-lg font-semibold text-foreground mb-2">
+															{item.featured.title}
+														</h4>
+														<p className="text-sm text-muted-foreground leading-relaxed mb-6">
+															{item.featured.description}
+														</p>
+													</div>
+													<Link href={item.featured.href} onClick={onClose}>
+														<motion.button
+															className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+															whileHover={{ x: 4 }}
+															transition={{ type: "spring", stiffness: 400 }}
+														>
+															{item.featured.cta}
+															<ArrowRight className="w-4 h-4" />
+														</motion.button>
+													</Link>
+												</div>
+											)}
+										</motion.div>
+									)}
 							</div>
 						</motion.div>
 					</motion.div>
@@ -842,12 +923,25 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 export default function Header() {
 	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
 	const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 	const { resolvedTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
 		setMounted(true);
+	}, []);
+
+	// Scroll detection
+	useEffect(() => {
+		const handleScroll = () => {
+			setScrolled(window.scrollY > 20);
+		};
+
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		handleScroll(); // Check initial scroll position
+
+		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
 	const handleOpenDropdown = useCallback((label: string) => {
@@ -875,16 +969,25 @@ export default function Header() {
 			initial={{ y: -100, opacity: 0 }}
 			animate={{ y: 0, opacity: 1 }}
 			transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-			className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl backdrop-saturate-150"
+			className={`sticky top-0 z-50 w-full transition-all duration-300 ease-out ${
+				scrolled
+					? "border-b border-border/40 bg-background/80 backdrop-blur-xl backdrop-saturate-150 shadow-lg shadow-black/5 dark:shadow-black/20"
+					: "border-b border-transparent bg-background/60 backdrop-blur-md"
+			}`}
 		>
-			<div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+			<div
+				className={`mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-300 ease-out ${
+					scrolled ? "h-16" : "h-20"
+				}`}
+			>
 				{/* Logo */}
-				<Link href="/" className="flex items-center gap-2.5">
+				<Link href="/" className="flex items-center gap-2.5 group">
 					<motion.div
-						whileHover={{ scale: 1.02 }}
-						whileTap={{ scale: 0.98 }}
-						className="flex items-center gap-2.5"
+						whileHover={{ scale: 1.03 }}
+						whileTap={{ scale: 0.97 }}
+						className="flex items-center gap-2.5 relative"
 					>
+						<motion.div className="absolute inset-0 bg-primary/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 						<Image
 							src={
 								mounted && resolvedTheme === "dark"
@@ -894,7 +997,7 @@ export default function Header() {
 							alt="Melp"
 							width={100}
 							height={32}
-							className="w-40 h-auto"
+							className="w-40 h-auto relative"
 							priority
 						/>
 					</motion.div>

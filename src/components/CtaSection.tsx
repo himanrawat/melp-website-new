@@ -15,7 +15,7 @@ export default function CtaSection() {
 			transition={{ duration: 0.6 }}
 		>
 			{/* Grid pattern */}
-			<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)] bg-[size:40px_40px]" />
+			<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)] bg-size[40px_40px]" />
 
 			<div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 				<motion.div

@@ -33,7 +33,7 @@ const orbitalIntegrations = [
 	},
 	{
 		name: "Asana",
-		logo: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Asana_logo.svg",
+		logo: "/asana.svg",
 	},
 ];
 
@@ -156,7 +156,8 @@ export default function IntegrationsSection() {
 						Deep connectivity with your ecosystem
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Seamless connectivity with CRMs, project tools, automation platforms, and enterprise systems you already use.
+						Seamless connectivity with CRMs, project tools, automation
+						platforms, and enterprise systems you already use.
 					</p>
 				</RevealOnScroll>
 

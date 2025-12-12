@@ -10,6 +10,10 @@ import {
 	TextShimmer,
 	HoverTiltCard,
 } from "@/components/ui/aceternity";
+import {
+	EncryptedText,
+	RotatingEncryptedText,
+} from "@/components/ui/encrypted-text";
 
 const clientLogos = [
 	"Acme Corp",
@@ -95,8 +99,20 @@ export default function HeroSection() {
 						}}
 						className="max-w-5xl text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl leading-[1.1]"
 					>
-						One intelligent workspace for{" "}
-						<TextShimmer className="font-bold">the world</TextShimmer>
+						Work securely. Collaborate with{" "}
+						<RotatingEncryptedText
+							texts={[
+								"encrypted messaging",
+								"AI intelligence",
+								"protected storage",
+								"confidence",
+							]}
+							encryptedClassName="text-primary/50"
+							revealedClassName="text-primary"
+							revealDelayMs={60}
+							displayDurationMs={3000}
+							className="font-bold"
+						/>
 					</motion.h1>
 
 					{/* Subheading */}

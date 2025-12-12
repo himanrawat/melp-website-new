@@ -84,7 +84,8 @@ export default function CollaborationSection() {
 						Frictionless teamwork
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Instant sharing, real-time co-editing, precision permissions, and seamless collaboration across teams and partners.
+						Instant sharing, real-time co-editing, precision permissions, and
+						seamless collaboration across teams and partners.
 					</p>
 				</RevealOnScroll>
 
@@ -139,7 +140,7 @@ export default function CollaborationSection() {
 									</div>
 
 									{/* Card Content - Tool Preview */}
-									<div className="p-6 h-[240px]">
+									<div className="p-6 h-60">
 										{/* Notepad Tool */}
 										{index === 0 && (
 											<div className="space-y-3">

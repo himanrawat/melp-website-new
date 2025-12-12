@@ -15,9 +15,9 @@ import Footer from "@/components/Footer";
 import IntegrationsSection from "@/components/IntegrationsSection";
 import SavingsCalculatorSection from "@/components/SavingsCalculatorSection";
 import StackingCardsSection from "@/components/StackingCardsSection";
-import { ProductVisualShowcase } from "@/components/ProductVisual";
-import GlassmorphismSection from "@/components/GlassmorphismSection";
-import GlassmorphismSectionAlt from "@/components/GlassmorphismSectionAlt";
+// import { ProductVisualShowcase } from "@/components/ProductVisual";
+// import GlassmorphismSection from "@/components/GlassmorphismSection";
+// import GlassmorphismSectionAlt from "@/components/GlassmorphismSectionAlt";
 
 export default function Home() {
 	return (
@@ -26,13 +26,13 @@ export default function Home() {
 			<main>
 				<HeroSection />
 				<FeaturesSection />
-				<GlassmorphismSectionAlt />
+				{/* <GlassmorphismSectionAlt /> */}
 				{/* <ProductVisualShowcase
 					title="Your Product Title"
 					subtitle="Your product description"
 					imageSrc="/dark-s1.png"
 				/> */}
-				<GlassmorphismSection />
+				{/* <GlassmorphismSection /> */}
 				<StackingCardsSection />
 				<HowItWorksSection />
 				{/* <HorizontalScrollSection /> */}
