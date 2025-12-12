@@ -73,8 +73,7 @@ export default function Footer() {
 							/>
 						</motion.div>
 						<p className="text-sm text-muted-foreground max-w-xs mb-6">
-							The AI-powered platform for modern teams to communicate,
-							collaborate, and ship faster.
+							The unified work platform for teams, partners, and clients. Built for enterprises. Designed for people. Powered by AI.
 						</p>
 						{/* Social Links */}
 						<div className="flex gap-3">

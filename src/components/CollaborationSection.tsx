@@ -78,14 +78,13 @@ export default function CollaborationSection() {
 						viewport={{ once: false }}
 						transition={{ duration: 0.4 }}
 					>
-						Real-time Collaboration
+						File Sharing & Collaboration
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Work together, seamlessly
+						Frictionless teamwork
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						See your team&apos;s cursors in real-time. Collaborate on documents,
-						designs, and ideas like you&apos;re in the same room.
+						Instant sharing, real-time co-editing, precision permissions, and seamless collaboration across teams and partners.
 					</p>
 				</RevealOnScroll>
 

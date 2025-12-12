@@ -70,7 +70,9 @@ export default function HeroSection() {
 									<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
 									<span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
 								</span>
-								<span>Announcing our new AI features</span>
+								<span>
+									Your people. Your partners. One intelligent workspace.
+								</span>
 								<motion.span
 									className="text-primary"
 									whileHover={{ x: 3 }}
@@ -93,8 +95,8 @@ export default function HeroSection() {
 						}}
 						className="max-w-5xl text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl leading-[1.1]"
 					>
-						The workspace for{" "}
-						<TextShimmer className="font-bold">modern teams</TextShimmer>
+						One intelligent workspace for{" "}
+						<TextShimmer className="font-bold">the world</TextShimmer>
 					</motion.h1>
 
 					{/* Subheading */}
@@ -108,8 +110,8 @@ export default function HeroSection() {
 						}}
 						className="mt-8 max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed"
 					>
-						Bring your team together with AI-powered communication, seamless
-						collaboration, and intelligent workflows all in one place.
+						Bring teams, partners, clients, and global workforces together in
+						one intelligent platform blending emotion and enterprise power.
 					</motion.p>
 
 					{/* CTA Buttons */}

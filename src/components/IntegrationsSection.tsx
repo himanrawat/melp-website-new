@@ -150,14 +150,13 @@ export default function IntegrationsSection() {
 						viewport={{ once: false }}
 						transition={{ duration: 0.4 }}
 					>
-						All-in-One Platform
+						Integrations
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Your tools, unified in Melp
+						Deep connectivity with your ecosystem
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Bring all your favorite apps together. Melp connects with the tools
-						you already love so you can collaborate without switching tabs.
+						Seamless connectivity with CRMs, project tools, automation platforms, and enterprise systems you already use.
 					</p>
 				</RevealOnScroll>
 

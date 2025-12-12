@@ -41,11 +41,10 @@ export default function PlatformsSection() {
 						Available Everywhere
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Melp on all your devices
+						Accessible anywhere, anytime
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Stay connected wherever you are. Native apps for every platform,
-						synced in real-time.
+						Built for enterprises. Designed for people. Powered by AI. Native apps for every platform, synced in real-time.
 					</p>
 				</RevealOnScroll>
 

@@ -16,40 +16,53 @@ import {
 const cards = [
 	{
 		id: 1,
-		title: "Unified Communication",
+		title: "Clarity in Every Conversation",
 		description:
-			"Chat, voice, and video all in one place. No more switching between apps.",
+			"Messages form glowing threads joining teams. Organized channels, instant translation, and structured collaboration.",
 		icon: MessageSquare,
-		features: ["Real-time messaging", "Voice calls", "HD video meetings"],
+		features: [
+			"Organized channels",
+			"Instant translation",
+			"Structured collaboration",
+		],
 		color: "from-blue-500/10 to-indigo-500/10",
 		iconColor: "text-blue-500",
 	},
 	{
 		id: 2,
-		title: "Smart Scheduling",
+		title: "Meet Like You're in the Same Room",
 		description:
-			"AI-powered calendar that finds the perfect time for everyone.",
-		icon: Calendar,
-		features: ["Auto-scheduling", "Time zone sync", "Meeting insights"],
+			"Seamless transitions from chat to call with enterprise-grade video and immersive clarity.",
+		icon: Video,
+		features: [
+			"Enterprise-grade video",
+			"Immersive clarity",
+			"Cross-organization meetings",
+		],
 		color: "from-emerald-500/10 to-teal-500/10",
 		iconColor: "text-emerald-500",
 	},
 	{
 		id: 3,
-		title: "Secure Cloud Storage",
+		title: "Your Knowledge, Organized",
 		description:
-			"Store, share, and collaborate on files with enterprise-grade security.",
+			"Files float into a structured library. Centralized, secure cloud storage engineered for discoverability.",
 		icon: FolderOpen,
-		features: ["Unlimited storage", "Version history", "Secure sharing"],
+		features: [
+			"Centralized storage",
+			"Smart discoverability",
+			"Effortless access",
+		],
 		color: "from-amber-500/10 to-orange-500/10",
 		iconColor: "text-amber-500",
 	},
 	{
 		id: 4,
-		title: "AI-Powered Assistance",
-		description: "Let AI handle the mundane so you can focus on what matters.",
+		title: "Intelligence in Every Interaction",
+		description:
+			"AI light pulses through the system. Summaries, insights, workflows, and intelligent routing.",
 		icon: Bot,
-		features: ["Smart transcription", "Action items", "Meeting summaries"],
+		features: ["Smart summaries", "Intelligent routing", "Workflow automation"],
 		color: "from-purple-500/10 to-pink-500/10",
 		iconColor: "text-purple-500",
 	},
