@@ -62,7 +62,9 @@ export default function HeroSection() {
 									<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
 									<span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
 								</span>
-								<span>Your people. Your partners. One intelligent workspace.</span>
+								<span>
+									Your people. Your partners. One intelligent workspace.
+								</span>
 								<motion.span
 									className="text-primary"
 									whileHover={{ x: 3 }}
@@ -100,7 +102,8 @@ export default function HeroSection() {
 						}}
 						className="mt-8 max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed"
 					>
-						Bring teams, partners, clients, and global workforces together in one intelligent platform blending emotion and enterprise power.
+						Bring teams, partners, clients, and global workforces together in
+						one intelligent platform blending emotion and enterprise power.
 					</motion.p>
 
 					{/* CTA Buttons */}

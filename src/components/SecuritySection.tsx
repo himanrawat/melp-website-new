@@ -67,7 +67,8 @@ export default function SecuritySection() {
 						Trust engineered at every layer
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Identity, access, compliance, encryption, and governance for enterprises and public-sector organizations.
+						Identity, access, compliance, encryption, and governance for
+						enterprises and public-sector organizations.
 					</p>
 				</RevealOnScroll>
 

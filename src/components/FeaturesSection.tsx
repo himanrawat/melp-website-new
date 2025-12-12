@@ -74,7 +74,8 @@ export default function FeaturesSection() {
 						Everything your enterprise needs
 					</h2>
 					<p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-						Powerful features designed to help global teams communicate clearly, collaborate instantly, and work smarter with AI.
+						Powerful features designed to help global teams communicate clearly,
+						collaborate instantly, and work smarter with AI.
 					</p>
 				</RevealOnScroll>
 

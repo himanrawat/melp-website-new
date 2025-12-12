@@ -20,7 +20,11 @@ const cards = [
 		description:
 			"Messages form glowing threads joining teams. Organized channels, instant translation, and structured collaboration.",
 		icon: MessageSquare,
-		features: ["Organized channels", "Instant translation", "Structured collaboration"],
+		features: [
+			"Organized channels",
+			"Instant translation",
+			"Structured collaboration",
+		],
 		color: "from-blue-500/10 to-indigo-500/10",
 		iconColor: "text-blue-500",
 	},
@@ -30,7 +34,11 @@ const cards = [
 		description:
 			"Seamless transitions from chat to call with enterprise-grade video and immersive clarity.",
 		icon: Video,
-		features: ["Enterprise-grade video", "Immersive clarity", "Cross-organization meetings"],
+		features: [
+			"Enterprise-grade video",
+			"Immersive clarity",
+			"Cross-organization meetings",
+		],
 		color: "from-emerald-500/10 to-teal-500/10",
 		iconColor: "text-emerald-500",
 	},
@@ -40,7 +48,11 @@ const cards = [
 		description:
 			"Files float into a structured library. Centralized, secure cloud storage engineered for discoverability.",
 		icon: FolderOpen,
-		features: ["Centralized storage", "Smart discoverability", "Effortless access"],
+		features: [
+			"Centralized storage",
+			"Smart discoverability",
+			"Effortless access",
+		],
 		color: "from-amber-500/10 to-orange-500/10",
 		iconColor: "text-amber-500",
 	},
