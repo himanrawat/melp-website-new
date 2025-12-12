@@ -22,30 +22,30 @@ import {
 const steps = [
 	{
 		id: 1,
-		title: "Start a conversation",
+		title: "Work begins with connection",
 		description:
-			"Create a meeting room or workspace. Invite your team members via link or email no downloads required.",
+			"Create a workspace and invite your teams, partners, and clients. Across rooms, across cities, across continents.",
 		icon: MessageSquare,
 	},
 	{
 		id: 2,
-		title: "Collaborate in real-time",
+		title: "Communication becomes clarity",
 		description:
-			"Chat, video call, share screens, and co-edit documents all within one unified space. No app-switching needed.",
+			"Organized channels, instant translation, and structured collaboration where teams and partners move as one.",
 		icon: Users,
 	},
 	{
 		id: 3,
-		title: "AI captures everything",
+		title: "Intelligence guides every moment",
 		description:
-			"Live captions, real-time translation, meeting summaries, and action items generated automatically by Melp AI.",
+			"AI summaries, real-time translation, meeting insights, and action items generated automatically by Melp AI.",
 		icon: Sparkles,
 	},
 	{
 		id: 4,
-		title: "Stay organized & follow up",
+		title: "Your knowledge, accessible anywhere",
 		description:
-			"Access recordings, notes, and files in Melp Drive. Sync with your calendar and keep everything in one place.",
+			"Access recordings, notes, and files in Melp Drive. Where work is accessible anywhere and complexity transforms into focus.",
 		icon: CheckCircle,
 	},
 ];

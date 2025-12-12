@@ -8,37 +8,37 @@ const industryUseCases = [
 	{
 		title: "Technology",
 		description:
-			"Ship faster with AI-powered code reviews, sprint planning, and real-time collaboration across distributed engineering teams.",
+			"Unite engineering teams, vendors, and partners across continents. Ship faster with AI-powered workflows and structured collaboration.",
 		gradient: "from-violet-500/20 via-purple-500/10",
 	},
 	{
 		title: "Healthcare",
 		description:
-			"Secure, HIPAA-compliant communication for care teams. Coordinate patient handoffs and share critical updates instantly.",
+			"Secure, compliant communication for care teams, partners, and agencies. Coordinate seamlessly with trust engineered at every layer.",
 		gradient: "from-emerald-500/20 via-green-500/10",
 	},
 	{
 		title: "Finance",
 		description:
-			"Enterprise-grade security meets lightning-fast deal flow. Track approvals and compliance in real-time.",
+			"Connect clients, partners, and internal teams. Enterprise-grade security meets lightning-fast deal flow and compliance tracking.",
 		gradient: "from-blue-500/20 via-cyan-500/10",
 	},
 	{
-		title: "Education",
+		title: "Professional Services",
 		description:
-			"Virtual classrooms that feel alive. Engage students with interactive content and seamless group projects.",
+			"One workspace for consultants, clients, and vendors. A professional graph where real projects come together.",
 		gradient: "from-amber-500/20 via-yellow-500/10",
 	},
 	{
-		title: "Retail",
+		title: "Agencies",
 		description:
-			"Unify store operations with HQ. Sync inventory, share visual merchandising guides, and train staff at scale.",
+			"Collaborate with clients and vendors like you're in the same room. Instant sharing, precision permissions, frictionless teamwork.",
 		gradient: "from-pink-500/20 via-rose-500/10",
 	},
 	{
 		title: "Manufacturing",
 		description:
-			"Connect the shop floor to the boardroom. Real-time production updates and quality control workflows.",
+			"Connect the shop floor to global suppliers and partners. Real-time updates with instant translation across languages.",
 		gradient: "from-slate-500/20 via-gray-500/10",
 	},
 ];
@@ -47,37 +47,37 @@ const roleUseCases = [
 	{
 		title: "Product Teams",
 		description:
-			"From roadmap to launch, keep everyone aligned. Integrate user feedback, specs, and designs in one place.",
+			"From roadmap to launch, keep teams and external partners aligned. Where complexity transforms into focus.",
 		gradient: "from-indigo-500/20 via-blue-500/10",
 	},
 	{
 		title: "Engineering",
 		description:
-			"Async-first collaboration with context. Link PRs, track incidents, and keep technical discussions organized.",
+			"Async-first collaboration with context. Connect distributed teams and vendors where conversations flow naturally.",
 		gradient: "from-cyan-500/20 via-teal-500/10",
 	},
 	{
 		title: "Marketing",
 		description:
-			"Launch campaigns faster. Coordinate content, track assets, and measure impact all in one workspace.",
+			"Coordinate with agencies, vendors, and internal teams. Intelligence guides every campaign moment.",
 		gradient: "from-orange-500/20 via-amber-500/10",
 	},
 	{
 		title: "Sales",
 		description:
-			"Close deals with real-time deal rooms. Share proposals, track engagement, and collaborate with customers.",
+			"Close deals with real-time client collaboration. Partners, vendors, and customers united in deal rooms.",
 		gradient: "from-green-500/20 via-emerald-500/10",
 	},
 	{
 		title: "HR & People",
 		description:
-			"Onboard new hires seamlessly. Build culture with channels, polls, and company-wide announcements.",
+			"Onboard global teams seamlessly. Build culture across rooms, cities, and continents.",
 		gradient: "from-purple-500/20 via-violet-500/10",
 	},
 	{
 		title: "Operations",
 		description:
-			"Automate workflows, manage resources, and keep every process running smoothly across teams.",
+			"Automate workflows with vendors and partners. AI summaries and intelligent routing reduce noise.",
 		gradient: "from-red-500/20 via-rose-500/10",
 	},
 ];
@@ -165,11 +165,10 @@ export default function UseCasesSection() {
 						Use Cases
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Built for how you work
+						Partners. Clients. Vendors. United.
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Whether you&apos;re a startup or enterprise, Melp adapts to your
-						team&apos;s unique workflow
+						Whether you&apos;re connecting with internal teams or global partners, Melp adapts to your workflow.
 					</p>
 				</RevealOnScroll>
 

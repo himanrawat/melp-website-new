@@ -9,38 +9,39 @@ import {
 
 const features = [
 	{
-		title: "AI-Powered Chat",
+		title: "Messaging & Channels",
 		description:
-			"Smart conversations with context-aware AI that understands your team's workflow.",
+			"Clarity in every conversation through organized channels, instant translation, and structured collaboration.",
 		gradient: "from-violet-500/10 to-purple-500/10",
 	},
 	{
-		title: "Real-time Collaboration",
+		title: "Meetings & Calls",
 		description:
-			"Work together seamlessly with live cursors, comments, and instant sync.",
+			"Seamless transitions from chat to call with enterprise-grade video, immersive clarity, and dependable cross-organization meetings.",
 		gradient: "from-blue-500/10 to-cyan-500/10",
 	},
 	{
-		title: "Smart Workflows",
+		title: "Drive & Storage",
 		description:
-			"Automate repetitive tasks and streamline your team's productivity.",
+			"Centralized, secure cloud storage engineered for discoverability, governance, and effortless access.",
 		gradient: "from-amber-500/10 to-orange-500/10",
 	},
 	{
-		title: "Unified Inbox",
+		title: "Professional Networking",
 		description:
-			"All your messages, notifications, and updates in one organized place.",
+			"A LinkedIn-like professional graph where vendors, agencies, clients, and partners collaborate on real projects.",
 		gradient: "from-emerald-500/10 to-green-500/10",
 	},
 	{
-		title: "Advanced Analytics",
+		title: "AI & Automation",
 		description:
-			"Insights and metrics to help your team make data-driven decisions.",
+			"Summaries, insights, workflows, translations, and intelligent routing that reduce noise and accelerate decisions.",
 		gradient: "from-pink-500/10 to-rose-500/10",
 	},
 	{
-		title: "Enterprise Security",
-		description: "Bank-level encryption and compliance for peace of mind.",
+		title: "Admin & Security",
+		description:
+			"Identity, access, compliance, encryption, and governance for enterprises and public-sector organizations.",
 		gradient: "from-slate-500/10 to-gray-500/10",
 	},
 ];
@@ -70,11 +71,10 @@ export default function FeaturesSection() {
 						Features
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Everything your team needs
+						Everything your enterprise needs
 					</h2>
 					<p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-						Powerful features designed to help modern teams communicate better
-						and work smarter together.
+						Powerful features designed to help global teams communicate clearly, collaborate instantly, and work smarter with AI.
 					</p>
 				</RevealOnScroll>
 

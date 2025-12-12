@@ -10,24 +10,24 @@ import {
 
 const securityPoints = [
 	{
+		title: "Identity & Access Management",
+		description:
+			"Complete identity controls with SSO, SCIM provisioning, and granular role-based permissions.",
+	},
+	{
 		title: "End-to-End Encryption",
 		description:
-			"All your data is encrypted in transit and at rest using AES-256 encryption.",
+			"All data encrypted in transit and at rest using AES-256 encryption with zero-knowledge architecture.",
 	},
 	{
-		title: "Regular Security Audits",
+		title: "Enterprise Compliance",
 		description:
-			"Third-party penetration testing and security audits conducted quarterly.",
+			"Built for enterprises and public-sector organizations with comprehensive audit trails.",
 	},
 	{
-		title: "Enterprise Access Controls",
+		title: "Data Governance",
 		description:
-			"Granular permissions, SSO, and SCIM provisioning for complete control.",
-	},
-	{
-		title: "Data Residency Options",
-		description:
-			"Choose where your data lives with regional hosting options worldwide.",
+			"Regional data residency, retention policies, and e-discovery tools for complete control.",
 	},
 ];
 
@@ -61,14 +61,13 @@ export default function SecuritySection() {
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}
 					>
-						Security & Compliance
+						Admin & Security
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Enterprise-grade security
+						Trust engineered at every layer
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Your data security is our top priority. Built with the highest
-						standards to protect your team&apos;s information.
+						Identity, access, compliance, encryption, and governance for enterprises and public-sector organizations.
 					</p>
 				</RevealOnScroll>
 

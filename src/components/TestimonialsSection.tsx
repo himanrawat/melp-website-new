@@ -8,15 +8,15 @@ const testimonials = [
 		name: "Sarah Chen",
 		role: "VP of Engineering, TechFlow",
 		quote:
-			"Melp transformed how our 200+ engineering team collaborates. We've cut meeting time by 40% while shipping faster than ever. The AI features are genuinely useful, not gimmicky.",
+			"Melp brought our global team, partners, and vendors together in one intelligent workspace. Conversations flow naturally, and the AI summaries save us hours every week.",
 		avatar: "SC",
 		rating: 5,
 	},
 	{
 		name: "Marcus Rodriguez",
-		role: "Head of Product, GrowthLabs",
+		role: "Head of Partnerships, GrowthLabs",
 		quote:
-			"We evaluated every tool out there. Melp is the only one that actually understands modern product teams. Our roadmap-to-launch cycle dropped from weeks to days.",
+			"The professional networking feature is game-changing. Our agencies, clients, and vendors collaborate on real projects seamlessly. It's like LinkedIn meets Slack meets enterprise power.",
 		avatar: "MR",
 		rating: 5,
 	},
@@ -24,7 +24,7 @@ const testimonials = [
 		name: "Emily Watson",
 		role: "CEO, CreativeStudio",
 		quote:
-			"Finally, one tool that replaces our messy stack of Slack, Notion, and Asana. Our remote team feels more connected than when we were in the office.",
+			"Where conversations flow, meetings feel natural, and files live where you need them. Melp truly delivers on the promise of one intelligent workspace for the world.",
 		avatar: "EW",
 		rating: 5,
 	},
@@ -76,11 +76,10 @@ export default function TestimonialsSection() {
 						Testimonials
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Loved by teams everywhere
+						Loved by enterprises worldwide
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						See what leaders at top companies say about transforming their
-						workflows with Melp
+						See what leaders say about bringing teams, partners, and clients together in one intelligent workspace.
 					</p>
 				</RevealOnScroll>
 

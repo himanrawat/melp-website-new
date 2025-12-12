@@ -11,30 +11,30 @@ const stats = [
 	{
 		value: 35,
 		suffix: "%",
-		label: "Faster Time to Market",
+		label: "Reduced Meeting Time",
 		description:
-			"Teams ship products faster with AI-assisted workflows and seamless collaboration.",
+			"Teams communicate clearly with AI summaries, intelligent routing, and structured channels.",
 	},
 	{
 		value: 2.5,
 		suffix: "x",
-		label: "Productivity Boost",
+		label: "Faster Decisions",
 		description:
-			"Reduce context switching with unified messaging, docs, and tasks in one place.",
+			"Intelligence guides every moment reducing noise and accelerating decisions across organizations.",
 	},
 	{
 		value: 10,
 		suffix: "M+",
-		label: "Messages Processed Daily",
+		label: "Global Connections Daily",
 		description:
-			"Trusted by thousands of teams to handle their most critical communications.",
+			"Teams, partners, and clients connected across rooms, cities, and continents.",
 	},
 	{
 		value: 99.9,
 		suffix: "%",
 		label: "Uptime SLA",
 		description:
-			"Enterprise-grade reliability so your team is always connected when it matters.",
+			"Enterprise-grade reliability with trust engineered at every layer.",
 	},
 ];
 
@@ -103,11 +103,10 @@ export default function StatsSection() {
 						By the Numbers
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Measurable impact for your team
+						Measurable impact for your enterprise
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Don&apos;t just take our word for it see the real results teams
-						achieve with Melp
+						Built for enterprises. Designed for people. See the real results organizations achieve with Melp.
 					</p>
 				</RevealOnScroll>
 

@@ -35,7 +35,7 @@ export default function CtaSection() {
 					</motion.span>
 
 					<TextShimmer className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
-						Ready to transform how your team works?
+						Your people. Your partners. One intelligent workspace.
 					</TextShimmer>
 
 					<motion.p
@@ -45,8 +45,7 @@ export default function CtaSection() {
 						transition={{ delay: 0.2 }}
 						className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto"
 					>
-						Join thousands of teams already using Melp to collaborate smarter.
-						Start free, no credit card required.
+						Where conversations flow, meetings feel natural, files live where you need them, and intelligence guides every moment.
 					</motion.p>
 
 					<motion.div
@@ -96,8 +95,7 @@ export default function CtaSection() {
 						transition={{ delay: 0.5 }}
 						className="mt-6 text-sm text-muted-foreground"
 					>
-						• One platform, one price • No credit card required • Setup in 2
-						minutes
+						• Communicate clearly • Collaborate instantly • Work smarter with AI
 					</motion.p>
 				</motion.div>
 			</div>
