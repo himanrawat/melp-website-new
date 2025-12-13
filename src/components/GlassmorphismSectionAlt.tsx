@@ -273,7 +273,7 @@ function DashboardMockup() {
 				{/* Dashboard image */}
 				<div className="relative">
 					<Image
-						src="/s1.png"
+						src="/S1.png"
 						alt="Melp Dashboard"
 						width={600}
 						height={400}

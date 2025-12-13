@@ -24,8 +24,6 @@ const clientLogos = [
 	"Wayne Ent",
 ];
 
-import heroimg from "/s1.png";
-
 export default function HeroSection() {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const { resolvedTheme } = useTheme();
@@ -228,7 +226,7 @@ export default function HeroSection() {
 								src={
 									mounted && resolvedTheme === "dark"
 										? "/dark-s1.png"
-										: "/s1.png"
+										: "/S1.png"
 								}
 								alt="Product screenshot"
 								className="absolute inset-0 w-full h-full object-contain object-top pt-8"
