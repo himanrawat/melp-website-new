@@ -1,8 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronDown, CreditCard, Lock, Loader2 } from "lucide-react";
+import { CreditCard, Lock, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
 import { motion } from "framer-motion";
@@ -142,16 +151,6 @@ export default function PaymentStep({
 		}
 	};
 
-	const inputClassName = (fieldName: string) =>
-		`w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all
-		${
-			errors[fieldName]
-				? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-				: ""
-		}`;
-
-	const labelClassName = "block text-xs font-medium text-foreground mb-1";
-
 	return (
 		<form onSubmit={handleSubmit}>
 			<motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
@@ -187,24 +186,26 @@ export default function PaymentStep({
 
 				{/* Card Number */}
 				<div>
-					<label className={labelClassName}>
-						Card number <span className="text-red-500">*</span>
-					</label>
+					<Label className="text-xs mb-1">
+						Card number <span className="text-destructive">*</span>
+					</Label>
 					<div className="relative">
-						<input
+						<Input
 							type="text"
 							value={formData.cardNumber}
 							onChange={(e) =>
 								updateFormData({ cardNumber: formatCardNumber(e.target.value) })
 							}
 							maxLength={19}
-							className={`${inputClassName("cardNumber")} pr-9`}
+							className={`pr-9 ${
+								errors.cardNumber ? "border-destructive" : ""
+							}`}
 							placeholder="1234 5678 9012 3456"
 						/>
 						<CreditCard className="absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
 					</div>
 					{errors.cardNumber && (
-						<p className="mt-0.5 text-[10px] text-red-500">
+						<p className="mt-0.5 text-[10px] text-destructive">
 							{errors.cardNumber}
 						</p>
 					)}
@@ -213,58 +214,58 @@ export default function PaymentStep({
 				{/* Expiry and CVV */}
 				<div className="grid grid-cols-3 gap-3">
 					<div>
-						<label className={labelClassName}>
-							Month <span className="text-red-500">*</span>
-						</label>
-						<div className="relative">
-							<select
-								value={formData.expirationMonth}
-								onChange={(e) =>
-									updateFormData({ expirationMonth: e.target.value })
-								}
-								className={`${inputClassName(
-									"expirationMonth"
-								)} appearance-none pr-7`}
+						<Label className="text-xs mb-1">
+							Month <span className="text-destructive">*</span>
+						</Label>
+						<Select
+							value={formData.expirationMonth}
+							onValueChange={(value) =>
+								updateFormData({ expirationMonth: value })
+							}
+						>
+							<SelectTrigger
+								className={errors.expirationMonth ? "border-destructive" : ""}
 							>
-								<option value="">MM</option>
+								<SelectValue placeholder="MM" />
+							</SelectTrigger>
+							<SelectContent>
 								{months.map((month) => (
-									<option key={month} value={month}>
+									<SelectItem key={month} value={month}>
 										{month}
-									</option>
+									</SelectItem>
 								))}
-							</select>
-							<ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
-						</div>
+							</SelectContent>
+						</Select>
 					</div>
 					<div>
-						<label className={labelClassName}>
-							Year <span className="text-red-500">*</span>
-						</label>
-						<div className="relative">
-							<select
-								value={formData.expirationYear}
-								onChange={(e) =>
-									updateFormData({ expirationYear: e.target.value })
-								}
-								className={`${inputClassName(
-									"expirationYear"
-								)} appearance-none pr-7`}
+						<Label className="text-xs mb-1">
+							Year <span className="text-destructive">*</span>
+						</Label>
+						<Select
+							value={formData.expirationYear}
+							onValueChange={(value) =>
+								updateFormData({ expirationYear: value })
+							}
+						>
+							<SelectTrigger
+								className={errors.expirationYear ? "border-destructive" : ""}
 							>
-								<option value="">YYYY</option>
+								<SelectValue placeholder="YYYY" />
+							</SelectTrigger>
+							<SelectContent>
 								{years.map((year) => (
-									<option key={year} value={year}>
+									<SelectItem key={year} value={year}>
 										{year}
-									</option>
+									</SelectItem>
 								))}
-							</select>
-							<ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
-						</div>
+							</SelectContent>
+						</Select>
 					</div>
 					<div>
-						<label className={labelClassName}>
-							CVV <span className="text-red-500">*</span>
-						</label>
-						<input
+						<Label className="text-xs mb-1">
+							CVV <span className="text-destructive">*</span>
+						</Label>
+						<Input
 							type="text"
 							value={formData.securityCode}
 							onChange={(e) =>
@@ -273,7 +274,7 @@ export default function PaymentStep({
 								})
 							}
 							maxLength={4}
-							className={inputClassName("securityCode")}
+							className={errors.securityCode ? "border-destructive" : ""}
 							placeholder="123"
 						/>
 					</div>
@@ -281,18 +282,18 @@ export default function PaymentStep({
 
 				{/* Name on Card */}
 				<div>
-					<label className={labelClassName}>
-						Name on card <span className="text-red-500">*</span>
-					</label>
-					<input
+					<Label className="text-xs mb-1">
+						Name on card <span className="text-destructive">*</span>
+					</Label>
+					<Input
 						type="text"
 						value={formData.nameOnCard}
 						onChange={(e) => updateFormData({ nameOnCard: e.target.value })}
-						className={inputClassName("nameOnCard")}
+						className={errors.nameOnCard ? "border-destructive" : ""}
 						placeholder="John Doe"
 					/>
 					{errors.nameOnCard && (
-						<p className="mt-0.5 text-[10px] text-red-500">
+						<p className="mt-0.5 text-[10px] text-destructive">
 							{errors.nameOnCard}
 						</p>
 					)}
@@ -311,19 +312,19 @@ export default function PaymentStep({
 				</p>
 
 				<div>
-					<label className={labelClassName}>
-						Street address <span className="text-red-500">*</span>
-					</label>
-					<input
+					<Label className="text-xs mb-1">
+						Street address <span className="text-destructive">*</span>
+					</Label>
+					<Input
 						type="text"
 						value={formData.billingAddressLine1}
 						onChange={(e) =>
 							updateFormData({ billingAddressLine1: e.target.value })
 						}
-						className={inputClassName("billingAddressLine1")}
+						className={errors.billingAddressLine1 ? "border-destructive" : ""}
 					/>
 					{errors.billingAddressLine1 && (
-						<p className="mt-0.5 text-[10px] text-red-500">
+						<p className="mt-0.5 text-[10px] text-destructive">
 							{errors.billingAddressLine1}
 						</p>
 					)}
@@ -331,48 +332,46 @@ export default function PaymentStep({
 
 				<div className="grid grid-cols-2 gap-3">
 					<div>
-						<label className={labelClassName}>
-							City <span className="text-red-500">*</span>
-						</label>
-						<input
+						<Label className="text-xs mb-1">
+							City <span className="text-destructive">*</span>
+						</Label>
+						<Input
 							type="text"
 							value={formData.billingTownCity}
 							onChange={(e) =>
 								updateFormData({ billingTownCity: e.target.value })
 							}
-							className={inputClassName("billingTownCity")}
+							className={errors.billingTownCity ? "border-destructive" : ""}
 						/>
 						{errors.billingTownCity && (
-							<p className="mt-0.5 text-[10px] text-red-500">
+							<p className="mt-0.5 text-[10px] text-destructive">
 								{errors.billingTownCity}
 							</p>
 						)}
 					</div>
 					<div>
-						<label className={labelClassName}>
-							State <span className="text-red-500">*</span>
-						</label>
-						<div className="relative">
-							<select
-								value={formData.billingState}
-								onChange={(e) =>
-									updateFormData({ billingState: e.target.value })
-								}
-								className={`${inputClassName(
-									"billingState"
-								)} appearance-none pr-7`}
+						<Label className="text-xs mb-1">
+							State <span className="text-destructive">*</span>
+						</Label>
+						<Select
+							value={formData.billingState}
+							onValueChange={(value) => updateFormData({ billingState: value })}
+						>
+							<SelectTrigger
+								className={errors.billingState ? "border-destructive" : ""}
 							>
-								<option value="">Select</option>
+								<SelectValue placeholder="Select" />
+							</SelectTrigger>
+							<SelectContent>
 								{indianStates.map((state) => (
-									<option key={state} value={state}>
+									<SelectItem key={state} value={state}>
 										{state}
-									</option>
+									</SelectItem>
 								))}
-							</select>
-							<ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
-						</div>
+							</SelectContent>
+						</Select>
 						{errors.billingState && (
-							<p className="mt-0.5 text-[10px] text-red-500">
+							<p className="mt-0.5 text-[10px] text-destructive">
 								{errors.billingState}
 							</p>
 						)}
@@ -381,41 +380,42 @@ export default function PaymentStep({
 
 				<div className="grid grid-cols-2 gap-3">
 					<div>
-						<label className={labelClassName}>
-							Postcode <span className="text-red-500">*</span>
-						</label>
-						<input
+						<Label className="text-xs mb-1">
+							Postcode <span className="text-destructive">*</span>
+						</Label>
+						<Input
 							type="text"
 							value={formData.billingPostcode}
 							onChange={(e) =>
 								updateFormData({ billingPostcode: e.target.value })
 							}
-							className={inputClassName("billingPostcode")}
+							className={errors.billingPostcode ? "border-destructive" : ""}
 						/>
 						{errors.billingPostcode && (
-							<p className="mt-0.5 text-[10px] text-red-500">
+							<p className="mt-0.5 text-[10px] text-destructive">
 								{errors.billingPostcode}
 							</p>
 						)}
 					</div>
 					<div>
-						<label className={labelClassName}>Country</label>
-						<div className="relative">
-							<select
-								value={formData.billingCountry}
-								onChange={(e) =>
-									updateFormData({ billingCountry: e.target.value })
-								}
-								className="w-full rounded-lg border bg-background px-3 py-2 text-sm appearance-none pr-7 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-							>
+						<Label className="text-xs mb-1">Country</Label>
+						<Select
+							value={formData.billingCountry}
+							onValueChange={(value) =>
+								updateFormData({ billingCountry: value })
+							}
+						>
+							<SelectTrigger>
+								<SelectValue />
+							</SelectTrigger>
+							<SelectContent>
 								{countries.map((country) => (
-									<option key={country} value={country}>
+									<SelectItem key={country} value={country}>
 										{country}
-									</option>
+									</SelectItem>
 								))}
-							</select>
-							<ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
-						</div>
+							</SelectContent>
+						</Select>
 					</div>
 				</div>
 			</motion.div>

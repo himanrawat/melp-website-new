@@ -1,8 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
 import { motion } from "framer-motion";
@@ -82,16 +91,6 @@ export default function PersonalDetailsStep({
 		}
 	};
 
-	const inputClassName = (fieldName: string) =>
-		`w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all
-		${
-			errors[fieldName]
-				? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-				: ""
-		}`;
-
-	const labelClassName = "block text-xs font-medium text-foreground mb-1";
-
 	return (
 		<form onSubmit={handleSubmit}>
 			<motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
@@ -116,33 +115,33 @@ export default function PersonalDetailsStep({
 
 				<div className="grid grid-cols-2 gap-3">
 					<div>
-						<label className={labelClassName}>
-							First name <span className="text-red-500">*</span>
-						</label>
-						<input
+						<Label className="text-xs mb-1">
+							First name <span className="text-destructive">*</span>
+						</Label>
+						<Input
 							type="text"
 							value={formData.firstName}
 							onChange={(e) => updateFormData({ firstName: e.target.value })}
-							className={inputClassName("firstName")}
+							className={errors.firstName ? "border-destructive" : ""}
 						/>
 						{errors.firstName && (
-							<p className="mt-0.5 text-[10px] text-red-500">
+							<p className="mt-0.5 text-[10px] text-destructive">
 								{errors.firstName}
 							</p>
 						)}
 					</div>
 					<div>
-						<label className={labelClassName}>
-							Surname <span className="text-red-500">*</span>
-						</label>
-						<input
+						<Label className="text-xs mb-1">
+							Surname <span className="text-destructive">*</span>
+						</Label>
+						<Input
 							type="text"
 							value={formData.surname}
 							onChange={(e) => updateFormData({ surname: e.target.value })}
-							className={inputClassName("surname")}
+							className={errors.surname ? "border-destructive" : ""}
 						/>
 						{errors.surname && (
-							<p className="mt-0.5 text-[10px] text-red-500">
+							<p className="mt-0.5 text-[10px] text-destructive">
 								{errors.surname}
 							</p>
 						)}
@@ -150,34 +149,36 @@ export default function PersonalDetailsStep({
 				</div>
 
 				<div>
-					<label className={labelClassName}>
-						Job title <span className="text-red-500">*</span>
-					</label>
-					<input
+					<Label className="text-xs mb-1">
+						Job title <span className="text-destructive">*</span>
+					</Label>
+					<Input
 						type="text"
 						value={formData.jobTitle}
 						onChange={(e) => updateFormData({ jobTitle: e.target.value })}
-						className={inputClassName("jobTitle")}
+						className={errors.jobTitle ? "border-destructive" : ""}
 						placeholder="e.g. Product Manager"
 					/>
 					{errors.jobTitle && (
-						<p className="mt-0.5 text-[10px] text-red-500">{errors.jobTitle}</p>
+						<p className="mt-0.5 text-[10px] text-destructive">
+							{errors.jobTitle}
+						</p>
 					)}
 				</div>
 
 				<div>
-					<label className={labelClassName}>
-						Phone <span className="text-red-500">*</span>
-					</label>
-					<input
+					<Label className="text-xs mb-1">
+						Phone <span className="text-destructive">*</span>
+					</Label>
+					<Input
 						type="tel"
 						value={formData.businessPhone}
 						onChange={(e) => updateFormData({ businessPhone: e.target.value })}
-						className={inputClassName("businessPhone")}
+						className={errors.businessPhone ? "border-destructive" : ""}
 						placeholder="+91 98765 43210"
 					/>
 					{errors.businessPhone && (
-						<p className="mt-0.5 text-[10px] text-red-500">
+						<p className="mt-0.5 text-[10px] text-destructive">
 							{errors.businessPhone}
 						</p>
 					)}
@@ -197,46 +198,44 @@ export default function PersonalDetailsStep({
 
 				<div className="grid grid-cols-2 gap-3">
 					<div>
-						<label className={labelClassName}>
-							Company name <span className="text-red-500">*</span>
-						</label>
-						<input
+						<Label className="text-xs mb-1">
+							Company name <span className="text-destructive">*</span>
+						</Label>
+						<Input
 							type="text"
 							value={formData.companyName}
 							onChange={(e) => updateFormData({ companyName: e.target.value })}
-							className={inputClassName("companyName")}
+							className={errors.companyName ? "border-destructive" : ""}
 						/>
 						{errors.companyName && (
-							<p className="mt-0.5 text-[10px] text-red-500">
+							<p className="mt-0.5 text-[10px] text-destructive">
 								{errors.companyName}
 							</p>
 						)}
 					</div>
 					<div>
-						<label className={labelClassName}>
-							Size <span className="text-red-500">*</span>
-						</label>
-						<div className="relative">
-							<select
-								value={formData.companySize}
-								onChange={(e) =>
-									updateFormData({ companySize: e.target.value })
-								}
-								className={`${inputClassName(
-									"companySize"
-								)} appearance-none pr-8`}
+						<Label className="text-xs mb-1">
+							Size <span className="text-destructive">*</span>
+						</Label>
+						<Select
+							value={formData.companySize}
+							onValueChange={(value) => updateFormData({ companySize: value })}
+						>
+							<SelectTrigger
+								className={errors.companySize ? "border-destructive" : ""}
 							>
-								<option value="">Select</option>
+								<SelectValue placeholder="Select" />
+							</SelectTrigger>
+							<SelectContent>
 								{companySizeOptions.map((size) => (
-									<option key={size} value={size}>
+									<SelectItem key={size} value={size}>
 										{size}
-									</option>
+									</SelectItem>
 								))}
-							</select>
-							<ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-						</div>
+							</SelectContent>
+						</Select>
 						{errors.companySize && (
-							<p className="mt-0.5 text-[10px] text-red-500">
+							<p className="mt-0.5 text-[10px] text-destructive">
 								{errors.companySize}
 							</p>
 						)}
@@ -256,108 +255,112 @@ export default function PersonalDetailsStep({
 				</p>
 
 				<div>
-					<label className={labelClassName}>
-						Street address <span className="text-red-500">*</span>
-					</label>
-					<input
+					<Label className="text-xs mb-1">
+						Street address <span className="text-destructive">*</span>
+					</Label>
+					<Input
 						type="text"
 						value={formData.addressLine1}
 						onChange={(e) => updateFormData({ addressLine1: e.target.value })}
-						className={inputClassName("addressLine1")}
+						className={errors.addressLine1 ? "border-destructive" : ""}
 						placeholder="123 Main Street"
 					/>
 					{errors.addressLine1 && (
-						<p className="mt-0.5 text-[10px] text-red-500">
+						<p className="mt-0.5 text-[10px] text-destructive">
 							{errors.addressLine1}
 						</p>
 					)}
 				</div>
 
 				<div>
-					<label className={labelClassName}>Apt, suite, etc. (optional)</label>
-					<input
+					<Label className="text-xs mb-1">Apt, suite, etc. (optional)</Label>
+					<Input
 						type="text"
 						value={formData.addressLine2}
 						onChange={(e) => updateFormData({ addressLine2: e.target.value })}
-						className="w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
 					/>
 				</div>
 
 				<div className="grid grid-cols-2 gap-3">
 					<div>
-						<label className={labelClassName}>
-							City <span className="text-red-500">*</span>
-						</label>
-						<input
+						<Label className="text-xs mb-1">
+							City <span className="text-destructive">*</span>
+						</Label>
+						<Input
 							type="text"
 							value={formData.townCity}
 							onChange={(e) => updateFormData({ townCity: e.target.value })}
-							className={inputClassName("townCity")}
+							className={errors.townCity ? "border-destructive" : ""}
 						/>
 						{errors.townCity && (
-							<p className="mt-0.5 text-[10px] text-red-500">
+							<p className="mt-0.5 text-[10px] text-destructive">
 								{errors.townCity}
 							</p>
 						)}
 					</div>
 					<div>
-						<label className={labelClassName}>
-							State <span className="text-red-500">*</span>
-						</label>
-						<div className="relative">
-							<select
-								value={formData.state}
-								onChange={(e) => updateFormData({ state: e.target.value })}
-								className={`${inputClassName("state")} appearance-none pr-8`}
+						<Label className="text-xs mb-1">
+							State <span className="text-destructive">*</span>
+						</Label>
+						<Select
+							value={formData.state}
+							onValueChange={(value) => updateFormData({ state: value })}
+						>
+							<SelectTrigger
+								className={errors.state ? "border-destructive" : ""}
 							>
-								<option value="">Select</option>
+								<SelectValue placeholder="Select" />
+							</SelectTrigger>
+							<SelectContent>
 								{indianStates.map((state) => (
-									<option key={state} value={state}>
+									<SelectItem key={state} value={state}>
 										{state}
-									</option>
+									</SelectItem>
 								))}
-							</select>
-							<ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-						</div>
+							</SelectContent>
+						</Select>
 						{errors.state && (
-							<p className="mt-0.5 text-[10px] text-red-500">{errors.state}</p>
+							<p className="mt-0.5 text-[10px] text-destructive">
+								{errors.state}
+							</p>
 						)}
 					</div>
 				</div>
 
 				<div className="grid grid-cols-2 gap-3">
 					<div>
-						<label className={labelClassName}>
-							Postcode <span className="text-red-500">*</span>
-						</label>
-						<input
+						<Label className="text-xs mb-1">
+							Postcode <span className="text-destructive">*</span>
+						</Label>
+						<Input
 							type="text"
 							value={formData.postcode}
 							onChange={(e) => updateFormData({ postcode: e.target.value })}
-							className={inputClassName("postcode")}
+							className={errors.postcode ? "border-destructive" : ""}
 						/>
 						{errors.postcode && (
-							<p className="mt-0.5 text-[10px] text-red-500">
+							<p className="mt-0.5 text-[10px] text-destructive">
 								{errors.postcode}
 							</p>
 						)}
 					</div>
 					<div>
-						<label className={labelClassName}>Country</label>
-						<div className="relative">
-							<select
-								value={formData.country}
-								onChange={(e) => updateFormData({ country: e.target.value })}
-								className="w-full rounded-lg border bg-background px-3 py-2 text-sm appearance-none pr-8 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-							>
+						<Label className="text-xs mb-1">Country</Label>
+						<Select
+							value={formData.country}
+							onValueChange={(value) => updateFormData({ country: value })}
+						>
+							<SelectTrigger>
+								<SelectValue />
+							</SelectTrigger>
+							<SelectContent>
 								{countries.map((country) => (
-									<option key={country} value={country}>
+									<SelectItem key={country} value={country}>
 										{country}
-									</option>
+									</SelectItem>
 								))}
-							</select>
-							<ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-						</div>
+							</SelectContent>
+						</Select>
 					</div>
 				</div>
 			</motion.div>
@@ -370,13 +373,12 @@ export default function PersonalDetailsStep({
 				className="space-y-2 mb-5"
 			>
 				<label className="flex items-start gap-2 cursor-pointer group">
-					<input
-						type="checkbox"
+					<Checkbox
 						checked={formData.acceptMarketing}
-						onChange={(e) =>
-							updateFormData({ acceptMarketing: e.target.checked })
+						onCheckedChange={(checked) =>
+							updateFormData({ acceptMarketing: checked === true })
 						}
-						className="mt-0.5 w-3.5 h-3.5 text-primary border-muted-foreground rounded focus:ring-primary"
+						className="mt-0.5"
 					/>
 					<span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
 						Send me product updates and tips

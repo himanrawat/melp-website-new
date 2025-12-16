@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { Eye, EyeOff, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
 import { motion, AnimatePresence } from "framer-motion";
@@ -90,14 +92,6 @@ export default function SignInStep({
 		}
 	};
 
-	const inputClassName = (fieldName: string) =>
-		`w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all
-		${
-			errors[fieldName]
-				? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-				: ""
-		}`;
-
 	const PasswordCheck = ({
 		valid,
 		label,
@@ -143,11 +137,9 @@ export default function SignInStep({
 				transition={{ delay: 0.05 }}
 				className="mb-5"
 			>
-				<label className="block text-xs font-medium text-foreground mb-1.5">
-					Your Melp ID
-				</label>
+				<Label className="text-xs mb-1.5">Your Melp ID</Label>
 				<div className="flex items-center gap-1.5">
-					<input
+					<Input
 						type="text"
 						value={formData.username}
 						onChange={(e) =>
@@ -157,11 +149,13 @@ export default function SignInStep({
 									.replace(/[^a-z0-9]/g, ""),
 							})
 						}
-						className={`${inputClassName("username")} flex-1 min-w-0`}
+						className={`flex-1 min-w-0 ${
+							errors.username ? "border-destructive" : ""
+						}`}
 						placeholder="username"
 					/>
 					<span className="text-sm text-muted-foreground">@</span>
-					<input
+					<Input
 						type="text"
 						value={formData.domainName}
 						onChange={(e) =>
@@ -171,7 +165,9 @@ export default function SignInStep({
 									.replace(/[^a-z0-9]/g, ""),
 							})
 						}
-						className={`${inputClassName("domainName")} flex-1 min-w-0`}
+						className={`flex-1 min-w-0 ${
+							errors.domainName ? "border-destructive" : ""
+						}`}
 						placeholder="company"
 					/>
 					<span className="text-xs text-muted-foreground whitespace-nowrap">
@@ -179,7 +175,7 @@ export default function SignInStep({
 					</span>
 				</div>
 				{(errors.username || errors.domainName) && (
-					<p className="mt-1 text-[10px] text-red-500">
+					<p className="mt-1 text-[10px] text-destructive">
 						{errors.username || errors.domainName}
 					</p>
 				)}
@@ -206,15 +202,13 @@ export default function SignInStep({
 				transition={{ delay: 0.15 }}
 				className="mb-4"
 			>
-				<label className="block text-xs font-medium text-foreground mb-1.5">
-					Password
-				</label>
+				<Label className="text-xs mb-1.5">Password</Label>
 				<div className="relative max-w-xs">
-					<input
+					<Input
 						type={showPassword ? "text" : "password"}
 						value={formData.password}
 						onChange={(e) => updateFormData({ password: e.target.value })}
-						className={`${inputClassName("password")} pr-9`}
+						className={`pr-9 ${errors.password ? "border-destructive" : ""}`}
 						placeholder="Create a password"
 					/>
 					<button
@@ -254,7 +248,7 @@ export default function SignInStep({
 				</AnimatePresence>
 
 				{errors.password && !formData.password && (
-					<p className="mt-1 text-[10px] text-red-500">{errors.password}</p>
+					<p className="mt-1 text-[10px] text-destructive">{errors.password}</p>
 				)}
 			</motion.div>
 
@@ -265,17 +259,17 @@ export default function SignInStep({
 				transition={{ delay: 0.2 }}
 				className="mb-6"
 			>
-				<label className="block text-xs font-medium text-foreground mb-1.5">
-					Confirm password
-				</label>
+				<Label className="text-xs mb-1.5">Confirm password</Label>
 				<div className="relative max-w-xs">
-					<input
+					<Input
 						type={showConfirmPassword ? "text" : "password"}
 						value={formData.confirmPassword}
 						onChange={(e) =>
 							updateFormData({ confirmPassword: e.target.value })
 						}
-						className={`${inputClassName("confirmPassword")} pr-9`}
+						className={`pr-9 ${
+							errors.confirmPassword ? "border-destructive" : ""
+						}`}
 						placeholder="Confirm your password"
 					/>
 					<button
@@ -291,7 +285,7 @@ export default function SignInStep({
 					</button>
 				</div>
 				{errors.confirmPassword && (
-					<p className="mt-1 text-[10px] text-red-500">
+					<p className="mt-1 text-[10px] text-destructive">
 						{errors.confirmPassword}
 					</p>
 				)}
@@ -312,8 +306,8 @@ export default function SignInStep({
 							</>
 						) : (
 							<>
-								<X className="w-3 h-3 text-red-500" />
-								<span className="text-[10px] text-red-500">
+								<X className="w-3 h-3 text-destructive" />
+								<span className="text-[10px] text-destructive">
 									Passwords don&apos;t match
 								</span>
 							</>

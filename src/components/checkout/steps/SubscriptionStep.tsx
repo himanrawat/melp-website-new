@@ -1,8 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Users, Calendar, Sparkles } from "lucide-react";
+import { Users, Calendar, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
 import { motion } from "framer-motion";
@@ -44,10 +54,7 @@ export default function SubscriptionStep({
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<motion.div
-				initial={{ opacity: 0, y: 8 }}
-				animate={{ opacity: 1, y: 0 }}
-			>
+			<motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
 				<h2 className="text-xl font-semibold text-foreground mb-1">
 					Configure your plan
 				</h2>
@@ -66,9 +73,9 @@ export default function SubscriptionStep({
 				>
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-3">
-							<div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+							{/* <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
 								<Sparkles className="w-4 h-4 text-primary" />
-							</div>
+							</div> */}
 							<div>
 								<p className="text-sm font-medium text-foreground">
 									{selectedPlan.name} Plan
@@ -111,26 +118,25 @@ export default function SubscriptionStep({
 					transition={{ delay: 0.1 }}
 					className="mb-5"
 				>
-					<label className="flex items-center gap-2 text-sm font-medium text-foreground mb-2">
+					<Label className="flex items-center gap-2 mb-2">
 						<Users className="w-4 h-4 text-muted-foreground" />
 						Number of users
-					</label>
+					</Label>
 					<div className="flex items-center gap-3">
-						<div className="relative">
-							<motion.button
-								type="button"
-								whileTap={{ scale: 0.95 }}
-								onClick={() =>
-									updateFormData({
-										numberOfUsers: Math.max(1, formData.numberOfUsers - 1),
-									})
-								}
-								className="w-9 h-9 rounded-lg border bg-background flex items-center justify-center text-foreground hover:bg-muted transition-colors"
-							>
-								-
-							</motion.button>
-						</div>
-						<input
+						<Button
+							type="button"
+							variant="outline"
+							size="icon"
+							onClick={() =>
+								updateFormData({
+									numberOfUsers: Math.max(1, formData.numberOfUsers - 1),
+								})
+							}
+							className="h-10 w-10 shrink-0"
+						>
+							<Minus className="h-4 w-4" />
+						</Button>
+						<Input
 							type="number"
 							min={1}
 							max={500}
@@ -140,26 +146,29 @@ export default function SubscriptionStep({
 									numberOfUsers: parseInt(e.target.value) || 1,
 								})
 							}
-							className="w-16 rounded-lg border bg-background px-3 py-2 text-foreground text-center text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+							className="w-20 text-center h-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 						/>
-						<motion.button
+						<Button
 							type="button"
-							whileTap={{ scale: 0.95 }}
+							variant="outline"
+							size="icon"
 							onClick={() =>
 								updateFormData({
 									numberOfUsers: Math.min(500, formData.numberOfUsers + 1),
 								})
 							}
-							className="w-9 h-9 rounded-lg border bg-background flex items-center justify-center text-foreground hover:bg-muted transition-colors"
+							className="h-10 w-10 shrink-0"
 						>
-							+
-						</motion.button>
+							<Plus className="h-4 w-4" />
+						</Button>
 						<span className="text-xs text-muted-foreground">
 							user{formData.numberOfUsers !== 1 ? "s" : ""}
 						</span>
 					</div>
 					{errors.numberOfUsers && (
-						<p className="mt-1.5 text-xs text-red-500">{errors.numberOfUsers}</p>
+						<p className="mt-1.5 text-xs text-destructive">
+							{errors.numberOfUsers}
+						</p>
 					)}
 				</motion.div>
 			)}
@@ -172,47 +181,51 @@ export default function SubscriptionStep({
 					transition={{ delay: 0.15 }}
 					className="mb-5"
 				>
-					<label className="flex items-center gap-2 text-sm font-medium text-foreground mb-2">
+					<Label className="flex items-center gap-2 mb-3">
 						<Calendar className="w-4 h-4 text-muted-foreground" />
 						Subscription length
-					</label>
-					<div className="flex gap-2">
-						<motion.button
-							type="button"
-							whileHover={{ scale: 1.01 }}
-							whileTap={{ scale: 0.99 }}
-							onClick={() => updateFormData({ subscriptionLength: "1-year" })}
-							className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border text-sm transition-all duration-150
+					</Label>
+					<RadioGroup
+						value={formData.subscriptionLength}
+						onValueChange={(value: CheckoutFormData["subscriptionLength"]) =>
+							updateFormData({ subscriptionLength: value })
+						}
+						className="grid grid-cols-2 gap-3"
+					>
+						<Label
+							htmlFor="annual"
+							className={`flex items-center justify-between gap-2 p-3 rounded-lg border cursor-pointer transition-all
 								${
 									formData.subscriptionLength === "1-year"
 										? "border-primary bg-primary/5 text-foreground"
-										: "border-border text-muted-foreground hover:border-muted-foreground/50"
+										: "border-border hover:border-muted-foreground/50"
 								}
 							`}
 						>
-							<span className="font-medium">Annual</span>
+							<div className="flex items-center gap-2">
+								<RadioGroupItem value="1-year" id="annual" />
+								<span className="font-medium text-sm">Annual</span>
+							</div>
 							{selectedPlan?.discount && (
 								<span className="text-[10px] font-medium text-green-600 dark:text-green-400 bg-green-500/10 px-1.5 py-0.5 rounded">
 									{selectedPlan.discount}
 								</span>
 							)}
-						</motion.button>
-						<motion.button
-							type="button"
-							whileHover={{ scale: 1.01 }}
-							whileTap={{ scale: 0.99 }}
-							onClick={() => updateFormData({ subscriptionLength: "1-month" })}
-							className={`px-4 py-2.5 rounded-lg border text-sm transition-all duration-150
+						</Label>
+						<Label
+							htmlFor="monthly"
+							className={`flex items-center gap-2 p-3 rounded-lg border cursor-pointer transition-all
 								${
 									formData.subscriptionLength === "1-month"
 										? "border-primary bg-primary/5 text-foreground"
-										: "border-border text-muted-foreground hover:border-muted-foreground/50"
+										: "border-border hover:border-muted-foreground/50"
 								}
 							`}
 						>
-							<span className="font-medium">Monthly</span>
-						</motion.button>
-					</div>
+							<RadioGroupItem value="1-month" id="monthly" />
+							<span className="font-medium text-sm">Monthly</span>
+						</Label>
+					</RadioGroup>
 				</motion.div>
 			)}
 
@@ -224,25 +237,21 @@ export default function SubscriptionStep({
 					transition={{ delay: 0.2 }}
 					className="mb-6"
 				>
-					<label className="block text-sm font-medium text-foreground mb-2">
-						Payment schedule
-					</label>
-					<div className="relative w-40">
-						<select
-							value={formData.billingFrequency}
-							onChange={(e) =>
-								updateFormData({
-									billingFrequency: e.target
-										.value as CheckoutFormData["billingFrequency"],
-								})
-							}
-							className="w-full appearance-none rounded-lg border bg-background px-3 py-2.5 pr-9 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-						>
-							<option value="yearly">Pay yearly</option>
-							<option value="monthly">Pay monthly</option>
-						</select>
-						<ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-					</div>
+					<Label className="mb-2">Payment schedule</Label>
+					<Select
+						value={formData.billingFrequency}
+						onValueChange={(value: CheckoutFormData["billingFrequency"]) =>
+							updateFormData({ billingFrequency: value })
+						}
+					>
+						<SelectTrigger className="w-40 h-10">
+							<SelectValue placeholder="Select payment schedule" />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectItem value="yearly">Pay yearly</SelectItem>
+							<SelectItem value="monthly">Pay monthly</SelectItem>
+						</SelectContent>
+					</Select>
 				</motion.div>
 			)}
 

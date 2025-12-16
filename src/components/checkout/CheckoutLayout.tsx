@@ -2,7 +2,16 @@
 
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { Check, Shield, Clock, HeadphonesIcon, Lock } from "lucide-react";
+import {
+	Check,
+	Shield,
+	Clock,
+	HeadphonesIcon,
+	Lock,
+	Sparkles,
+	TrendingUp,
+	ArrowUpRight,
+} from "lucide-react";
 import { PricingPlan } from "@/data/pricing";
 import { CheckoutFormData } from "@/app/checkout/page";
 import Image from "next/image";
@@ -103,39 +112,46 @@ export default function CheckoutLayout({
 					<div className="max-w-xl mx-auto px-4 lg:px-8 py-6 lg:py-8">
 						{/* Progress Stepper */}
 						{!isEnterprise && (
-							<div className="mb-6">
-								<div className="flex items-center gap-1">
+							<div className="mb-12">
+								<div className="flex items-start">
 									{visibleSteps.map((step, index) => (
-										<div key={step.id} className="flex items-center flex-1">
+										<div
+											key={step.id}
+											className="flex items-start flex-1 last:flex-none"
+										>
 											<button
 												onClick={() => onStepClick(step.id)}
 												disabled={step.id > currentStep}
-												className="flex flex-col items-center group relative w-full"
+												className="flex flex-col items-center group relative"
 											>
 												<motion.div
 													initial={false}
 													animate={{
 														scale: step.id === currentStep ? 1.05 : 1,
 													}}
-													className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-semibold transition-all duration-200
+													className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all duration-200 z-10
 														${
 															step.id < currentStep
 																? "bg-primary text-primary-foreground"
 																: step.id === currentStep
 																? "bg-primary text-primary-foreground ring-2 ring-primary/20"
-																: "bg-muted text-muted-foreground"
+																: "bg-muted text-muted-foreground border-2 border-muted-foreground/20"
 														}
-														${step.id <= currentStep ? "cursor-pointer hover:opacity-90" : "cursor-not-allowed"}
+														${
+															step.id <= currentStep
+																? "cursor-pointer hover:opacity-90"
+																: "cursor-not-allowed"
+														}
 													`}
 												>
 													{step.id < currentStep ? (
-														<Check className="w-3.5 h-3.5" />
+														<Check className="w-4 h-4" />
 													) : (
 														step.id
 													)}
 												</motion.div>
 												<span
-													className={`mt-1.5 text-[10px] font-medium hidden sm:block transition-colors
+													className={`mt-2 text-[10px] font-medium hidden sm:block transition-colors whitespace-nowrap
 														${step.id === currentStep ? "text-foreground" : "text-muted-foreground"}
 													`}
 												>
@@ -144,15 +160,15 @@ export default function CheckoutLayout({
 											</button>
 
 											{index < visibleSteps.length - 1 && (
-												<div className="flex-1 h-0.5 mx-1 relative -mt-4 sm:-mt-6">
-													<div className="absolute inset-0 bg-muted rounded" />
+												<div className="flex-1 h-[2px] mx-2 relative mt-[15px]">
+													<div className="absolute inset-0 bg-muted-foreground/20 rounded-full" />
 													<motion.div
 														initial={{ width: "0%" }}
 														animate={{
 															width: step.id < currentStep ? "100%" : "0%",
 														}}
 														transition={{ duration: 0.3 }}
-														className="absolute inset-0 bg-primary rounded"
+														className="absolute inset-0 bg-primary rounded-full"
 													/>
 												</div>
 											)}
@@ -280,36 +296,108 @@ export default function CheckoutLayout({
 							)}
 						</motion.div>
 
-						{/* Trust Badges */}
+						{/* Plan Features */}
+						{selectedPlan && !isEnterprise && (
+							<motion.div
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								transition={{ delay: 0.25 }}
+								className="mt-4"
+							>
+								<h4 className="text-xs font-semibold text-foreground mb-3 flex items-center gap-1.5">
+									{/* <Sparkles className="w-3.5 h-3.5 text-primary" /> */}
+									What's included
+								</h4>
+								<div className="space-y-2">
+									{selectedPlan.features.slice(0, 6).map((feature, index) => (
+										<div key={index} className="flex items-start gap-2 text-xs">
+											<Check className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+											<span className="text-muted-foreground leading-relaxed">
+												{feature.text}
+											</span>
+										</div>
+									))}
+									{selectedPlan.features.length > 6 && (
+										<p className="text-[10px] text-muted-foreground pt-1">
+											+{selectedPlan.features.length - 6} more features
+										</p>
+									)}
+								</div>
+							</motion.div>
+						)}
+
+						{/* Upsell Section */}
+						{selectedPlan &&
+							selectedPlan.id !== "enterprise" &&
+							!isEnterprise && (
+								<motion.div
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ delay: 0.3 }}
+									className="mt-4"
+								>
+									<Link
+										href="/pricing"
+										className="block p-3 rounded-lg border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors group"
+									>
+										<div className="flex items-start justify-between gap-2">
+											<div className="flex-1">
+												<div className="flex items-center gap-1.5 mb-1">
+													<TrendingUp className="w-3.5 h-3.5 text-primary" />
+													<p className="text-xs font-semibold text-foreground">
+														Upgrade & save more
+													</p>
+												</div>
+												<p className="text-[10px] text-muted-foreground leading-relaxed">
+													{selectedPlan.id === "free" ||
+													selectedPlan.id === "plus"
+														? "Business plans include advanced features & unlimited meetings"
+														: "Enterprise offers custom solutions & dedicated support"}
+												</p>
+											</div>
+											<ArrowUpRight className="w-4 h-4 text-primary shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+										</div>
+									</Link>
+								</motion.div>
+							)}
+
+						{/* Trust Badges - Horizontal */}
 						<motion.div
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							transition={{ delay: 0.2 }}
-							className="mt-6 space-y-3"
+							className="mt-auto flex items-center justify-between gap-2 p-3 rounded-lg bg-muted/50"
 						>
 							{trustBadges.map((badge, index) => (
 								<div
 									key={index}
-									className="flex items-center gap-2.5 text-xs text-muted-foreground"
+									className="flex items-center gap-1.5 text-[10px] text-muted-foreground"
 								>
-									<div className="w-7 h-7 rounded-lg bg-primary/5 flex items-center justify-center">
-										<badge.icon className="w-3.5 h-3.5 text-primary" />
-									</div>
+									<badge.icon className="w-3 h-3 text-primary" />
 									<span>{badge.text}</span>
 								</div>
 							))}
 						</motion.div>
 
 						{/* Footer Links */}
-						<div className="mt-auto pt-6">
-							<div className="flex flex-wrap gap-3 text-[10px] text-muted-foreground">
-								<a href="#" className="hover:text-foreground transition-colors">
+						<div className="pt-6">
+							<div className="flex flex-wrap gap-3 text-[10px] text-muted-foreground justify-end">
+								<a
+									href="/privacy"
+									className="hover:text-foreground transition-colors"
+								>
 									Privacy
 								</a>
-								<a href="#" className="hover:text-foreground transition-colors">
+								<a
+									href="/terms"
+									className="hover:text-foreground transition-colors"
+								>
 									Terms
 								</a>
-								<a href="#" className="hover:text-foreground transition-colors">
+								<a
+									href="/support"
+									className="hover:text-foreground transition-colors"
+								>
 									Support
 								</a>
 							</div>
