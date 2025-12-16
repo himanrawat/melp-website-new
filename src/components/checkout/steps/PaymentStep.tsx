@@ -122,9 +122,11 @@ export default function PaymentStep({
 		if (!formData.nameOnCard.trim()) newErrors.nameOnCard = "Required";
 		if (!formData.billingAddressLine1.trim())
 			newErrors.billingAddressLine1 = "Required";
-		if (!formData.billingTownCity.trim()) newErrors.billingTownCity = "Required";
+		if (!formData.billingTownCity.trim())
+			newErrors.billingTownCity = "Required";
 		if (!formData.billingState.trim()) newErrors.billingState = "Required";
-		if (!formData.billingPostcode.trim()) newErrors.billingPostcode = "Required";
+		if (!formData.billingPostcode.trim())
+			newErrors.billingPostcode = "Required";
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
@@ -142,16 +144,17 @@ export default function PaymentStep({
 
 	const inputClassName = (fieldName: string) =>
 		`w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all
-		${errors[fieldName] ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""}`;
+		${
+			errors[fieldName]
+				? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+				: ""
+		}`;
 
 	const labelClassName = "block text-xs font-medium text-foreground mb-1";
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<motion.div
-				initial={{ opacity: 0, y: 8 }}
-				animate={{ opacity: 1, y: 0 }}
-			>
+			<motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
 				<h2 className="text-xl font-semibold text-foreground mb-1">
 					Payment details
 				</h2>
@@ -201,7 +204,9 @@ export default function PaymentStep({
 						<CreditCard className="absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
 					</div>
 					{errors.cardNumber && (
-						<p className="mt-0.5 text-[10px] text-red-500">{errors.cardNumber}</p>
+						<p className="mt-0.5 text-[10px] text-red-500">
+							{errors.cardNumber}
+						</p>
 					)}
 				</div>
 
@@ -217,7 +222,9 @@ export default function PaymentStep({
 								onChange={(e) =>
 									updateFormData({ expirationMonth: e.target.value })
 								}
-								className={`${inputClassName("expirationMonth")} appearance-none pr-7`}
+								className={`${inputClassName(
+									"expirationMonth"
+								)} appearance-none pr-7`}
 							>
 								<option value="">MM</option>
 								{months.map((month) => (
@@ -239,7 +246,9 @@ export default function PaymentStep({
 								onChange={(e) =>
 									updateFormData({ expirationYear: e.target.value })
 								}
-								className={`${inputClassName("expirationYear")} appearance-none pr-7`}
+								className={`${inputClassName(
+									"expirationYear"
+								)} appearance-none pr-7`}
 							>
 								<option value="">YYYY</option>
 								{years.map((year) => (
@@ -283,7 +292,9 @@ export default function PaymentStep({
 						placeholder="John Doe"
 					/>
 					{errors.nameOnCard && (
-						<p className="mt-0.5 text-[10px] text-red-500">{errors.nameOnCard}</p>
+						<p className="mt-0.5 text-[10px] text-red-500">
+							{errors.nameOnCard}
+						</p>
 					)}
 				</div>
 			</motion.div>
@@ -347,7 +358,9 @@ export default function PaymentStep({
 								onChange={(e) =>
 									updateFormData({ billingState: e.target.value })
 								}
-								className={`${inputClassName("billingState")} appearance-none pr-7`}
+								className={`${inputClassName(
+									"billingState"
+								)} appearance-none pr-7`}
 							>
 								<option value="">Select</option>
 								{indianStates.map((state) => (

@@ -235,7 +235,11 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 							variant={plan.ctaVariant}
 							asChild
 						>
-							<Link href={`/checkout?plan=${plan.id}&billing=${isYearly ? 'yearly' : 'monthly'}`}>
+							<Link
+								href={`/checkout?plan=${plan.id}&billing=${
+									isYearly ? "yearly" : "monthly"
+								}`}
+							>
 								<span>{plan.cta}</span>
 								<motion.span
 									className="inline-block ml-1"

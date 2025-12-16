@@ -1,6 +1,13 @@
 "use client";
 
-import { CheckCircle2, Mail, Download, Rocket, Copy, Check } from "lucide-react";
+import {
+	CheckCircle2,
+	Mail,
+	Download,
+	Rocket,
+	Copy,
+	Check,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
@@ -159,7 +166,9 @@ export default function ConfirmationStep({
 							<item.icon className="w-4 h-4 text-primary" />
 						</div>
 						<div>
-							<p className="text-sm font-medium text-foreground">{item.title}</p>
+							<p className="text-sm font-medium text-foreground">
+								{item.title}
+							</p>
 							<p className="text-xs text-muted-foreground">{item.desc}</p>
 						</div>
 					</motion.div>

@@ -56,10 +56,7 @@ export default function EmailStep({
 
 	if (showConfirmation) {
 		return (
-			<motion.div
-				initial={{ opacity: 0, y: 8 }}
-				animate={{ opacity: 1, y: 0 }}
-			>
+			<motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
 				<h2 className="text-xl font-semibold text-foreground mb-1">
 					Confirm your email
 				</h2>
@@ -100,10 +97,7 @@ export default function EmailStep({
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<motion.div
-				initial={{ opacity: 0, y: 8 }}
-				animate={{ opacity: 1, y: 0 }}
-			>
+			<motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
 				<h2 className="text-xl font-semibold text-foreground mb-1">
 					Your email
 				</h2>

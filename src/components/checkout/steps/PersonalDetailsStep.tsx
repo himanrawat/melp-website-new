@@ -84,16 +84,17 @@ export default function PersonalDetailsStep({
 
 	const inputClassName = (fieldName: string) =>
 		`w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all
-		${errors[fieldName] ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""}`;
+		${
+			errors[fieldName]
+				? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+				: ""
+		}`;
 
 	const labelClassName = "block text-xs font-medium text-foreground mb-1";
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<motion.div
-				initial={{ opacity: 0, y: 8 }}
-				animate={{ opacity: 1, y: 0 }}
-			>
+			<motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
 				<h2 className="text-xl font-semibold text-foreground mb-1">
 					Your details
 				</h2>
@@ -141,7 +142,9 @@ export default function PersonalDetailsStep({
 							className={inputClassName("surname")}
 						/>
 						{errors.surname && (
-							<p className="mt-0.5 text-[10px] text-red-500">{errors.surname}</p>
+							<p className="mt-0.5 text-[10px] text-red-500">
+								{errors.surname}
+							</p>
 						)}
 					</div>
 				</div>
@@ -216,8 +219,12 @@ export default function PersonalDetailsStep({
 						<div className="relative">
 							<select
 								value={formData.companySize}
-								onChange={(e) => updateFormData({ companySize: e.target.value })}
-								className={`${inputClassName("companySize")} appearance-none pr-8`}
+								onChange={(e) =>
+									updateFormData({ companySize: e.target.value })
+								}
+								className={`${inputClassName(
+									"companySize"
+								)} appearance-none pr-8`}
 							>
 								<option value="">Select</option>
 								{companySizeOptions.map((size) => (
