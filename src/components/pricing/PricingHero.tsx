@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import { RevealOnScroll } from "@/components/ui/aceternity";
 
 interface PricingHeroProps {
@@ -34,7 +33,7 @@ export default function PricingHero({
 						className="flex items-center justify-center gap-2 mb-6"
 					>
 						<span className="text-sm font-medium text-muted-foreground">
-							Simple, transparent pricing
+							Pricing
 						</span>
 					</motion.div>
 
@@ -45,8 +44,8 @@ export default function PricingHero({
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5, delay: 0.1 }}
 					>
-						<span className="text-foreground">One platform for </span>
-						<span className="text-muted-foreground">all your teams.</span>
+						<span className="text-foreground">One tool for your </span>
+						<span className="text-muted-foreground">whole company.</span>
 					</motion.h1>
 
 					{/* Subheadline */}
@@ -56,7 +55,8 @@ export default function PricingHero({
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5, delay: 0.2 }}
 					>
-						Start free and scale as you grow. No hidden fees, cancel anytime.
+						Free for individuals and small teams. Upgrade for advanced
+						collaboration, AI features, and enterprise-grade security.
 					</motion.p>
 
 					{/* Controls Container */}

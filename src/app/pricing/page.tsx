@@ -75,10 +75,10 @@ export default function PricingPage() {
 					<div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 						<RevealOnScroll className="text-center mb-12">
 							<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-								Compare all features
+								Compare plans
 							</h2>
 							<p className="mt-4 text-lg text-muted-foreground">
-								See what&apos;s included in each plan
+								Find the perfect fit for you or your team.
 							</p>
 						</RevealOnScroll>
 
@@ -106,10 +106,10 @@ export default function PricingPage() {
 					<div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
 						<RevealOnScroll className="text-center mb-12">
 							<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-								Frequently asked questions
+								Questions about pricing
 							</h2>
 							<p className="mt-4 text-lg text-muted-foreground">
-								Got questions? We&apos;ve got answers.
+								Everything you need to know about our plans and billing.
 							</p>
 						</RevealOnScroll>
 
@@ -125,7 +125,7 @@ export default function PricingPage() {
 								>
 									<button
 										onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-										className="w-full flex items-center justify-between p-5 text-left hover:bg-muted/30 transition-colors"
+										className="w-full flex items-center justify-between p-5 text-left hover:bg-muted/30 transition-colors cursor-pointer"
 									>
 										<span className="font-medium text-foreground">
 											{faq.question}
@@ -163,22 +163,25 @@ export default function PricingPage() {
 					<div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
 						<RevealOnScroll>
 							<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-								Still have questions?
+								Ready to get started?
 							</h2>
 							<p className="mt-4 text-lg text-muted-foreground">
-								Our team is here to help you find the perfect plan for your
-								needs.
+								Try Melp free for 14 days. No credit card required.
 							</p>
 							<div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
 								<MagneticButton>
-									<Button size="lg" className="group">
-										<MessageCircle className="w-4 h-4 mr-2" />
-										Talk to Sales
+									<Button size="lg" className="group cursor-pointer">
+										Get started free
 									</Button>
 								</MagneticButton>
 								<MagneticButton>
-									<Button size="lg" variant="outline">
-										Start Free Trial
+									<Button
+										size="lg"
+										variant="outline"
+										className="cursor-pointer"
+									>
+										<MessageCircle className="w-4 h-4 mr-2" />
+										Contact sales
 									</Button>
 								</MagneticButton>
 							</div>

@@ -162,7 +162,7 @@ export function MagneticButton({
 			onMouseLeave={handleMouseLeave}
 			animate={{ x: position.x, y: position.y }}
 			transition={{ type: "spring", stiffness: 150, damping: 15 }}
-			className={className}
+			className={`cursor-pointer ${className}`}
 		>
 			{children}
 		</motion.div>

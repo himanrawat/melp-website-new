@@ -1,7 +1,4 @@
-"use client";
-
-import { useRef, useEffect, useState } from "react";
-import { Check, Minus } from "lucide-react";
+import { Check, Minus, Info } from "lucide-react";
 import { ComparisonFeature, PricingPlan } from "@/data/pricing";
 import { Button } from "@/components/ui/button";
 
@@ -37,54 +34,11 @@ export default function ComparisonTable({
 	isYearly = true,
 }: ComparisonTableProps) {
 	const planIds = plans.map((p) => p.id);
-	const headerRef = useRef<HTMLDivElement>(null);
-	const [isSticky, setIsSticky] = useState(false);
-
-	useEffect(() => {
-		const header = headerRef.current;
-		if (!header) return;
-
-		// Use IntersectionObserver to detect when header becomes sticky
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				// When the sentinel is not intersecting, header is sticky
-				setIsSticky(!entry.isIntersecting);
-			},
-			{
-				// Offset by navbar height (64px)
-				rootMargin: "-64px 0px 0px 0px",
-				threshold: 0,
-			}
-		);
-
-		// Create a sentinel element to observe
-		const sentinel = document.createElement("div");
-		sentinel.style.height = "1px";
-		sentinel.style.width = "100%";
-		sentinel.style.position = "absolute";
-		sentinel.style.top = "0";
-		sentinel.style.pointerEvents = "none";
-		header.parentElement?.insertBefore(sentinel, header);
-
-		observer.observe(sentinel);
-
-		return () => {
-			observer.disconnect();
-			sentinel.remove();
-		};
-	}, []);
 
 	return (
 		<div className="w-full relative">
 			{/* Sticky Header - uses native CSS sticky */}
-			<div
-				ref={headerRef}
-				className={`
-					sticky top-16 z-50 bg-background border-b border-border
-					transition-shadow duration-200
-					${isSticky ? "shadow-sm" : ""}
-				`}
-			>
+			<div className="sticky top-16 bg-background px-4">
 				<div>
 					<div
 						className="grid items-end py-4"
@@ -124,7 +78,7 @@ export default function ComparisonTable({
 										variant={plan.popular ? "default" : "outline"}
 										size="sm"
 										className={`
-											w-full max-w-[140px] mt-1 text-sm font-medium
+											w-full max-w-[140px] mt-1 text-sm font-medium cursor-pointer
 											${
 												plan.popular
 													? "bg-primary hover:bg-primary/90 text-primary-foreground"
@@ -147,7 +101,7 @@ export default function ComparisonTable({
 					<div key={category.category}>
 						{/* Category Header */}
 						<div
-							className="grid items-center py-4 bg-muted/30 border-t border-border"
+							className="grid items-center p-4 bg-muted/30 border-t border-border"
 							style={{
 								gridTemplateColumns: `minmax(280px, 2fr) repeat(${plans.length}, minmax(140px, 1fr))`,
 							}}
@@ -166,19 +120,25 @@ export default function ComparisonTable({
 						{category.features.map((feature) => (
 							<div
 								key={feature.name}
-								className="grid items-center py-3.5 border-t border-border/50 hover:bg-muted/20 transition-colors"
+								className="grid items-center p-4 border-t border-border/50 hover:bg-muted/20 transition-colors"
 								style={{
 									gridTemplateColumns: `minmax(280px, 2fr) repeat(${plans.length}, minmax(140px, 1fr))`,
 								}}
 							>
-								{/* Feature Name - Underlined like Notion */}
-								<div className="px-0">
-									<span
-										className="text-sm text-foreground underline decoration-muted-foreground/30 underline-offset-2 cursor-default hover:decoration-muted-foreground/60 transition-colors"
-										title={feature.tooltip}
-									>
+								{/* Feature Name with Tooltip */}
+								<div className="px-0 group/tooltip relative">
+									<span className="text-sm text-foreground inline-flex items-center gap-1.5">
 										{feature.name}
+										{feature.tooltip && (
+											<Info className="w-3.5 h-3.5 text-muted-foreground/50 group-hover/tooltip:text-muted-foreground transition-colors" />
+										)}
 									</span>
+									{feature.tooltip && (
+										<div className="absolute left-0 bottom-full mb-2 px-3 py-2 bg-foreground text-background text-xs rounded-lg opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-50 max-w-xs whitespace-normal shadow-lg">
+											{feature.tooltip}
+											<div className="absolute left-4 top-full w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-foreground" />
+										</div>
+									)}
 								</div>
 
 								{/* Plan Values */}

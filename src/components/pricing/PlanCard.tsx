@@ -10,6 +10,7 @@ import {
 	MagneticButton,
 } from "@/components/ui/aceternity";
 import { PricingPlan } from "@/data/pricing";
+import Link from "next/link";
 
 interface PlanCardProps {
 	plan: PricingPlan;
@@ -121,13 +122,13 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 
 					{/* Plan Header */}
 					<div className="flex items-center gap-3 mt-2">
-						<motion.div
+						{/* <motion.div
 							className="p-2.5 rounded-xl bg-primary/10"
 							whileHover={{ scale: 1.1, rotate: 5 }}
 							transition={{ type: "spring", stiffness: 400 }}
 						>
 							<Icon className="w-5 h-5 text-primary" />
-						</motion.div>
+						</motion.div> */}
 						<h3 className="text-xl font-semibold text-foreground">
 							{plan.name}
 						</h3>
@@ -232,15 +233,18 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 							className="w-full group"
 							size="lg"
 							variant={plan.ctaVariant}
+							asChild
 						>
-							<span>{plan.cta}</span>
-							<motion.span
-								className="inline-block ml-1"
-								initial={{ x: 0 }}
-								whileHover={{ x: 3 }}
-							>
-								→
-							</motion.span>
+							<Link href={`/checkout?plan=${plan.id}&billing=${isYearly ? 'yearly' : 'monthly'}`}>
+								<span>{plan.cta}</span>
+								<motion.span
+									className="inline-block ml-1"
+									initial={{ x: 0 }}
+									whileHover={{ x: 3 }}
+								>
+									→
+								</motion.span>
+							</Link>
 						</Button>
 					</MagneticButton>
 				</div>

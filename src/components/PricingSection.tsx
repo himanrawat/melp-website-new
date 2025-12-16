@@ -188,7 +188,7 @@ export default function PricingSection() {
 
 										{/* CTA Button */}
 										<MagneticButton className="w-full mt-8">
-											<Button className="w-full" size="lg">
+											<Button className="w-full cursor-pointer" size="lg">
 												{plan.cta}
 											</Button>
 										</MagneticButton>
