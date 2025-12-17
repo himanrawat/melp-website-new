@@ -68,7 +68,7 @@ export default function UseCasesSection({
 									transition={{ duration: 0.4, delay: index * 0.1 }}
 									className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border/50 hover:border-primary/30 hover:shadow-md transition-all duration-300"
 								>
-									<div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+									<div className="shrink-0 w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
 										<Check className="w-4 h-4 text-primary" />
 									</div>
 									<p className="text-muted-foreground">{useCase}</p>

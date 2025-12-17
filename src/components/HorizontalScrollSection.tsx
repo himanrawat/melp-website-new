@@ -74,7 +74,7 @@ export default function HorizontalScrollSection() {
 					{productHighlights.map((item, index) => (
 						<motion.div
 							key={index}
-							className="flex-shrink-0 w-[85vw] snap-center"
+							className="shrink-0 w-[85vw] snap-center"
 							initial={{ opacity: 0, scale: 0.9 }}
 							whileInView={{ opacity: 1, scale: 1 }}
 							viewport={{ once: true }}
@@ -156,7 +156,7 @@ export default function HorizontalScrollSection() {
 						{productHighlights.map((item, index) => (
 							<motion.div
 								key={index}
-								className="flex-shrink-0 w-[40vw] max-w-lg"
+								className="shrink-0 w-[40vw] max-w-lg"
 								initial={{ opacity: 0.3, scale: 0.9, rotateY: -5 }}
 								whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
 								viewport={{ once: false, amount: 0.6 }}
@@ -207,7 +207,7 @@ export default function HorizontalScrollSection() {
 							</motion.div>
 						))}
 						{/* Spacer at end */}
-						<div className="flex-shrink-0 w-[30vw]" />
+						<div className="shrink-0 w-[30vw]" />
 					</motion.div>
 				</div>
 			</div>

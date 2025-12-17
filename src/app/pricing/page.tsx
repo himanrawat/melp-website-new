@@ -42,7 +42,7 @@ export default function PricingPage() {
 				/>
 
 				{/* Pricing Cards */}
-				<section className="relative">
+				<section className="relative pb-20">
 					<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 						<AnimatePresence mode="wait">
 							<motion.div

@@ -130,7 +130,7 @@ function FeatureItem({
 		>
 			{/* Icon container */}
 			<motion.div
-				className="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl shadow-lg relative overflow-hidden"
+				className="shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl shadow-lg relative overflow-hidden"
 				style={{
 					background: "linear-gradient(135deg, #4B5563 0%, #6B7280 100%)",
 				}}

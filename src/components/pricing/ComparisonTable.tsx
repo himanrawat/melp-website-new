@@ -1,6 +1,13 @@
 import { Check, Minus, Info } from "lucide-react";
 import { ComparisonFeature, PricingPlan } from "@/data/pricing";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface ComparisonTableProps {
 	readonly plans: PricingPlan[];
@@ -85,8 +92,25 @@ export default function ComparisonTable({
 													: "border-border hover:bg-muted/50"
 											}
 										`}
+										asChild
 									>
-										{getButtonText(plan.monthlyPrice)}
+										{plan.monthlyPrice === 0 ? (
+											<a
+												href="https://www.app.melp.us/spa/index#signup"
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												{getButtonText(plan.monthlyPrice)}
+											</a>
+										) : (
+											<Link
+												href={`/checkout?plan=${plan.id}&billing=${
+													isYearly ? "yearly" : "monthly"
+												}`}
+											>
+												{getButtonText(plan.monthlyPrice)}
+											</Link>
+										)}
 									</Button>
 								</div>
 							</div>
@@ -126,18 +150,25 @@ export default function ComparisonTable({
 								}}
 							>
 								{/* Feature Name with Tooltip */}
-								<div className="px-0 group/tooltip relative">
-									<span className="text-sm text-foreground inline-flex items-center gap-1.5">
-										{feature.name}
-										{feature.tooltip && (
-											<Info className="w-3.5 h-3.5 text-muted-foreground/50 group-hover/tooltip:text-muted-foreground transition-colors" />
-										)}
-									</span>
-									{feature.tooltip && (
-										<div className="absolute left-0 bottom-full mb-2 px-3 py-2 bg-foreground text-background text-xs rounded-lg opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-50 max-w-xs whitespace-normal shadow-lg">
-											{feature.tooltip}
-											<div className="absolute left-4 top-full w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-foreground" />
-										</div>
+								<div className="px-0">
+									{feature.tooltip ? (
+										<TooltipProvider>
+											<Tooltip>
+												<TooltipTrigger asChild>
+													<span className="text-sm text-foreground inline-flex items-center gap-1.5 border-b border-dotted border-muted-foreground/40 cursor-help font-bold">
+														{feature.name}
+														{/* <Info className="w-3.5 h-3.5 text-muted-foreground/50" /> */}
+													</span>
+												</TooltipTrigger>
+												<TooltipContent className="w-[160px]">
+													<p>{feature.tooltip}</p>
+												</TooltipContent>
+											</Tooltip>
+										</TooltipProvider>
+									) : (
+										<span className="text-sm text-foreground">
+											{feature.name}
+										</span>
 									)}
 								</div>
 

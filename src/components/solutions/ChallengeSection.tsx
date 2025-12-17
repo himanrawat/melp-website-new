@@ -78,7 +78,7 @@ export default function ChallengeSection({
 									transition={{ duration: 0.4, delay: index * 0.1 }}
 									className="flex items-start gap-4"
 								>
-									<div className="flex-shrink-0 w-6 h-6 rounded-full bg-destructive/10 border border-destructive/30 flex items-center justify-center mt-0.5">
+									<div className="shrink-0 w-6 h-6 rounded-full bg-destructive/10 border border-destructive/30 flex items-center justify-center mt-0.5">
 										<X className="w-3 h-3 text-destructive" />
 									</div>
 									<p className="text-muted-foreground">{challenge}</p>

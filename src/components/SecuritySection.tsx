@@ -86,7 +86,7 @@ export default function SecuritySection() {
 							>
 								<GlowingBorderCard className="h-full">
 									<div className="p-5 bg-card rounded-xl h-full flex flex-col">
-										<div className="w-10 h-10 rounded-full border-2 border-primary/30 bg-primary/10 mb-3 flex-shrink-0" />
+										<div className="w-10 h-10 rounded-full border-2 border-primary/30 bg-primary/10 mb-3 shrink-0" />
 										<h3 className="font-semibold text-foreground mb-2">
 											{point.title}
 										</h3>
