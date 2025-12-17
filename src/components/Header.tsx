@@ -482,6 +482,8 @@ interface NavDropdownProps {
 }
 
 function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
+	const [isHovered, setIsHovered] = useState(false);
+
 	const handleMouseEnter = useCallback(() => {
 		onOpen();
 	}, [onOpen]);
@@ -494,21 +496,23 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 	if (!item.categories) {
 		return (
 			<Link href={item.href || "/"}>
-				<motion.span
-					className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg cursor-pointer inline-block group"
+				<motion.div
+					className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg flex items-center cursor-pointer group"
 					whileHover={{ y: -1 }}
 					whileTap={{ scale: 0.98 }}
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}
 				>
 					<span className="relative">
 						{item.label}
 						<motion.span
 							className="absolute -bottom-0.5 left-0 h-[2px] bg-primary rounded-full"
 							initial={{ width: 0 }}
-							whileHover={{ width: "100%" }}
+							animate={{ width: isHovered ? "100%" : 0 }}
 							transition={{ duration: 0.2 }}
 						/>
 					</span>
-				</motion.span>
+				</motion.div>
 			</Link>
 		);
 	}
@@ -563,7 +567,7 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 						initial="hidden"
 						animate="visible"
 						exit="exit"
-						className="fixed left-0 right-0 top-16 w-full flex justify-center px-6"
+						className="fixed left-0 right-0 top-20 w-full flex justify-center px-6"
 						onMouseEnter={handleMouseEnter}
 						onMouseLeave={handleMouseLeave}
 					>
@@ -997,7 +1001,9 @@ export default function Header() {
 							alt="Melp"
 							width={100}
 							height={32}
-							className="w-40 h-auto relative"
+							className={`h-auto relative transition-all duration-300 ease-out ${
+								scrolled ? "w-32" : "w-40"
+							}`}
 							priority
 						/>
 					</motion.div>

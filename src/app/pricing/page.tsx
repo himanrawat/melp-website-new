@@ -106,6 +106,9 @@ export default function PricingPage() {
 					</div>
 				</section>
 
+				{/* Testimonials Section */}
+				<TestimonialsSection />
+
 				{/* FAQ Section */}
 				<section className="py-20">
 					<div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
@@ -162,9 +165,6 @@ export default function PricingPage() {
 						</div>
 					</div>
 				</section>
-
-				{/* Testimonials Section */}
-				<TestimonialsSection />
 
 				{/* CTA Section */}
 				<section className="py-20 bg-primary/5">
