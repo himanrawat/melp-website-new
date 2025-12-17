@@ -77,7 +77,7 @@ export default function SecurityComplianceSection({
 									transition={{ duration: 0.4, delay: index * 0.1 }}
 									className="flex items-start gap-4"
 								>
-									<div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center mt-0.5">
+									<div className="shrink-0 w-6 h-6 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center mt-0.5">
 										<Check className="w-3 h-3 text-primary" />
 									</div>
 									<div>

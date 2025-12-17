@@ -13,7 +13,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { CheckoutFormData } from "@/app/checkout/page";
-import { PricingPlan } from "@/data/pricing";
+// import { PricingPlan } from "@/data/pricing";
 import { motion } from "framer-motion";
 
 interface PaymentStepProps {
@@ -21,7 +21,6 @@ interface PaymentStepProps {
 	updateFormData: (updates: Partial<CheckoutFormData>) => void;
 	nextStep: () => void;
 	prevStep: () => void;
-	allPlans: PricingPlan[];
 }
 
 const months = [
@@ -94,7 +93,7 @@ export default function PaymentStep({
 	}, []);
 
 	const formatCardNumber = (value: string) => {
-		const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
+		const v = value.replaceAll(/\s+/g, "").replaceAll(/[^0-9]/gi, "");
 		const matches = v.match(/\d{4,16}/g);
 		const match = (matches && matches[0]) || "";
 		const parts = [];
@@ -177,7 +176,7 @@ export default function PaymentStep({
 						<div className="w-8 h-5 bg-blue-600 rounded flex items-center justify-center text-white text-[8px] font-bold">
 							VISA
 						</div>
-						<div className="w-8 h-5 bg-gradient-to-r from-red-500 to-yellow-400 rounded flex items-center justify-center">
+						<div className="w-8 h-5 bg-linear-to-r from-red-500 to-yellow-400 rounded flex items-center justify-center">
 							<div className="w-2.5 h-2.5 bg-red-600 rounded-full opacity-80" />
 							<div className="w-2.5 h-2.5 bg-yellow-500 rounded-full -ml-1 opacity-80" />
 						</div>
@@ -427,7 +426,7 @@ export default function PaymentStep({
 				transition={{ delay: 0.15 }}
 				className="flex items-start gap-2 text-[10px] text-muted-foreground mb-5 p-3 rounded-lg bg-muted/30"
 			>
-				<Lock className="h-3.5 w-3.5 mt-0.5 flex-shrink-0 text-primary" />
+				<Lock className="h-3.5 w-3.5 mt-0.5 shrink-0 text-primary" />
 				<p>
 					Your payment is secured with 256-bit encryption. We never store your
 					full card details.

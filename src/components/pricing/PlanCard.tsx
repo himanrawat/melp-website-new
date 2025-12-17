@@ -194,7 +194,7 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 							>
 								{feature.included ? (
 									<motion.div
-										className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${
+										className={`shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${
 											feature.highlight
 												? "bg-primary text-primary-foreground"
 												: "bg-primary/10 text-primary"
@@ -205,7 +205,7 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 										<Check className="w-3 h-3" strokeWidth={3} />
 									</motion.div>
 								) : (
-									<div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 bg-muted">
+									<div className="shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 bg-muted">
 										<X
 											className="w-3 h-3 text-muted-foreground"
 											strokeWidth={2}
@@ -235,20 +235,37 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 							variant={plan.ctaVariant}
 							asChild
 						>
-							<Link
-								href={`/checkout?plan=${plan.id}&billing=${
-									isYearly ? "yearly" : "monthly"
-								}`}
-							>
-								<span>{plan.cta}</span>
-								<motion.span
-									className="inline-block ml-1"
-									initial={{ x: 0 }}
-									whileHover={{ x: 3 }}
+							{plan.monthlyPrice === 0 ? (
+								<a
+									href="https://www.app.melp.us/spa/index#signup"
+									target="_blank"
+									rel="noopener noreferrer"
 								>
-									→
-								</motion.span>
-							</Link>
+									<span>Sign up</span>
+									<motion.span
+										className="inline-block ml-1"
+										initial={{ x: 0 }}
+										whileHover={{ x: 3 }}
+									>
+										→
+									</motion.span>
+								</a>
+							) : (
+								<Link
+									href={`/checkout?plan=${plan.id}&billing=${
+										isYearly ? "yearly" : "monthly"
+									}`}
+								>
+									<span>{plan.cta}</span>
+									<motion.span
+										className="inline-block ml-1"
+										initial={{ x: 0 }}
+										whileHover={{ x: 3 }}
+									>
+										→
+									</motion.span>
+								</Link>
+							)}
 						</Button>
 					</MagneticButton>
 				</div>

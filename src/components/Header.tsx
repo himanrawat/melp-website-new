@@ -422,7 +422,7 @@ function DropdownMenuItem({
 					transition={{ type: "spring", stiffness: 400, damping: 25 }}
 				>
 					<div
-						className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
+						className={`shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
 							isHighlighted ? "bg-white/10" : "bg-muted"
 						}`}
 					>

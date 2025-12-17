@@ -73,7 +73,7 @@ export default function FeatureHighlightSection({
 										transition={{ duration: 0.4, delay: index * 0.1 }}
 										className="flex items-start gap-4"
 									>
-										<div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+										<div className="shrink-0 w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
 											<IconComponent className="w-5 h-5 text-primary" />
 										</div>
 										<div>
