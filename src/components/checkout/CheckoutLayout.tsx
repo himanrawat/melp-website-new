@@ -18,6 +18,14 @@ import { PricingPlan } from "@/data/pricing";
 import { CheckoutFormData } from "@/app/checkout/page";
 import Image from "next/image";
 import Link from "next/link";
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 interface Step {
 	id: number;
@@ -277,6 +285,35 @@ export default function CheckoutLayout({
 							</div>
 						)}
 
+						{/* Breadcrumbs */}
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							className="mb-4"
+						>
+							<Breadcrumb>
+								<BreadcrumbList>
+									<BreadcrumbItem>
+										<BreadcrumbLink asChild>
+											<Link href="/">Home</Link>
+										</BreadcrumbLink>
+									</BreadcrumbItem>
+									<BreadcrumbSeparator />
+									<BreadcrumbItem>
+										<BreadcrumbLink asChild>
+											<Link href="/pricing">Pricing</Link>
+										</BreadcrumbLink>
+									</BreadcrumbItem>
+									<BreadcrumbSeparator />
+									<BreadcrumbItem>
+										<BreadcrumbPage>
+											{isEnterprise ? "Contact Sales" : "Checkout"}
+										</BreadcrumbPage>
+									</BreadcrumbItem>
+								</BreadcrumbList>
+							</Breadcrumb>
+						</motion.div>
+
 						{/* Step Info */}
 						<motion.div
 							key={`step-${currentStep}`}
@@ -383,6 +420,9 @@ export default function CheckoutLayout({
 										<h4 className="text-xs font-semibold text-foreground mb-3 uppercase tracking-wide shrink-0">
 											Complete Feature Set
 										</h4>
+										{/* <h4 className="text-xs font-semibold text-foreground mb-3 uppercase tracking-wide shrink-0">
+											Everything Included
+										</h4> */}
 										<div className="relative flex-1 flex flex-col min-h-0">
 											{/* Features List */}
 											<div
