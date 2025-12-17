@@ -8,6 +8,8 @@ import Footer from "@/components/Footer";
 import PricingHero from "@/components/pricing/PricingHero";
 import PlanCard from "@/components/pricing/PlanCard";
 import ComparisonTable from "@/components/pricing/ComparisonTable";
+import TrustedBrands from "@/components/pricing/TrustedBrands";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import { Button } from "@/components/ui/button";
 import { RevealOnScroll, MagneticButton } from "@/components/ui/aceternity";
 import {
@@ -69,6 +71,9 @@ export default function PricingPage() {
 						</AnimatePresence>
 					</div>
 				</section>
+
+				{/* Trusted Brands */}
+				<TrustedBrands />
 
 				{/* Feature Comparison Table */}
 				<section className="py-20 bg-muted/10">
@@ -157,6 +162,9 @@ export default function PricingPage() {
 						</div>
 					</div>
 				</section>
+
+				{/* Testimonials Section */}
+				<TestimonialsSection />
 
 				{/* CTA Section */}
 				<section className="py-20 bg-primary/5">
