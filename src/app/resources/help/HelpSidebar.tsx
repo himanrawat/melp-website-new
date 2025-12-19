@@ -21,29 +21,79 @@ export function HelpSidebar({
 	const [expandedCategory, setExpandedCategory] = useState<string | null>(
 		defaultExpanded
 	);
+	const [activeItem, setActiveItem] = useState<string | null>(null);
 	const pathname = usePathname();
 
 	const toggleCategory = (title: string) => {
 		setExpandedCategory(expandedCategory === title ? null : title);
 	};
 
+	// Check if a link is active based on pathname and hash
+	const isLinkActive = (href: string | undefined) => {
+		if (!href) return false;
+		const [linkPath, linkHash] = href.split("#");
+		const currentHash = activeItem;
+
+		// Check if the path matches
+		if (linkPath !== pathname) return false;
+
+		// If there's a hash, check if it matches
+		if (linkHash && currentHash) {
+			return linkHash === currentHash;
+		}
+
+		return !linkHash && !currentHash;
+	};
+
 	useEffect(() => {
 		const hash = window.location.hash;
-		if (!hash) return;
-		const id = decodeURIComponent(hash.replace("#", ""));
-		const el = document.getElementById(id);
-		if (el) {
-			requestAnimationFrame(() => {
-				el.scrollIntoView({ behavior: "smooth", block: "start" });
-			});
+		if (hash) {
+			const id = decodeURIComponent(hash.replace("#", ""));
+			setActiveItem(id);
+			const el = document.getElementById(id);
+			if (el) {
+				requestAnimationFrame(() => {
+					el.scrollIntoView({ behavior: "smooth", block: "start" });
+				});
+			}
 		}
-	}, [pathname]);
+
+		// Auto-expand the category that contains the active item
+		if (hash) {
+			const hashId = decodeURIComponent(hash.replace("#", ""));
+			for (const category of categories) {
+				const hasActiveItem = category.items.some((item) =>
+					item.href?.includes(`#${hashId}`)
+				);
+				if (hasActiveItem) {
+					setExpandedCategory(category.title);
+					break;
+				}
+			}
+		}
+	}, [pathname, categories]);
+
+	// Listen for hash changes
+	useEffect(() => {
+		const handleHashChange = () => {
+			const hash = window.location.hash;
+			if (hash) {
+				const id = decodeURIComponent(hash.replace("#", ""));
+				setActiveItem(id);
+			} else {
+				setActiveItem(null);
+			}
+		};
+
+		window.addEventListener("hashchange", handleHashChange);
+		return () => window.removeEventListener("hashchange", handleHashChange);
+	}, []);
 
 	return (
 		<aside
 			className={`hidden w-64 shrink-0 border-r bg-background lg:block ${className}`}
 		>
-			<div className="sticky top-16 h-screen overflow-y-auto px-4 py-8">
+			<div className="sticky top-16 h-screen overflow-y-auto scrollbar-thin px-4 py-8">
 				<h2 className="mb-4 text-sm font-semibold text-foreground">
 					Reference Docs
 				</h2>
@@ -76,21 +126,54 @@ export function HelpSidebar({
 											transition={{ duration: 0.2 }}
 											className="overflow-hidden"
 										>
-											<div className="ml-2 border-l border-border py-1 pl-3">
-												{category.items.map((item) => (
-													<Link
-														key={item.label}
-														href={item.href ?? "#"}
-														scroll={false}
-														className={`block w-full py-1 text-left text-sm transition-colors hover:text-foreground ${
-															item.label === "See all"
-																? "text-primary hover:text-primary/80"
-																: "text-muted-foreground"
-														}`}
-													>
-														{item.label}
-													</Link>
-												))}
+											<div className="ml-4 py-1 relative border-l-2 border-neutral-200">
+												{category.items.map((item) => {
+													const isActive = isLinkActive(item.href);
+													return (
+														<Link
+															key={item.label}
+															href={item.href ?? "#"}
+															scroll={false}
+															onClick={(e) => {
+																if (item.href) {
+																	const hash = item.href.split("#")[1];
+																	if (hash) {
+																		setActiveItem(hash);
+																		// Smooth scroll to element
+																		const el = document.getElementById(hash);
+																		if (el) {
+																			e.preventDefault();
+																			el.scrollIntoView({
+																				behavior: "smooth",
+																				block: "start",
+																			});
+																		}
+																	}
+																}
+															}}
+															className={`relative block w-full py-1.5 pl-3 text-left text-sm transition-colors duration-200 ${
+																item.label === "See all"
+																	? "text-primary hover:text-primary/80"
+																	: isActive
+																	? "text-neutral-900 font-medium"
+																	: "text-neutral-500 hover:text-neutral-900"
+															}`}
+														>
+															{isActive && item.label !== "See all" && (
+																<motion.span
+																	layoutId={`sidebar-indicator-${category.title}`}
+																	className="absolute -left-[2px] top-0 bottom-0 w-0.5 bg-neutral-900"
+																	transition={{
+																		type: "spring",
+																		stiffness: 350,
+																		damping: 30,
+																	}}
+																/>
+															)}
+															{item.label}
+														</Link>
+													);
+												})}
 											</div>
 										</motion.div>
 									)}
