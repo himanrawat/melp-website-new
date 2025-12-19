@@ -220,17 +220,4 @@ export const sidebarCategories: SidebarCategory[] = [
 			},
 		],
 	},
-	{
-		title: "Privacy and Security",
-		items: [
-			{
-				label: "Security and Privacy",
-				href: "/resources/help/privacy-security#SecurityAndPrivacy",
-			},
-			{
-				label: "Delete Your Account",
-				href: "/resources/help/privacy-security#deleteAccount",
-			},
-		],
-	},
 ];

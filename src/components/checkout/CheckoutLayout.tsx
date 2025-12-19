@@ -699,13 +699,13 @@ export default function CheckoutLayout({
 						<div className="pt-6">
 							<div className="flex flex-wrap gap-3 text-[10px] text-muted-foreground justify-end">
 								<a
-									href="/privacy"
+									href="/legal/privacy"
 									className="hover:text-foreground transition-colors"
 								>
 									Privacy
 								</a>
 								<a
-									href="/terms"
+									href="/legal/terms-conditions"
 									className="hover:text-foreground transition-colors"
 								>
 									Terms

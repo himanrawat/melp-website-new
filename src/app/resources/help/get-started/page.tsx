@@ -107,10 +107,10 @@ export default function GetStartedPage() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5 }}
-							className="relative mb-12 overflow-hidden rounded-3xl border border-border/40 bg-gradient-to-br from-primary/5 via-primary/10 to-violet-500/5 p-8 sm:p-10"
+							className="relative mb-12 overflow-hidden rounded-3xl border border-border/40 bg-gradient-to-br from-primary/5 via-primary/10 to-[#ee4136]/5 p-8 sm:p-10"
 						>
 							<div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
-							<div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-violet-500/10 blur-3xl" />
+							<div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#ee4136]/10 blur-3xl" />
 
 							<div className="relative">
 								<div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -120,7 +120,7 @@ export default function GetStartedPage() {
 
 								<h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
 									Get Started with{" "}
-									<span className="bg-gradient-to-r from-primary to-violet-500 bg-clip-text text-transparent">
+									<span className="bg-gradient-to-r from-primary to-[#ee4136] bg-clip-text text-transparent">
 										MelpApp
 									</span>
 								</h1>
@@ -212,7 +212,7 @@ export default function GetStartedPage() {
 										))}
 									</div>
 
-									<div className="mt-8 rounded-xl bg-gradient-to-r from-primary/10 to-violet-500/10 p-6">
+									<div className="mt-8 rounded-xl bg-gradient-to-r from-primary/10 to-[#ee4136]/10 p-6">
 										<h4 className="font-semibold text-foreground mb-3">
 											Why Teams Choose MelpApp
 										</h4>
@@ -311,7 +311,7 @@ export default function GetStartedPage() {
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true }}
 								transition={{ duration: 0.5 }}
-								className="scroll-mt-24"
+								className="scroll-mt-32"
 							>
 								<div className="flex items-center gap-3 mb-6">
 									<div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-600 to-zinc-700 text-white shadow-lg shadow-zinc-500/25">

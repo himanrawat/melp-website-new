@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import type { SidebarCategory } from "./sidebarData";
 
 interface HelpSidebarProps {
-	categories: SidebarCategory[];
-	defaultExpanded?: string | null;
-	className?: string;
+	readonly categories: SidebarCategory[];
+	readonly defaultExpanded?: string | null;
+	readonly className?: string;
 }
 
 export function HelpSidebar({
@@ -20,14 +21,29 @@ export function HelpSidebar({
 	const [expandedCategory, setExpandedCategory] = useState<string | null>(
 		defaultExpanded
 	);
+	const pathname = usePathname();
 
 	const toggleCategory = (title: string) => {
 		setExpandedCategory(expandedCategory === title ? null : title);
 	};
 
+	useEffect(() => {
+		const hash = window.location.hash;
+		if (!hash) return;
+		const id = decodeURIComponent(hash.replace("#", ""));
+		const el = document.getElementById(id);
+		if (el) {
+			requestAnimationFrame(() => {
+				el.scrollIntoView({ behavior: "smooth", block: "start" });
+			});
+		}
+	}, [pathname]);
+
 	return (
-		<aside className={`hidden w-64 shrink-0 border-r bg-background lg:block ${className}`}>
-			<div className="sticky top-0 h-screen overflow-y-auto px-4 py-8">
+		<aside
+			className={`hidden w-64 shrink-0 border-r bg-background lg:block ${className}`}
+		>
+			<div className="sticky top-16 h-screen overflow-y-auto px-4 py-8">
 				<h2 className="mb-4 text-sm font-semibold text-foreground">
 					Reference Docs
 				</h2>
@@ -36,7 +52,7 @@ export function HelpSidebar({
 						<div key={category.title}>
 							<button
 								onClick={() => toggleCategory(category.title)}
-								className="group flex w-full items-center justify-between rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+								className="group flex w-full items-center justify-between rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground cursor-pointer"
 							>
 								<span>{category.title}</span>
 								{category.items.length > 0 && (
@@ -65,6 +81,7 @@ export function HelpSidebar({
 													<Link
 														key={item.label}
 														href={item.href ?? "#"}
+														scroll={false}
 														className={`block w-full py-1 text-left text-sm transition-colors hover:text-foreground ${
 															item.label === "See all"
 																? "text-primary hover:text-primary/80"

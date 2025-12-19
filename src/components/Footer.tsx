@@ -26,10 +26,10 @@ const footerLinks = {
 		{ label: "Contact", href: "#" },
 	],
 	Legal: [
-		{ label: "Privacy", href: "#" },
-		{ label: "Terms", href: "#" },
-		{ label: "Security", href: "#security" },
-		{ label: "Cookies", href: "#" },
+		{ label: "Privacy", href: "/legal/privacy" },
+		{ label: "Terms", href: "/legal/terms-conditions" },
+		{ label: "Security", href: "/legal/security" },
+		{ label: "Cookies", href: "/legal/cookies" },
 	],
 };
 

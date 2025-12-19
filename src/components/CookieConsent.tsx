@@ -83,7 +83,10 @@ export default function CookieConsent() {
 							{/* Message */}
 							<p className="text-xs text-muted-foreground leading-relaxed mb-3">
 								We use cookies to improve your experience.{" "}
-								<Link href="/privacy" className="text-primary hover:underline">
+								<Link
+									href="/legal/cookies"
+									className="text-primary hover:underline"
+								>
 									Learn more
 								</Link>
 							</p>

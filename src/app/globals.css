@@ -250,6 +250,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Scroll margin for anchor links to account for fixed header */
+/* Uses larger header height (80px) + extra padding for smooth UX */
+[id] {
+  scroll-margin-top: 96px;
+}
+
+/* Specific scroll margin for help page sections */
+.scroll-mt-24 {
+  scroll-margin-top: 96px !important;
+}
+
 /* Custom shadows for light mode */
 .shadow-soft {
   box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.08), 0 4px 16px -4px rgba(0, 0, 0, 0.06);

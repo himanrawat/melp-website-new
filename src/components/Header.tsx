@@ -22,6 +22,9 @@ import {
 	Globe,
 	HelpCircle,
 	FileText,
+	Shield,
+	ShieldCheck,
+	Cookie,
 	Tag,
 	BarChart3,
 	Newspaper,
@@ -279,27 +282,27 @@ const navItems: NavItemConfig[] = [
 				items: [
 					{
 						label: "Privacy",
-						href: "/privacy",
+						href: "/legal/privacy",
 						description: "How we protect your data",
-						icon: Building2,
+						icon: Shield,
 					},
 					{
 						label: "Terms",
-						href: "/terms",
+						href: "/legal/terms-conditions",
 						description: "Terms of service",
 						icon: FileText,
 					},
 					{
 						label: "Security",
-						href: "/security",
+						href: "/legal/security",
 						description: "Enterprise-grade protection",
-						icon: Building2,
+						icon: ShieldCheck,
 					},
 					{
 						label: "Cookies",
-						href: "/cookies",
+						href: "/legal/cookies",
 						description: "Cookie policy",
-						icon: FileText,
+						icon: Cookie,
 					},
 				],
 			},
@@ -936,10 +939,21 @@ export default function Header() {
 		setMounted(true);
 	}, []);
 
-	// Scroll detection
+	// Scroll detection with hysteresis to prevent flickering
 	useEffect(() => {
 		const handleScroll = () => {
-			setScrolled(window.scrollY > 20);
+			const currentScrollY = window.scrollY;
+			// Hysteresis: use different thresholds for shrinking vs expanding
+			// This prevents rapid toggling when scroll position is near the threshold
+			setScrolled((prevScrolled) => {
+				if (prevScrolled) {
+					// Currently scrolled - only un-scroll when below 10px
+					return currentScrollY > 10;
+				} else {
+					// Currently not scrolled - only scroll when past 50px
+					return currentScrollY > 50;
+				}
+			});
 		};
 
 		window.addEventListener("scroll", handleScroll, { passive: true });
