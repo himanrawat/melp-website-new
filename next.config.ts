@@ -18,6 +18,16 @@ const nextConfig: NextConfig = {
 				hostname: "cdn.worldvectorlogo.com",
 				pathname: "/logos/**",
 			},
+			{
+				protocol: "https",
+				hostname: "www.melp.us",
+				pathname: "/blog/wp-content/uploads/**",
+			},
+			{
+				protocol: "https",
+				hostname: "melp.us",
+				pathname: "/blog/wp-content/uploads/**",
+			},
 		],
 	},
 };

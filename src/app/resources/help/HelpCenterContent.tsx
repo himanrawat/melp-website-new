@@ -266,19 +266,23 @@ export default function HelpCenterContent() {
 					</section>
 
 					{/* Popular Topics - Notion style grid */}
-					<section className="px-4 py-12 sm:px-8 lg:px-16 lg:py-16">
-						<div className="mx-auto max-w-4xl">
+					<section className="px-4 py-12 sm:px-8 lg:px-16 lg:py-20">
+						<div className="mx-auto max-w-5xl">
 							<motion.div
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.5, delay: 0.2 }}
+								className="mb-10"
 							>
-								<h2 className="text-xl font-semibold text-foreground sm:text-2xl">
+								<h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
 									Popular topics
 								</h2>
+								<p className="mt-2 text-muted-foreground">
+									Explore guides and tutorials to get the most out of MelpApp
+								</p>
 							</motion.div>
 
-							<div className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+							<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 								{popularTopics.map((topic, index) => {
 									const Icon = topic.icon;
 									return (
@@ -288,25 +292,33 @@ export default function HelpCenterContent() {
 											animate={{ opacity: 1, y: 0 }}
 											transition={{
 												duration: 0.4,
-												delay: 0.15 + index * 0.05,
+												delay: 0.15 + index * 0.04,
 											}}
 										>
-											<Link href={topic.href ?? "#"} className="group block">
-												{/* Icon */}
-												<div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-background text-foreground">
-													<Icon className="h-6 w-6" strokeWidth={1.5} />
+											<Link
+												href={topic.href ?? "#"}
+												className="group relative flex h-full flex-col rounded-xl border border-border/60 bg-background p-5 transition-all duration-200 hover:border-border hover:bg-muted/40 hover:shadow-sm"
+											>
+												{/* Icon with subtle background */}
+												<div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-muted/80 text-foreground transition-colors group-hover:bg-primary/10 group-hover:text-primary">
+													<Icon className="h-5 w-5" strokeWidth={1.5} />
 												</div>
 
-												{/* Title with arrow */}
-												<h3 className="flex items-center gap-1 font-medium text-foreground">
+												{/* Title */}
+												<h3 className="text-[15px] font-medium leading-snug text-foreground">
 													{topic.title}
-													<ArrowRight className="h-4 w-4 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
 												</h3>
 
 												{/* Description */}
-												<p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+												<p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
 													{topic.description}
 												</p>
+
+												{/* Subtle arrow indicator */}
+												<div className="mt-4 flex items-center text-sm font-medium text-primary opacity-0 transition-all duration-200 group-hover:opacity-100">
+													<span>Learn more</span>
+													<ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+												</div>
 											</Link>
 										</motion.div>
 									);
