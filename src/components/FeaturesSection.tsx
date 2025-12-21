@@ -50,7 +50,7 @@ export default function FeaturesSection() {
 	return (
 		<motion.section
 			id="product"
-			className="relative py-24 sm:py-32 bg-background overflow-hidden"
+			className="relative py-24 sm:py-32 bg-background overflow-hidden isolate"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
 			exit={{ opacity: 0 }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -13,11 +13,9 @@ import {
 	Video,
 	Cloud,
 	Sparkles,
-	Puzzle,
 	Building2,
 	TrendingUp,
 	Landmark,
-	GraduationCap,
 	Heart,
 	Globe,
 	HelpCircle,
@@ -25,7 +23,6 @@ import {
 	Shield,
 	ShieldCheck,
 	Cookie,
-	Tag,
 	BarChart3,
 	Newspaper,
 	Users,
@@ -36,9 +33,7 @@ import {
 	X,
 	ArrowRight,
 	Zap,
-	Bot,
 	FolderKanban,
-	Search,
 	Mic,
 	Download,
 	Rocket,
@@ -315,10 +310,7 @@ const navItems: NavItemConfig[] = [
 			icon: Mail,
 		},
 	},
-	{
-		label: "Pricing",
-		href: "/pricing",
-	},
+	{ label: "Pricing", href: "/pricing" },
 ];
 
 // ============================================
@@ -326,11 +318,7 @@ const navItems: NavItemConfig[] = [
 // ============================================
 
 const dropdownVariants = {
-	hidden: {
-		opacity: 0,
-		y: 10,
-		scale: 0.96,
-	},
+	hidden: { opacity: 0, y: 10, scale: 0.96 },
 	visible: {
 		opacity: 1,
 		y: 0,
@@ -346,22 +334,13 @@ const dropdownVariants = {
 		opacity: 0,
 		y: 8,
 		scale: 0.96,
-		transition: {
-			duration: 0.12,
-			ease: "easeOut" as const,
-		},
+		transition: { duration: 0.12, ease: "easeOut" as const },
 	},
 };
 
 const categoryVariants = {
 	hidden: { opacity: 0, y: 10 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			staggerChildren: 0.02,
-		},
-	},
+	visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.02 } },
 };
 
 const itemVariants = {
@@ -369,11 +348,7 @@ const itemVariants = {
 	visible: {
 		opacity: 1,
 		x: 0,
-		transition: {
-			type: "spring" as const,
-			stiffness: 500,
-			damping: 30,
-		},
+		transition: { type: "spring" as const, stiffness: 500, damping: 30 },
 	},
 };
 
@@ -381,19 +356,11 @@ const mobileMenuVariants = {
 	hidden: { x: "100%" },
 	visible: {
 		x: 0,
-		transition: {
-			type: "spring" as const,
-			stiffness: 300,
-			damping: 30,
-		},
+		transition: { type: "spring" as const, stiffness: 300, damping: 30 },
 	},
 	exit: {
 		x: "100%",
-		transition: {
-			type: "spring" as const,
-			stiffness: 400,
-			damping: 40,
-		},
+		transition: { type: "spring" as const, stiffness: 400, damping: 40 },
 	},
 };
 
@@ -482,18 +449,18 @@ interface NavDropdownProps {
 	isOpen: boolean;
 	onOpen: () => void;
 	onClose: () => void;
+	scrolled: boolean;
 }
 
-function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
+function NavDropdown({
+	item,
+	isOpen,
+	onOpen,
+	onClose,
+	scrolled,
+}: NavDropdownProps) {
 	const [isHovered, setIsHovered] = useState(false);
-
-	const handleMouseEnter = useCallback(() => {
-		onOpen();
-	}, [onOpen]);
-
-	const handleMouseLeave = useCallback(() => {
-		onClose();
-	}, [onClose]);
+	const containerRef = useRef<HTMLDivElement>(null);
 
 	// Simple link without dropdown
 	if (!item.categories) {
@@ -509,7 +476,7 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 					<span className="relative">
 						{item.label}
 						<motion.span
-							className="absolute -bottom-0.5 left-0 h-[2px] bg-primary rounded-full"
+							className="absolute -bottom-0.5 left-0 h-0.5 bg-primary rounded-full"
 							initial={{ width: 0 }}
 							animate={{ width: isHovered ? "100%" : 0 }}
 							transition={{ duration: 0.2 }}
@@ -520,15 +487,18 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 		);
 	}
 
-	// Check if it's the Solutions menu (3 columns with highlighted section)
 	const isSolutions = item.label === "Solutions";
 	const hasHighlightedCategory = item.categories.some((cat) => cat.highlighted);
 
+	// Dynamic top position based on scroll state
+	const dropdownTop = scrolled ? "top-16" : "top-20";
+
 	return (
 		<div
+			ref={containerRef}
 			className="relative"
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
+			onMouseEnter={onOpen}
+			onMouseLeave={onClose}
 		>
 			<motion.button
 				className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg flex items-center gap-1.5 group cursor-pointer ${
@@ -542,10 +512,9 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 				<span className="relative">
 					{item.label}
 					<motion.span
-						className="absolute -bottom-0.5 left-0 h-[2px] bg-primary rounded-full"
+						className="absolute -bottom-0.5 left-0 h-0.5 bg-primary rounded-full"
 						initial={{ width: 0 }}
 						animate={{ width: isOpen ? "100%" : 0 }}
-						whileHover={{ width: "100%" }}
 						transition={{ duration: 0.2 }}
 					/>
 				</span>
@@ -560,9 +529,6 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 				</motion.div>
 			</motion.button>
 
-			{/* Invisible bridge to prevent hover gap */}
-			{isOpen && <div className="absolute left-0 right-0 h-4 top-full" />}
-
 			<AnimatePresence>
 				{isOpen && (
 					<motion.div
@@ -570,14 +536,9 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 						initial="hidden"
 						animate="visible"
 						exit="exit"
-						className="fixed left-0 right-0 top-20 w-full flex justify-center px-6"
-						onMouseEnter={handleMouseEnter}
-						onMouseLeave={handleMouseLeave}
+						className={`fixed left-0 right-0 ${dropdownTop} w-full flex justify-center px-6 z-50`}
 					>
-						<motion.div
-							className="w-full max-w-6xl bg-background border border-border/50 rounded-xl shadow-xl shadow-black/5 dark:shadow-black/20 overflow-hidden"
-							layoutId={`dropdown-${item.label}`}
-						>
+						<motion.div className="w-full max-w-6xl bg-background border border-border/50 rounded-xl shadow-xl shadow-black/5 dark:shadow-black/20 overflow-hidden">
 							<div className="flex">
 								{/* Main content area */}
 								<div className="flex-1 p-8">
@@ -649,7 +610,6 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 											variants={itemVariants}
 											className="w-72 bg-muted/30 border-l border-border/50 p-8 flex flex-col"
 										>
-											{/* Input Section */}
 											{item.inputSection && (
 												<div className="mb-6 pb-6 border-b border-border/50">
 													<div className="flex items-center gap-2 mb-3">
@@ -668,9 +628,8 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 															const input = form.elements.namedItem(
 																"meetingLink"
 															) as HTMLInputElement;
-															if (input.value) {
-																window.location.href = input.value;
-															}
+															if (input.value)
+																globalThis.location.href = input.value;
 														}}
 														className="flex flex-col gap-2"
 													>
@@ -690,7 +649,6 @@ function NavDropdown({ item, isOpen, onOpen, onClose }: NavDropdownProps) {
 													</form>
 												</div>
 											)}
-											{/* Featured Section */}
 											{item.featured && (
 												<div className="flex-1 flex flex-col">
 													<div className="flex-1">
@@ -752,6 +710,18 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 		setMounted(true);
 	}, []);
 
+	// Prevent body scroll when menu is open
+	useEffect(() => {
+		if (isOpen) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "";
+		}
+		return () => {
+			document.body.style.overflow = "";
+		};
+	}, [isOpen]);
+
 	const toggleItem = (label: string) => {
 		setExpandedItem(expandedItem === label ? null : label);
 	};
@@ -766,7 +736,7 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.2 }}
-						className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+						className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 lg:hidden"
 						onClick={onClose}
 					/>
 
@@ -779,7 +749,7 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 						className="fixed top-0 right-0 h-full w-[85%] max-w-sm bg-background border-l border-border z-50 lg:hidden overflow-y-auto"
 					>
 						{/* Header */}
-						<div className="flex items-center justify-between p-4 border-b border-border/60">
+						<div className="sticky top-0 flex items-center justify-between p-4 border-b border-border/60 bg-background">
 							<Image
 								src={
 									mounted && resolvedTheme === "dark"
@@ -839,7 +809,7 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 														<div className="pl-2 py-2 space-y-4">
 															{item.categories.map((category) => (
 																<div key={category.title}>
-																	<h4 className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground/60 px-3 mb-2">
+																	<h4 className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 px-3 mb-2">
 																		{category.title}
 																	</h4>
 																	<div className="space-y-0.5">
@@ -928,10 +898,10 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 // ============================================
 
 export default function Header() {
-	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+	const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
-	const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+	const navRef = useRef<HTMLElement>(null);
 	const { resolvedTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);
 
@@ -939,163 +909,160 @@ export default function Header() {
 		setMounted(true);
 	}, []);
 
-	// Scroll detection with hysteresis to prevent flickering
+	// Scroll detection with hysteresis
 	useEffect(() => {
 		const handleScroll = () => {
-			const currentScrollY = window.scrollY;
-			// Hysteresis: use different thresholds for shrinking vs expanding
-			// This prevents rapid toggling when scroll position is near the threshold
+			const currentScrollY = globalThis.scrollY;
 			setScrolled((prevScrolled) => {
-				if (prevScrolled) {
-					// Currently scrolled - only un-scroll when below 10px
-					return currentScrollY > 10;
-				} else {
-					// Currently not scrolled - only scroll when past 50px
-					return currentScrollY > 50;
-				}
+				if (prevScrolled) return currentScrollY > 10;
+				return currentScrollY > 50;
 			});
 		};
 
-		window.addEventListener("scroll", handleScroll, { passive: true });
-		handleScroll(); // Check initial scroll position
+		globalThis.addEventListener("scroll", handleScroll, { passive: true });
+		handleScroll();
 
-		return () => window.removeEventListener("scroll", handleScroll);
+		return () => globalThis.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	const handleOpenDropdown = useCallback((label: string) => {
-		// Clear any pending close timeout
-		if (closeTimeoutRef.current) {
-			clearTimeout(closeTimeoutRef.current);
-			closeTimeoutRef.current = null;
-		}
-		setOpenDropdown(label);
+	// Close dropdown when mouse leaves the entire nav area
+	const handleNavMouseLeave = useCallback(() => {
+		setActiveDropdown(null);
 	}, []);
 
-	const handleCloseDropdown = useCallback(() => {
-		// Clear any existing timeout first
-		if (closeTimeoutRef.current) {
-			clearTimeout(closeTimeoutRef.current);
-		}
-		// Delay close to allow moving between nav items
-		closeTimeoutRef.current = setTimeout(() => {
-			setOpenDropdown(null);
-		}, 100);
+	const handleDropdownOpen = useCallback((label: string) => {
+		setActiveDropdown(label);
+	}, []);
+
+	const handleDropdownClose = useCallback(() => {
+		setActiveDropdown(null);
 	}, []);
 
 	return (
-		<motion.header
-			initial={{ y: -100, opacity: 0 }}
-			animate={{ y: 0, opacity: 1 }}
-			transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-			className={`sticky top-0 z-50 w-full transition-all duration-300 ease-out ${
-				scrolled
-					? "border-b border-border/40 bg-background/80 backdrop-blur-xl backdrop-saturate-150 shadow-lg shadow-black/5 dark:shadow-black/20"
-					: "border-b border-transparent bg-background/60 backdrop-blur-md"
-			}`}
-		>
-			<div
-				className={`mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-300 ease-out ${
-					scrolled ? "h-16" : "h-20"
+		<Fragment>
+			<motion.header
+				initial={{ y: -100, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+				className={`sticky top-0 z-50 w-full transition-all duration-300 ease-out ${
+					scrolled
+						? "border-b border-border/40 bg-background/80 backdrop-blur-xl backdrop-saturate-150 shadow-lg shadow-black/5 dark:shadow-black/20"
+						: "border-b border-transparent bg-background/60 backdrop-blur-md"
 				}`}
 			>
-				{/* Logo */}
-				<Link href="/" className="flex items-center gap-2.5 group">
-					<motion.div
-						whileHover={{ scale: 1.03 }}
-						whileTap={{ scale: 0.97 }}
-						className="flex items-center gap-2.5 relative"
+				<div
+					className={`mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-300 ease-out ${
+						scrolled ? "h-16" : "h-20"
+					}`}
+				>
+					{/* Logo */}
+					<Link
+						href="/"
+						className="flex items-center gap-2.5 group"
+						onClick={handleDropdownClose}
 					>
-						<motion.div className="absolute inset-0 bg-primary/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-						<Image
-							src={
-								mounted && resolvedTheme === "dark"
-									? "/logo-dark.svg"
-									: "/logo.svg"
-							}
-							alt="Melp"
-							width={100}
-							height={32}
-							className={`h-auto relative transition-all duration-300 ease-out ${
-								scrolled ? "w-32" : "w-40"
-							}`}
-							priority
-						/>
-					</motion.div>
-				</Link>
+						<motion.div
+							whileHover={{ scale: 1.03 }}
+							whileTap={{ scale: 0.97 }}
+							className="flex items-center gap-2.5 relative"
+						>
+							<motion.div className="absolute inset-0 bg-primary/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+							<Image
+								src={
+									mounted && resolvedTheme === "dark"
+										? "/logo-dark.svg"
+										: "/logo.svg"
+								}
+								alt="Melp"
+								width={100}
+								height={32}
+								className={`h-auto relative transition-all duration-300 ease-out ${
+									scrolled ? "w-32" : "w-40"
+								}`}
+								priority
+							/>
+						</motion.div>
+					</Link>
 
-				{/* Desktop Navigation */}
-				<nav className="hidden lg:flex items-center gap-0.5">
-					{navItems.map((item) => (
-						<NavDropdown
-							key={item.label}
-							item={item}
-							isOpen={openDropdown === item.label}
-							onOpen={() => handleOpenDropdown(item.label)}
-							onClose={handleCloseDropdown}
-						/>
-					))}
-				</nav>
+					{/* Desktop Navigation */}
+					<nav
+						ref={navRef}
+						className="hidden lg:flex items-center gap-0.5"
+						onMouseLeave={handleNavMouseLeave}
+					>
+						{navItems.map((item) => (
+							<NavDropdown
+								key={item.label}
+								item={item}
+								isOpen={activeDropdown === item.label}
+								onOpen={() => handleDropdownOpen(item.label)}
+								onClose={handleDropdownClose}
+								scrolled={scrolled}
+							/>
+						))}
+					</nav>
 
-				{/* Right Section */}
-				<div className="flex items-center gap-3">
-					<ThemeToggle />
+					{/* Right Section */}
+					<div className="flex items-center gap-3">
+						<ThemeToggle />
 
-					{/* Desktop CTA */}
-					<div className="hidden lg:flex items-center gap-4">
-						<Link href="/login">
-							<motion.span
-								className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-								whileHover={{ y: -1 }}
-							>
-								Sign in
-							</motion.span>
-						</Link>
-						<Link href="/signup">
-							<MagneticButton>
-								<Button
-									size="sm"
-									className="px-5 h-9 bg-primary hover:bg-primary/80 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 font-medium group"
+						{/* Desktop CTA */}
+						<div className="hidden lg:flex items-center gap-4">
+							<Link href="/login" onClick={handleDropdownClose}>
+								<motion.span
+									className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+									whileHover={{ y: -1 }}
 								>
-									<span className="flex items-center gap-1.5">
-										Start for free
-										<motion.svg
-											width="14"
-											height="14"
-											viewBox="0 0 16 16"
-											fill="none"
-											className="group-hover:translate-x-0.5 transition-transform"
-										>
-											<path
-												d="M3 8H13M13 8L8 3M13 8L8 13"
-												stroke="currentColor"
-												strokeWidth="2"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-										</motion.svg>
-									</span>
-								</Button>
-							</MagneticButton>
-						</Link>
+									Sign in
+								</motion.span>
+							</Link>
+							<Link href="/signup" onClick={handleDropdownClose}>
+								<MagneticButton>
+									<Button
+										size="sm"
+										className="px-5 h-9 bg-primary hover:bg-primary/80 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 font-medium group"
+									>
+										<span className="flex items-center gap-1.5">
+											Start for free
+											<motion.svg
+												width="14"
+												height="14"
+												viewBox="0 0 16 16"
+												fill="none"
+												className="group-hover:translate-x-0.5 transition-transform"
+											>
+												<path
+													d="M3 8H13M13 8L8 3M13 8L8 13"
+													stroke="currentColor"
+													strokeWidth="2"
+													strokeLinecap="round"
+													strokeLinejoin="round"
+												/>
+											</motion.svg>
+										</span>
+									</Button>
+								</MagneticButton>
+							</Link>
+						</div>
+
+						{/* Mobile Menu Button */}
+						<motion.button
+							className="lg:hidden w-10 h-10 rounded-full bg-muted/60 flex items-center justify-center hover:bg-muted transition-colors"
+							onClick={() => setMobileMenuOpen(true)}
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+						>
+							<Menu className="w-5 h-5" strokeWidth={1.75} />
+						</motion.button>
 					</div>
-
-					{/* Mobile Menu Button */}
-					<motion.button
-						className="lg:hidden w-10 h-10 rounded-full bg-muted/60 flex items-center justify-center hover:bg-muted transition-colors"
-						onClick={() => setMobileMenuOpen(true)}
-						whileHover={{ scale: 1.05 }}
-						whileTap={{ scale: 0.95 }}
-					>
-						<Menu className="w-5 h-5" strokeWidth={1.75} />
-					</motion.button>
 				</div>
-			</div>
+			</motion.header>
 
-			{/* Mobile Menu */}
+			{/* Mobile Menu - Rendered outside header to avoid stacking context issues */}
 			<MobileMenu
 				isOpen={mobileMenuOpen}
 				onClose={() => setMobileMenuOpen(false)}
 			/>
-		</motion.header>
+		</Fragment>
 	);
 }

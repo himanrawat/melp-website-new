@@ -44,7 +44,7 @@ export default function HeroSection() {
 	return (
 		<section
 			ref={containerRef}
-			className="relative min-h-screen overflow-hidden bg-background"
+			className="relative min-h-screen overflow-hidden bg-background isolate"
 		>
 			{/* Grid Background */}
 			<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
@@ -59,24 +59,32 @@ export default function HeroSection() {
 						initial={{ opacity: 0, y: 30, scale: 0.9 }}
 						animate={{ opacity: 1, y: 0, scale: 1 }}
 						transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+						className="w-full px-4 sm:px-0"
 					>
 						<Badge
 							variant="secondary"
-							className="mb-8 px-5 py-2 text-sm font-medium border border-border/50 bg-background/80 backdrop-blur-sm shadow-lg cursor-pointer group hover:border-primary/30 transition-all duration-300"
+							className="mb-8 px-3 sm:px-5 py-2 text-xs sm:text-sm font-medium border border-border/50 bg-background/80 backdrop-blur-sm shadow-lg cursor-pointer group hover:border-primary/30 transition-all duration-300 inline-flex max-w-full"
 						>
 							<motion.span
-								className="flex items-center gap-2"
+								className="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-center sm:flex-nowrap"
 								whileHover={{ scale: 1.02 }}
 							>
-								<span className="relative flex h-2 w-2">
+								<span className="relative flex h-2 w-2 shrink-0">
 									<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
 									<span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
 								</span>
-								<span>
-									Your people. Your partners. One intelligent workspace.
+								<span className="text-center sm:text-left leading-tight">
+									<span className="hidden sm:inline">
+										Your people. Your partners. One intelligent workspace.
+									</span>
+									<span className="sm:hidden">
+										Your people. Your partners.
+										<br />
+										One intelligent workspace.
+									</span>
 								</span>
 								<motion.span
-									className="text-primary"
+									className="text-primary shrink-0"
 									whileHover={{ x: 3 }}
 									transition={{ type: "spring", stiffness: 400 }}
 								>

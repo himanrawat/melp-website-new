@@ -34,7 +34,7 @@ export default function SolutionsHero({
 	imageSrc = "/placeholder-hero.png",
 }: SolutionsHeroProps) {
 	return (
-		<section className="relative min-h-[85vh] overflow-hidden bg-background pb-16 sm:pb-24">
+		<section className="relative min-h-[85vh] overflow-hidden bg-background pb-16 sm:pb-24 isolate">
 			{/* Grid Background */}
 			<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
