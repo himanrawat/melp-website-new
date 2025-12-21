@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import {
 	SpotlightCard,
 	BackgroundBeams,
@@ -80,8 +78,6 @@ export default function NotFound() {
 
 	return (
 		<div className="min-h-screen bg-background flex flex-col">
-			<Header />
-
 			<main className="flex-1 relative flex items-center justify-center overflow-hidden">
 				{/* Background elements */}
 				<BackgroundBeams />
@@ -182,7 +178,6 @@ export default function NotFound() {
 				</div>
 			</main>
 
-			<Footer />
 		</div>
 	);
 }
