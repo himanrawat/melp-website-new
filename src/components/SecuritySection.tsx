@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 import {
 	AnimatedGradientBorder,
 	RevealOnScroll,
@@ -32,10 +33,10 @@ const securityPoints = [
 ];
 
 const complianceBadges = [
-	{ name: "SOC 2", icon: "✓" },
-	{ name: "ISO 27001", icon: "✓" },
-	{ name: "GDPR", icon: "✓" },
-	{ name: "HIPAA", icon: "✓" },
+	{ name: "SOC 2" },
+	{ name: "ISO 27001" },
+	{ name: "GDPR" },
+	{ name: "HIPAA" },
 ];
 
 export default function SecuritySection() {
@@ -122,9 +123,7 @@ export default function SecuritySection() {
 											whileHover={{ scale: 1.05, y: -2 }}
 										>
 											<div className="flex items-center justify-center gap-2 h-16 rounded-lg bg-muted/50 border border-border hover:border-primary/50 transition-all">
-												<span className="text-primary font-bold">
-													{badge.icon}
-												</span>
+												<Check className="w-5 h-5 text-primary" />
 												<Badge
 													variant="secondary"
 													className="text-sm font-medium"

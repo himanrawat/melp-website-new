@@ -3,22 +3,23 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Sparkles, Rocket, Lock } from "lucide-react";
 
 const features = [
 	{
-		icon: "✨",
+		icon: Sparkles,
 		title: "AI Assistant",
 		description:
 			"Intelligent automation that learns your workflow and adapts to your needs",
 	},
 	{
-		icon: "🚀",
+		icon: Rocket,
 		title: "Lightning Fast",
 		description:
 			"Optimized performance for seamless experience across all devices",
 	},
 	{
-		icon: "🔒",
+		icon: Lock,
 		title: "Secure by Design",
 		description:
 			"Enterprise-grade security built into every layer of our platform",
@@ -106,12 +107,12 @@ function PulsingBall({
 }
 
 function GlassCard({
-	icon,
+	icon: Icon,
 	title,
 	description,
 	index,
 }: {
-	icon: string;
+	icon: React.ComponentType<{ className?: string }>;
 	title: string;
 	description: string;
 	index: number;
@@ -238,7 +239,7 @@ function GlassCard({
 								repeatDelay: 0.3,
 							}}
 						/>
-						<span className="text-2xl relative z-10">{icon}</span>
+						<Icon className="w-6 h-6 relative z-10 text-white" />
 					</motion.div>
 
 					<motion.h3

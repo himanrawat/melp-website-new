@@ -124,6 +124,15 @@
   }
 }
 
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Custom Animations */
 @keyframes text-shimmer {
   0% {
@@ -276,4 +285,23 @@ html {
 
 .dark .shadow-soft-lg {
   box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.4), 0 8px 24px -4px rgba(0, 0, 0, 0.35);
+}
+
+/* Infinite scroll animation for InfiniteMovingCards */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll var(--animation-duration, 40s) linear infinite;
+}
+
+/* Rotate 135 for phone hang up icon */
+.rotate-135 {
+  transform: rotate(135deg);
 }

@@ -4,21 +4,21 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { MessageSquare, Video, Calendar, HardDrive } from "lucide-react";
+import { MessageSquare, Video, Calendar, HardDrive, Sparkles, Rocket, Lock } from "lucide-react";
 
 const features = [
 	{
-		icon: "✨",
+		icon: Sparkles,
 		title: "AI Assistant",
 		description: "Intelligent automation that learns your workflow",
 	},
 	{
-		icon: "🚀",
+		icon: Rocket,
 		title: "Lightning Fast",
 		description: "Optimized performance for seamless experience",
 	},
 	{
-		icon: "🔒",
+		icon: Lock,
 		title: "Secure by Design",
 		description: "Enterprise-grade security built into every layer",
 	},
@@ -106,12 +106,12 @@ function PulsingBall({
 }
 
 function FeatureItem({
-	icon,
+	icon: Icon,
 	title,
 	description,
 	index,
 }: {
-	icon: string;
+	icon: React.ComponentType<{ className?: string }>;
 	title: string;
 	description: string;
 	index: number;
@@ -154,7 +154,7 @@ function FeatureItem({
 						repeatDelay: 0.3,
 					}}
 				/>
-				<span className="text-lg relative z-10">{icon}</span>
+				<Icon className="w-5 h-5 relative z-10 text-white" />
 			</motion.div>
 
 			<div className="flex-1">
@@ -369,8 +369,8 @@ function DashboardMockup() {
 								10:52 AM
 							</span>
 						</div>
-						<p className="text-sm font-medium text-gray-900 dark:text-white mt-1">
-							Thanks! 😊
+						<p className="text-sm font-medium text-gray-900 dark:text-white mt-1 flex items-center gap-1">
+							Thanks! <span>😊</span>
 						</p>
 					</div>
 					<Image
@@ -411,8 +411,8 @@ function DashboardMockup() {
 								10:50 AM
 							</span>
 						</div>
-						<p className="text-sm font-medium text-gray-900 dark:text-white mt-1">
-							Design looks great! 👍🏾
+						<p className="text-sm font-medium text-gray-900 dark:text-white mt-1 flex items-center gap-1">
+							Design looks great! <span>👍🏾</span>
 						</p>
 					</div>
 				</div>

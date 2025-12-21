@@ -5,13 +5,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
+import { X, Linkedin as LinkedinIcon, Code2 } from "lucide-react";
+
+// Routes that should have dark theme
+const DARK_THEME_ROUTES = ["/product/ai"];
 
 const footerLinks = {
 	Product: [
-		{ label: "Features", href: "#features" },
-		{ label: "Integrations", href: "#" },
-		{ label: "Pricing", href: "#pricing" },
-		{ label: "Changelog", href: "#" },
+		{ label: "Team Chat", href: "/product/chat" },
+		{ label: "Video Conferencing", href: "/product/conferencing" },
+		{ label: "AI Assistant", href: "/product/ai" },
+		{ label: "Melp Drive", href: "/product/drive" },
+		{ label: "Calendar", href: "/product/calendar" },
+		{ label: "Pricing", href: "/pricing" },
 	],
 	Company: [
 		{ label: "About", href: "#" },
@@ -34,23 +41,43 @@ const footerLinks = {
 };
 
 const socialLinks = [
-	{ label: "Twitter", icon: "𝕏" },
-	{ label: "LinkedIn", icon: "in" },
-	{ label: "GitHub", icon: "⌘" },
+	{ label: "Twitter", iconName: "twitter" },
+	{ label: "LinkedIn", iconName: "linkedin" },
+	{ label: "GitHub", iconName: "github" },
 ];
+
+const iconMap: Record<string, React.ReactNode> = {
+	twitter: <X className="w-4 h-4" />,
+	linkedin: <LinkedinIcon className="w-4 h-4" />,
+	github: <Code2 className="w-4 h-4" />,
+};
 
 export default function Footer() {
 	const { resolvedTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);
+	const pathname = usePathname();
+	const isDarkRoute = DARK_THEME_ROUTES.some((route) =>
+		pathname?.startsWith(route)
+	);
 
 	useEffect(() => {
 		setMounted(true);
 	}, []);
 
 	return (
-		<footer className="bg-muted/30 border-t relative overflow-hidden">
+		<footer
+			className={`border-t relative overflow-hidden ${
+				isDarkRoute ? "bg-black border-white/10" : "bg-muted/30 border-border"
+			}`}
+		>
 			{/* Background decoration */}
-			<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(34,32,32,0.03)_0%,transparent_50%)]" />
+			<div
+				className={`absolute inset-0 ${
+					isDarkRoute
+						? "bg-[radial-gradient(ellipse_at_bottom,rgba(139,92,246,0.05)_0%,transparent_50%)]"
+						: "bg-[radial-gradient(ellipse_at_bottom,rgba(34,32,32,0.03)_0%,transparent_50%)]"
+				}`}
+			/>
 
 			<div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
 				<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
@@ -62,7 +89,7 @@ export default function Footer() {
 						>
 							<Image
 								src={
-									mounted && resolvedTheme === "dark"
+									isDarkRoute || (mounted && resolvedTheme === "dark")
 										? "/logo-dark.svg"
 										: "/logo.svg"
 								}
@@ -72,8 +99,13 @@ export default function Footer() {
 								className="w-40 h-auto"
 							/>
 						</motion.div>
-						<p className="text-sm text-muted-foreground max-w-xs mb-6">
-							The unified work platform for teams, partners, and clients. Built for enterprises. Designed for people. Powered by AI.
+						<p
+							className={`text-sm max-w-xs mb-6 ${
+								isDarkRoute ? "text-gray-400" : "text-muted-foreground"
+							}`}
+						>
+							The unified work platform for teams, partners, and clients. Built
+							for enterprises. Designed for people. Powered by AI.
 						</p>
 						{/* Social Links */}
 						<div className="flex gap-3">
@@ -81,11 +113,15 @@ export default function Footer() {
 								<motion.a
 									key={index}
 									href="#"
-									className="w-9 h-9 rounded-lg bg-muted/50 border border-border flex items-center justify-center text-sm text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all"
+									className={`w-9 h-9 rounded-lg border flex items-center justify-center text-sm transition-all ${
+										isDarkRoute
+											? "bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-purple-500/50"
+											: "bg-muted/50 border-border text-muted-foreground hover:text-foreground hover:border-primary/50"
+									}`}
 									whileHover={{ scale: 1.1, y: -2 }}
 									whileTap={{ scale: 0.95 }}
 								>
-									{social.icon}
+									{iconMap[social.iconName]}
 								</motion.a>
 							))}
 						</div>
@@ -94,7 +130,11 @@ export default function Footer() {
 					{/* Link Columns */}
 					{Object.entries(footerLinks).map(([category, links]) => (
 						<div key={category}>
-							<h3 className="text-sm font-semibold text-foreground mb-4">
+							<h3
+								className={`text-sm font-semibold mb-4 ${
+									isDarkRoute ? "text-white" : "text-foreground"
+								}`}
+							>
 								{category}
 							</h3>
 							<ul className="space-y-3">
@@ -106,7 +146,11 @@ export default function Footer() {
 										>
 											<Link
 												href={link.href}
-												className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 group"
+												className={`text-sm transition-colors inline-flex items-center gap-1 group ${
+													isDarkRoute
+														? "text-gray-400 hover:text-white"
+														: "text-muted-foreground hover:text-foreground"
+												}`}
 											>
 												{link.label}
 												<svg
@@ -132,9 +176,17 @@ export default function Footer() {
 				</div>
 
 				{/* Bottom Bar */}
-				<div className="mt-12 pt-8 border-t border-border">
+				<div
+					className={`mt-12 pt-8 border-t ${
+						isDarkRoute ? "border-white/10" : "border-border"
+					}`}
+				>
 					<div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-						<p className="text-sm text-muted-foreground">
+						<p
+							className={`text-sm ${
+								isDarkRoute ? "text-gray-500" : "text-muted-foreground"
+							}`}
+						>
 							© 2025 Melp, Inc. All rights reserved.
 						</p>
 						{/* <div className="flex items-center gap-6">

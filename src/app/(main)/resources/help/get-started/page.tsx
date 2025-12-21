@@ -24,6 +24,8 @@ import {
 	Key,
 	Building2,
 	User,
+	Lightbulb,
+	Lock,
 } from "lucide-react";
 
 const pageSections = [
@@ -495,7 +497,7 @@ export default function GetStartedPage() {
 
 								<div className="mt-6 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 p-4">
 									<p className="text-sm text-muted-foreground">
-										<strong className="text-foreground">💡 Tip:</strong> If
+										<strong className="text-foreground flex items-center gap-2"><Lightbulb className="w-4 h-4" /> Tip:</strong> If
 										invitees don't see the email, ask them to check their spam
 										folder or visit{" "}
 										<a
@@ -569,8 +571,8 @@ export default function GetStartedPage() {
 
 									<div className="mt-6 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 p-4">
 										<p className="text-sm text-muted-foreground">
-											<strong className="text-foreground">
-												🔐 Security Tip:
+											<strong className="text-foreground flex items-center gap-2">
+												<Lock className="w-4 h-4" /> Security Tip:
 											</strong>{" "}
 											Make sure your new password is strong and unique—use a mix
 											of letters, numbers, and symbols for added security.

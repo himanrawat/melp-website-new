@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { Check, ArrowRight } from "lucide-react";
 import {
 	AnimatedGradientBorder,
 	GlowingBorderCard,
@@ -12,51 +14,45 @@ import {
 
 const plans = [
 	{
-		name: "Starter",
+		id: "free",
+		name: "Free",
 		price: "$0",
 		period: "/mo",
-		description: "Perfect for small teams getting started",
-		features: [
-			"Up to 10 team members",
-			"Basic integrations",
-			"5GB storage",
-			"Community support",
-			"Core messaging features",
-		],
-		cta: "Get Started Free",
+		highlight: "For individuals",
+		features: ["1 user", "10 GB storage", "Essential AI features"],
+		cta: "Get Started",
 		popular: false,
+		href: "https://www.app.melp.us/spa/index#signup",
+		isExternal: true,
 	},
 	{
-		name: "Growth",
-		price: "$12",
+		id: "plus",
+		name: "Plus",
+		price: "$5",
 		period: "/user/mo",
-		description: "For growing teams that need more power",
+		highlight: "Most popular",
 		features: [
-			"Unlimited team members",
-			"Advanced integrations",
-			"100GB storage",
-			"Priority support",
-			"AI-powered features",
-			"Advanced analytics",
+			"Up to 10 users",
+			"100 GB storage",
+			"AI meeting summaries",
+			"Breakout rooms",
 		],
 		cta: "Start Free Trial",
 		popular: true,
+		href: "/checkout?plan=plus&billing=yearly",
+		isExternal: false,
 	},
 	{
+		id: "enterprise",
 		name: "Enterprise",
 		price: "Custom",
 		period: "",
-		description: "For large organizations with custom needs",
-		features: [
-			"Everything in Growth",
-			"Custom integrations",
-			"Unlimited storage",
-			"Dedicated support",
-			"SSO & SCIM",
-			"Custom SLAs",
-		],
+		highlight: "For large teams",
+		features: ["Unlimited users", "SSO & SCIM", "Dedicated support"],
 		cta: "Contact Sales",
 		popular: false,
+		href: "mailto:sales@melp.us",
+		isExternal: true,
 	},
 ];
 
@@ -71,12 +67,11 @@ const containerVariants = {
 };
 
 const itemVariants = {
-	hidden: { opacity: 0, y: 30, scale: 0.95 },
+	hidden: { opacity: 0, y: 20 },
 	visible: {
 		opacity: 1,
 		y: 0,
-		scale: 1,
-		transition: { duration: 0.5 },
+		transition: { duration: 0.4 },
 	},
 };
 
@@ -84,32 +79,28 @@ export default function PricingSection() {
 	return (
 		<motion.section
 			id="pricing"
-			className="py-20 sm:py-32 bg-background relative overflow-hidden"
+			className="py-16 sm:py-24 bg-background relative overflow-hidden"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
-			exit={{ opacity: 0 }}
 			viewport={{ once: true, margin: "-100px" }}
 			transition={{ duration: 0.6 }}
 		>
-			{/* Background decoration */}
-			<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(34,32,32,0.03)_0%,transparent_50%)]" />
-
-			<div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
-				<RevealOnScroll className="text-center mb-16">
+				<RevealOnScroll className="text-center mb-12">
 					<motion.span
-						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
+						className="inline-block text-sm font-medium text-primary mb-3 tracking-wider uppercase"
 						initial={{ opacity: 0 }}
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}
 					>
 						Pricing
 					</motion.span>
-					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
 						Simple, transparent pricing
 					</h2>
-					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Start free and scale as you grow. No hidden fees, no surprises.
+					<p className="mt-3 text-muted-foreground max-w-xl mx-auto">
+						Start free and scale as you grow. No hidden fees.
 					</p>
 				</RevealOnScroll>
 
@@ -119,30 +110,27 @@ export default function PricingSection() {
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: true }}
-					className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-end max-w-5xl mx-auto pt-4"
+					className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-4xl mx-auto"
 				>
 					{plans.map((plan, index) => (
 						<motion.div
 							key={index}
 							variants={itemVariants}
-							className={`h-full ${plan.popular ? "mt-4" : ""}`}
+							className="h-full"
 						>
 							{plan.popular ? (
 								<AnimatedGradientBorder className="h-full">
-									<div className="relative h-full p-6 lg:p-8 flex flex-col bg-background rounded-xl">
-										{/* Popular Badge */}
-										<Badge className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 shadow-md z-10">
-											Most Popular
+									<div className="relative h-full p-5 lg:p-6 flex flex-col bg-background rounded-xl">
+										<Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 text-xs shadow-md z-10">
+											{plan.highlight}
 										</Badge>
 
-										{/* Plan Name */}
-										<h3 className="text-xl font-semibold text-foreground mt-2">
+										<h3 className="text-lg font-semibold text-foreground mt-2">
 											{plan.name}
 										</h3>
 
-										{/* Price */}
-										<div className="mt-4 flex items-baseline">
-											<span className="text-4xl lg:text-5xl font-bold text-foreground">
+										<div className="mt-3 flex items-baseline">
+											<span className="text-3xl lg:text-4xl font-bold text-foreground">
 												{plan.price}
 											</span>
 											<span className="ml-1 text-sm text-muted-foreground">
@@ -150,64 +138,48 @@ export default function PricingSection() {
 											</span>
 										</div>
 
-										{/* Description */}
-										<p className="mt-2 text-sm text-muted-foreground min-h-[40px]">
-											{plan.description}
-										</p>
-
-										{/* Features */}
-										<ul className="mt-6 space-y-3 flex-1">
+										<ul className="mt-4 space-y-2 flex-1">
 											{plan.features.map((feature, featureIndex) => (
-												<motion.li
+												<li
 													key={featureIndex}
-													className="flex items-start gap-3"
-													initial={{ opacity: 0, x: -10 }}
-													whileInView={{ opacity: 1, x: 0 }}
-													viewport={{ once: true }}
-													transition={{ delay: 0.3 + featureIndex * 0.05 }}
+													className="flex items-center gap-2 text-sm text-foreground"
 												>
-													<svg
-														className="w-5 h-5 text-primary shrink-0 mt-0.5"
-														fill="none"
-														viewBox="0 0 24 24"
-														stroke="currentColor"
-														strokeWidth={2}
-													>
-														<path
-															strokeLinecap="round"
-															strokeLinejoin="round"
-															d="M5 13l4 4L19 7"
-														/>
-													</svg>
-													<span className="text-sm text-foreground">
-														{feature}
-													</span>
-												</motion.li>
+													<Check className="w-4 h-4 text-primary shrink-0" />
+													{feature}
+												</li>
 											))}
 										</ul>
 
-										{/* CTA Button */}
-										<MagneticButton className="w-full mt-8">
-											<Button className="w-full cursor-pointer" size="lg">
-												{plan.cta}
+										<MagneticButton className="w-full mt-5">
+											<Button className="w-full cursor-pointer" size="default" asChild>
+												{plan.isExternal ? (
+													<a
+														href={plan.href}
+														target="_blank"
+														rel="noopener noreferrer"
+													>
+														{plan.cta}
+													</a>
+												) : (
+													<Link href={plan.href}>{plan.cta}</Link>
+												)}
 											</Button>
 										</MagneticButton>
 									</div>
 								</AnimatedGradientBorder>
 							) : (
 								<GlowingBorderCard className="h-full">
-									<div className="h-full p-6 lg:p-8 flex flex-col bg-card rounded-xl">
-										{/* Spacer for alignment with popular card */}
-										<div className="h-2" />
+									<div className="h-full p-5 lg:p-6 flex flex-col bg-card rounded-xl">
+										<p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+											{plan.highlight}
+										</p>
 
-										{/* Plan Name */}
-										<h3 className="text-xl font-semibold text-foreground">
+										<h3 className="text-lg font-semibold text-foreground mt-1">
 											{plan.name}
 										</h3>
 
-										{/* Price */}
-										<div className="mt-4 flex items-baseline">
-											<span className="text-4xl lg:text-5xl font-bold text-foreground">
+										<div className="mt-3 flex items-baseline">
+											<span className="text-3xl lg:text-4xl font-bold text-foreground">
 												{plan.price}
 											</span>
 											<span className="ml-1 text-sm text-muted-foreground">
@@ -215,47 +187,57 @@ export default function PricingSection() {
 											</span>
 										</div>
 
-										{/* Description */}
-										<p className="mt-2 text-sm text-muted-foreground min-h-[40px]">
-											{plan.description}
-										</p>
-
-										{/* Features */}
-										<ul className="mt-6 space-y-3 flex-1">
+										<ul className="mt-4 space-y-2 flex-1">
 											{plan.features.map((feature, featureIndex) => (
 												<li
 													key={featureIndex}
-													className="flex items-start gap-3"
+													className="flex items-center gap-2 text-sm text-muted-foreground"
 												>
-													<svg
-														className="w-5 h-5 text-primary shrink-0 mt-0.5"
-														fill="none"
-														viewBox="0 0 24 24"
-														stroke="currentColor"
-														strokeWidth={2}
-													>
-														<path
-															strokeLinecap="round"
-															strokeLinejoin="round"
-															d="M5 13l4 4L19 7"
-														/>
-													</svg>
-													<span className="text-sm text-muted-foreground">
-														{feature}
-													</span>
+													<Check className="w-4 h-4 text-primary shrink-0" />
+													{feature}
 												</li>
 											))}
 										</ul>
 
-										{/* CTA Button */}
-										<Button className="mt-8 w-full" variant="outline" size="lg">
-											{plan.cta}
+										<Button
+											className="mt-5 w-full"
+											variant="outline"
+											size="default"
+											asChild
+										>
+											{plan.isExternal ? (
+												<a
+													href={plan.href}
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													{plan.cta}
+												</a>
+											) : (
+												<Link href={plan.href}>{plan.cta}</Link>
+											)}
 										</Button>
 									</div>
 								</GlowingBorderCard>
 							)}
 						</motion.div>
 					))}
+				</motion.div>
+
+				{/* View All Plans Link */}
+				<motion.div
+					className="text-center mt-10"
+					initial={{ opacity: 0 }}
+					whileInView={{ opacity: 1 }}
+					viewport={{ once: true }}
+					transition={{ delay: 0.3 }}
+				>
+					<Link href="/pricing">
+						<Button variant="ghost" className="group cursor-pointer">
+							Compare all plans
+							<ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+						</Button>
+					</Link>
 				</motion.div>
 			</div>
 		</motion.section>
