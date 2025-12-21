@@ -113,11 +113,7 @@ export default function PricingSection() {
 					className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-4xl mx-auto"
 				>
 					{plans.map((plan, index) => (
-						<motion.div
-							key={index}
-							variants={itemVariants}
-							className="h-full"
-						>
+						<motion.div key={index} variants={itemVariants} className="h-full">
 							{plan.popular ? (
 								<AnimatedGradientBorder className="h-full">
 									<div className="relative h-full p-5 lg:p-6 flex flex-col bg-background rounded-xl">
@@ -151,7 +147,11 @@ export default function PricingSection() {
 										</ul>
 
 										<MagneticButton className="w-full mt-5">
-											<Button className="w-full cursor-pointer" size="default" asChild>
+											<Button
+												className="w-full cursor-pointer"
+												size="default"
+												asChild
+											>
 												{plan.isExternal ? (
 													<a
 														href={plan.href}
