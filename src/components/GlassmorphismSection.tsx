@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Rocket, Lock } from "lucide-react";

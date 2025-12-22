@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 import { RevealOnScroll } from "@/components/ui/aceternity";
 import { Lock, Bot, Globe, type LucideIcon } from "lucide-react";

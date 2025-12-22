@@ -5,7 +5,7 @@ import { Mail, AlertCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 interface EmailStepProps {
 	formData: CheckoutFormData;

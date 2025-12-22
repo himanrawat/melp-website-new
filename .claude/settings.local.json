@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(ls:*)",
+      "Bash(__NEW_LINE__ echo \"File: src/app/\\(main\\)/resources/help/get-started/page.tsx\")",
+      "Bash(__NEW_LINE__ grep -o '[💡🔐]' \"src/app/\\(main\\)/resources/help/get-started/page.tsx\")",
+      "Bash(__NEW_LINE__ echo \"File: src/components/Footer.tsx\")",
+      "Bash(__NEW_LINE__ grep -o '[𝕏⌘]' src/components/Footer.tsx)",
+      "Bash(__NEW_LINE__ echo \"File: src/components/GlassmorphismSection.tsx\")",
+      "Bash(__NEW_LINE__ grep -o '[✨🚀🔒]' src/components/GlassmorphismSection.tsx)",
+      "Bash(__NEW_LINE__ echo \"File: src/components/GlassmorphismSectionAlt.tsx\")",
+      "Bash(__NEW_LINE__ grep -o '[✨🚀🔒😊👍]' src/components/GlassmorphismSectionAlt.tsx)",
+      "Bash(__NEW_LINE__ echo \"File: src/components/mockups/MelpChatPanel.tsx\")",
+      "Bash(__NEW_LINE__ grep -o '[🌐]' src/components/mockups/MelpChatPanel.tsx)",
+      "Bash(__NEW_LINE__ echo \"File: src/components/mockups/MelpLiveCaptions.tsx\")",
+      "Bash(__NEW_LINE__ grep -o '[🇬🇧🇪🇸🇫🇷]' src/components/mockups/MelpLiveCaptions.tsx)",
+      "Bash(__NEW_LINE__ echo \"File: src/components/mockups/MelpTranslatorModal.tsx\")",
+      "Bash(__NEW_LINE__ grep -o '[🇬🇧🇪🇸🇫🇷🇩🇪🇯🇵🇵🇹]' src/components/mockups/MelpTranslatorModal.tsx)",
+      "Bash(__NEW_LINE__ echo \"File: src/components/product/ProductCTA.tsx\")",
+      "Bash(__NEW_LINE__ grep -o '[✓]' src/components/product/ProductCTA.tsx)",
+      "Bash(__NEW_LINE__ echo \"File: src/components/SecuritySection.tsx\")",
+      "Bash(__NEW_LINE__ grep -o '[✓]' src/components/SecuritySection.tsx)",
+      "Bash(for f in )",
+      "Bash(\"src/app/\\(main\\)/resources/help/get-started/page.tsx\" )",
+      "Bash(\"src/components/Footer.tsx\" )",
+      "Bash(\"src/components/GlassmorphismSection.tsx\" )",
+      "Bash(\"src/components/GlassmorphismSectionAlt.tsx\" )",
+      "Bash(\"src/components/mockups/MelpChatPanel.tsx\" )",
+      "Bash(\"src/components/mockups/MelpLiveCaptions.tsx\" )",
+      "Bash(\"src/components/mockups/MelpTranslatorModal.tsx\" )",
+      "Bash(\"src/components/product/ProductCTA.tsx\" )",
+      "Bash(\"src/components/SecuritySection.tsx\")",
+      "Bash(do)",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(find:*)"
+    ]
+  }
+}

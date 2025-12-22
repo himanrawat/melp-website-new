@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import type { LucideIcon } from "lucide-react";
 import { SpotlightCard, RevealOnScroll } from "@/components/ui/aceternity";

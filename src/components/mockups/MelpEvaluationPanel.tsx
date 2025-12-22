@@ -1,14 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
-import {
-	Sparkles,
-	Upload,
-	FileText,
-	CheckCircle,
-	AlertCircle,
-} from "lucide-react";
+import { Upload, FileText, CheckCircle, AlertCircle } from "lucide-react";
 
 interface EvaluationItem {
 	id: number;
@@ -117,13 +112,19 @@ export default function MelpEvaluationPanel({
 			{/* Header */}
 			<div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
 				<div className="flex items-center gap-2">
-					<div className="w-7 h-7 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+					<div className="w-7 h-7 rounded-lg flex items-center justify-center">
 						<FileText className="w-4 h-4 text-white" />
 					</div>
 					<span className="text-white font-medium">MelpAI Evaluation</span>
 				</div>
 				<div className="flex items-center gap-1 px-2 py-0.5 bg-red-500/10 rounded">
-					<Sparkles className="w-3 h-3 text-red-400" />
+					<Image
+						src="/melpAI.svg"
+						alt="Melp AI"
+						width={12}
+						height={12}
+						className="w-3 h-3"
+					/>
 					<span className="text-xs text-red-400">AI Powered</span>
 				</div>
 			</div>
@@ -171,7 +172,7 @@ export default function MelpEvaluationPanel({
 							<p className="text-gray-300 text-sm mb-3">Uploading resume...</p>
 							<div className="w-48 h-2 bg-[#3d3d3d] rounded-full overflow-hidden">
 								<motion.div
-									className="h-full bg-gradient-to-r from-red-500 to-orange-500 rounded-full"
+									className="h-full rounded-full"
 									style={{ width: `${uploadProgress}%` }}
 								/>
 							</div>

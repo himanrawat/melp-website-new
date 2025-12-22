@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 interface ConfirmationStepProps {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import PricingHero from "@/components/pricing/PricingHero";
 import PlanCard from "@/components/pricing/PlanCard";

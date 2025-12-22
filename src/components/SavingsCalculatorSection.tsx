@@ -7,7 +7,7 @@ import {
 	useMotionValue,
 	useTransform,
 	animate,
-} from "framer-motion";
+} from "motion/react";
 import { Check, Calculator, Zap, ChevronRight } from "lucide-react";
 import Image from "next/image";
 

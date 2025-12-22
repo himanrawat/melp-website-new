@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/aceternity";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
 	MessageCircle,
@@ -388,12 +388,14 @@ interface DropdownMenuItemProps {
 	item: DropdownItem;
 	onClose: () => void;
 	isHighlighted?: boolean;
+	isDarkRoute?: boolean;
 }
 
 function DropdownMenuItem({
 	item,
 	onClose,
 	isHighlighted,
+	isDarkRoute = false,
 }: DropdownMenuItemProps) {
 	const Icon = item.icon;
 
@@ -402,19 +404,25 @@ function DropdownMenuItem({
 			<Link href={item.href} onClick={onClose}>
 				<motion.div
 					className={`group flex items-center gap-3 py-2.5 px-3 rounded-lg transition-colors cursor-pointer ${
-						isHighlighted ? "hover:bg-white/10" : "hover:bg-muted"
+						isHighlighted
+							? isDarkRoute ? "hover:bg-white/10" : "hover:bg-white/10"
+							: isDarkRoute ? "hover:bg-white/5" : "hover:bg-muted"
 					}`}
 					whileHover={{ x: 2 }}
 					transition={{ type: "spring", stiffness: 400, damping: 25 }}
 				>
 					<div
 						className={`shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
-							isHighlighted ? "bg-white/10" : "bg-muted"
+							isHighlighted
+								? isDarkRoute ? "bg-purple-500/20" : "bg-white/10"
+								: isDarkRoute ? "bg-white/10" : "bg-muted"
 						}`}
 					>
 						<Icon
 							className={`w-4 h-4 ${
-								isHighlighted ? "text-white/80" : "text-muted-foreground"
+								isHighlighted
+									? isDarkRoute ? "text-purple-300" : "text-white/80"
+									: isDarkRoute ? "text-gray-200" : "text-muted-foreground"
 							}`}
 							strokeWidth={1.75}
 						/>
@@ -423,7 +431,9 @@ function DropdownMenuItem({
 						<div className="flex items-center gap-2">
 							<span
 								className={`text-sm font-medium ${
-									isHighlighted ? "text-white" : "text-foreground"
+									isHighlighted
+										? isDarkRoute ? "text-white" : "text-white"
+										: isDarkRoute ? "text-gray-100" : "text-foreground"
 								}`}
 							>
 								{item.label}
@@ -432,8 +442,8 @@ function DropdownMenuItem({
 								<span
 									className={`px-1.5 py-0.5 text-[10px] font-medium rounded ${
 										isHighlighted
-											? "bg-white/20 text-white"
-											: "bg-primary/10 text-primary"
+											? isDarkRoute ? "bg-purple-500/20 text-purple-200" : "bg-white/20 text-white"
+											: isDarkRoute ? "bg-purple-500/10 text-purple-300" : "bg-primary/10 text-primary"
 									}`}
 								>
 									{item.badge}
@@ -443,7 +453,9 @@ function DropdownMenuItem({
 						{item.description && (
 							<p
 								className={`text-xs mt-0.5 ${
-									isHighlighted ? "text-white/50" : "text-muted-foreground"
+									isHighlighted
+										? isDarkRoute ? "text-gray-300" : "text-white/50"
+										: isDarkRoute ? "text-gray-400" : "text-muted-foreground"
 								}`}
 							>
 								{item.description}
@@ -571,9 +583,9 @@ function NavDropdown({
 						className={`fixed left-0 right-0 ${dropdownTop} w-full flex justify-center px-6 z-50`}
 					>
 						<motion.div
-							className={`w-full max-w-6xl border rounded-xl shadow-xl overflow-hidden ${
+							className={`w-full max-w-6xl border shadow-xl overflow-hidden ${
 								isDarkRoute
-									? "bg-gray-900 border-white/10 shadow-black/40"
+									? "bg-gray-950/95 border-white/20 shadow-purple-500/20 backdrop-blur-md"
 									: "bg-background border-border/50 shadow-black/5 dark:shadow-black/20"
 							}`}
 						>
@@ -597,7 +609,11 @@ function NavDropdown({
 													key={category.title}
 													variants={categoryVariants}
 												>
-													<h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4 pb-2 border-b border-border/50">
+													<h3 className={`text-xs font-semibold uppercase tracking-wider mb-4 pb-2 border-b ${
+														isDarkRoute
+															? "text-gray-400 border-white/10"
+															: "text-muted-foreground border-border/50"
+													}`}>
 														{category.title}
 													</h3>
 													<div className="space-y-1">
@@ -606,6 +622,7 @@ function NavDropdown({
 																key={dropdownItem.label}
 																item={dropdownItem}
 																onClose={onClose}
+																isDarkRoute={isDarkRoute}
 															/>
 														))}
 													</div>
@@ -618,13 +635,21 @@ function NavDropdown({
 								{hasHighlightedCategory && (
 									<motion.div
 										variants={categoryVariants}
-										className="w-80 bg-muted/30 border-l border-border/50 p-8"
+										className={`w-80 border-l p-8 ${
+											isDarkRoute
+												? "bg-white/5 border-white/10"
+												: "bg-muted/30 border-border/50"
+										}`}
 									>
 										{item.categories
 											.filter((cat) => cat.highlighted)
 											.map((category) => (
 												<div key={category.title}>
-													<h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4 pb-2 border-b border-border/50">
+													<h3 className={`text-xs font-semibold uppercase tracking-wider mb-4 pb-2 border-b ${
+														isDarkRoute
+															? "text-gray-400 border-white/10"
+															: "text-muted-foreground border-border/50"
+													}`}>
 														{category.title}
 													</h3>
 													<div className="space-y-1">
@@ -633,6 +658,7 @@ function NavDropdown({
 																key={dropdownItem.label}
 																item={dropdownItem}
 																onClose={onClose}
+																isDarkRoute={isDarkRoute}
 															/>
 														))}
 													</div>
@@ -646,16 +672,20 @@ function NavDropdown({
 									!hasHighlightedCategory && (
 										<motion.div
 											variants={itemVariants}
-											className="w-72 bg-muted/30 border-l border-border/50 p-8 flex flex-col"
+											className={`w-72 border-l p-8 flex flex-col ${
+												isDarkRoute
+													? "bg-white/5 border-white/10"
+													: "bg-muted/30 border-border/50"
+											}`}
 										>
 											{item.inputSection && (
-												<div className="mb-6 pb-6 border-b border-border/50">
+												<div className={`mb-6 pb-6 border-b ${isDarkRoute ? "border-white/10" : "border-border/50"}`}>
 													<div className="flex items-center gap-2 mb-3">
 														<item.inputSection.icon
-															className="w-4 h-4 text-primary"
+															className={`w-4 h-4 ${isDarkRoute ? "text-purple-400" : "text-primary"}`}
 															strokeWidth={1.75}
 														/>
-														<h4 className="text-sm font-semibold text-foreground">
+														<h4 className={`text-sm font-semibold ${isDarkRoute ? "text-white" : "text-foreground"}`}>
 															{item.inputSection.title}
 														</h4>
 													</div>
@@ -675,12 +705,20 @@ function NavDropdown({
 															type="text"
 															name="meetingLink"
 															placeholder={item.inputSection.placeholder}
-															className="w-full px-3 py-2 text-sm rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+															className={`w-full px-3 py-2 text-sm rounded-lg border transition-all focus:outline-none focus:ring-2 ${
+																isDarkRoute
+																	? "border-white/10 bg-white/5 text-white placeholder-gray-500 focus:ring-purple-500/50 focus:border-purple-500"
+																	: "border-border bg-background text-foreground focus:ring-primary/50 focus:border-primary"
+															}`}
 														/>
 														<Button
 															type="submit"
 															size="sm"
-															className="w-full h-9 bg-primary hover:bg-primary/90 font-medium"
+															className={`w-full h-9 font-medium ${
+																isDarkRoute
+																	? "bg-purple-600 hover:bg-purple-700"
+																	: "bg-primary hover:bg-primary/90"
+															}`}
 														>
 															{item.inputSection.buttonText}
 														</Button>
@@ -691,25 +729,33 @@ function NavDropdown({
 												<div className="flex-1 flex flex-col">
 													<div className="flex-1">
 														<motion.div
-															className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-5"
+															className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${
+																isDarkRoute
+																	? "bg-purple-500/10"
+																	: "bg-primary/10"
+															}`}
 															whileHover={{ scale: 1.05 }}
 															transition={{ type: "spring", stiffness: 400 }}
 														>
 															<item.featured.icon
-																className="w-7 h-7 text-primary"
+																className={`w-7 h-7 ${isDarkRoute ? "text-purple-400" : "text-primary"}`}
 																strokeWidth={1.5}
 															/>
 														</motion.div>
-														<h4 className="text-lg font-semibold text-foreground mb-2">
+														<h4 className={`text-lg font-semibold mb-2 ${isDarkRoute ? "text-white" : "text-foreground"}`}>
 															{item.featured.title}
 														</h4>
-														<p className="text-sm text-muted-foreground leading-relaxed mb-6">
+														<p className={`text-sm leading-relaxed mb-6 ${isDarkRoute ? "text-gray-400" : "text-muted-foreground"}`}>
 															{item.featured.description}
 														</p>
 													</div>
 													<Link href={item.featured.href} onClick={onClose}>
 														<motion.button
-															className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+															className={`inline-flex items-center gap-2 text-sm font-medium transition-colors ${
+																isDarkRoute
+																	? "text-purple-400 hover:text-purple-300"
+																	: "text-primary hover:text-primary/80"
+															}`}
 															whileHover={{ x: 4 }}
 															transition={{ type: "spring", stiffness: 400 }}
 														>

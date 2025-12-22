@@ -1,7 +1,7 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { GlowingBorderCard, RevealOnScroll } from "@/components/ui/aceternity";
 
 const industryUseCases = [

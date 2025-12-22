@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import {
-	Sparkles,
 	MessageSquare,
 	Languages,
 	FileText,
@@ -234,7 +234,13 @@ function HeroSection() {
 							animate={{ opacity: 1, y: 0 }}
 							className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8"
 						>
-							<Sparkles className="w-4 h-4 text-purple-400" />
+							<Image
+								src="/melpAI.svg"
+								alt="Melp AI"
+								width={16}
+								height={16}
+								className="w-4 h-4"
+							/>
 							<span className="text-sm text-gray-300">
 								Powered by Advanced AI
 							</span>
@@ -379,7 +385,13 @@ function HeroSection() {
 							transition={{ duration: 3, repeat: Infinity }}
 							className="absolute -top-6 -right-6 p-3 bg-gray-800 rounded-xl border border-white/10 shadow-xl"
 						>
-							<Sparkles className="w-6 h-6 text-purple-400" />
+							<Image
+								src="/melpAI.svg"
+								alt="Melp AI"
+								width={24}
+								height={24}
+								className="w-full h-full"
+							/>
 						</motion.div>
 						<motion.div
 							animate={{ y: [0, 10, 0] }}
@@ -399,14 +411,14 @@ function HeroSection() {
 function SocialProofSection() {
 	// Trusted brand names for display
 	const trustedBrands = [
-		"Microsoft",
-		"Google",
-		"Slack",
-		"Zoom",
-		"Salesforce",
-		"Adobe",
-		"Dropbox",
-		"Notion",
+		"Logo one",
+		"Logo two",
+		"Logo three",
+		"Logo four",
+		"Logo five",
+		"Logo six",
+		"Logo seven",
+		"Logo eight",
 	];
 
 	return (
@@ -623,12 +635,13 @@ function AIFeaturesShowcase() {
 										</div>
 
 										{/* CTA */}
-										<button
-											className={`group inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r ${feature.color} rounded-xl font-semibold text-white hover:opacity-90 transition-all`}
+										<a
+											href="https://www.app.melp.us/spa/index#signup"
+											className={`group inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r ${feature.color} rounded-sm font-semibold text-white hover:opacity-90 transition-all`}
 										>
-											Learn more
+											Get Started
 											<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-										</button>
+										</a>
 									</div>
 
 									{/* Mockup Side */}

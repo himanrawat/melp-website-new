@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { individualPlans, businessPlans, PricingPlan } from "@/data/pricing";
 import CheckoutLayout from "@/components/checkout/CheckoutLayout";
 import SubscriptionStep from "@/components/checkout/steps/SubscriptionStep";

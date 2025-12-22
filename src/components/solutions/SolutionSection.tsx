@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { RevealOnScroll, GlowingBorderCard } from "@/components/ui/aceternity";
 import { Check, type LucideIcon } from "lucide-react";
 

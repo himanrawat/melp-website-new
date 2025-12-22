@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { RevealOnScroll } from "@/components/ui/aceternity";
 import { FileText, PenTool, BarChart3, Lightbulb, Check } from "lucide-react";

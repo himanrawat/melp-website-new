@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import type { LucideIcon } from "lucide-react";
 import { RevealOnScroll } from "@/components/ui/aceternity";

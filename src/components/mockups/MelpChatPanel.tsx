@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
-import { Sparkles, Check, Globe } from "lucide-react";
+import { Check, Globe } from "lucide-react";
 
 interface Message {
 	id: number;
@@ -137,9 +138,15 @@ export default function MelpChatPanel({
 		>
 			{/* Chat Header */}
 			<div className="flex items-center gap-3 px-4 py-3 border-b border-gray-800 bg-[#242424]">
-				<div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500" />
+				<Image
+					src="/profile.jpg"
+					alt="Marcos Taylor"
+					width={32}
+					height={32}
+					className="w-8 h-8 rounded-sm object-cover"
+				/>
 				<div>
-					<div className="text-white text-sm font-medium">Client Name</div>
+					<div className="text-white text-sm font-medium">Marcos Taylor</div>
 					<div className="text-green-400 text-xs flex items-center gap-1">
 						<span className="w-1.5 h-1.5 rounded-full bg-green-400" />
 						Online
@@ -166,8 +173,14 @@ export default function MelpChatPanel({
 							}`}
 						>
 							{msg.sender === "ai" && (
-								<div className="w-7 h-7 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center mr-2 shrink-0">
-									<Sparkles className="w-4 h-4 text-white" />
+								<div className="w-7 h-7 rounded-lg flex items-center justify-center mr-2 shrink-0">
+									<Image
+										src="/melpAI.svg"
+										alt="Melp AI"
+										width={16}
+										height={16}
+										className="w-full h-full"
+									/>
 								</div>
 							)}
 							<div
@@ -243,7 +256,13 @@ export default function MelpChatPanel({
 						<div className="flex items-center gap-2 mb-3">
 							<span className="text-white font-medium">Draft For Me</span>
 							<div className="flex items-center gap-1 px-2 py-0.5 bg-red-500/10 rounded">
-								<Sparkles className="w-3 h-3 text-red-400" />
+								<Image
+									src="/melpAI.svg"
+									alt="Melp AI"
+									width={12}
+									height={12}
+									className="w-4 h-4"
+								/>
 								<span className="text-xs text-red-400">Melp AI</span>
 							</div>
 						</div>
@@ -288,7 +307,13 @@ export default function MelpChatPanel({
 			<div className="absolute bottom-0 left-0 right-0 p-3 bg-[#242424] border-t border-gray-800">
 				<div className="flex items-center gap-2">
 					<div className="flex items-center gap-1 px-2 py-1 bg-red-500/10 rounded">
-						<Sparkles className="w-3 h-3 text-red-400" />
+						<Image
+							src="/melpAI.svg"
+							alt="Melp AI"
+							width={12}
+							height={12}
+							className="w-3 h-3"
+						/>
 						<span className="text-xs text-red-400">Melp's AI</span>
 					</div>
 					<div className="flex-1 text-gray-500 text-sm">

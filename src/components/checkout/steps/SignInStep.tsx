@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 interface SignInStepProps {
 	formData: CheckoutFormData;

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import { ChevronDown, Sparkles, Volume2 } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect, useRef } from "react";
+import { ChevronDown, Volume2 } from "lucide-react";
 
 interface Caption {
 	id: number;
@@ -129,6 +129,14 @@ export default function MelpLiveCaptions({
 	const [phase, setPhase] = useState<"streaming" | "switching" | "translating">(
 		"streaming"
 	);
+	const captionsRef = useRef<HTMLDivElement>(null);
+
+	// Auto-scroll to bottom when new captions are added
+	useEffect(() => {
+		if (captionsRef.current) {
+			captionsRef.current.scrollTop = captionsRef.current.scrollHeight;
+		}
+	}, [visibleCaptions, typingText]);
 
 	useEffect(() => {
 		let isMounted = true;
@@ -227,145 +235,174 @@ export default function MelpLiveCaptions({
 		<div
 			className={`relative bg-[#1a1a1a] rounded-xl overflow-hidden border border-gray-800 ${className}`}
 		>
-			{/* Video Preview Area */}
-			<div className="relative h-32 bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a] flex items-center justify-center">
-				{/* Fake video grid */}
-				<div className="grid grid-cols-2 gap-2 p-3">
-					{[1, 2, 3, 4].map((i) => (
-						<div
-							key={i}
-							className="w-16 h-12 bg-[#3d3d3d] rounded-lg overflow-hidden"
-						>
-							<div className="w-full h-full flex items-center justify-center">
-								<div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500" />
-							</div>
-						</div>
-					))}
-				</div>
-
-				{/* Language Selector Overlay */}
-				<div className="absolute top-2 right-2">
-					<div className="relative">
-						<motion.button
-							className="flex items-center gap-2 px-3 py-1.5 bg-[#2d2d2d]/90 backdrop-blur rounded-lg border border-gray-700"
-							animate={phase === "switching" ? { scale: [1, 1.05, 1] } : {}}
-						>
-							<span className="text-sm">{languageCodes[currentLanguage]}</span>
-							<span className="text-white text-xs">{currentLanguage}</span>
-							<ChevronDown className="w-3 h-3 text-gray-400" />
-						</motion.button>
-
-						<AnimatePresence>
-							{showDropdown && (
-								<motion.div
-									initial={{ opacity: 0, y: -5 }}
-									animate={{ opacity: 1, y: 0 }}
-									exit={{ opacity: 0, y: -5 }}
-									className="absolute top-full right-0 mt-1 w-32 bg-[#2d2d2d] rounded-lg border border-gray-700 shadow-xl overflow-hidden z-10"
-								>
-									{languages.map((lang) => (
-										<motion.div
-											key={lang}
-											className={`flex items-center gap-2 px-3 py-2 cursor-pointer ${
-												lang === currentLanguage ? "bg-[#3d3d3d]" : ""
-											}`}
-											whileHover={{ backgroundColor: "#3d3d3d" }}
-										>
-											<span>{languageCodes[lang]}</span>
-											<span className="text-white text-xs">{lang}</span>
-										</motion.div>
-									))}
-								</motion.div>
-							)}
-						</AnimatePresence>
+			{/* Two column layout - Video on left, Captions on right */}
+			<div className="grid grid-cols-2 h-[320px] max-h-[320px] overflow-hidden">
+				{/* Video Call Area - Left Side */}
+				<div className="relative bg-[#0d0d0d] border-r border-gray-800">
+					{/* Meeting Header */}
+					<div className="flex items-center justify-center gap-2 px-3 py-2 bg-[#1a1a1a] border-b border-gray-800">
+						<div className="w-2 h-2 bg-green-500 rounded-full" />
+						<span className="text-white text-xs font-medium">Meeting</span>
+						<span className="text-gray-400 text-xs">• 4</span>
 					</div>
-				</div>
 
-				{/* Live indicator */}
-				<div className="absolute top-2 left-2 flex items-center gap-1.5 px-2 py-1 bg-red-500/20 rounded">
-					<motion.div
-						className="w-2 h-2 bg-red-500 rounded-full"
-						animate={{ opacity: [1, 0.5, 1] }}
-						transition={{ duration: 1, repeat: Infinity }}
-					/>
-					<span className="text-red-400 text-xs font-medium">LIVE</span>
-				</div>
-			</div>
-
-			{/* Captions Area */}
-			<div className="border-t border-gray-800">
-				{/* Header */}
-				<div className="flex items-center justify-between px-3 py-2 bg-[#242424] border-b border-gray-800">
-					<div className="flex items-center gap-2">
-						<Sparkles className="w-4 h-4 text-red-400" />
-						<span className="text-white text-sm font-medium">
-							Live Captions
-						</span>
-						<span className="text-xs text-gray-400">
-							• Translated to {currentLanguage}
-						</span>
-					</div>
-					<Volume2 className="w-4 h-4 text-gray-400" />
-				</div>
-
-				{/* Captions List */}
-				<div className="p-3 h-[160px] overflow-hidden space-y-2">
-					<AnimatePresence>
-						{currentCaptions
-							.filter((c) => visibleCaptions.includes(c.id))
-							.map((caption) => (
-								<motion.div
-									key={`${caption.id}-${currentLanguage}`}
-									initial={{ opacity: 0, y: 10 }}
-									animate={{ opacity: 1, y: 0 }}
-									exit={{ opacity: 0 }}
-									className="flex items-start gap-2"
-								>
-									<span className="text-gray-500 text-xs w-10 shrink-0">
-										{caption.timestamp}
-									</span>
-									<div>
-										<span className="text-blue-400 text-sm font-medium">
-											{caption.speaker}:
+					{/* Video Grid - 2x2 layout */}
+					<div className="grid grid-cols-2 gap-1 p-2 h-[calc(100%-40px)]">
+						{["John", "Sarah", "Mike", "You"].map((name, i) => (
+							<div
+								key={i}
+								className="relative bg-[#2d2d2d] rounded-lg overflow-hidden"
+							>
+								<div className="w-full h-full flex items-center justify-center">
+									<div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+										<span className="text-white text-xs font-medium">
+											{name.charAt(0)}
 										</span>
-										<motion.span
-											className="text-gray-200 text-sm ml-1"
-											initial={phase === "translating" ? { opacity: 0.5 } : {}}
-											animate={{ opacity: 1 }}
-											transition={{ duration: 0.3 }}
-										>
-											{caption.text}
-										</motion.span>
 									</div>
-								</motion.div>
-							))}
-					</AnimatePresence>
-
-					{/* Currently typing caption */}
-					{typingText && (
-						<motion.div
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							className="flex items-start gap-2"
-						>
-							<span className="text-gray-500 text-xs w-10 shrink-0">
-								{captions[currentCaptionIndex]?.timestamp}
-							</span>
-							<div>
-								<span className="text-blue-400 text-sm font-medium">
-									{captions[currentCaptionIndex]?.speaker}:
-								</span>
-								<span className="text-gray-200 text-sm ml-1">
-									{typingText}
-									<motion.span
-										className="inline-block w-0.5 h-4 bg-white ml-0.5"
-										animate={{ opacity: [1, 0] }}
-										transition={{ duration: 0.4, repeat: Infinity }}
-									/>
-								</span>
+								</div>
+								{/* Name badge */}
+								<div className="absolute bottom-1 left-1 flex items-center gap-1 px-1.5 py-0.5 bg-black/60 rounded text-[10px]">
+									<div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+									<span className="text-white">{name}</span>
+								</div>
 							</div>
-						</motion.div>
-					)}
+						))}
+					</div>
+
+					{/* Live indicator */}
+					<div className="absolute top-10 left-2 flex items-center gap-1.5 px-2 py-1 bg-red-500/20 rounded">
+						<motion.div
+							className="w-2 h-2 bg-red-500 rounded-full"
+							animate={{ opacity: [1, 0.5, 1] }}
+							transition={{ duration: 1, repeat: Infinity }}
+						/>
+						<span className="text-red-400 text-xs font-medium">LIVE</span>
+					</div>
+				</div>
+
+				{/* Captions Panel - Right Side */}
+				<div className="flex flex-col bg-[#1a1a1a] h-[320px] max-h-[320px] overflow-hidden">
+					{/* Captions Header */}
+					<div className="flex items-center justify-between px-3 py-2 bg-[#242424] border-b border-gray-800">
+						<div className="flex items-center gap-2">
+							<div className="w-6 h-6 bg-[#3d3d3d] rounded flex items-center justify-center">
+								<span className="text-white text-xs font-bold">CC</span>
+							</div>
+							<span className="text-white text-sm font-medium">
+								Live Captions
+							</span>
+						</div>
+						{/* Language Selector */}
+						<div className="relative">
+							<motion.button
+								className="flex items-center gap-1.5 px-2 py-1 bg-[#2d2d2d]/90 backdrop-blur rounded border border-gray-700"
+								animate={phase === "switching" ? { scale: [1, 1.05, 1] } : {}}
+							>
+								<span className="text-white text-xs">{languageCodes[currentLanguage]}</span>
+								<span className="text-gray-400 text-xs">{currentLanguage}</span>
+								<ChevronDown className="w-3 h-3 text-gray-400" />
+							</motion.button>
+
+							<AnimatePresence>
+								{showDropdown && (
+									<motion.div
+										initial={{ opacity: 0, y: -5 }}
+										animate={{ opacity: 1, y: 0 }}
+										exit={{ opacity: 0, y: -5 }}
+										className="absolute top-full right-0 mt-1 w-28 bg-[#2d2d2d] rounded-lg border border-gray-700 shadow-xl overflow-hidden z-10"
+									>
+										{languages.map((lang) => (
+											<motion.div
+												key={lang}
+												className={`flex items-center gap-2 px-2 py-1.5 cursor-pointer ${
+													lang === currentLanguage ? "bg-[#3d3d3d]" : ""
+												}`}
+												whileHover={{ backgroundColor: "#3d3d3d" }}
+											>
+												<span className="text-xs">{languageCodes[lang]}</span>
+												<span className="text-white text-xs">{lang}</span>
+											</motion.div>
+										))}
+									</motion.div>
+								)}
+							</AnimatePresence>
+						</div>
+					</div>
+
+					{/* Translated to indicator */}
+					<div className="px-3 py-1.5 border-b border-gray-800/50">
+						<span className="text-xs text-gray-400">
+							Translated to {currentLanguage}
+						</span>
+					</div>
+
+					{/* Captions List - Scrollable with custom scrollbar */}
+					<div
+						ref={captionsRef}
+						className="flex-1 min-h-0 p-3 overflow-y-auto space-y-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-600 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-gray-500"
+					>
+						<AnimatePresence>
+							{currentCaptions
+								.filter((c) => visibleCaptions.includes(c.id))
+								.map((caption) => (
+									<motion.div
+										key={`${caption.id}-${currentLanguage}`}
+										initial={{ opacity: 0, y: 10 }}
+										animate={{ opacity: 1, y: 0 }}
+										exit={{ opacity: 0 }}
+										className="flex items-start gap-2"
+									>
+										<span className="text-gray-500 text-xs w-8 shrink-0">
+											{caption.timestamp}
+										</span>
+										<div className="flex-1 min-w-0">
+											<span className="text-blue-400 text-xs font-medium">
+												{caption.speaker}:
+											</span>
+											<motion.span
+												className="text-gray-200 text-xs ml-1"
+												initial={phase === "translating" ? { opacity: 0.5 } : {}}
+												animate={{ opacity: 1 }}
+												transition={{ duration: 0.3 }}
+											>
+												{caption.text}
+											</motion.span>
+										</div>
+									</motion.div>
+								))}
+						</AnimatePresence>
+
+						{/* Currently typing caption */}
+						{typingText && (
+							<motion.div
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								className="flex items-start gap-2"
+							>
+								<span className="text-gray-500 text-xs w-8 shrink-0">
+									{captions[currentCaptionIndex]?.timestamp}
+								</span>
+								<div className="flex-1 min-w-0">
+									<span className="text-blue-400 text-xs font-medium">
+										{captions[currentCaptionIndex]?.speaker}:
+									</span>
+									<span className="text-gray-200 text-xs ml-1">
+										{typingText}
+										<motion.span
+											className="inline-block w-0.5 h-3 bg-white ml-0.5"
+											animate={{ opacity: [1, 0] }}
+											transition={{ duration: 0.4, repeat: Infinity }}
+										/>
+									</span>
+								</div>
+							</motion.div>
+						)}
+					</div>
+
+					{/* Footer with volume */}
+					<div className="px-3 py-2 border-t border-gray-800 flex items-center justify-end">
+						<Volume2 className="w-4 h-4 text-gray-400" />
+					</div>
 				</div>
 			</div>
 		</div>
