@@ -385,10 +385,10 @@ const mobileMenuVariants = {
 // ============================================
 
 interface DropdownMenuItemProps {
-	item: DropdownItem;
-	onClose: () => void;
-	isHighlighted?: boolean;
-	isDarkRoute?: boolean;
+	readonly item: DropdownItem;
+	readonly onClose: () => void;
+	readonly isHighlighted?: boolean;
+	readonly isDarkRoute?: boolean;
 }
 
 function DropdownMenuItem({
@@ -405,8 +405,12 @@ function DropdownMenuItem({
 				<motion.div
 					className={`group flex items-center gap-3 py-2.5 px-3 rounded-lg transition-colors cursor-pointer ${
 						isHighlighted
-							? isDarkRoute ? "hover:bg-white/10" : "hover:bg-white/10"
-							: isDarkRoute ? "hover:bg-white/5" : "hover:bg-muted"
+							? isDarkRoute
+								? "hover:bg-white/10"
+								: "hover:bg-white/10"
+							: isDarkRoute
+							? "hover:bg-white/5"
+							: "hover:bg-muted"
 					}`}
 					whileHover={{ x: 2 }}
 					transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -414,15 +418,23 @@ function DropdownMenuItem({
 					<div
 						className={`shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
 							isHighlighted
-								? isDarkRoute ? "bg-purple-500/20" : "bg-white/10"
-								: isDarkRoute ? "bg-white/10" : "bg-muted"
+								? isDarkRoute
+									? "bg-purple-500/20"
+									: "bg-white/10"
+								: isDarkRoute
+								? "bg-white/10"
+								: "bg-muted"
 						}`}
 					>
 						<Icon
 							className={`w-4 h-4 ${
 								isHighlighted
-									? isDarkRoute ? "text-purple-300" : "text-white/80"
-									: isDarkRoute ? "text-gray-200" : "text-muted-foreground"
+									? isDarkRoute
+										? "text-purple-300"
+										: "text-white/80"
+									: isDarkRoute
+									? "text-gray-200"
+									: "text-muted-foreground"
 							}`}
 							strokeWidth={1.75}
 						/>
@@ -432,8 +444,12 @@ function DropdownMenuItem({
 							<span
 								className={`text-sm font-medium ${
 									isHighlighted
-										? isDarkRoute ? "text-white" : "text-white"
-										: isDarkRoute ? "text-gray-100" : "text-foreground"
+										? isDarkRoute
+											? "text-white"
+											: "text-white"
+										: isDarkRoute
+										? "text-gray-100"
+										: "text-foreground"
 								}`}
 							>
 								{item.label}
@@ -442,8 +458,12 @@ function DropdownMenuItem({
 								<span
 									className={`px-1.5 py-0.5 text-[10px] font-medium rounded ${
 										isHighlighted
-											? isDarkRoute ? "bg-purple-500/20 text-purple-200" : "bg-white/20 text-white"
-											: isDarkRoute ? "bg-purple-500/10 text-purple-300" : "bg-primary/10 text-primary"
+											? isDarkRoute
+												? "bg-purple-500/20 text-purple-200"
+												: "bg-white/20 text-white"
+											: isDarkRoute
+											? "bg-purple-500/10 text-purple-300"
+											: "bg-primary/10 text-primary"
 									}`}
 								>
 									{item.badge}
@@ -454,8 +474,12 @@ function DropdownMenuItem({
 							<p
 								className={`text-xs mt-0.5 ${
 									isHighlighted
-										? isDarkRoute ? "text-gray-300" : "text-white/50"
-										: isDarkRoute ? "text-gray-400" : "text-muted-foreground"
+										? isDarkRoute
+											? "text-gray-300"
+											: "text-white/50"
+										: isDarkRoute
+										? "text-gray-400"
+										: "text-muted-foreground"
 								}`}
 							>
 								{item.description}
@@ -609,11 +633,13 @@ function NavDropdown({
 													key={category.title}
 													variants={categoryVariants}
 												>
-													<h3 className={`text-xs font-semibold uppercase tracking-wider mb-4 pb-2 border-b ${
-														isDarkRoute
-															? "text-gray-400 border-white/10"
-															: "text-muted-foreground border-border/50"
-													}`}>
+													<h3
+														className={`text-xs font-semibold uppercase tracking-wider mb-4 pb-2 border-b ${
+															isDarkRoute
+																? "text-gray-400 border-white/10"
+																: "text-muted-foreground border-border/50"
+														}`}
+													>
 														{category.title}
 													</h3>
 													<div className="space-y-1">
@@ -645,11 +671,13 @@ function NavDropdown({
 											.filter((cat) => cat.highlighted)
 											.map((category) => (
 												<div key={category.title}>
-													<h3 className={`text-xs font-semibold uppercase tracking-wider mb-4 pb-2 border-b ${
-														isDarkRoute
-															? "text-gray-400 border-white/10"
-															: "text-muted-foreground border-border/50"
-													}`}>
+													<h3
+														className={`text-xs font-semibold uppercase tracking-wider mb-4 pb-2 border-b ${
+															isDarkRoute
+																? "text-gray-400 border-white/10"
+																: "text-muted-foreground border-border/50"
+														}`}
+													>
 														{category.title}
 													</h3>
 													<div className="space-y-1">
@@ -679,13 +707,23 @@ function NavDropdown({
 											}`}
 										>
 											{item.inputSection && (
-												<div className={`mb-6 pb-6 border-b ${isDarkRoute ? "border-white/10" : "border-border/50"}`}>
+												<div
+													className={`mb-6 pb-6 border-b ${
+														isDarkRoute ? "border-white/10" : "border-border/50"
+													}`}
+												>
 													<div className="flex items-center gap-2 mb-3">
 														<item.inputSection.icon
-															className={`w-4 h-4 ${isDarkRoute ? "text-purple-400" : "text-primary"}`}
+															className={`w-4 h-4 ${
+																isDarkRoute ? "text-purple-400" : "text-primary"
+															}`}
 															strokeWidth={1.75}
 														/>
-														<h4 className={`text-sm font-semibold ${isDarkRoute ? "text-white" : "text-foreground"}`}>
+														<h4
+															className={`text-sm font-semibold ${
+																isDarkRoute ? "text-white" : "text-foreground"
+															}`}
+														>
 															{item.inputSection.title}
 														</h4>
 													</div>
@@ -738,14 +776,28 @@ function NavDropdown({
 															transition={{ type: "spring", stiffness: 400 }}
 														>
 															<item.featured.icon
-																className={`w-7 h-7 ${isDarkRoute ? "text-purple-400" : "text-primary"}`}
+																className={`w-7 h-7 ${
+																	isDarkRoute
+																		? "text-purple-400"
+																		: "text-primary"
+																}`}
 																strokeWidth={1.5}
 															/>
 														</motion.div>
-														<h4 className={`text-lg font-semibold mb-2 ${isDarkRoute ? "text-white" : "text-foreground"}`}>
+														<h4
+															className={`text-lg font-semibold mb-2 ${
+																isDarkRoute ? "text-white" : "text-foreground"
+															}`}
+														>
 															{item.featured.title}
 														</h4>
-														<p className={`text-sm leading-relaxed mb-6 ${isDarkRoute ? "text-gray-400" : "text-muted-foreground"}`}>
+														<p
+															className={`text-sm leading-relaxed mb-6 ${
+																isDarkRoute
+																	? "text-gray-400"
+																	: "text-muted-foreground"
+															}`}
+														>
 															{item.featured.description}
 														</p>
 													</div>
