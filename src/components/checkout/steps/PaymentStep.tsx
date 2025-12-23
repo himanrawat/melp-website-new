@@ -13,14 +13,16 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { CheckoutFormData } from "@/app/checkout/page";
-// import { PricingPlan } from "@/data/pricing";
+import { PricingPlan } from "@/data/pricing";
 import { motion } from "motion/react";
+import { API_ENDPOINTS, logApi } from "@/lib/api";
 
 interface PaymentStepProps {
 	formData: CheckoutFormData;
 	updateFormData: (updates: Partial<CheckoutFormData>) => void;
 	nextStep: () => void;
 	prevStep: () => void;
+	allPlans: PricingPlan[];
 }
 
 const months = [
@@ -73,9 +75,11 @@ export default function PaymentStep({
 	updateFormData,
 	nextStep,
 	prevStep,
+	allPlans,
 }: PaymentStepProps) {
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [isProcessing, setIsProcessing] = useState(false);
+	const [apiError, setApiError] = useState("");
 
 	// Pre-fill billing address from personal details
 	useEffect(() => {
@@ -142,11 +146,72 @@ export default function PaymentStep({
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (validateForm()) {
-			setIsProcessing(true);
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+		if (!validateForm()) return;
+
+		setIsProcessing(true);
+		setApiError("");
+
+		const selectedPlan = allPlans.find((p) => p.id === formData.planId);
+		const isYearly = formData.billingFrequency === "yearly";
+		const subscriptionPlanId = isYearly
+			? selectedPlan?.subscriptionPlanIdYearly
+			: selectedPlan?.subscriptionPlanIdMonthly;
+		const packageId = selectedPlan?.packageId;
+		const unitPrice = isYearly ? selectedPlan?.yearlyPrice ?? 0 : selectedPlan?.monthlyPrice ?? 0;
+		const quantity = formData.numberOfUsers || 1;
+		const finalAmount = (unitPrice || 0).toFixed(2);
+		const totalAmount = (unitPrice * quantity).toFixed(2);
+
+		if (!packageId || !subscriptionPlanId) {
+			setApiError("Missing plan configuration. Please select a valid plan.");
 			setIsProcessing(false);
-			nextStep();
+			return;
+		}
+
+		try {
+			logApi("payment checkout request", {
+				adminId: formData.adminId,
+				packageId,
+				subscriptionPlanId,
+				quantity,
+			});
+
+			const response = await fetch(API_ENDPOINTS.paymentCheckout, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					adminId: formData.adminId,
+					appliedCouponId: "",
+					discountAmount: 0,
+					discountCode: "",
+					finalAmount,
+					packageId,
+					quantity,
+					recurring: true,
+					sessionId: formData.sessionId,
+					subscriptionGroupId: "",
+					taxAmount: 0,
+					totalAmount,
+					validTill: 0,
+					subscriptionPlanId,
+				}),
+			});
+
+			const data = await response.json();
+			logApi("payment checkout response", data);
+
+			const paymentUrl = data?.paymentUrl || data?.serviceResp?.data;
+			if (paymentUrl) {
+				window.location.href = paymentUrl;
+				return;
+			}
+
+			setApiError("Unable to start checkout. Please try again.");
+		} catch (err) {
+			logApi("payment checkout failed", err);
+			setApiError("Checkout failed. Please try again.");
+		} finally {
+			setIsProcessing(false);
 		}
 	};
 
@@ -440,6 +505,9 @@ export default function PaymentStep({
 				transition={{ delay: 0.2 }}
 				className="flex gap-2"
 			>
+				{apiError && (
+					<p className="text-xs text-destructive mr-auto">{apiError}</p>
+				)}
 				<Button type="submit" disabled={isProcessing} className="h-10 gap-2">
 					{isProcessing ? (
 						<>

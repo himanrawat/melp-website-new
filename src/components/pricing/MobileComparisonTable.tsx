@@ -165,6 +165,12 @@ export default function MobileComparisonTable({
 								variant={plan.popular ? "default" : "outline"}
 								size="sm"
 								className="shrink-0 text-sm font-medium cursor-pointer"
+								data-package-id={plan.packageId}
+								data-subscription-plan-id={
+									isYearly
+										? plan.subscriptionPlanIdYearly ?? undefined
+										: plan.subscriptionPlanIdMonthly ?? undefined
+								}
 								asChild
 							>
 								{plan.monthlyPrice === 0 ? (

@@ -22,6 +22,9 @@ export interface PricingPlan {
 	name: string;
 	description: string;
 	icon: LucideIcon;
+	packageId: string;
+	subscriptionPlanIdMonthly: string | null;
+	subscriptionPlanIdYearly: string | null;
 	monthlyPrice: number | null; // null for custom pricing
 	yearlyPrice: number | null;
 	currency: string;
@@ -53,6 +56,9 @@ export const individualPlans: PricingPlan[] = [
 		name: "Free",
 		description: "For individuals getting started with Melp",
 		icon: Zap,
+		packageId: "aptd3rp8tlvk",
+		subscriptionPlanIdMonthly: "aptd9us8pxxc",
+		subscriptionPlanIdYearly: "aptddikjd8n4",
 		monthlyPrice: 0,
 		yearlyPrice: 0,
 		currency: "$",
@@ -76,6 +82,9 @@ export const individualPlans: PricingPlan[] = [
 		name: "Plus",
 		description: "For power users and small groups",
 		icon: Sparkles,
+		packageId: "afimt14lixog",
+		subscriptionPlanIdMonthly: "agsa0s74270g",
+		subscriptionPlanIdYearly: "agsa045z87pc",
 		monthlyPrice: 7,
 		yearlyPrice: 5,
 		currency: "$",
@@ -109,6 +118,9 @@ export const businessPlans: PricingPlan[] = [
 		name: "Team",
 		description: "For small teams collaborating together",
 		icon: Users,
+		packageId: "afimrfwrr8qo",
+		subscriptionPlanIdMonthly: "agp1ujpui8zk",
+		subscriptionPlanIdYearly: "agp1xxgjcpog",
 		monthlyPrice: 8,
 		yearlyPrice: 6,
 		currency: "$",
@@ -133,6 +145,9 @@ export const businessPlans: PricingPlan[] = [
 		name: "Business",
 		description: "Advanced tools for growing companies",
 		icon: Building2,
+		packageId: "afimvk5gbnk0",
+		subscriptionPlanIdMonthly: "agp2cuzvqd4w",
+		subscriptionPlanIdYearly: "agp2bw775iio",
 		monthlyPrice: 12,
 		yearlyPrice: 9,
 		currency: "$",
@@ -159,6 +174,9 @@ export const businessPlans: PricingPlan[] = [
 		name: "Enterprise",
 		description: "Advanced controls and support for large teams",
 		icon: Crown,
+		packageId: "afimturxn0n4",
+		subscriptionPlanIdMonthly: "agp24k8xwwzk",
+		subscriptionPlanIdYearly: "agp264xmgmio",
 		monthlyPrice: null,
 		yearlyPrice: null,
 		currency: "$",

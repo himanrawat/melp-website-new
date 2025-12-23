@@ -92,6 +92,12 @@ export default function DesktopComparisonTable({
 													: "border-border hover:bg-muted/50"
 											}
 										`}
+										data-package-id={plan.packageId}
+										data-subscription-plan-id={
+											isYearly
+												? plan.subscriptionPlanIdYearly ?? undefined
+												: plan.subscriptionPlanIdMonthly ?? undefined
+										}
 										asChild
 									>
 										{plan.monthlyPrice === 0 ? (

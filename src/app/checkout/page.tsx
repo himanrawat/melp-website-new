@@ -60,6 +60,9 @@ export interface CheckoutFormData {
 	billingState: string;
 	billingPostcode: string;
 	billingCountry: string;
+	otp: string;
+	sessionId: string;
+	adminId: string;
 }
 
 const initialFormData: CheckoutFormData = {
@@ -100,6 +103,9 @@ const initialFormData: CheckoutFormData = {
 	billingState: "",
 	billingPostcode: "",
 	billingCountry: "India",
+	otp: "",
+	sessionId: "",
+	adminId: "",
 };
 
 const steps = [
@@ -162,6 +168,15 @@ function CheckoutContent() {
 		}
 	}, [formData.planId]);
 
+	// Initialize temp session/admin IDs once
+	useEffect(() => {
+		setFormData((prev) => ({
+			...prev,
+			sessionId: prev.sessionId || (typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : Date.now().toString()),
+			adminId: prev.adminId || (typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-admin`),
+		}));
+	}, []);
+
 	const updateFormData = (updates: Partial<CheckoutFormData>) => {
 		setFormData((prev) => ({ ...prev, ...updates }));
 	};
@@ -176,6 +191,10 @@ function CheckoutContent() {
 		if (currentStep > 1) {
 			setCurrentStep((prev) => prev - 1);
 		}
+	};
+
+	const goToPayment = () => {
+		setCurrentStep(5);
 	};
 
 	const goToStep = (step: number) => {
@@ -218,7 +237,7 @@ function CheckoutContent() {
 					/>
 				);
 			case 2:
-				return <EmailStep {...stepProps} />;
+				return <EmailStep {...stepProps} skipToPayment={goToPayment} />;
 			case 3:
 				return <PersonalDetailsStep {...stepProps} />;
 			case 4:

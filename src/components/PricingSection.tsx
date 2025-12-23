@@ -18,6 +18,8 @@ const plans = [
 		name: "Free",
 		price: "$0",
 		period: "/mo",
+		subscriptionPlanIdMonthly: "aptd9us8pxxc",
+		packageId: "aptd3rp8tlvk",
 		highlight: "For individuals",
 		features: ["1 user", "10 GB storage", "Essential AI features"],
 		cta: "Get Started",
@@ -28,8 +30,10 @@ const plans = [
 	{
 		id: "plus",
 		name: "Plus",
-		price: "$5",
+		price: "$7",
 		period: "/user/mo",
+		subscriptionPlanIdMonthly: "agsa0s74270g",
+		packageId: "afimt14lixog",
 		highlight: "Most popular",
 		features: [
 			"Up to 10 users",
@@ -150,6 +154,10 @@ export default function PricingSection() {
 											<Button
 												className="w-full cursor-pointer"
 												size="default"
+												data-package-id={plan.packageId}
+												data-subscription-plan-id={
+													plan.subscriptionPlanIdMonthly ?? undefined
+												}
 												asChild
 											>
 												{plan.isExternal ? (
@@ -203,6 +211,10 @@ export default function PricingSection() {
 											className="mt-5 w-full"
 											variant="outline"
 											size="default"
+											data-package-id={plan.packageId}
+											data-subscription-plan-id={
+												plan.subscriptionPlanIdMonthly ?? undefined
+											}
 											asChild
 										>
 											{plan.isExternal ? (

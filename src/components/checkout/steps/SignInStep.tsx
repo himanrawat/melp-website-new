@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
 import { motion, AnimatePresence } from "motion/react";
+import { API_ENDPOINTS, logApi } from "@/lib/api";
 
 interface SignInStepProps {
 	formData: CheckoutFormData;
@@ -26,6 +27,7 @@ export default function SignInStep({
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	// Generate default domain from company name
 	useEffect(() => {
@@ -54,7 +56,7 @@ export default function SignInStep({
 
 	const isPasswordValid = Object.values(passwordChecks).every(Boolean);
 
-	const validateForm = () => {
+	const validateBaseForm = () => {
 		const newErrors: Record<string, string> = {};
 
 		if (!formData.username.trim()) {
@@ -85,10 +87,59 @@ export default function SignInStep({
 		return Object.keys(newErrors).length === 0;
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const melpIdDisplay =
+		formData.email?.trim() ||
+		`${formData.username || "username"}@${formData.domainName || "company"}.melp.com`;
+
+	const planProfileType =
+		formData.planId === "free" || formData.planId === "plus" ? "individual" : "business";
+
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (validateForm()) {
+
+		if (!validateBaseForm()) return;
+		if (!formData.otp || formData.otp.replace(/\D/g, "").length < 6) {
+			setErrors({ otp: "Enter the OTP you received to continue" });
+			return;
+		}
+
+		setIsSubmitting(true);
+		try {
+			logApi("verify signup request", {
+				email: formData.email,
+				sessionId: formData.sessionId,
+				planId: formData.planId,
+				profileType: planProfileType,
+			});
+
+			await fetch(API_ENDPOINTS.melpSignup, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: formData.email,
+					password: formData.password,
+					devicetype: "web",
+					sessionid: formData.sessionId,
+					fullname: `${formData.firstName} ${formData.middleName || ""} ${formData.surname}`.trim(),
+					language: "en",
+					otp: formData.otp.replace(/\D/g, ""),
+					profiletype: planProfileType,
+					// Individual profile fields
+					workingas: planProfileType === "individual" ? formData.jobTitle : undefined,
+					cityid: formData.townCity,
+					// Business profile fields
+					title: planProfileType === "business" ? formData.jobTitle : undefined,
+					department: planProfileType === "business" ? formData.companySize : undefined,
+					companyname: planProfileType === "business" ? formData.companyName : undefined,
+				}),
+			});
+
 			nextStep();
+		} catch (error) {
+			setErrors({ otp: "Signup failed. Please retry." });
+			logApi("verify signup failed", error);
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 
@@ -130,57 +181,6 @@ export default function SignInStep({
 				</p>
 			</motion.div>
 
-			{/* Username and Domain */}
-			<motion.div
-				initial={{ opacity: 0, y: 8 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 0.05 }}
-				className="mb-5"
-			>
-				<Label className="text-xs mb-1.5">Your Melp ID</Label>
-				<div className="flex items-center gap-1.5">
-					<Input
-						type="text"
-						value={formData.username}
-						onChange={(e) =>
-							updateFormData({
-								username: e.target.value
-									.toLowerCase()
-									.replace(/[^a-z0-9]/g, ""),
-							})
-						}
-						className={`flex-1 min-w-0 ${
-							errors.username ? "border-destructive" : ""
-						}`}
-						placeholder="username"
-					/>
-					<span className="text-sm text-muted-foreground">@</span>
-					<Input
-						type="text"
-						value={formData.domainName}
-						onChange={(e) =>
-							updateFormData({
-								domainName: e.target.value
-									.toLowerCase()
-									.replace(/[^a-z0-9]/g, ""),
-							})
-						}
-						className={`flex-1 min-w-0 ${
-							errors.domainName ? "border-destructive" : ""
-						}`}
-						placeholder="company"
-					/>
-					<span className="text-xs text-muted-foreground whitespace-nowrap">
-						.melp.com
-					</span>
-				</div>
-				{(errors.username || errors.domainName) && (
-					<p className="mt-1 text-[10px] text-destructive">
-						{errors.username || errors.domainName}
-					</p>
-				)}
-			</motion.div>
-
 			{/* Sign-in Preview */}
 			<motion.div
 				initial={{ opacity: 0, y: 8 }}
@@ -190,8 +190,7 @@ export default function SignInStep({
 			>
 				<p className="text-xs text-muted-foreground">You&apos;ll sign in as</p>
 				<p className="text-sm font-medium text-foreground mt-0.5">
-					{formData.username || "username"}@{formData.domainName || "company"}
-					.melp.com
+					{melpIdDisplay}
 				</p>
 			</motion.div>
 
@@ -316,6 +315,10 @@ export default function SignInStep({
 				)}
 			</motion.div>
 
+			{errors.otp && (
+				<p className="text-[10px] text-destructive mb-3">{errors.otp}</p>
+			)}
+
 			{/* Action Buttons */}
 			<motion.div
 				initial={{ opacity: 0, y: 8 }}
@@ -323,14 +326,17 @@ export default function SignInStep({
 				transition={{ delay: 0.25 }}
 				className="flex gap-2"
 			>
-				<Button type="submit" className="h-10">
-					Continue
+				<Button type="submit" className="h-10" disabled={isSubmitting}>
+					{isSubmitting
+						? "Processing..."
+						: "Continue"}
 				</Button>
 				<Button
 					type="button"
 					variant="outline"
 					onClick={prevStep}
 					className="h-10"
+					disabled={isSubmitting}
 				>
 					Back
 				</Button>
