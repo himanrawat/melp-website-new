@@ -1,11 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import {
 	MessageSquare,
 	Video,
-	Calendar,
 	FolderOpen,
 	Bot,
 	Globe,
@@ -73,61 +72,68 @@ function StackingCard({
 	index,
 	totalCards,
 	progress,
+	maxHeight,
+	onHeightMeasured,
 }: {
 	card: (typeof cards)[0];
 	index: number;
 	totalCards: number;
-	progress: any;
+	progress: ReturnType<typeof useScroll>["scrollYProgress"];
+	maxHeight: number;
+	onHeightMeasured: (height: number) => void;
 }) {
 	const Icon = card.icon;
+	const cardRef = useRef<HTMLDivElement>(null);
 
-	// Calculate the range for this card
-	const cardStart = index / totalCards;
-	const cardEnd = (index + 1) / totalCards;
+	// Measure this card's natural height
+	useEffect(() => {
+		if (cardRef.current) {
+			const height = cardRef.current.scrollHeight;
+			onHeightMeasured(height);
+		}
+	}, [onHeightMeasured]);
 
-	// Scale down slightly as cards get covered
-	const scale = useTransform(
+	// Each card gets an equal portion of the scroll
+	const rangePerCard = 1 / totalCards;
+	const cardStart = index * rangePerCard;
+	const cardEnd = cardStart + rangePerCard;
+
+	// First card starts visible, others slide up from below
+	const y = useTransform(
 		progress,
-		[cardStart, cardEnd, cardEnd + 0.1],
-		[1, 1, 0.95]
+		index === 0
+			? [0, cardEnd]
+			: [cardStart - 0.05, cardStart + 0.1],
+		index === 0
+			? [0, 0]
+			: [600, 0],
+		{ clamp: true }
 	);
 
-	// Add shadow as next card approaches
-	const shadowOpacity = useTransform(progress, [cardStart, cardEnd], [0, 0.15]);
+	// Fixed top position - all cards stack at same position
+	const topOffset = 100;
 
 	return (
 		<motion.div
 			style={{
-				scale,
+				y,
+				top: topOffset,
 				zIndex: index + 1,
 			}}
-			className="sticky top-20 h-[80vh] min-h-[500px] flex items-center justify-center px-4"
+			className="sticky h-[80vh] min-h-[500px] flex items-center justify-center px-4"
 		>
-			<motion.div
-				className={`relative w-full max-w-5xl rounded-3xl border border-white/20 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl backdrop-saturate-150 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)]`}
-				style={{
-					boxShadow: useTransform(
-						shadowOpacity,
-						(v) => `0 25px 50px -12px rgba(0, 0, 0, ${v})`
-					),
-				}}
+			<div
+				ref={cardRef}
+				style={{ minHeight: maxHeight > 0 ? maxHeight : undefined }}
+				className={`relative w-full max-w-5xl rounded-3xl border border-white/20 dark:border-white/10 bg-white dark:bg-neutral-900 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]`}
 			>
 				{/* Gradient overlay for subtle color tint */}
 				<div
-					className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-60 pointer-events-none`}
+					className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-40 pointer-events-none`}
 				/>
 
 				{/* Glass highlight effect */}
 				<div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/10 pointer-events-none" />
-
-				{/* Inner glow border */}
-				<div className="absolute inset-[1px] rounded-[23px] border border-white/30 dark:border-white/5 pointer-events-none" />
-
-				{/* Card inner shadow overlay when covered */}
-				<motion.div
-					className="absolute inset-0 bg-black/5 pointer-events-none"
-					style={{ opacity: shadowOpacity }}
-				/>
 
 				<div className="relative p-8 sm:p-12 lg:p-16">
 					<div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -269,27 +275,42 @@ function StackingCard({
 				<div className="absolute bottom-6 right-8 text-6xl font-bold text-foreground/5">
 					0{card.id}
 				</div>
-			</motion.div>
+			</div>
 		</motion.div>
 	);
 }
 
 export default function StackingCardsSection() {
 	const containerRef = useRef<HTMLDivElement>(null);
+	const [maxHeight, setMaxHeight] = useState(0);
+	const cardHeightsRef = useRef<number[]>([]);
 
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
 		offset: ["start start", "end end"],
 	});
 
+	// Callback to collect heights from all cards
+	const handleHeightMeasured = useCallback((height: number) => {
+		cardHeightsRef.current.push(height);
+		// Once all cards have reported, find the max
+		if (cardHeightsRef.current.length === cards.length) {
+			const max = Math.max(...cardHeightsRef.current);
+			setMaxHeight(max);
+		}
+	}, []);
+
+	// More scroll height = smoother transitions between cards
+	const scrollHeight = (cards.length + 0.5) * 100;
+
 	return (
 		<section
 			ref={containerRef}
 			className="relative bg-gradient-to-b from-background via-muted/20 to-background"
-			style={{ height: `${(cards.length + 1) * 100}vh` }}
+			style={{ height: `${scrollHeight}vh` }}
 		>
 			{/* Header - Scrolls away before cards start stacking */}
-			<div className="flex items-center justify-center px-4">
+			<div className="h-screen flex items-center justify-center px-4">
 				<div className="text-center max-w-3xl mx-auto">
 					<motion.p
 						initial={{ opacity: 0, y: 20 }}
@@ -328,6 +349,8 @@ export default function StackingCardsSection() {
 					index={index}
 					totalCards={cards.length}
 					progress={scrollYProgress}
+					maxHeight={maxHeight}
+					onHeightMeasured={handleHeightMeasured}
 				/>
 			))}
 		</section>
