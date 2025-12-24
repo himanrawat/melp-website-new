@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "motion/react";
@@ -54,32 +55,9 @@ export default function PlatformsSection() {
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.6, delay: 0.1 }}
-					className="relative flex items-end justify-center gap-4 sm:gap-8 mb-12"
+					className="relative flex items-end justify-center gap-6 sm:gap-12 lg:gap-16 mb-12"
 				>
-					{/* Tablet */}
-					<motion.div
-						className="hidden lg:flex flex-col items-center"
-						initial={{ opacity: 0, x: -30 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						viewport={{ once: true }}
-						transition={{ delay: 0.2 }}
-					>
-						<GlowingBorderCard>
-							<div className="w-48 h-64 rounded-xl bg-gradient-to-br from-muted/50 to-muted/20 flex items-center justify-center overflow-hidden">
-								<div className="text-center p-4">
-									<div className="w-12 h-12 rounded-full border-2 border-primary/30 bg-primary/10 mx-auto mb-2" />
-									<span className="text-xs text-muted-foreground">
-										Tablet App
-									</span>
-								</div>
-							</div>
-						</GlowingBorderCard>
-						<Badge variant="secondary" className="mt-3">
-							Tablet
-						</Badge>
-					</motion.div>
-
-					{/* Laptop (center, largest) */}
+					{/* Desktop */}
 					<motion.div
 						className="flex flex-col items-center"
 						initial={{ opacity: 0, y: 30 }}
@@ -88,38 +66,38 @@ export default function PlatformsSection() {
 						transition={{ delay: 0.1 }}
 					>
 						<GlowingBorderCard>
-							<div className="w-64 sm:w-80 lg:w-96 aspect-[16/10] rounded-lg bg-gradient-to-br from-muted/50 to-muted/20 flex items-center justify-center overflow-hidden">
-								<div className="text-center p-4">
-									<div className="w-16 h-16 rounded-full border-2 border-primary/30 bg-primary/10 mx-auto mb-2" />
-									<span className="text-sm text-muted-foreground">
-										Desktop Experience
-									</span>
-								</div>
+							<div className="w-72 sm:w-96 lg:w-[700px] rounded-lg overflow-hidden">
+								<Image
+									src="/desktop.png"
+									alt="Melp Desktop App"
+									width={700}
+									height={437}
+									className="w-full h-auto object-cover"
+								/>
 							</div>
 						</GlowingBorderCard>
-						{/* Laptop base */}
-						<div className="w-72 sm:w-88 lg:w-[26rem] h-3 bg-gradient-to-r from-muted via-muted/80 to-muted rounded-b-lg" />
 						<Badge variant="secondary" className="mt-3">
 							Desktop
 						</Badge>
 					</motion.div>
 
-					{/* Phone */}
+					{/* Mobile */}
 					<motion.div
-						className="flex flex-col items-center -ml-8 sm:-ml-12 lg:-ml-16 z-10"
+						className="flex flex-col items-center -ml-12 sm:-ml-16 lg:-ml-24 z-10"
 						initial={{ opacity: 0, x: 30 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
 						transition={{ delay: 0.3 }}
 					>
 						<GlowingBorderCard>
-							<div className="w-20 sm:w-24 h-40 sm:h-48 rounded-2xl bg-gradient-to-br from-background to-muted/30 flex items-center justify-center overflow-hidden">
-								<div className="text-center p-2">
-									<div className="w-8 h-8 rounded-full border-2 border-primary/30 bg-primary/10 mx-auto mb-1" />
-									<span className="text-[8px] text-muted-foreground">
-										Mobile
-									</span>
-								</div>
+							<div className="w-20 sm:w-24 lg:w-28 rounded-2xl overflow-hidden">
+								<Image
+									src="/mobile-screen.png"
+									alt="Melp Mobile App"
+									width={112}
+									height={224}
+									className="w-full h-auto object-cover"
+								/>
 							</div>
 						</GlowingBorderCard>
 						<Badge variant="secondary" className="mt-3">
