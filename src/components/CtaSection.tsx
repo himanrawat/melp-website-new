@@ -26,7 +26,7 @@ export default function CtaSection() {
 					className="text-center"
 				>
 					<motion.span
-						className="inline-block text-sm font-medium text-primary mb-6 tracking-wider uppercase"
+						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
 						initial={{ opacity: 0 }}
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}

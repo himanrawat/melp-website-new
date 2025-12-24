@@ -8,7 +8,7 @@ import {
 	useTransform,
 	animate,
 } from "motion/react";
-import { Check, Calculator, Zap, ChevronRight } from "lucide-react";
+import { Check, Zap, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 // Animated counter component
@@ -173,15 +173,14 @@ export default function SavingsCalculatorSection() {
 			<div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Header */}
 				<div className="text-center mb-12">
-					<motion.div
+					<motion.span
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
 					>
-						<Calculator className="w-4 h-4" />
 						Savings Calculator
-					</motion.div>
+					</motion.span>
 					<motion.h2
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}

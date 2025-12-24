@@ -120,7 +120,7 @@ export default function HorizontalScrollSection() {
 						transition={{ duration: 0.5, delay: 0.1 }}
 					>
 						<motion.span
-							className="inline-block text-sm font-medium text-primary mb-3 tracking-wider uppercase"
+							className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: false }}

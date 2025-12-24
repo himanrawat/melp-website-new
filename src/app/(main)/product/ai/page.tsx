@@ -28,6 +28,7 @@ import {
 	MelpTranslatorModal,
 	MelpAISummaryModal,
 	MelpLiveCaptions,
+	MelpAILivecaptionHero,
 	MelpAIAssistant,
 	MelpEvaluationPanel,
 } from "@/components/mockups";
@@ -65,14 +66,14 @@ const heroFeatures = [
 		mockup: "summary",
 	},
 	{
-		id: "captions",
-		title: "Live Captions",
-		subtitle: "Real-time transcription",
+		id: "livecaption-hero",
+		title: "AI Live Captions",
+		subtitle: "Human-like clarity in every call",
 		description:
-			"Live captions with speaker identification and multi-language support for inclusive meetings.",
+			"Immersive, bilingual live captions with speaker-aware streaming for global teams.",
 		icon: Mic,
 		color: "from-green-500 to-emerald-500",
-		mockup: "captions",
+		mockup: "livecaption-hero",
 	},
 	{
 		id: "assistant",
@@ -186,7 +187,7 @@ function HeroSection() {
 		if (isHovered) return;
 		const interval = setInterval(() => {
 			setActiveIndex((prev) => (prev + 1) % heroFeatures.length);
-		}, 6000);
+		}, 9000);
 		return () => clearInterval(interval);
 	}, [isHovered]);
 
@@ -201,8 +202,8 @@ function HeroSection() {
 				return <MelpTranslatorModal />;
 			case "summary":
 				return <MelpAISummaryModal />;
-			case "captions":
-				return <MelpLiveCaptions />;
+			case "livecaption-hero":
+				return <MelpAILivecaptionHero />;
 			case "assistant":
 				return <MelpAIAssistant />;
 			case "evaluation":

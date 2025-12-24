@@ -89,7 +89,7 @@ export default function PricingSection() {
 				{/* Section Header */}
 				<RevealOnScroll className="text-center mb-12">
 					<motion.span
-						className="inline-block text-sm font-medium text-primary mb-3 tracking-wider uppercase"
+						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
 						initial={{ opacity: 0 }}
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}
