@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "motion/react";
 import { GlowingBorderCard, RevealOnScroll } from "@/components/ui/aceternity";
@@ -10,36 +11,49 @@ const industryUseCases = [
 		description:
 			"Unite engineering teams, vendors, and partners across continents. Ship faster with AI-powered workflows and structured collaboration.",
 		gradient: "from-violet-500/20 via-purple-500/10",
+		image: "/assets/video-gallery-grid.png",
+		alt: "Technology teams collaborating in a video gallery grid",
 	},
 	{
 		title: "Healthcare",
 		description:
 			"Secure, compliant communication for care teams, partners, and agencies. Coordinate seamlessly with trust engineered at every layer.",
 		gradient: "from-emerald-500/20 via-green-500/10",
+		image: "/assets/team-collaboration-translation.png",
+		alt: "Healthcare professionals collaborating with translation assistance",
 	},
 	{
 		title: "Finance",
 		description:
 			"Connect clients, partners, and internal teams. Enterprise-grade security meets lightning-fast deal flow and compliance tracking.",
 		gradient: "from-blue-500/20 via-cyan-500/10",
+		image: "/assets/video-call-invite-panel.png",
+		alt: "Client meeting invite panel during a secure video call",
 	},
 	{
 		title: "Professional Services",
 		description:
 			"One workspace for consultants, clients, and vendors. A professional graph where real projects come together.",
-		gradient: "from-amber-500/20 via-yellow-500/10",
+		image: "/assets/meeting-scheduling-ui-collage.png",
+		alt: "Scheduling and invitation UI for professional services projects",
+		imageFit: "object-contain",
 	},
 	{
 		title: "Agencies",
 		description:
 			"Collaborate with clients and vendors like you're in the same room. Instant sharing, precision permissions, frictionless teamwork.",
 		gradient: "from-pink-500/20 via-rose-500/10",
+		image: "/assets/live-broadcast-thumbnail-collage.png",
+		alt: "Live broadcast and recording controls for creative teams",
 	},
 	{
 		title: "Manufacturing",
 		description:
 			"Connect the shop floor to global suppliers and partners. Real-time updates with instant translation across languages.",
 		gradient: "from-slate-500/20 via-gray-500/10",
+		image: "/assets/mobile-meeting-scheduling-screens.png",
+		alt: "Mobile scheduling for distributed manufacturing teams",
+		imageFit: "object-contain",
 	},
 ];
 
@@ -49,6 +63,9 @@ const roleUseCases = [
 		description:
 			"From roadmap to launch, keep teams and external partners aligned. Where complexity transforms into focus.",
 		gradient: "from-indigo-500/20 via-blue-500/10",
+		image: "/assets/mobile-groups-teams-screens.png",
+		alt: "Mobile view of product team groups and threads",
+		imageFit: "object-contain",
 	},
 	{
 		title: "Engineering",
@@ -67,6 +84,9 @@ const roleUseCases = [
 		description:
 			"Close deals with real-time client collaboration. Partners, vendors, and customers united in deal rooms.",
 		gradient: "from-green-500/20 via-emerald-500/10",
+		image: "/assets/customer-support-call-collage.png",
+		alt: "Sales demo style video call with quick access actions",
+		imageFit: "object-contain",
 	},
 	{
 		title: "HR & People",
@@ -102,28 +122,57 @@ const itemVariants = {
 	},
 };
 
+type UseCaseCardProps = Readonly<{
+	title: string;
+	description: string;
+	gradient?: string;
+	image?: string;
+	imageFit?: string;
+	alt?: string;
+}>;
+
 function UseCaseCard({
 	title,
 	description,
 	gradient,
-}: {
-	title: string;
-	description: string;
-	gradient: string;
-}) {
+	image,
+	imageFit,
+	alt,
+}: UseCaseCardProps) {
 	return (
 		<motion.div variants={itemVariants}>
 			<GlowingBorderCard className="h-full">
-				{/* Image Placeholder */}
-				<div
-					className={`relative aspect-[16/10] w-full bg-gradient-to-br ${gradient} to-transparent flex items-center justify-center overflow-hidden rounded-t-xl`}
-				>
-					<div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:20px_20px] opacity-20" />
-					<motion.div
-						className="w-14 h-14 rounded-full border-2 border-primary/30 bg-primary/10 relative z-10"
-						whileHover={{ scale: 1.1 }}
-						transition={{ type: "spring", stiffness: 400, damping: 10 }}
-					/>
+				<div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-xl bg-muted">
+					{image ? (
+						<>
+							<Image
+								src={image}
+								alt={alt ?? title}
+								fill
+								className={imageFit ?? "object-cover"}
+								sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
+							/>
+							{gradient && (
+								<div
+									className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-70 mix-blend-multiply`}
+								/>
+							)}
+						</>
+					) : (
+						<>
+							{gradient && (
+								<div
+									className={`absolute inset-0 bg-gradient-to-br ${gradient} to-transparent`}
+								/>
+							)}
+							<div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:20px_20px] opacity-20" />
+							<motion.div
+								className="w-14 h-14 rounded-full border-2 border-primary/30 bg-primary/10 relative z-10 flex items-center justify-center"
+								whileHover={{ scale: 1.1 }}
+								transition={{ type: "spring", stiffness: 400, damping: 10 }}
+							/>
+						</>
+					)}
 				</div>
 				{/* Content */}
 				<div className="p-6 bg-card rounded-b-xl">
@@ -168,7 +217,8 @@ export default function UseCasesSection() {
 						Partners. Clients. Vendors. United.
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Whether you&apos;re connecting with internal teams or global partners, Melp adapts to your workflow.
+						Whether you&apos;re connecting with internal teams or global
+						partners, Melp adapts to your workflow.
 					</p>
 				</RevealOnScroll>
 
@@ -199,8 +249,8 @@ export default function UseCasesSection() {
 							viewport={{ once: true }}
 							className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
 						>
-							{industryUseCases.map((useCase, index) => (
-								<UseCaseCard key={index} {...useCase} />
+							{industryUseCases.map((useCase) => (
+								<UseCaseCard key={useCase.title} {...useCase} />
 							))}
 						</motion.div>
 					</TabsContent>
@@ -213,8 +263,8 @@ export default function UseCasesSection() {
 							viewport={{ once: true }}
 							className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
 						>
-							{roleUseCases.map((useCase, index) => (
-								<UseCaseCard key={index} {...useCase} />
+							{roleUseCases.map((useCase) => (
+								<UseCaseCard key={useCase.title} {...useCase} />
 							))}
 						</motion.div>
 					</TabsContent>

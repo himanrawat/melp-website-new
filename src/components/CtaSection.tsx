@@ -7,7 +7,7 @@ import { TextShimmer, MagneticButton } from "@/components/ui/aceternity";
 export default function CtaSection() {
 	return (
 		<motion.section
-			className="relative py-20 sm:py-32 bg-gradient-to-b from-muted/20 via-primary/[0.02] to-muted/20 overflow-hidden"
+			className="relative py-20 sm:py-32 bg-gradient-to-b from-muted/30 via-background to-muted/30 overflow-hidden"
 			initial={{ opacity: 0 }}
 			whileInView={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
@@ -26,7 +26,7 @@ export default function CtaSection() {
 					className="text-center"
 				>
 					<motion.span
-						className="inline-block text-sm font-medium text-primary mb-6 tracking-wider uppercase"
+						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
 						initial={{ opacity: 0 }}
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}

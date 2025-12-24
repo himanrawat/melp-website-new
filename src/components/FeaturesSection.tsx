@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import {
 	SpotlightCard,
 	RevealOnScroll,
@@ -13,36 +14,53 @@ const features = [
 		description:
 			"Clarity in every conversation through organized channels, instant translation, and structured collaboration.",
 		gradient: "from-violet-500/10 to-purple-500/10",
+		image: "/assets/mobile-chat-translation-screens.png",
+		alt: "Mobile messaging with instant translation overlay",
+		imageFit: "object-contain",
 	},
 	{
 		title: "Meetings & Calls",
 		description:
 			"Seamless transitions from chat to call with enterprise-grade video, immersive clarity, and dependable cross-organization meetings.",
 		gradient: "from-blue-500/10 to-cyan-500/10",
+		image: "/assets/laptop-mobile-video-call-ui.png",
+		alt: "Screen sharing during a multi-participant video call",
+		imageFit: "object-contain",
 	},
 	{
 		title: "Drive & Storage",
 		description:
 			"Centralized, secure cloud storage engineered for discoverability, governance, and effortless access.",
-		gradient: "from-amber-500/10 to-orange-500/10",
+		image: "/assets/drive2.png",
+		alt: "Laptop and mobile view of shared workspace content",
+		imageFit: "object-contain",
 	},
 	{
 		title: "Professional Networking",
 		description:
 			"A LinkedIn-like professional graph where vendors, agencies, clients, and partners collaborate on real projects.",
 		gradient: "from-emerald-500/10 to-green-500/10",
+		image: "/assets/mobile-network-contacts-screens.png",
+		alt: "Professional contacts list on mobile",
+		imageFit: "object-contain",
 	},
 	{
 		title: "AI & Automation",
 		description:
 			"Summaries, insights, workflows, translations, and intelligent routing that reduce noise and accelerate decisions.",
 		gradient: "from-pink-500/10 to-rose-500/10",
+		image: "/assets/bilingual-live-captions-call.png",
+		alt: "Live captions in multiple languages during a call",
+		imageFit: "object-cover",
 	},
 	{
 		title: "Admin & Security",
 		description:
 			"Identity, access, compliance, encryption, and governance for enterprises and public-sector organizations.",
 		gradient: "from-slate-500/10 to-gray-500/10",
+		image: "/assets/secure-remote-work-shield.png",
+		alt: "Secure remote work visual with shield frame",
+		imageFit: "object-contain",
 	},
 ];
 
@@ -84,24 +102,21 @@ export default function FeaturesSection() {
 					{features.map((feature, index) => (
 						<RevealOnScroll key={index} delay={index * 0.1}>
 							<SpotlightCard className="h-full group cursor-pointer">
-								{/* Image Placeholder - no icons */}
-								<div
-									className={`relative aspect-[4/3] w-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center overflow-hidden`}
-								>
-									{/* Animated background pattern */}
-									<div className="absolute inset-0 opacity-30">
-										<div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:24px_24px]" />
-									</div>
-
-									{/* Decorative element instead of icon */}
-									<motion.div
-										className="relative z-10 w-16 h-16 rounded-full border-2 border-primary/20 bg-primary/5"
-										whileHover={{ scale: 1.1 }}
-										transition={{ duration: 0.3 }}
+								<div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-xl">
+									<Image
+										src={feature.image}
+										alt={feature.alt}
+										fill
+										className={feature.imageFit ?? "object-cover"}
+										sizes="(min-width: 1024px) 380px, (min-width: 768px) 45vw, 100vw"
+										priority={index < 2}
 									/>
-
-									{/* Hover overlay */}
-									<motion.div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+									{feature.gradient && (
+										<div
+											className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} mix-blend-multiply`}
+										/>
+									)}
+									<motion.div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 								</div>
 
 								{/* Content */}

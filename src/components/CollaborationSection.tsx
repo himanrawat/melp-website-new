@@ -58,7 +58,7 @@ const TitleComponent = ({
 export default function CollaborationSection() {
 	return (
 		<motion.section
-			className="py-20 sm:py-32 bg-muted/20 relative overflow-hidden"
+			className="py-20 sm:py-32 bg-gradient-to-b from-muted/30 via-background to-muted/30 relative overflow-hidden"
 			initial={{ opacity: 0, y: 50 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			exit={{ opacity: 0, y: -50 }}
