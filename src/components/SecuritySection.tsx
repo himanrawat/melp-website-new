@@ -28,7 +28,7 @@ const certifications = [
 
 export default function SecuritySection() {
 	return (
-		<section className="py-16 sm:py-20 lg:py-24 bg-linear-to-b from-muted/30 via-background to-muted/30">
+		<section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-muted/30 via-background to-muted/30">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Main content area */}
 				<div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-16">
