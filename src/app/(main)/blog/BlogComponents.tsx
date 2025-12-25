@@ -273,7 +273,7 @@ export function FeaturedPost({ post }: { post: BlogPost }) {
 
 							{/* CTA */}
 							<div className="flex items-center gap-3 pt-4">
-								<Button className="rounded-md gap-2 shadow-lg transition-all duration-300 group-hover:shadow-primary/25 group-hover:shadow-xl">
+								<Button variant="brand-primary" className="rounded-md gap-2 shadow-lg transition-all duration-300 group-hover:shadow-primary/25 group-hover:shadow-xl">
 									Read Full Article
 									<ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
 								</Button>
@@ -472,7 +472,7 @@ export function EmptyState({ searchQuery }: { searchQuery: string }) {
 					: "We're working on fresh content. Check back soon for new articles!"}
 			</p>
 			{searchQuery && (
-				<Button asChild className="rounded-md shadow-lg">
+				<Button variant="brand-primary" asChild className="rounded-md shadow-lg">
 					<Link href="/blog">
 						<ChevronLeft className="h-4 w-4" />
 						Back to all articles

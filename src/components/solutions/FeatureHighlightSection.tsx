@@ -97,7 +97,7 @@ export default function FeatureHighlightSection({
 								transition={{ duration: 0.4, delay: 0.4 }}
 								className="mt-8"
 							>
-								<Button size="lg" asChild>
+								<Button variant="brand-primary" size="lg" asChild>
 									<Link href={ctaHref}>{ctaText}</Link>
 								</Button>
 							</motion.div>

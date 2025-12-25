@@ -348,7 +348,7 @@ export default function HelpCenterContent() {
 									</p>
 								</div>
 								<div className="flex flex-wrap gap-3">
-									<Button className="gap-2">
+									<Button variant="brand-primary" className="gap-2">
 										<Mail className="h-4 w-4" />
 										Email us
 									</Button>

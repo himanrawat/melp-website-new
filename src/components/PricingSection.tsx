@@ -148,6 +148,7 @@ export default function PricingSection() {
 
 										<MagneticButton className="w-full mt-5">
 											<Button
+												variant="brand-primary"
 												className="w-full cursor-pointer"
 												size="default"
 												asChild

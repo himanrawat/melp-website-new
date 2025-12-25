@@ -174,7 +174,7 @@ export default function PricingPage() {
 							</p>
 							<div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
 								<MagneticButton>
-									<Button size="lg" className="group cursor-pointer">
+									<Button variant="brand-primary" size="lg" className="group cursor-pointer">
 										Get started free
 									</Button>
 								</MagneticButton>

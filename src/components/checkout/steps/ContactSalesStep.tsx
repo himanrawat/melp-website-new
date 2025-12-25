@@ -172,7 +172,7 @@ export default function ContactSalesStep({
 							enterprise@melp.com
 						</a>
 					</p>
-					<Button asChild className="h-10">
+					<Button variant="brand-primary" asChild className="h-10">
 						<Link href="/">Return Home</Link>
 					</Button>
 				</motion.div>
@@ -371,6 +371,7 @@ export default function ContactSalesStep({
 				transition={{ delay: 0.15 }}
 			>
 				<Button
+					variant="brand-primary"
 					type="submit"
 					className="h-10 gap-2"
 					disabled={isSubmitting}

@@ -323,7 +323,7 @@ export default function SignInStep({
 				transition={{ delay: 0.25 }}
 				className="flex gap-2"
 			>
-				<Button type="submit" className="h-10">
+				<Button variant="brand-primary" type="submit" className="h-10">
 					Continue
 				</Button>
 				<Button

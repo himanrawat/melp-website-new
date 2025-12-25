@@ -112,8 +112,9 @@ export default function NotFound() {
 					>
 						<Link href="/">
 							<Button
+								variant="brand-primary"
 								size="lg"
-								className="px-8 h-12 bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 font-medium group"
+								className="px-8 h-12 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 font-medium group"
 							>
 								<ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
 								Back to Homepage

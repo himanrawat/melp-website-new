@@ -2,8 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useInView } from "motion/react";
 import { useRef, useEffect, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 import { useTheme } from "next-themes";
 import {
 	MagneticButton,
@@ -24,14 +25,60 @@ const clientLogos = [
 	"Wayne Ent",
 ];
 
+// Get optimal video source based on screen width and connection
+const getOptimalVideoSrc = () => {
+	if (typeof window === "undefined") return "/video/melp-720.mp4";
+
+	const width = window.innerWidth;
+	const connection = (
+		navigator as Navigator & { connection?: { effectiveType?: string } }
+	).connection;
+	const isSlowConnection =
+		connection?.effectiveType === "2g" ||
+		connection?.effectiveType === "slow-2g";
+
+	// Use lower quality for slow connections
+	if (isSlowConnection) return "/video/melp-480.mp4";
+
+	// Mobile: 480p, Tablet: 720p, Desktop: 1080p
+	if (width < 768) return "/video/melp-480.mp4";
+	if (width < 1280) return "/video/melp-720.mp4";
+	return "/video/melp-1080.mp4";
+};
+
 export default function HeroSection() {
 	const containerRef = useRef<HTMLDivElement>(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const videoContainerRef = useRef<HTMLDivElement>(null);
 	const { resolvedTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);
+	const [isMuted, setIsMuted] = useState(true);
+	const [videoSrc, setVideoSrc] = useState("/video/melp-720.mp4");
+
+	const isVideoInView = useInView(videoContainerRef, { amount: 0.5 });
 
 	useEffect(() => {
 		setMounted(true);
+		setVideoSrc(getOptimalVideoSrc());
 	}, []);
+
+	// Play/pause video based on scroll visibility
+	useEffect(() => {
+		if (videoRef.current) {
+			if (isVideoInView) {
+				videoRef.current.play();
+			} else {
+				videoRef.current.pause();
+			}
+		}
+	}, [isVideoInView]);
+
+	const toggleMute = () => {
+		if (videoRef.current) {
+			videoRef.current.muted = !videoRef.current.muted;
+			setIsMuted(!isMuted);
+		}
+	};
 
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
@@ -113,8 +160,8 @@ export default function HeroSection() {
 								"protected storage",
 								"confidence",
 							]}
-							encryptedClassName="text-primary/50"
-							revealedClassName="text-primary"
+							encryptedClassName="text-[#F14C2F]/50"
+							revealedClassName="bg-gradient-to-r from-[#F14C2F] to-[#FF0059] bg-clip-text text-transparent"
 							revealDelayMs={60}
 							displayDurationMs={3000}
 							className="font-bold"
@@ -149,6 +196,7 @@ export default function HeroSection() {
 					>
 						<MagneticButton>
 							<Button
+								variant="brand-primary"
 								size="lg"
 								className="px-8 h-12 text-base shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 group"
 							>
@@ -211,7 +259,7 @@ export default function HeroSection() {
 					</motion.div>
 
 					{/* Hero Image in Desktop Frame */}
-					<motion.div
+					{/* <motion.div
 						initial={{ opacity: 0, y: 60, scale: 0.95 }}
 						animate={{ opacity: 1, y: 0, scale: 1 }}
 						transition={{
@@ -222,14 +270,12 @@ export default function HeroSection() {
 						className="mt-20 w-full max-w-6xl"
 					>
 						<div className="relative aspect-[16/10] w-full rounded-2xl border border-border/50 bg-muted/30 shadow-2xl overflow-hidden">
-							{/* Decorative elements - Desktop window buttons */}
 							<div className="absolute top-4 left-4 flex gap-2 z-10">
 								<div className="w-3 h-3 rounded-full bg-red-400/60" />
 								<div className="w-3 h-3 rounded-full bg-yellow-400/60" />
 								<div className="w-3 h-3 rounded-full bg-green-400/60" />
 							</div>
 
-							{/* Hero Image */}
 							<img
 								src={
 									mounted && resolvedTheme === "dark"
@@ -240,33 +286,65 @@ export default function HeroSection() {
 								className="absolute inset-0 w-full h-full object-contain object-top pt-8"
 							/>
 						</div>
+					</motion.div> */}
+
+					{/* Video in Desktop Frame */}
+					<motion.div
+						ref={videoContainerRef}
+						initial={{ opacity: 0, y: 60, scale: 0.95 }}
+						animate={{ opacity: 1, y: 0, scale: 1 }}
+						transition={{
+							duration: 1,
+							delay: 0.7,
+							ease: [0.21, 0.47, 0.32, 0.98],
+						}}
+						className="relative z-20 mt-20 w-full max-w-6xl"
+					>
+						<div className="relative aspect-[16/10] w-full rounded-2xl border border-border/50 bg-muted/30 shadow-2xl overflow-hidden">
+							{/* Decorative elements - Desktop window buttons */}
+							<div className="absolute top-4 left-4 flex gap-2 z-10">
+								<div className="w-3 h-3 rounded-full bg-red-400/60" />
+								<div className="w-3 h-3 rounded-full bg-yellow-400/60" />
+								<div className="w-3 h-3 rounded-full bg-green-400/60" />
+							</div>
+
+							{/* Video */}
+							<video
+								ref={videoRef}
+								className="absolute inset-0 w-full h-full pt-8 object-fit object-top"
+								src={videoSrc}
+								poster={
+									mounted && resolvedTheme === "dark"
+										? "/dark-s1.png"
+										: "/S1.png"
+								}
+								preload="metadata"
+								muted
+								loop
+								playsInline
+							/>
+						</div>
 					</motion.div>
 				</div>
 			</motion.div>
 
-			{/* Scroll indicator */}
-			{/* <motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				transition={{ delay: 1.5 }}
-				className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
-			>
-				<span className="text-sm text-muted-foreground">Scroll to explore</span>
-				<motion.div
-					animate={{ y: [0, 8, 0] }}
-					transition={{ duration: 1.5, repeat: Infinity }}
-					className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2"
-				>
-					<motion.div
-						animate={{ y: [0, 12, 0] }}
-						transition={{ duration: 1.5, repeat: Infinity }}
-						className="w-1.5 h-1.5 rounded-full bg-primary"
-					/>
-				</motion.div>
-			</motion.div> */}
-
 			{/* Bottom fade */}
-			<div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+			<div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+
+			{/* Mute/Unmute Button */}
+			<div className="mx-auto max-w-7xl relative ">
+				<button
+					onClick={toggleMute}
+					className="absolute bottom-0 right-20 z-20 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border/50 hover:bg-background transition-colors cursor-pointer"
+					aria-label={isMuted ? "Unmute video" : "Mute video"}
+				>
+					{isMuted ? (
+						<VolumeX className="w-4 h-4 text-muted-foreground" />
+					) : (
+						<Volume2 className="w-4 h-4 text-foreground" />
+					)}
+				</button>
+			</div>
 		</section>
 	);
 }

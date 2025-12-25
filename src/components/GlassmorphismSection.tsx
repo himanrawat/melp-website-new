@@ -560,12 +560,9 @@ export default function GlassmorphismSection() {
 						</span>
 						<motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
 							<Button
+								variant="brand-primary"
 								size="lg"
-								className="rounded-full text-white shadow-lg border-0 relative overflow-hidden group"
-								style={{
-									background:
-										"linear-gradient(90deg, #F14C2F 0%, #FF0059 100%)",
-								}}
+								className="rounded-full shadow-lg border-0 relative overflow-hidden group"
 							>
 								<motion.span
 									className="absolute inset-0 opacity-0 group-hover:opacity-100"

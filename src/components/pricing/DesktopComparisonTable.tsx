@@ -82,13 +82,13 @@ export default function DesktopComparisonTable({
 
 									{/* CTA Button */}
 									<Button
-										variant={plan.popular ? "default" : "outline"}
+										variant={plan.popular ? "brand-primary" : "outline"}
 										size="sm"
 										className={`
 											w-full max-w-[140px] mt-1 text-sm font-medium cursor-pointer
 											${
 												plan.popular
-													? "bg-primary hover:bg-primary/90 text-primary-foreground"
+													? ""
 													: "border-border hover:bg-muted/50"
 											}
 										`}

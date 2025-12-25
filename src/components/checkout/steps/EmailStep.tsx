@@ -79,7 +79,7 @@ export default function EmailStep({
 				</div>
 
 				<div className="flex gap-2">
-					<Button onClick={handleConfirm} className="h-10 gap-2">
+					<Button variant="brand-primary" onClick={handleConfirm} className="h-10 gap-2">
 						Continue
 						<ArrowRight className="w-3.5 h-3.5" />
 					</Button>
@@ -153,7 +153,7 @@ export default function EmailStep({
 				transition={{ delay: 0.1 }}
 				className="flex gap-2"
 			>
-				<Button type="submit" className="h-10">
+				<Button variant="brand-primary" type="submit" className="h-10">
 					Continue
 				</Button>
 				<Button

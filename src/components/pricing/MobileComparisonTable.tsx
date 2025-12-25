@@ -162,7 +162,7 @@ export default function MobileComparisonTable({
 								</p>
 							</div>
 							<Button
-								variant={plan.popular ? "default" : "outline"}
+								variant={plan.popular ? "brand-primary" : "outline"}
 								size="sm"
 								className="shrink-0 text-sm font-medium cursor-pointer"
 								asChild

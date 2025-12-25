@@ -13,6 +13,7 @@ import PlatformsSection from "@/components/PlatformsSection";
 import IntegrationsSection from "@/components/IntegrationsSection";
 import SavingsCalculatorSection from "@/components/SavingsCalculatorSection";
 import StackingCardsSection from "@/components/StackingCardsSection";
+import FeatureShowcaseSection from "@/components/FeatureShowcaseSection";
 // import { ProductVisualShowcase } from "@/components/ProductVisual";
 // import GlassmorphismSection from "@/components/GlassmorphismSection";
 // import GlassmorphismSectionAlt from "@/components/GlassmorphismSectionAlt";
@@ -22,6 +23,7 @@ export default function Home() {
 		<div className="bg-background">
 			<HeroSection />
 			<FeaturesSection />
+			<FeatureShowcaseSection />
 			{/* <GlassmorphismSectionAlt /> */}
 			{/* <ProductVisualShowcase
 				title="Your Product Title"

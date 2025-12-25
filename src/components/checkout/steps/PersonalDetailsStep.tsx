@@ -411,7 +411,7 @@ export default function PersonalDetailsStep({
 				transition={{ delay: 0.3 }}
 				className="flex gap-2"
 			>
-				<Button type="submit" className="h-10">
+				<Button variant="brand-primary" type="submit" className="h-10">
 					Continue
 				</Button>
 				<Button

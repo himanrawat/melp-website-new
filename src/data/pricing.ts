@@ -31,7 +31,7 @@ export interface PricingPlan {
 	basePlan?: string; // e.g., "Free" - shows "Everything in Free, plus:"
 	features: PlanFeature[];
 	cta: string;
-	ctaVariant: "default" | "outline" | "secondary";
+	ctaVariant: "brand-primary" | "outline" | "secondary";
 }
 
 export interface ComparisonFeature {
@@ -95,7 +95,7 @@ export const individualPlans: PricingPlan[] = [
 			{ text: "9 months chat history", included: true },
 		],
 		cta: "Get started",
-		ctaVariant: "default",
+		ctaVariant: "brand-primary",
 	},
 ];
 
@@ -152,7 +152,7 @@ export const businessPlans: PricingPlan[] = [
 			{ text: "Priority support", included: true },
 		],
 		cta: "Get started",
-		ctaVariant: "default",
+		ctaVariant: "brand-primary",
 	},
 	{
 		id: "enterprise",

@@ -4,7 +4,14 @@ import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Play, FileText, FileSpreadsheet, File, ImageIcon } from "lucide-react";
+import {
+	Play,
+	FileText,
+	FileSpreadsheet,
+	File,
+	ImageIcon,
+	ArrowRight,
+} from "lucide-react";
 import { useState, useEffect } from "react";
 
 // Message types
@@ -482,7 +489,7 @@ function MobileChatBubble({
 			exit={{ opacity: 0, y: -10 }}
 			transition={{ duration: 0.4 }}
 		>
-			<div className="relative shrink-0">
+			<div className="relative shrink-0 h-9">
 				<div className="w-9 h-9 rounded-full overflow-hidden ring-2 ring-white dark:ring-neutral-700 shadow-md">
 					<Image
 						src={message.user.image}
@@ -492,7 +499,7 @@ function MobileChatBubble({
 						className="object-cover"
 					/>
 				</div>
-				<div className="absolute -bottom-0.5 -right-0.5 p-0.5 bg-white dark:bg-neutral-800 rounded-full">
+				<div className="absolute bottom-0 -right-0.5 p-0.5 bg-white dark:bg-neutral-800 rounded-full">
 					<span className="relative flex h-2 w-2">
 						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
 						<span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
@@ -646,29 +653,31 @@ export default function ChatHeroSection() {
 					>
 						<Button
 							size="lg"
-							className="btn-brand-gradient px-8 h-14 text-lg font-medium shadow-xl hover:shadow-2xl transition-all duration-300 rounded-full"
+							className="px-8 h-14 text-lg font-medium shadow-xl hover:shadow-2xl transition-all duration-300 w-56"
 							asChild
 						>
-							<Link href="/pricing">Start Your 14 Days Free Trial</Link>
+							<Link href="/pricing" className="inline-flex items-center gap-2">
+								Get Melp Free
+								<ArrowRight className="w-5 h-5" />
+							</Link>
 						</Button>
-					</motion.div>
-
-					{/* Watch intro link */}
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ duration: 0.6, delay: 0.5 }}
-						className="mt-8"
-					>
-						<Link
-							href="#demo"
-							className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors group"
+						<Button
+							variant="brand-secondary"
+							size="lg"
+							className="px-8 h-14 text-lg font-medium shadow-xl hover:shadow-2xl transition-all duration-300"
+							asChild
 						>
-							<span className="w-10 h-10 rounded-full border-2 border-neutral-300 dark:border-neutral-700 group-hover:border-neutral-400 dark:group-hover:border-neutral-500 flex items-center justify-center transition-colors">
-								<Play className="w-4 h-4 ml-0.5" />
-							</span>
-							<span className="text-sm font-medium">Watch 1 min intro</span>
-						</Link>
+							<Link href="/demo" className="inline-flex items-center gap-2">
+								<Image
+									src="/logo-short.svg"
+									alt="Melp"
+									width={24}
+									height={24}
+									className=""
+								/>
+								Request a Demo
+							</Link>
+						</Button>
 					</motion.div>
 
 					{/* Product Image */}
@@ -680,10 +689,21 @@ export default function ChatHeroSection() {
 							delay: 0.6,
 							ease: [0.21, 0.47, 0.32, 0.98],
 						}}
-						className="mt-16 relative"
+						className="mt-8 mb-20 relative"
 					>
-						{/* Light mode image */}
-						<div className="block dark:hidden">
+						{/* Mobile image */}
+						<div className="block lg:hidden">
+							<Image
+								src="/mobile-message.jpeg"
+								alt="Melp Messages Interface"
+								width={400}
+								height={800}
+								className="rounded-xl shadow-2xl border border-neutral-200/50 dark:border-neutral-800/50 mx-auto w-1/2"
+								priority
+							/>
+						</div>
+						{/* Desktop - Light mode image */}
+						<div className="hidden lg:block dark:lg:hidden">
 							<Image
 								src="/MelpApp-Messages-light.png"
 								alt="Melp Messages Interface"
@@ -693,8 +713,8 @@ export default function ChatHeroSection() {
 								priority
 							/>
 						</div>
-						{/* Dark mode image */}
-						<div className="hidden dark:block">
+						{/* Desktop - Dark mode image */}
+						<div className="hidden dark:lg:block">
 							<Image
 								src="/MelpApp-Messages-dark.png"
 								alt="Melp Messages Interface"

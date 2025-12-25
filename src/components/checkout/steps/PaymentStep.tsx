@@ -440,7 +440,7 @@ export default function PaymentStep({
 				transition={{ delay: 0.2 }}
 				className="flex gap-2"
 			>
-				<Button type="submit" disabled={isProcessing} className="h-10 gap-2">
+				<Button variant="brand-primary" type="submit" disabled={isProcessing} className="h-10 gap-2">
 					{isProcessing ? (
 						<>
 							<Loader2 className="w-4 h-4 animate-spin" />

@@ -124,13 +124,26 @@
   }
 }
 
-@layer components {
-  .btn-brand-gradient {
-    background: linear-gradient(90deg, #F14C2F 0%, #FF0059 100%);
-    color: #fff;
-    border-radius: var(--radius-md);
-    border-top-left-radius: 0 !important;
-  }
+.btn-brand-gradient {
+  background: linear-gradient(90deg, #F14C2F 0%, #FF0059 100%) !important;
+  color: #fff !important;
+  border-radius: var(--radius-4xl) !important;
+  border-top-left-radius: 0 !important;
+}
+
+.btn-brand-secondary {
+  background: var(--color-white)!important;
+  color: var(--color-neutral-900) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-4xl) !important;
+  border-top-left-radius: 0 !important;
+}
+
+.btn-neutral {
+  background: var(--muted) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
 }
 
 /* Hide scrollbar utility */

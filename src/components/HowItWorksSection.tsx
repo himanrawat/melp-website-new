@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import {
 	MessageSquare,
 	Users,
@@ -127,10 +128,10 @@ export default function HowItWorksSection() {
 								viewport={{ once: false }}
 								transition={{ delay: 0.5 }}
 							>
-								<button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-medium transition-colors shadow-sm cursor-pointer">
+								<Button variant="brand-primary" className="px-5 py-2.5 text-sm shadow-sm">
 									Get started free
-								</button>
-								<button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-muted hover:bg-muted/80 border border-border text-foreground text-sm font-medium transition-colors cursor-pointer">
+								</Button>
+								<Button variant="brand-secondary" className="px-5 py-2.5 text-sm">
 									<Image
 										src="/logo-short.svg"
 										alt="Melp"
@@ -138,7 +139,7 @@ export default function HowItWorksSection() {
 										height={16}
 									/>
 									Download Melp
-								</button>
+								</Button>
 							</motion.div>
 						</div>
 

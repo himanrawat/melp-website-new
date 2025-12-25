@@ -261,7 +261,7 @@ export default function SubscriptionStep({
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ delay: 0.25 }}
 			>
-				<Button type="submit" size="default" className="h-10">
+				<Button variant="brand-primary" type="submit" size="default" className="h-10">
 					{isEnterprisePlan ? "Contact Sales" : "Continue"}
 				</Button>
 			</motion.div>

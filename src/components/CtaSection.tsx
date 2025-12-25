@@ -56,7 +56,7 @@ export default function CtaSection() {
 						className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
 					>
 						<MagneticButton>
-							<Button size="lg" className="px-8 h-12 text-base group">
+							<Button variant="brand-primary" size="lg" className="px-8 h-12 text-base group">
 								Start for Free
 								<motion.svg
 									className="ml-2 w-4 h-4"

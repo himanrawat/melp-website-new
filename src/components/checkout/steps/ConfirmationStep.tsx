@@ -182,7 +182,7 @@ export default function ConfirmationStep({
 				transition={{ delay: 0.6 }}
 				className="flex gap-2"
 			>
-				<Button asChild className="h-10">
+				<Button variant="brand-primary" asChild className="h-10">
 					<Link href="/">Go to Dashboard</Link>
 				</Button>
 				<Button variant="outline" asChild className="h-10">

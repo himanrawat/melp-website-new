@@ -752,10 +752,11 @@ function NavDropdown({
 														<Button
 															type="submit"
 															size="sm"
+															variant="brand-primary"
 															className={`w-full h-9 font-medium ${
 																isDarkRoute
 																	? "bg-purple-600 hover:bg-purple-700"
-																	: "bg-primary hover:bg-primary/90"
+																	: ""
 															}`}
 														>
 															{item.inputSection.buttonText}
@@ -802,18 +803,16 @@ function NavDropdown({
 														</p>
 													</div>
 													<Link href={item.featured.href} onClick={onClose}>
-														<motion.button
+														<Button
 															className={`inline-flex items-center gap-2 text-sm font-medium transition-colors ${
 																isDarkRoute
 																	? "text-purple-400 hover:text-purple-300"
 																	: "text-primary hover:text-primary/80"
 															}`}
-															whileHover={{ x: 4 }}
-															transition={{ type: "spring", stiffness: 400 }}
 														>
 															{item.featured.cta}
 															<ArrowRight className="w-4 h-4" />
-														</motion.button>
+														</Button>
 													</Link>
 												</div>
 											)}
@@ -1088,8 +1087,9 @@ function MobileMenu({ isOpen, onClose, isDarkRoute = false }: MobileMenuProps) {
 									className={`w-full h-11 rounded-xl text-[14px] font-medium shadow-lg ${
 										isDarkRoute
 											? "bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 shadow-purple-500/25"
-											: "bg-primary hover:bg-primary/90 shadow-primary/25"
+											: "shadow-primary/25"
 									}`}
+									variant="brand-primary"
 								>
 									Get Started Free
 								</Button>
@@ -1231,20 +1231,21 @@ export default function Header() {
 						{/* Desktop CTA */}
 						<div className="hidden lg:flex items-center gap-4">
 							<Link href="/login" onClick={handleDropdownClose}>
-								<motion.span
+								<Button
+									variant="ghost"
 									className={`text-sm font-medium transition-colors cursor-pointer ${
 										isDarkRoute
 											? "text-gray-300 hover:text-white"
 											: "text-muted-foreground hover:text-foreground"
 									}`}
-									whileHover={{ y: -1 }}
 								>
 									Sign in
-								</motion.span>
+								</Button>
 							</Link>
 							<Link href="/signup" onClick={handleDropdownClose}>
 								<MagneticButton>
 									<Button
+										variant="brand-primary"
 										size="sm"
 										className="px-5 h-9 shadow-lg transition-all duration-300 font-medium group btn-brand-gradient hover:brightness-105"
 									>
