@@ -220,11 +220,11 @@ function FileAttachmentUI({ file }: { file: FileAttachment }) {
 	);
 }
 
-// Image preview component
+// Image preview component - matches file attachment width behavior
 function ImagePreview({ imageUrl, alt }: { imageUrl: string; alt: string }) {
 	return (
 		<div className="mt-2 rounded-lg overflow-hidden border border-neutral-200/50 dark:border-neutral-600/50">
-			<div className="relative w-full h-24 bg-neutral-100 dark:bg-neutral-700">
+			<div className="relative w-48 h-24 bg-neutral-100 dark:bg-neutral-700">
 				<Image src={imageUrl} alt={alt} fill className="object-cover" />
 				<div className="absolute bottom-1 right-1 flex items-center gap-1 px-1.5 py-0.5 rounded bg-black/50 backdrop-blur-sm">
 					<ImageIcon className="w-3 h-3 text-white" />
@@ -414,12 +414,11 @@ function ChatBubble({
 				<div
 					className={`
 						relative px-4 py-3
-						bg-white/60 dark:bg-neutral-800/70
+						bg-white/40 dark:bg-neutral-800/50
 						backdrop-blur-xl backdrop-saturate-150
-						border border-white/40 dark:border-neutral-600/40
-						shadow-[0_8px_32px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.4)]
-						dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)]
-						backdrop-filter backdrop-blur-sm bg-opacity-10
+						border border-white/50 dark:border-neutral-500/30
+						shadow-[0_8px_32px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.5)]
+						dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]
 						${
 							isLeft
 								? "rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-sm"
@@ -517,11 +516,11 @@ function MobileChatBubble({
 					className={`
 						px-3 py-2
 						${needsFixedWidth ? "w-[220px]" : "max-w-[220px]"}
-						bg-white/60 dark:bg-neutral-800/70
+						bg-white/10 dark:bg-neutral-800/50
 						backdrop-blur-xl backdrop-saturate-150
-						border border-white/40 dark:border-neutral-600/40
-						shadow-[0_4px_16px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.4)]
-						dark:shadow-[0_4px_16px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]
+						border border-white/50 dark:border-neutral-500/30
+						shadow-[0_4px_16px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.5)]
+						dark:shadow-[0_4px_16px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.1)]
 						${
 							isLeft
 								? "rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-sm"
