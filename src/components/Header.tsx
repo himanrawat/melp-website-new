@@ -1246,11 +1246,7 @@ export default function Header() {
 								<MagneticButton>
 									<Button
 										size="sm"
-										className={`px-5 h-9 shadow-lg transition-all duration-300 font-medium group ${
-											isDarkRoute
-												? "bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 shadow-purple-500/20"
-												: "bg-primary hover:bg-primary/80 shadow-primary/20 hover:shadow-primary/30"
-										}`}
+										className="px-5 h-9 shadow-lg transition-all duration-300 font-medium group btn-brand-gradient hover:brightness-105"
 									>
 										<span className="flex items-center gap-1.5">
 											Start for free

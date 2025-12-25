@@ -124,6 +124,15 @@
   }
 }
 
+@layer components {
+  .btn-brand-gradient {
+    background: linear-gradient(90deg, #F14C2F 0%, #FF0059 100%);
+    color: #fff;
+    border-radius: var(--radius-md);
+    border-top-left-radius: 0 !important;
+  }
+}
+
 /* Hide scrollbar utility */
 .scrollbar-hide {
   -ms-overflow-style: none;
