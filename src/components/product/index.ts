@@ -4,3 +4,4 @@ export { default as ProductBenefits } from "./ProductBenefits";
 export { default as ProductUseCases } from "./ProductUseCases";
 export { default as ProductCTA } from "./ProductCTA";
 export { default as ProductHowItWorks } from "./ProductHowItWorks";
+export { default as ChatHeroSection } from "./ChatHeroSection";

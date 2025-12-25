@@ -1,7 +1,8 @@
 "use client";
 
 import {
-	ProductHero,
+	// ProductHero, // Backup - original hero component
+	ChatHeroSection,
 	ProductFeatures,
 	ProductBenefits,
 	ProductUseCases,
@@ -105,6 +106,9 @@ const useCases = [
 export default function ChatPage() {
 	return (
 		<div className="bg-background">
+			<ChatHeroSection />
+
+			{/* Backup - Original ProductHero usage:
 			<ProductHero
 				icon={MessageCircle}
 				badge="Real-Time Communication"
@@ -121,6 +125,7 @@ export default function ChatPage() {
 				secondaryCta={{ text: "Watch Demo", href: "#demo" }}
 				gradient="from-blue-500/20 via-blue-500/5 to-transparent"
 			/>
+			*/}
 
 			<ProductFeatures
 				label="What Makes It Powerful"

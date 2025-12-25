@@ -34,7 +34,8 @@
       "Bash(do)",
       "Bash(echo:*)",
       "Bash(done)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(npx tsc --noEmit --skipLibCheck)"
     ]
   }
 }
