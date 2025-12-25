@@ -101,12 +101,8 @@ function StackingCard({
 	// First card starts visible, others slide up from below
 	const y = useTransform(
 		progress,
-		index === 0
-			? [0, cardEnd]
-			: [cardStart - 0.05, cardStart + 0.1],
-		index === 0
-			? [0, 0]
-			: [600, 0],
+		index === 0 ? [0, cardEnd] : [cardStart - 0.05, cardStart + 0.1],
+		index === 0 ? [0, 0] : [600, 0],
 		{ clamp: true }
 	);
 
@@ -310,7 +306,7 @@ export default function StackingCardsSection() {
 			style={{ height: `${scrollHeight}vh` }}
 		>
 			{/* Header - Scrolls away before cards start stacking */}
-			<div className="h-screen flex items-center justify-center px-4">
+			<div className="flex items-center justify-center px-4">
 				<div className="text-center max-w-3xl mx-auto">
 					<motion.p
 						initial={{ opacity: 0, y: 20 }}
