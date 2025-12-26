@@ -7,6 +7,8 @@ import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
 import { motion } from "motion/react";
 import { API_ENDPOINTS, logApi } from "@/lib/api";
+import { ensureSessionContext, encryptWithSessionKey } from "@/lib/session";
+import { ensureSessionId } from "@/lib/session";
 
 interface EmailStepProps {
 	formData: CheckoutFormData;
@@ -95,14 +97,22 @@ export default function EmailStep({
 
 		setIsSubmitting(true);
 		try {
+			const { sessionId, keyBytes } = await ensureSessionContext(formData.email);
+			if (sessionId !== formData.sessionId) {
+				updateFormData({ sessionId });
+			}
+
+			const encryptedEmail = encryptWithSessionKey(formData.email, keyBytes);
+			const encryptedPassword = encryptWithSessionKey(formData.password || " ", keyBytes);
+
 			// Check if email exists
-			logApi("check email request", { email: formData.email, sessionId: formData.sessionId });
+			logApi("check email request", { email: formData.email, sessionId });
 			const existsRes = await fetch(API_ENDPOINTS.checkEmail, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					email: formData.email,
-					sessionid: formData.sessionId,
+					email: encryptedEmail,
+					sessionid: sessionId,
 				}),
 			});
 			const existsData = await existsRes.json();
@@ -115,15 +125,15 @@ export default function EmailStep({
 			}
 
 			// New user: send OTP
-			logApi("send OTP request", { email: formData.email, sessionId: formData.sessionId });
+			logApi("send OTP request", { email: formData.email, sessionId });
 			await fetch(API_ENDPOINTS.melpSignup, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					email: formData.email,
-					password: formData.password,
+					email: encryptedEmail,
+					password: encryptedPassword,
 					devicetype: "web",
-					sessionid: formData.sessionId,
+					sessionid: sessionId,
 					fullname: `${formData.firstName} ${formData.middleName || ""} ${formData.surname}`.trim(),
 					language: "en",
 				}),

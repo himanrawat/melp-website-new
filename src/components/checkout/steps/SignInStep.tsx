@@ -9,6 +9,7 @@ import { CheckoutFormData } from "@/app/checkout/page";
 import { PricingPlan } from "@/data/pricing";
 import { motion, AnimatePresence } from "motion/react";
 import { API_ENDPOINTS, logApi } from "@/lib/api";
+import { ensureSessionContext, encryptWithSessionKey } from "@/lib/session";
 
 interface SignInStepProps {
 	formData: CheckoutFormData;
@@ -105,6 +106,14 @@ export default function SignInStep({
 
 		setIsSubmitting(true);
 		try {
+			const { sessionId, keyBytes } = await ensureSessionContext(formData.email);
+			if (sessionId !== formData.sessionId) {
+				updateFormData({ sessionId });
+			}
+
+			const encryptedEmail = encryptWithSessionKey(formData.email, keyBytes);
+			const encryptedPassword = encryptWithSessionKey(formData.password, keyBytes);
+
 			logApi("verify signup request", {
 				email: formData.email,
 				sessionId: formData.sessionId,
@@ -116,10 +125,10 @@ export default function SignInStep({
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
-					email: formData.email,
-					password: formData.password,
+					email: encryptedEmail,
+					password: encryptedPassword,
 					devicetype: "web",
-					sessionid: formData.sessionId,
+					sessionid: sessionId,
 					fullname: `${formData.firstName} ${formData.middleName || ""} ${formData.surname}`.trim(),
 					language: "en",
 					otp: formData.otp.replace(/\D/g, ""),

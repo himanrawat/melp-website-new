@@ -172,8 +172,9 @@ function CheckoutContent() {
 	useEffect(() => {
 		setFormData((prev) => ({
 			...prev,
-			sessionId: prev.sessionId || (typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : Date.now().toString()),
-			adminId: prev.adminId || (typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-admin`),
+			adminId:
+				prev.adminId ||
+				(typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-admin`),
 		}));
 	}, []);
 
