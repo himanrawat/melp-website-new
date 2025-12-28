@@ -10,6 +10,7 @@ import {
 } from "motion/react";
 import { Check, Zap, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 // Animated counter component
 function AnimatedNumber({
@@ -378,11 +379,7 @@ export default function SavingsCalculatorSection() {
 							</div>
 
 							{/* CTA */}
-							<motion.button
-								whileHover={{ scale: 1.01 }}
-								whileTap={{ scale: 0.99 }}
-								className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-foreground text-background font-medium transition-opacity hover:opacity-90"
-							>
+							<Button variant="brand-dark" size="lg" className="w-fit mx-auto">
 								<Image
 									src="/logo-short.svg"
 									alt="Melp"
@@ -391,7 +388,7 @@ export default function SavingsCalculatorSection() {
 								/>
 								Download Melp
 								<ChevronRight className="w-4 h-4" />
-							</motion.button>
+							</Button>
 
 							<p className="text-xs text-center text-muted-foreground mt-4">
 								Free 14-day trial • No credit card required

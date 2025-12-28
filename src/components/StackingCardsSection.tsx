@@ -10,7 +10,9 @@ import {
 	Globe,
 	Shield,
 	Zap,
+	ArrowRight,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const cards = [
 	{
@@ -168,26 +170,10 @@ function StackingCard({
 								))}
 							</ul>
 
-							<motion.button
-								whileHover={{ scale: 1.02 }}
-								whileTap={{ scale: 0.98 }}
-								className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-foreground text-background font-medium text-sm transition-opacity hover:opacity-90"
-							>
+							<Button variant="brand-dark" size="lg" className="group">
 								Learn more
-								<svg
-									className="w-4 h-4"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="M17 8l4 4m0 0l-4 4m4-4H3"
-									/>
-								</svg>
-							</motion.button>
+								<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+							</Button>
 						</div>
 
 						{/* Right Visual */}
