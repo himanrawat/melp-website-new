@@ -224,11 +224,11 @@ export default function HelpCenterContent() {
 											<ul className="divide-y divide-border/80">
 												{filteredTopics.map((topic) => (
 													<li key={`${topic.category}-${topic.label}`}>
-														<button
-															type="button"
+														<Button
+															variant="brand-dark"
 															onMouseDown={(e) => e.preventDefault()}
 															onClick={() => handleNavigate(topic.href)}
-															className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm transition-colors hover:bg-muted/50"
+															className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm h-auto justify-start"
 														>
 															<span className="font-medium text-foreground">
 																{topic.label}
@@ -236,7 +236,7 @@ export default function HelpCenterContent() {
 															<span className="text-xs text-muted-foreground">
 																in {topic.category}
 															</span>
-														</button>
+														</Button>
 													</li>
 												))}
 											</ul>
@@ -352,7 +352,7 @@ export default function HelpCenterContent() {
 										<Mail className="h-4 w-4" />
 										Email us
 									</Button>
-									<Button variant="outline" className="gap-2">
+									<Button variant="brand-dark" className="gap-2">
 										<Headphones className="h-4 w-4" />
 										Contact support
 									</Button>

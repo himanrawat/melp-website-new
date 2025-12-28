@@ -19,6 +19,7 @@ import {
 	Subtitles,
 	Sparkles,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const productLinks = [
 	{ name: "Chat", href: "/product/chat", icon: MessageCircle },
@@ -85,14 +86,17 @@ export default function DarkLayout({ children }: DarkLayoutProps) {
 								onMouseEnter={() => setIsProductMenuOpen(true)}
 								onMouseLeave={() => setIsProductMenuOpen(false)}
 							>
-								<button className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors">
-									Product
-									<ChevronDown
-										className={`w-4 h-4 transition-transform ${
-											isProductMenuOpen ? "rotate-180" : ""
-										}`}
-									/>
-								</button>
+								<Button
+								variant="brand-dark"
+								className="flex items-center gap-1 text-gray-300 hover:text-white"
+							>
+								Product
+								<ChevronDown
+									className={`w-4 h-4 transition-transform ${
+										isProductMenuOpen ? "rotate-180" : ""
+									}`}
+								/>
+							</Button>
 
 								{/* Dropdown Menu */}
 								{isProductMenuOpen && (
@@ -130,23 +134,19 @@ export default function DarkLayout({ children }: DarkLayoutProps) {
 
 						{/* CTA Buttons */}
 						<div className="hidden md:flex items-center gap-4">
-							<Link
-								href="#"
-								className="text-gray-300 hover:text-white transition-colors"
-							>
-								Sign In
-							</Link>
-							<Link
-								href="#"
-								className="px-4 py-2 bg-gradient-to-r from-red-500 to-orange-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
-							>
-								Get Started
-							</Link>
+							<Button variant="brand-dark" asChild>
+								<Link href="#">Sign In</Link>
+							</Button>
+							<Button variant="brand-primary" asChild>
+								<Link href="#">Get Started</Link>
+							</Button>
 						</div>
 
 						{/* Mobile Menu Button */}
-						<button
-							className="md:hidden text-white"
+						<Button
+							variant="brand-dark"
+							size="icon"
+							className="md:hidden"
 							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 						>
 							{isMobileMenuOpen ? (
@@ -154,7 +154,7 @@ export default function DarkLayout({ children }: DarkLayoutProps) {
 							) : (
 								<Menu className="w-6 h-6" />
 							)}
-						</button>
+						</Button>
 					</div>
 
 					{/* Mobile Menu */}
@@ -182,15 +182,12 @@ export default function DarkLayout({ children }: DarkLayoutProps) {
 									</Link>
 								))}
 								<div className="flex flex-col gap-2 mt-4">
-									<Link href="#" className="text-gray-300 hover:text-white">
-										Sign In
-									</Link>
-									<Link
-										href="#"
-										className="px-4 py-2 bg-gradient-to-r from-red-500 to-orange-500 text-white font-medium rounded-lg text-center"
-									>
-										Get Started
-									</Link>
+									<Button variant="brand-dark" asChild>
+										<Link href="#">Sign In</Link>
+									</Button>
+									<Button variant="brand-primary" asChild>
+										<Link href="#">Get Started</Link>
+									</Button>
 								</div>
 							</div>
 						</motion.div>

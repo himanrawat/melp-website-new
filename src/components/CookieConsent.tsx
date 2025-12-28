@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Cookie, X, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 type CookiePreferences = {
 	necessary: boolean;
@@ -163,33 +164,40 @@ export default function CookieConsent() {
 							<div className="flex gap-2">
 								{showSettings ? (
 									<>
-										<button
+										<Button
+											variant="brand-primary"
+											size="sm"
 											onClick={handleSave}
-											className="flex-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 text-xs font-medium transition-colors"
+											className="flex-1"
 										>
 											Save
-										</button>
+										</Button>
 										<button
 											onClick={() => setShowSettings(false)}
-											className="flex-1 px-3 py-1.5 rounded-lg bg-muted hover:bg-muted/80 border border-border text-foreground text-xs font-medium transition-colors"
+											className="flex-1 px-3 py-1.5 rounded-lg hover:bg-muted/80 hover:border 
+											border-border text-foreground text-xs font-medium transition-colors cursor-pointer"
 										>
 											Cancel
 										</button>
 									</>
 								) : (
 									<>
-										<button
+										<Button
+											variant="brand-primary"
+											size="sm"
 											onClick={handleAccept}
-											className="flex-1 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 text-xs font-medium transition-colors"
+											className="flex-1"
 										>
 											Accept
-										</button>
-										<button
+										</Button>
+										<Button
+											variant="default"
+											size="sm"
 											onClick={handleDecline}
-											className="flex-1 px-3 py-1.5 rounded-lg bg-muted hover:bg-muted/80 border border-border text-foreground text-xs font-medium transition-colors"
+											className="flex-1"
 										>
 											Decline
-										</button>
+										</Button>
 										<button
 											onClick={() => setShowSettings(true)}
 											className="px-2 py-1.5 rounded-lg hover:bg-muted border border-border text-muted-foreground hover:text-foreground text-xs transition-colors"

@@ -326,19 +326,20 @@ function HeroSection() {
 						{/* Feature Pills */}
 						<div className="mt-10 flex flex-wrap gap-2 justify-center lg:justify-start">
 							{heroFeatures.map((feature, index) => (
-								<button
+								<Button
 									key={feature.id}
+									variant={index === activeIndex ? "brand-primary" : "brand-dark"}
 									onClick={() => setActiveIndex(index)}
 									onMouseEnter={() => setIsHovered(true)}
 									onMouseLeave={() => setIsHovered(false)}
-									className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+									className={`px-4 py-2 rounded-full text-sm font-medium ${
 										index === activeIndex
 											? "bg-white text-black"
 											: "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
 									}`}
 								>
 									{feature.title}
-								</button>
+								</Button>
 							))}
 						</div>
 					</div>

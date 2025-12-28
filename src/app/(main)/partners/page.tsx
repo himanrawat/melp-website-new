@@ -19,12 +19,7 @@ import {
 	FileText,
 	X,
 } from "lucide-react";
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -484,8 +479,8 @@ export default function PartnersPage() {
 									{index === 0
 										? "Own the experience"
 										: index === 1
-											? "Get to market faster"
-											: "Grow your value"}
+										? "Get to market faster"
+										: "Grow your value"}
 								</p>
 								<h3 className="text-lg font-semibold text-foreground">
 									{prop.title}
@@ -718,7 +713,7 @@ export default function PartnersPage() {
 								</div>
 								<button
 									onClick={closeModal}
-									className="p-2 rounded-lg hover:bg-muted transition-colors"
+									className="p-2 rounded-lg transition-colors cursor-pointer"
 								>
 									<X className="w-5 h-5 text-muted-foreground" />
 								</button>
