@@ -1,16 +1,13 @@
 import { Metadata } from "next";
-import CompareHero from "@/components/compare/CompareHero";
-import CompareWhySwitching from "@/components/compare/CompareWhySwitching";
-import CompareFeatureTable from "@/components/compare/CompareFeatureTable";
-import CompareDifferentiators from "@/components/compare/CompareDifferentiators";
-import CompareTestimonials from "@/components/compare/CompareTestimonials";
-import CompareFAQ from "@/components/compare/CompareFAQ";
-import CompareCTA from "@/components/compare/CompareCTA";
+import {
+	AlternativePageTemplate,
+	microsoftTeamsConfig,
+} from "@/components/alternative";
 
 export const metadata: Metadata = {
-	title: "Best Microsoft Teams Alternative | Melp App",
+	title: "Best Microsoft Teams Alternative for Seamless Collaboration | Melp App",
 	description:
-		"Looking for the best Microsoft Teams alternative or a free Teams alternative? Melp is a powerful collaboration tool and digital workplace platform that combines chat, video conferencing, calendar, and team collaboration — all in one app.",
+		"Looking for a Microsoft Teams alternative? Melp App simplifies team communication with structured workspaces, secure messaging, and AI-powered productivity.",
 	keywords: [
 		"Microsoft Teams alternative",
 		"teams alternative",
@@ -24,38 +21,15 @@ export const metadata: Metadata = {
 		"digital workplace platform",
 	],
 	openGraph: {
-		title: "Best Microsoft Teams Alternative | Melp App",
+		title: "Best Microsoft Teams Alternative for Seamless Collaboration | Melp App",
 		description:
-			"Looking for the best Microsoft Teams alternative? Melp combines chat, video conferencing, calendar, and team collaboration — all in one app.",
+			"Looking for a Microsoft Teams alternative? Melp App simplifies team communication with structured workspaces, secure messaging, and AI-powered productivity.",
 		url: "https://melp.us/microsoft-teams-alternative",
 		siteName: "Melp",
 		type: "website",
 	},
 };
 
-export default function CompareMicrosoftTeamsPage() {
-	return (
-		<div className="bg-background">
-			{/* Hero with VS Logo Treatment */}
-			<CompareHero />
-
-			{/* Why Businesses Are Switching */}
-			<CompareWhySwitching />
-
-			{/* Feature Comparison Table */}
-			<CompareFeatureTable />
-
-			{/* Key Differentiators */}
-			<CompareDifferentiators />
-
-			{/* Testimonials & Social Proof */}
-			<CompareTestimonials />
-
-			{/* FAQ Section */}
-			<CompareFAQ />
-
-			{/* CTA Section */}
-			<CompareCTA />
-		</div>
-	);
+export default function MicrosoftTeamsAlternativePage() {
+	return <AlternativePageTemplate config={microsoftTeamsConfig} />;
 }

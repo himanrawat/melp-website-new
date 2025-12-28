@@ -43,7 +43,8 @@
       "Bash(Out-String)",
       "Bash(cmd /c \"powershell -Command \"\"Add-Type -AssemblyName System.Drawing; $video = ''c:\\\\Users\\\\HimanshuRawat\\\\OneDrive - SysMind Tech Private Limited\\\\Desktop\\\\work\\\\melp\\\\public\\\\video\\\\message.mp4''; $wmp = New-Object -ComObject wmplayer.ocx; $media = $wmp.newMedia\\($video\\); Write-Host ''Width:'' $media.getItemInfo\\(''WM/VideoWidth''\\); Write-Host ''Height:'' $media.getItemInfo\\(''WM/VideoHeight''\\)\"\"\")",
       "Bash(mkdir:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(rm:*)"
     ]
   }
 }

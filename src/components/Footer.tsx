@@ -23,8 +23,8 @@ const footerLinks = {
 	Alternatives: [
 		{ label: "Microsoft Teams Alternative", href: "/microsoft-teams-alternative" },
 		{ label: "Slack Alternative", href: "#" },
-		{ label: "Zoom Alternative", href: "#" },
-		{ label: "Google Meet Alternative", href: "#" },
+		{ label: "Zoom Alternative", href: "/zoom-alternative" },
+		{ label: "Google Meet Alternative", href: "/google-meet-alternative" },
 		{ label: "Discord Alternative", href: "#" },
 	],
 	Compare: [
