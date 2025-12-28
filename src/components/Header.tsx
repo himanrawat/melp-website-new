@@ -262,24 +262,24 @@ const navItems: NavItemConfig[] = [
 						description: "Get support and find answers",
 						icon: HelpCircle,
 					},
-					{
-						label: "Success Stories",
-						href: "/resources/success-stories",
-						description: "See how teams succeed with Melp",
-						icon: BarChart3,
-					},
+					// {
+					// 	label: "Success Stories",
+					// 	href: "/resources/success-stories",
+					// 	description: "See how teams succeed with Melp",
+					// 	icon: BarChart3,
+					// },
 					{
 						label: "Blog",
 						href: "/resources/blog",
 						description: "Insights and industry trends",
 						icon: Newspaper,
 					},
-					{
-						label: "Webinars",
-						href: "/resources/webinars",
-						description: "Live and on-demand sessions",
-						icon: Mic,
-					},
+					// {
+					// 	label: "Webinars",
+					// 	href: "/resources/webinars",
+					// 	description: "Live and on-demand sessions",
+					// 	icon: Mic,
+					// },
 					{
 						label: "FAQs",
 						href: "/resources/faqs",
