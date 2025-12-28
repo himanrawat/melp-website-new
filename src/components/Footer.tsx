@@ -20,6 +20,20 @@ const footerLinks = {
 		{ label: "Calendar", href: "/product/calendar" },
 		{ label: "Pricing", href: "/pricing" },
 	],
+	Alternatives: [
+		{ label: "Microsoft Teams Alternative", href: "/microsoft-teams-alternative" },
+		{ label: "Slack Alternative", href: "#" },
+		{ label: "Zoom Alternative", href: "#" },
+		{ label: "Google Meet Alternative", href: "#" },
+		{ label: "Discord Alternative", href: "#" },
+	],
+	Compare: [
+		{ label: "Melp vs Microsoft Teams", href: "/microsoft-teams-alternative" },
+		{ label: "Melp vs Slack", href: "#" },
+		{ label: "Melp vs Zoom", href: "#" },
+		{ label: "Melp vs Google Meet", href: "#" },
+		{ label: "Melp vs Discord", href: "#" },
+	],
 	Company: [
 		{ label: "Partners", href: "/partners" },
 		{ label: "About", href: "#" },
@@ -81,9 +95,9 @@ export default function Footer() {
 			/>
 
 			<div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-				<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8">
 					{/* Brand Column */}
-					<div className="col-span-2 md:col-span-4 lg:col-span-1 mb-8 lg:mb-0">
+					<div className="col-span-2 md:col-span-3 lg:col-span-1 mb-8 lg:mb-0">
 						<motion.div
 							className="flex items-center gap-2 mb-4"
 							whileHover={{ scale: 1.02 }}

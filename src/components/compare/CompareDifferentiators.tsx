@@ -6,27 +6,27 @@ import { Users, Layers, Zap, DollarSign } from "lucide-react";
 const differentiators = [
 	{
 		icon: Layers,
-		title: "No Tool Overload",
+		title: "Organized Communication",
 		description:
-			"Replace 5+ apps with one unified workspace. Chat, meet, share files, and manage calendars — all in Melp.",
+			"Keeps communication organized and focused. Topics, teams, and threads ensure conversations stay structured and easy to follow.",
 	},
 	{
 		icon: Users,
-		title: "External Teams Welcome",
+		title: "Cross-Functional Teamwork",
 		description:
-			"Invite clients, vendors, and partners without friction. Collaboration shouldn't stop at your company's edge.",
+			"Supports external and cross-functional teamwork. Invite clients, vendors, and partners without friction.",
 	},
 	{
 		icon: Zap,
-		title: "Organized by Design",
+		title: "Reduced Tool Fatigue",
 		description:
-			"Topics, teams, and threads keep conversations structured. Find anything in seconds, not hours.",
+			"Reduces tool switching and fatigue. Replace 5+ apps with one unified workspace for chat, meetings, and files.",
 	},
 	{
 		icon: DollarSign,
-		title: "Start Free, Scale Easy",
+		title: "Measurable Outcomes",
 		description:
-			"Begin with our generous free tier. Upgrade when you need more — no hidden costs or surprise fees.",
+			"Turns collaboration into measurable outcomes. Improve clarity, real-time coordination, and team productivity.",
 	},
 ];
 
@@ -42,11 +42,19 @@ export default function CompareDifferentiators() {
 					transition={{ duration: 0.5 }}
 					className="text-center mb-14"
 				>
+					<span className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase">
+						Why Melp?
+					</span>
 					<h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-4">
-						Why businesses choose Melp over Teams
+						Key reasons Melp App is becoming the preferred Microsoft Teams
+						alternative
 					</h2>
-					<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-						Modern teams need modern tools. Here&apos;s what sets Melp apart.
+					<p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+						Melp App gives organizations a smarter way to manage teamwork and
+						communication. It replaces scattered tools with one structured space
+						built around teams, topics, and real-time interaction. As a reliable
+						alternative to Teams, it connects people, ideas, and workstreams
+						effortlessly.
 					</p>
 				</motion.div>
 

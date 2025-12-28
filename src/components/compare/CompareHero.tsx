@@ -105,9 +105,9 @@ export default function CompareHero() {
 						transition={{ duration: 0.7, delay: 0.2 }}
 						className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground leading-[1.1] max-w-4xl mx-auto"
 					>
-						A modern{" "}
-						<span className="text-primary">Teams alternative</span>{" "}
-						for your entire company
+						Your all-in-one{" "}
+						<span className="text-primary">Microsoft Teams alternative</span>{" "}
+						for seamless collaboration
 					</motion.h1>
 
 					{/* Subheadline */}
@@ -117,9 +117,8 @@ export default function CompareHero() {
 						transition={{ duration: 0.6, delay: 0.35 }}
 						className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
 					>
-						Microsoft Teams is built for the Microsoft ecosystem. Melp is built
-						for everyone — internal teams, external partners, and seamless
-						collaboration without complexity.
+						Your search stops here. Experience Melp App and bring effortless
+						communication and teamwork to your entire business.
 					</motion.p>
 
 					{/* CTA Buttons */}

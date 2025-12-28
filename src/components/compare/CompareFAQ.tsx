@@ -7,34 +7,29 @@ import { cn } from "@/lib/utils";
 
 const faqs = [
 	{
-		question: "How is Melp different from Microsoft Teams?",
+		question: "What is the best Microsoft Teams alternative for modern businesses?",
 		answer:
-			"While Teams is deeply integrated into the Microsoft 365 ecosystem and requires that ecosystem to function fully, Melp works standalone or alongside any tools you already use. Melp focuses on simplicity, external collaboration, and getting teams productive from day one without weeks of training.",
+			"The strongest Microsoft Teams alternative for many growing companies is Melp App. It gives teams one dependable place to talk, meet, and share information instead of bouncing between several programs. By keeping everything in a single, organized space, the Melp App helps people stay connected and focused on work that actually matters.",
 	},
 	{
-		question: "Can I migrate my data from Microsoft Teams to Melp?",
+		question: "Which Microsoft Teams alternatives offer better collaboration options?",
 		answer:
-			"Yes! We offer migration tools and dedicated support to help you transition smoothly. Our team can assist with importing chat history, files, and user accounts. Most teams complete their migration within a few days.",
+			"Among today's Microsoft Teams alternatives, Melp AI Digital Workplace draws attention because it keeps communication organized and easy to follow. Conversations are grouped by teams and topics so everyone knows where to find what they need. Whether people work from home or at the office, the Melp App helps them stay coordinated without confusion.",
 	},
 	{
-		question: "Does Melp support external collaboration like Teams?",
+		question: "How do alternatives to Microsoft Teams improve communication?",
 		answer:
-			"Melp excels at external collaboration. Unlike Teams where external sharing can be complex and limited, Melp makes it seamless to invite clients, vendors, and partners into shared spaces without requiring them to have a Microsoft account.",
+			"Alternatives to Microsoft Teams aim to make everyday communication smoother. Melp App brings chats, meetings, and shared updates into one place so employees don't have to jump between windows. It keeps information visible, encourages faster replies, and helps departments work together naturally.",
 	},
 	{
-		question: "Is Melp secure enough for enterprise use?",
+		question: "Why do businesses prefer an alternative to Teams for daily collaboration?",
 		answer:
-			"Absolutely. Melp is SOC 2 Type II certified, GDPR compliant, and HIPAA ready. We offer enterprise-grade security features including SSO, data encryption at rest and in transit, audit logs, and admin controls for compliance.",
+			"Many organizations look for an alternative to Teams because they want tools that are lighter, clearer, and easier for everyone to use. Melp App removes the clutter of too many platforms and gives teams a single, steady rhythm for sharing ideas. With Melp AI Digital Workplace, people can focus on the work itself instead of figuring out how to stay in touch.",
 	},
 	{
-		question: "What does Melp cost compared to Microsoft Teams?",
+		question: "Are there any free alternatives to Microsoft Teams for small organizations?",
 		answer:
-			"Melp offers transparent, straightforward pricing without the complexity of Microsoft's bundled licensing. Our free tier is generous for small teams, and our paid plans are competitively priced. You pay for what you use, not for an entire ecosystem.",
-	},
-	{
-		question: "Can I use Melp alongside Microsoft Teams during transition?",
-		answer:
-			"Yes! Many organizations run both during their transition period. Melp doesn't require you to go all-in from day one. You can gradually migrate teams and workflows at your own pace.",
+			"Some free alternatives to Microsoft Teams exist, but Melp App offers more than most. Its free plan covers essential communication and meeting tools so small teams can start working together right away. As the business grows, Melp App expands with it—keeping the same smooth experience without extra complexity.",
 	},
 ];
 
@@ -53,10 +48,10 @@ export default function CompareFAQ() {
 					className="text-center mb-12"
 				>
 					<span className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase">
-						FAQ
+						Frequently Asked Questions
 					</span>
 					<h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-4">
-						Common questions about switching
+						Common questions about Microsoft Teams alternatives
 					</h2>
 				</motion.div>
 
@@ -84,7 +79,7 @@ export default function CompareFAQ() {
 								</span>
 								<ChevronDown
 									className={cn(
-										"w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-200",
+										"w-5 h-5 text-muted-foreground shrink-0 transition-transform duration-200",
 										openIndex === index && "rotate-180"
 									)}
 								/>

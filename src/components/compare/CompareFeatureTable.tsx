@@ -79,13 +79,19 @@ export default function CompareFeatureTable() {
 						viewport={{ once: true }}
 						transition={{ duration: 0.5 }}
 					>
-						<p className="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-8">
-							Tech teams may love Microsoft Teams, but your whole company is
-							much more than that. It doesn&apos;t scale well for company-wide
-							use—it&apos;s just too complex and clunky. That&apos;s why many
-							modern teams are making the switch to Melp, where the burdens of
-							communicating, collaborating, and finding trusted company
-							information are effortlessly handled on autopilot.
+						<span className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase">
+							Feature Comparison
+						</span>
+						<h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-6">
+							Why Melp is the smarter Teams alternative
+						</h2>
+						<p className="text-lg text-muted-foreground leading-relaxed mb-8">
+							Melp App is a powerful Microsoft Teams alternative that helps your
+							business communicate and collaborate with ease. It keeps every
+							conversation organized and every project moving smoothly,
+							regardless of where your team members work. Teams inside and
+							outside your organization can connect in one shared workspace
+							built for clarity and results.
 						</p>
 
 						<Button
@@ -94,7 +100,7 @@ export default function CompareFeatureTable() {
 							className="px-8"
 							asChild
 						>
-							<Link href="/pricing">Let&apos;s talk</Link>
+							<Link href="/pricing">Get Started Free</Link>
 						</Button>
 					</motion.div>
 

@@ -1,13 +1,11 @@
 import { Metadata } from "next";
-import {
-	TeamsAlternativeHero,
-	WhySwitchingSection,
-	TeamsComparisonSection,
-	TeamsFAQSection,
-} from "@/components/alternatives";
-import SecuritySection from "@/components/SecuritySection";
-import CtaSection from "@/components/CtaSection";
-import IntegrationsSection from "@/components/IntegrationsSection";
+import CompareHero from "@/components/compare/CompareHero";
+import CompareWhySwitching from "@/components/compare/CompareWhySwitching";
+import CompareFeatureTable from "@/components/compare/CompareFeatureTable";
+import CompareDifferentiators from "@/components/compare/CompareDifferentiators";
+import CompareTestimonials from "@/components/compare/CompareTestimonials";
+import CompareFAQ from "@/components/compare/CompareFAQ";
+import CompareCTA from "@/components/compare/CompareCTA";
 
 export const metadata: Metadata = {
 	title: "Best Microsoft Teams Alternative | Melp App",
@@ -16,15 +14,14 @@ export const metadata: Metadata = {
 	keywords: [
 		"Microsoft Teams alternative",
 		"teams alternative",
-		"teams alternatives",
 		"Microsoft Teams alternatives",
+		"teams alternatives",
 		"alternatives to Microsoft Teams",
 		"alternative to Teams",
 		"free alternative to Microsoft Teams",
 		"free alternatives to Microsoft Teams",
 		"collaboration tool",
-		"team communication app",
-		"digital workplace",
+		"digital workplace platform",
 	],
 	openGraph: {
 		title: "Best Microsoft Teams Alternative | Melp App",
@@ -36,31 +33,29 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function MicrosoftTeamsAlternativePage() {
+export default function CompareMicrosoftTeamsPage() {
 	return (
 		<div className="bg-background">
-			{/* Hero Section */}
-			<TeamsAlternativeHero />
+			{/* Hero with VS Logo Treatment */}
+			<CompareHero />
 
 			{/* Why Businesses Are Switching */}
-			<WhySwitchingSection />
+			<CompareWhySwitching />
 
-			{/* Comparison Section */}
-			<div id="comparison">
-				<TeamsComparisonSection />
-			</div>
+			{/* Feature Comparison Table */}
+			<CompareFeatureTable />
 
-			{/* Integrations - Show that Melp works with other tools */}
-			<IntegrationsSection />
+			{/* Key Differentiators */}
+			<CompareDifferentiators />
 
-			{/* Security Section - Trust signals */}
-			<SecuritySection />
+			{/* Testimonials & Social Proof */}
+			<CompareTestimonials />
 
 			{/* FAQ Section */}
-			<TeamsFAQSection />
+			<CompareFAQ />
 
 			{/* CTA Section */}
-			<CtaSection />
+			<CompareCTA />
 		</div>
 	);
 }

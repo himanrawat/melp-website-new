@@ -57,39 +57,40 @@ export default function CompareTestimonials() {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ delay: 0.1 * index }}
-							className="relative"
 						>
-							<div className="h-full p-8 rounded-2xl border border-border/50 bg-background">
-								{/* Quote */}
-								<blockquote className="text-lg text-foreground leading-relaxed mb-6">
-									&ldquo;{testimonial.quote}&rdquo;
-								</blockquote>
-
-								{/* Author */}
-								<div className="flex items-center gap-4">
-									<Image
-										src={testimonial.avatar}
-										alt={testimonial.author}
-										width={48}
-										height={48}
-										className="rounded-full border-2 border-primary/20"
-									/>
-									<div>
-										<div className="font-semibold text-foreground">
-											{testimonial.author}
-										</div>
-										<div className="text-sm text-muted-foreground">
-											{testimonial.role}, {testimonial.company}
-										</div>
-									</div>
-								</div>
-
-								{/* Switched badge */}
-								<div className="absolute top-6 right-6">
+							<div className="h-full rounded-2xl border border-border/50 bg-background overflow-hidden">
+								{/* Header with badge */}
+								<div className="flex items-center justify-end px-6 pt-4 pb-0">
 									<span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-600">
 										<span className="w-1.5 h-1.5 rounded-full bg-green-500" />
 										Switched from Teams
 									</span>
+								</div>
+
+								{/* Quote */}
+								<div className="px-8 pt-4 pb-6">
+									<blockquote className="text-lg text-foreground leading-relaxed mb-6">
+										&ldquo;{testimonial.quote}&rdquo;
+									</blockquote>
+
+									{/* Author */}
+									<div className="flex items-center gap-4">
+										<Image
+											src={testimonial.avatar}
+											alt={testimonial.author}
+											width={48}
+											height={48}
+											className="rounded-full border-2 border-primary/20"
+										/>
+										<div>
+											<div className="font-semibold text-foreground">
+												{testimonial.author}
+											</div>
+											<div className="text-sm text-muted-foreground">
+												{testimonial.role}, {testimonial.company}
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</motion.div>
