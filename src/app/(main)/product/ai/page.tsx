@@ -32,6 +32,7 @@ import {
 	MelpAIAssistant,
 	MelpEvaluationPanel,
 } from "@/components/mockups";
+import { Button } from "@/components/ui/button";
 
 // Hero features data
 const heroFeatures = [
@@ -42,7 +43,6 @@ const heroFeatures = [
 		description:
 			"Generate professional messages in seconds. Choose your tone, context, and let AI craft the perfect response.",
 		icon: MessageSquare,
-		color: "from-blue-500 to-cyan-500",
 		mockup: "chat",
 	},
 	{
@@ -52,7 +52,6 @@ const heroFeatures = [
 		description:
 			"Translate messages across 50+ languages in real-time. Communicate seamlessly with global teams.",
 		icon: Languages,
-		color: "from-purple-500 to-pink-500",
 		mockup: "translator",
 	},
 	{
@@ -62,7 +61,6 @@ const heroFeatures = [
 		description:
 			"Get instant summaries of your meetings with key points, action items, and decisions automatically extracted.",
 		icon: FileText,
-		color: "from-orange-500 to-red-500",
 		mockup: "summary",
 	},
 	{
@@ -72,7 +70,6 @@ const heroFeatures = [
 		description:
 			"Immersive, bilingual live captions with speaker-aware streaming for global teams.",
 		icon: Mic,
-		color: "from-green-500 to-emerald-500",
 		mockup: "livecaption-hero",
 	},
 	{
@@ -82,7 +79,6 @@ const heroFeatures = [
 		description:
 			"Ask anything, get instant answers. From scheduling to research, your AI assistant has you covered.",
 		icon: Brain,
-		color: "from-violet-500 to-purple-500",
 		mockup: "assistant",
 	},
 	{
@@ -92,7 +88,6 @@ const heroFeatures = [
 		description:
 			"Evaluate CVs, proposals, and documents with AI-driven scoring and detailed feedback.",
 		icon: ClipboardCheck,
-		color: "from-rose-500 to-pink-500",
 		mockup: "evaluation",
 	},
 ];
@@ -113,7 +108,7 @@ const benefits = [
 		title: "10x Faster Communication",
 		description:
 			"Draft messages, translate content, and summarize meetings in seconds instead of minutes.",
-		color: "text-yellow-400",
+		color: "text-white",
 	},
 	{
 		id: "global",
@@ -121,7 +116,7 @@ const benefits = [
 		title: "Global Collaboration",
 		description:
 			"Break down language barriers with real-time translation across 50+ languages.",
-		color: "text-blue-400",
+		color: "text-white",
 	},
 	{
 		id: "secure",
@@ -129,7 +124,7 @@ const benefits = [
 		title: "Enterprise Security",
 		description:
 			"SOC 2 Type II certified with end-to-end encryption. Your data stays yours.",
-		color: "text-green-400",
+		color: "text-white",
 	},
 	{
 		id: "inclusive",
@@ -137,7 +132,7 @@ const benefits = [
 		title: "Inclusive Meetings",
 		description:
 			"Live captions and transcriptions make every meeting accessible to everyone.",
-		color: "text-purple-400",
+		color: "text-white",
 	},
 ];
 
@@ -215,13 +210,6 @@ function HeroSection() {
 
 	return (
 		<section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-			{/* Background Effects */}
-			<div className="absolute inset-0">
-				<div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px]" />
-				<div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
-				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-pink-500/5 rounded-full blur-[150px]" />
-			</div>
-
 			{/* Grid Pattern */}
 			<div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
@@ -266,14 +254,10 @@ function HeroSection() {
 									transition={{ duration: 0.5 }}
 									className="flex items-center gap-3 justify-center lg:justify-start"
 								>
-									<div
-										className={`p-3 rounded-xl bg-gradient-to-br ${activeFeature.color}`}
-									>
+									<div className="p-3 rounded-xl bg-gray-800">
 										<Icon className="w-6 h-6 text-white" />
 									</div>
-									<span
-										className={`text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r ${activeFeature.color} bg-clip-text text-transparent`}
-									>
+									<span className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
 										{activeFeature.title}
 									</span>
 								</motion.div>
@@ -301,13 +285,21 @@ function HeroSection() {
 							transition={{ delay: 0.3 }}
 							className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
 						>
-							<button className="group px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-semibold text-lg text-white hover:opacity-90 transition-all flex items-center justify-center gap-2">
+							<Button
+								variant="brand-primary"
+								size="lg"
+								className="px-8 h-12 text-base group"
+							>
 								Get Started Free
 								<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-							</button>
-							<button className="px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-semibold text-lg text-white hover:bg-white/10 transition-all">
+							</Button>
+							<Button
+								variant="brand-dark"
+								size="lg"
+								className="px-8 h-12 text-base"
+							>
 								Watch Demo
-							</button>
+							</Button>
 						</motion.div>
 
 						{/* Trust Indicators */}
@@ -318,15 +310,15 @@ function HeroSection() {
 							className="flex items-center gap-6 justify-center lg:justify-start text-sm text-gray-500"
 						>
 							<span className="flex items-center gap-2">
-								<Check className="w-4 h-4 text-green-400" />
+								<Check className="w-4 h-4 text-white" />
 								Free forever
 							</span>
 							<span className="flex items-center gap-2">
-								<Check className="w-4 h-4 text-green-400" />
+								<Check className="w-4 h-4 text-white" />
 								No credit card
 							</span>
 							<span className="flex items-center gap-2">
-								<Check className="w-4 h-4 text-green-400" />
+								<Check className="w-4 h-4 text-white" />
 								SOC 2 certified
 							</span>
 						</motion.div>
@@ -341,7 +333,7 @@ function HeroSection() {
 									onMouseLeave={() => setIsHovered(false)}
 									className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
 										index === activeIndex
-											? `bg-gradient-to-r ${feature.color} text-white`
+											? "bg-white text-black"
 											: "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
 									}`}
 								>
@@ -360,11 +352,6 @@ function HeroSection() {
 						onMouseEnter={() => setIsHovered(true)}
 						onMouseLeave={() => setIsHovered(false)}
 					>
-						{/* Glow Effect */}
-						<div
-							className={`absolute -inset-4 bg-gradient-to-r ${activeFeature.color} opacity-20 blur-3xl rounded-3xl`}
-						/>
-
 						{/* Mockup Container */}
 						<div className="relative rounded-2xl overflow-hidden border border-white/10 bg-gray-900/50 backdrop-blur-sm">
 							<AnimatePresence mode="wait">
@@ -399,7 +386,7 @@ function HeroSection() {
 							transition={{ duration: 4, repeat: Infinity, delay: 1 }}
 							className="absolute -bottom-4 -left-4 p-3 bg-gray-800 rounded-xl border border-white/10 shadow-xl"
 						>
-							<Brain className="w-6 h-6 text-pink-400" />
+							<Brain className="w-6 h-6 text-white" />
 						</motion.div>
 					</motion.div>
 				</div>
@@ -476,7 +463,6 @@ function AIFeaturesShowcase() {
 				"One-click generation",
 			],
 			icon: MessageSquare,
-			color: "from-blue-500 to-cyan-500",
 			mockup: <MelpChatPanel />,
 		},
 		{
@@ -492,7 +478,6 @@ function AIFeaturesShowcase() {
 				"Instant translation",
 			],
 			icon: Languages,
-			color: "from-purple-500 to-pink-500",
 			mockup: <MelpTranslatorModal />,
 		},
 		{
@@ -508,7 +493,6 @@ function AIFeaturesShowcase() {
 				"Decision logging",
 			],
 			icon: FileText,
-			color: "from-orange-500 to-red-500",
 			mockup: <MelpAISummaryModal />,
 		},
 		{
@@ -524,7 +508,6 @@ function AIFeaturesShowcase() {
 				"Real-time accuracy",
 			],
 			icon: Mic,
-			color: "from-green-500 to-emerald-500",
 			mockup: <MelpLiveCaptions />,
 		},
 		{
@@ -536,7 +519,6 @@ function AIFeaturesShowcase() {
 				"Ask anything, get instant answers. From scheduling meetings to researching topics, your AI assistant is always ready to help.",
 			highlights: ["Natural language", "Context memory", "Task automation"],
 			icon: Brain,
-			color: "from-violet-500 to-purple-500",
 			mockup: <MelpAIAssistant />,
 		},
 		{
@@ -552,7 +534,6 @@ function AIFeaturesShowcase() {
 				"Bias-free analysis",
 			],
 			icon: ClipboardCheck,
-			color: "from-rose-500 to-pink-500",
 			mockup: <MelpEvaluationPanel />,
 		},
 	];
@@ -563,14 +544,11 @@ function AIFeaturesShowcase() {
 				{/* Section Header */}
 				<RevealOnScroll>
 					<div className="text-center mb-20">
-						<span className="inline-block px-4 py-2 rounded-full bg-purple-500/10 text-purple-400 text-sm font-medium mb-6">
+						<span className="inline-block px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6">
 							AI Features
 						</span>
 						<h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-							Everything you need,{" "}
-							<span className="bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-								powered by AI
-							</span>
+							Everything you need, powered by AI
 						</h2>
 						<p className="text-lg text-gray-400 max-w-2xl mx-auto">
 							A comprehensive suite of AI tools designed to enhance
@@ -598,9 +576,7 @@ function AIFeaturesShowcase() {
 										className={`${isReversed ? "lg:order-2" : "lg:order-1"}`}
 									>
 										{/* Badge */}
-										<div
-											className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r ${feature.color} bg-opacity-10 mb-6`}
-										>
+										<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800 mb-6">
 											<Icon className="w-4 h-4 text-white" />
 											<span className="text-sm font-medium text-white">
 												{feature.badge}
@@ -611,9 +587,7 @@ function AIFeaturesShowcase() {
 										<h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
 											{feature.title}
 										</h3>
-										<h4
-											className={`text-2xl md:text-3xl font-bold bg-linear-to-r ${feature.color} bg-clip-text text-transparent mb-6`}
-										>
+										<h4 className="text-2xl md:text-3xl font-bold text-gray-400 mb-6">
 											{feature.subtitle}
 										</h4>
 
@@ -629,20 +603,23 @@ function AIFeaturesShowcase() {
 													key={highlight}
 													className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300"
 												>
-													<Check className="w-4 h-4 text-green-400" />
+													<Check className="w-4 h-4 text-white" />
 													{highlight}
 												</span>
 											))}
 										</div>
 
 										{/* CTA */}
-										<a
-											href="https://www.app.melp.us/spa/index#signup"
-											className={`group inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r ${feature.color} rounded-sm font-semibold text-white hover:opacity-90 transition-all`}
+										<Button
+											variant="brand-primary"
+											className="group"
+											asChild
 										>
-											Get Started
-											<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-										</a>
+											<a href="https://www.app.melp.us/spa/index#signup">
+												Get Started
+												<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+											</a>
+										</Button>
 									</div>
 
 									{/* Mockup Side */}
@@ -651,11 +628,6 @@ function AIFeaturesShowcase() {
 											isReversed ? "lg:order-1" : "lg:order-2"
 										}`}
 									>
-										{/* Glow Effect */}
-										<div
-											className={`absolute -inset-8 bg-linear-to-r ${feature.color} opacity-15 blur-3xl rounded-3xl`}
-										/>
-
 										{/* Mockup Container */}
 										<motion.div
 											initial={{ opacity: 0, y: 20 }}
@@ -673,9 +645,7 @@ function AIFeaturesShowcase() {
 											transition={{ duration: 3, repeat: Infinity }}
 											className={`absolute -top-4 ${
 												isReversed ? "-left-4" : "-right-4"
-											} p-3 bg-linear-to-br ${
-												feature.color
-											} rounded-xl shadow-xl`}
+											} p-3 bg-gray-800 rounded-xl shadow-xl`}
 										>
 											<Icon className="w-5 h-5 text-white" />
 										</motion.div>
@@ -694,20 +664,14 @@ function AIFeaturesShowcase() {
 function BenefitsSection() {
 	return (
 		<section className="py-24 relative">
-			{/* Background */}
-			<div className="absolute inset-0 bg-linear-to-b from-purple-500/5 via-transparent to-transparent" />
-
 			<div className="relative max-w-7xl mx-auto px-6">
 				<RevealOnScroll>
 					<div className="text-center mb-16">
-						<span className="inline-block px-4 py-2 rounded-full bg-green-500/10 text-green-400 text-sm font-medium mb-6">
+						<span className="inline-block px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6">
 							Why Choose Melp AI
 						</span>
 						<h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-							Benefits that{" "}
-							<span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-								transform work
-							</span>
+							Benefits that transform work
 						</h2>
 					</div>
 				</RevealOnScroll>
@@ -744,14 +708,11 @@ function UseCasesSection() {
 			<div className="max-w-7xl mx-auto px-6">
 				<RevealOnScroll>
 					<div className="text-center mb-16">
-						<span className="inline-block px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-6">
+						<span className="inline-block px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6">
 							Use Cases
 						</span>
 						<h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-							Built for every{" "}
-							<span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-								team
-							</span>
+							Built for every team
 						</h2>
 						<p className="text-lg text-gray-400 max-w-2xl mx-auto">
 							See how different teams use Melp AI to transform their workflows.
@@ -767,8 +728,8 @@ function UseCasesSection() {
 								className="group p-8 rounded-2xl bg-linear-to-br from-white/5 to-white/0 border border-white/10 hover:border-white/20 transition-all"
 							>
 								<div className="flex items-start gap-4">
-									<div className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center shrink-0">
-										<useCase.icon className="w-7 h-7 text-blue-400" />
+									<div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center shrink-0">
+										<useCase.icon className="w-7 h-7 text-white" />
 									</div>
 									<div className="flex-1">
 										<h3 className="text-xl font-semibold text-white mb-2">
@@ -776,8 +737,8 @@ function UseCasesSection() {
 										</h3>
 										<p className="text-gray-400 mb-4">{useCase.description}</p>
 										<div className="flex items-center gap-2">
-											<TrendingUp className="w-4 h-4 text-green-400" />
-											<span className="text-sm text-green-400 font-medium">
+											<TrendingUp className="w-4 h-4 text-gray-400" />
+											<span className="text-sm text-gray-400 font-medium">
 												{useCase.stat}
 											</span>
 										</div>
@@ -797,15 +758,10 @@ function UseCasesSection() {
 function CTASection() {
 	return (
 		<section className="py-24 relative overflow-hidden">
-			{/* Background Effects */}
-			<div className="absolute inset-0">
-				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px]" />
-			</div>
-
 			<div className="relative max-w-4xl mx-auto px-6 text-center">
 				<RevealOnScroll>
 					<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
-						<Award className="w-4 h-4 text-yellow-400" />
+						<Award className="w-4 h-4 text-white" />
 						<span className="text-sm text-gray-300">
 							Rated #1 AI Communication Tool
 						</span>
@@ -814,10 +770,7 @@ function CTASection() {
 
 				<RevealOnScroll delay={0.1}>
 					<h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-						Ready to transform{" "}
-						<span className="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
-							how you work?
-						</span>
+						Ready to transform how you work?
 					</h2>
 				</RevealOnScroll>
 
@@ -830,28 +783,36 @@ function CTASection() {
 
 				<RevealOnScroll delay={0.3}>
 					<div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-						<button className="group px-10 py-5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-semibold text-lg text-white hover:opacity-90 transition-all flex items-center justify-center gap-2">
+						<Button
+							variant="brand-primary"
+							size="lg"
+							className="px-10 h-14 text-lg group"
+						>
 							Get Started Free
 							<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-						</button>
-						<button className="px-10 py-5 bg-white/5 border border-white/10 rounded-xl font-semibold text-lg text-white hover:bg-white/10 transition-all">
+						</Button>
+						<Button
+							variant="brand-dark"
+							size="lg"
+							className="px-10 h-14 text-lg"
+						>
 							Schedule Demo
-						</button>
+						</Button>
 					</div>
 				</RevealOnScroll>
 
 				<RevealOnScroll delay={0.4}>
 					<div className="flex items-center justify-center gap-8 text-sm text-gray-500">
 						<span className="flex items-center gap-2">
-							<Check className="w-4 h-4 text-green-400" />
+							<Check className="w-4 h-4 text-white" />
 							Free forever plan
 						</span>
 						<span className="flex items-center gap-2">
-							<Check className="w-4 h-4 text-green-400" />
+							<Check className="w-4 h-4 text-white" />
 							No credit card required
 						</span>
 						<span className="flex items-center gap-2">
-							<Check className="w-4 h-4 text-green-400" />
+							<Check className="w-4 h-4 text-white" />
 							Cancel anytime
 						</span>
 					</div>

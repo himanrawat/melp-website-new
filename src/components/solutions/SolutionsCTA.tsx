@@ -71,7 +71,7 @@ export default function SolutionsCTA({
 					<MagneticButton>
 						<Button
 							size="lg"
-							className="px-10 h-14 text-lg shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all duration-300"
+							className="px-10 h-14 text-lg transition-all duration-300"
 							asChild
 						>
 							<Link href={primaryCta.href}>{primaryCta.text}</Link>

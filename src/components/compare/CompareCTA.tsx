@@ -8,9 +8,9 @@ import { ArrowRight } from "lucide-react";
 
 export default function CompareCTA() {
 	return (
-		<section className="py-20 sm:py-28 bg-gradient-to-b from-muted/30 via-background to-muted/30 overflow-hidden">
+		<section className="py-20 sm:py-28 bg-gradient-to-b from-muted/30 via-background to-muted/30 overflow-hidden relative">
 			{/* Grid pattern */}
-			<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)] bg-[size:40px_40px]" />
+			<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)]" />
 
 			<div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 				<motion.div
@@ -43,7 +43,7 @@ export default function CompareCTA() {
 							<Button
 								variant="brand-primary"
 								size="lg"
-								className="px-8 h-12 text-base shadow-xl shadow-primary/20 group"
+								className="px-8 h-12 text-base group"
 								asChild
 							>
 								<Link href="/pricing">
@@ -57,9 +57,9 @@ export default function CompareCTA() {
 
 						<motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
 							<Button
+								variant="brand-dark"
 								size="lg"
-								variant="outline"
-								className="px-8 h-12 text-base"
+								className="px-8 h-12 text-base "
 								asChild
 							>
 								<Link href="/product">Schedule a Demo</Link>

@@ -9,28 +9,9 @@ import { ArrowRight } from "lucide-react";
 
 export default function CompareHero() {
 	return (
-		<section className="relative min-h-[70vh] overflow-hidden bg-background isolate">
-			{/* Background gradient */}
-			<div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-
+		<section className="relative min-h-screen overflow-hidden bg-background isolate">
 			{/* Grid pattern */}
-			<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-
-			{/* Decorative curve SVG at bottom */}
-			<div className="absolute bottom-0 left-0 right-0">
-				<svg
-					viewBox="0 0 1440 120"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					className="w-full h-auto"
-					preserveAspectRatio="none"
-				>
-					<path
-						d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-						className="fill-muted/30"
-					/>
-				</svg>
-			</div>
+			<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_70%,transparent_100%)]" />
 
 			<div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-40 pb-20">
 				<div className="text-center">
@@ -132,7 +113,7 @@ export default function CompareHero() {
 							<Button
 								variant="brand-primary"
 								size="lg"
-								className="px-8 h-12 text-base shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 group"
+								className="px-8 h-12 text-base transition-all duration-300 group"
 								asChild
 							>
 								<Link href="/pricing">

@@ -198,7 +198,7 @@ export default function HeroSection() {
 							<Button
 								variant="brand-primary"
 								size="lg"
-								className="px-8 h-12 text-base shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 group"
+								className="px-8 h-12 text-base transition-all duration-300 group"
 							>
 								<span className="flex items-center gap-2">
 									Start for free
@@ -222,9 +222,10 @@ export default function HeroSection() {
 						</MagneticButton>
 						<motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
 							<Button
+								variant="brand-dark"
 								size="lg"
-								variant="outline"
-								className="px-8 h-12 text-base border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all duration-300"
+								className="px-8 h-12 text-base "
+								asChild
 							>
 								Watch demo
 							</Button>

@@ -189,7 +189,7 @@ export default function ProductCTA({
 						<MagneticButton>
 							<Button
 								size="lg"
-								className="px-8 h-12 text-base group shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all duration-300"
+								className="px-8 h-12 text-base group transition-all duration-300"
 								asChild
 							>
 								<Link href={primaryCta.href}>
