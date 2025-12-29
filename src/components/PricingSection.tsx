@@ -11,6 +11,7 @@ import {
 	RevealOnScroll,
 	MagneticButton,
 } from "@/components/ui/aceternity";
+import { buildCheckoutUrl } from "@/lib/paymentLinks";
 
 const plans = [
 	{
@@ -39,7 +40,7 @@ const plans = [
 		],
 		cta: "Start Free Trial",
 		popular: true,
-		href: "/checkout?plan=plus&billing=yearly",
+		href: buildCheckoutUrl("plus", "yearly"),
 		isExternal: false,
 	},
 	{

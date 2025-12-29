@@ -10,6 +10,7 @@ import {
 	MagneticButton,
 } from "@/components/ui/aceternity";
 import { PricingPlan } from "@/data/pricing";
+import { buildCheckoutUrl } from "@/lib/paymentLinks";
 import Link from "next/link";
 
 interface PlanCardProps {
@@ -252,9 +253,10 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 								</a>
 							) : (
 								<Link
-									href={`/checkout?plan=${plan.id}&billing=${
+									href={buildCheckoutUrl(
+										plan.id,
 										isYearly ? "yearly" : "monthly"
-									}`}
+									)}
 								>
 									<span>{plan.cta}</span>
 									<motion.span

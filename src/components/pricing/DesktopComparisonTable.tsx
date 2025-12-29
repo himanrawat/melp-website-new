@@ -2,6 +2,7 @@ import { Check, Minus } from "lucide-react";
 import { ComparisonFeature, PricingPlan } from "@/data/pricing";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { buildCheckoutUrl } from "@/lib/paymentLinks";
 import {
 	Tooltip,
 	TooltipContent,
@@ -104,9 +105,10 @@ export default function DesktopComparisonTable({
 											</a>
 										) : (
 											<Link
-												href={`/checkout?plan=${plan.id}&billing=${
+												href={buildCheckoutUrl(
+													plan.id,
 													isYearly ? "yearly" : "monthly"
-												}`}
+												)}
 											>
 												{getButtonText(plan.monthlyPrice)}
 											</Link>
