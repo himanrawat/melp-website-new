@@ -1,5 +1,6 @@
 const paymentBaseUrl = (
-	process.env.NEXT_PUBLIC_PAYMENT_BASE_URL || "http://localhost:3001"
+	process.env.NEXT_PUBLIC_PAYMENT_BASE_URL ||
+	"https://melp-payment-module.vercel.app"
 ).replace(/\/$/, "");
 
 function buildPaymentUrl(path: string) {
