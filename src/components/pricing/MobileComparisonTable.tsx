@@ -10,12 +10,19 @@ import {
 	Headphones,
 	Settings,
 	Link2,
+	Calendar,
+	FileText,
 	type LucideIcon,
 } from "lucide-react";
-import { ComparisonFeature, PricingPlan } from "@/data/pricing";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { buildCheckoutUrl } from "@/lib/paymentLinks";
+import {
+	getDisplayPrice,
+	isPlanFree,
+	selectBillingPlan,
+} from "@/lib/pricingPackages";
+import type { ApiPlan, ComparisonFeature, PricingPackage } from "@/types/pricing";
 import {
 	Tooltip,
 	TooltipContent,
@@ -24,14 +31,14 @@ import {
 } from "@/components/ui/tooltip";
 
 interface MobileComparisonTableProps {
-	readonly plans: PricingPlan[];
+	readonly plans: PricingPackage[];
 	readonly comparison: ComparisonFeature[];
 	readonly isYearly?: boolean;
 }
 
-function getButtonText(monthlyPrice: number | null): string {
-	if (monthlyPrice === 0) return "Sign up";
-	if (monthlyPrice === null) return "Contact us";
+function getButtonText(plan?: ApiPlan): string {
+	if (!plan) return "Contact us";
+	if (isPlanFree(plan)) return "Sign up";
 	return "Get started";
 }
 
@@ -58,6 +65,12 @@ const categoryIcons: Record<string, LucideIcon> = {
 	Support: Headphones,
 	Administration: Settings,
 	Integrations: Link2,
+	Call: Video,
+	Calendar: Calendar,
+	Chat: MessageSquare,
+	File: FileText,
+	Team: Users,
+	"Team Group": Users,
 };
 
 function CategoryIcon({ category }: { readonly category: string }) {
@@ -70,6 +83,8 @@ export default function MobileComparisonTable({
 	comparison,
 	isYearly = true,
 }: MobileComparisonTableProps) {
+	const billingCycle = isYearly ? "YEARLY" : "MONTHLY";
+
 	return (
 		<div className="w-full space-y-8">
 			{comparison.map((category) => (
@@ -140,55 +155,70 @@ export default function MobileComparisonTable({
 			{/* Sticky CTA Footer for Mobile */}
 			<div className="sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border p-4 -mx-4 mt-8">
 				<div className="flex flex-col gap-3">
-					{plans.map((plan) => (
-						<div
-							key={plan.id}
-							className="flex items-center justify-between gap-4"
-						>
-							<div className="flex-1 min-w-0">
-								<p className="text-sm font-semibold text-foreground truncate">
-									{plan.name}
-								</p>
-								<p className="text-xs text-muted-foreground">
-									{plan.monthlyPrice === null ? (
-										"Custom pricing"
-									) : plan.monthlyPrice === 0 ? (
-										"Free forever"
-									) : (
-										<>
-											{plan.currency}
-											{isYearly ? plan.yearlyPrice : plan.monthlyPrice}/user/mo
-										</>
-									)}
-								</p>
-							</div>
-							<Button
-								variant={plan.popular ? "brand-primary" : "outline"}
-								size="sm"
-								className="shrink-0 text-sm font-medium cursor-pointer"
-								asChild
+					{plans.map((plan) => {
+						const currentPlan = selectBillingPlan(plan, billingCycle);
+						const pricing = getDisplayPrice(currentPlan, billingCycle);
+						const checkoutId = currentPlan?.priceId ?? currentPlan?.planid;
+						const currency =
+							pricing.currencySymbol || pricing.currency || "$";
+
+						return (
+							<div
+								key={plan.id}
+								className="flex items-center justify-between gap-4"
 							>
-								{plan.monthlyPrice === 0 ? (
-									<a
-										href="https://www.app.melp.us/spa/index#signup"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										{getButtonText(plan.monthlyPrice)}
-									</a>
-								) : (
-									<Link
-										href={buildCheckoutUrl(
-											plan.id,
-											isYearly ? "yearly" : "monthly"
+								<div className="flex-1 min-w-0">
+									<p className="text-sm font-semibold text-foreground truncate">
+										{plan.name}
+									</p>
+									<p className="text-xs text-muted-foreground">
+										{pricing.currentPrice === null ? (
+											"Custom pricing"
+										) : pricing.currentPrice === 0 ? (
+											"Free forever"
+										) : (
+											<>
+												{currency}
+												{pricing.currentPrice}/user/mo
+											</>
 										)}
-									>
-										{getButtonText(plan.monthlyPrice)}
-									</Link>
-								)}
-							</Button>
-						</div>
-					))}
+									</p>
+								</div>
+								<Button
+									variant={plan.popular ? "brand-primary" : "outline"}
+									size="sm"
+									className="shrink-0 text-sm font-medium cursor-pointer"
+									asChild
+								>
+									{currentPlan && isPlanFree(currentPlan) ? (
+										<a
+											href="https://www.app.melp.us/spa/index#signup"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{getButtonText(currentPlan)}
+										</a>
+									) : checkoutId ? (
+										<Link
+											href={buildCheckoutUrl({
+												packageId: plan.packageId,
+												billingCycle,
+												checkoutId,
+												minquantity: plan.minquantity,
+												maxquantity: plan.maxquantity,
+											})}
+										>
+											{getButtonText(currentPlan)}
+										</Link>
+									) : (
+										<a href="mailto:sales@melp.us">
+											{getButtonText(currentPlan)}
+										</a>
+									)}
+								</Button>
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		</div>
