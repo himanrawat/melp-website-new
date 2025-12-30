@@ -9,12 +9,17 @@ import {
 	GlowingBorderCard,
 	MagneticButton,
 } from "@/components/ui/aceternity";
-import { PricingPlan } from "@/data/pricing";
 import { buildCheckoutUrl } from "@/lib/paymentLinks";
+import {
+	getDisplayPrice,
+	isPlanFree,
+	selectBillingPlan,
+} from "@/lib/pricingPackages";
+import type { PricingPackage } from "@/types/pricing";
 import Link from "next/link";
 
 interface PlanCardProps {
-	plan: PricingPlan;
+	plan: PricingPackage;
 	isYearly: boolean;
 	index: number;
 }
@@ -53,17 +58,25 @@ const featureVariants = {
 };
 
 export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
-	const Icon = plan.icon;
-	const currentPrice = isYearly ? plan.yearlyPrice : plan.monthlyPrice;
-	const originalPrice = plan.monthlyPrice; // Monthly price is the "original" when yearly is selected
-	const period = plan.monthlyPrice !== null ? "per user / month" : "";
-	const billingNote =
-		isYearly && plan.yearlyPrice !== null ? "billed annually" : "";
-	const showDiscount =
-		isYearly &&
-		plan.discount &&
-		plan.yearlyPrice !== null &&
-		plan.monthlyPrice !== null;
+	const billingCycle = isYearly ? "YEARLY" : "MONTHLY";
+	const currentPlan = selectBillingPlan(plan, billingCycle);
+	const pricing = getDisplayPrice(currentPlan, billingCycle);
+	const currentPrice = pricing.currentPrice;
+	const originalPrice = pricing.originalPrice;
+	const currency = pricing.currencySymbol || pricing.currency || "$";
+	const period = currentPrice !== null ? "per user / month" : "";
+	const billingNote = isYearly && currentPlan ? "billed annually" : "";
+	const showDiscount = pricing.hasDiscount;
+	const discountLabel =
+		pricing.hasDiscount && currentPrice !== null && originalPrice
+			? `Save ${Math.round((1 - currentPrice / originalPrice) * 100)}%`
+			: "Save";
+	const checkoutId = currentPlan?.priceId ?? currentPlan?.planid;
+	const ctaLabel = currentPlan
+		? isPlanFree(currentPlan)
+			? "Sign up"
+			: "Get started"
+		: "Contact sales";
 
 	const CardWrapper = plan.popular ? AnimatedGradientBorder : GlowingBorderCard;
 
@@ -87,7 +100,7 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 							className="absolute top-4 right-4 z-20"
 						>
 							<span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20">
-								{plan.discount}
+								{discountLabel}
 							</span>
 						</motion.div>
 					)}
@@ -142,12 +155,12 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 								{/* Strikethrough original price when yearly */}
 								{showDiscount && originalPrice !== currentPrice && (
 									<span className="text-lg text-muted-foreground line-through">
-										{plan.currency}
+										{currency}
 										{originalPrice}
 									</span>
 								)}
 								<span className="text-4xl lg:text-5xl font-bold text-foreground">
-									{plan.currency}
+									{currency}
 									{currentPrice}
 								</span>
 								<span className="text-muted-foreground">{period}</span>
@@ -233,43 +246,58 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 						<Button
 							className="w-full group"
 							size="lg"
-							variant={plan.ctaVariant}
+							variant={plan.popular ? "brand-primary" : "outline"}
 							asChild
 						>
-							{plan.monthlyPrice === 0 ? (
+							{currentPlan && isPlanFree(currentPlan) ? (
 								<a
 									href="https://www.app.melp.us/spa/index#signup"
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									<span>Sign up</span>
+									<span>{ctaLabel}</span>
 									<motion.span
 										className="inline-block ml-1"
 										initial={{ x: 0 }}
 										whileHover={{ x: 3 }}
 									>
-										→
+										{"→"}
 									</motion.span>
 								</a>
-							) : (
+							) : checkoutId ? (
 								<Link
-									href={buildCheckoutUrl(
-										plan.id,
-										isYearly ? "yearly" : "monthly"
-									)}
+									href={buildCheckoutUrl({
+										packageId: plan.packageId,
+										billingCycle,
+										checkoutId,
+										minquantity: plan.minquantity,
+										maxquantity: plan.maxquantity,
+									})}
 								>
-									<span>{plan.cta}</span>
+									<span>{ctaLabel}</span>
 									<motion.span
 										className="inline-block ml-1"
 										initial={{ x: 0 }}
 										whileHover={{ x: 3 }}
 									>
-										→
+										{"→"}
 									</motion.span>
 								</Link>
+							) : (
+								<a href="mailto:sales@melp.us">
+									<span>{ctaLabel}</span>
+									<motion.span
+										className="inline-block ml-1"
+										initial={{ x: 0 }}
+										whileHover={{ x: 3 }}
+									>
+										{"→"}
+									</motion.span>
+								</a>
 							)}
 						</Button>
 					</MagneticButton>
+
 				</div>
 			</CardWrapper>
 		</motion.div>

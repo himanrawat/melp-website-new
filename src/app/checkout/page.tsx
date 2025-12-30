@@ -4,6 +4,9 @@ import { buildCheckoutUrl } from "@/lib/paymentLinks";
 type CheckoutSearchParams = {
 	plan?: string;
 	billing?: string;
+	packageId?: string;
+	billingCycle?: string;
+	checkoutId?: string;
 };
 
 export default function CheckoutRedirect({
@@ -11,8 +14,12 @@ export default function CheckoutRedirect({
 }: {
 	searchParams: CheckoutSearchParams;
 }) {
-	const plan = searchParams.plan ?? "plus";
-	const billing = searchParams.billing === "monthly" ? "monthly" : "yearly";
+	const packageId = searchParams.packageId ?? searchParams.plan ?? "plus";
+	const rawBilling = searchParams.billingCycle ?? searchParams.billing;
+	const billingCycle = rawBilling === "MONTHLY" || rawBilling === "monthly"
+		? "MONTHLY"
+		: "YEARLY";
+	const checkoutId = searchParams.checkoutId ?? packageId;
 
-	redirect(buildCheckoutUrl(plan, billing));
+	redirect(buildCheckoutUrl({ packageId, billingCycle, checkoutId }));
 }

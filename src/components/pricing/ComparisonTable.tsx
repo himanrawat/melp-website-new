@@ -1,9 +1,9 @@
-import { ComparisonFeature, PricingPlan } from "@/data/pricing";
+import type { ComparisonFeature, PricingPackage } from "@/types/pricing";
 import MobileComparisonTable from "./MobileComparisonTable";
 import DesktopComparisonTable from "./DesktopComparisonTable";
 
 interface ComparisonTableProps {
-	readonly plans: PricingPlan[];
+	readonly plans: PricingPackage[];
 	readonly comparison: ComparisonFeature[];
 	readonly isYearly?: boolean;
 }

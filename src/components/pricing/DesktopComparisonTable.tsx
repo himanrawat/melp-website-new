@@ -1,8 +1,13 @@
 import { Check, Minus } from "lucide-react";
-import { ComparisonFeature, PricingPlan } from "@/data/pricing";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { buildCheckoutUrl } from "@/lib/paymentLinks";
+import {
+	getDisplayPrice,
+	isPlanFree,
+	selectBillingPlan,
+} from "@/lib/pricingPackages";
+import type { ApiPlan, ComparisonFeature, PricingPackage } from "@/types/pricing";
 import {
 	Tooltip,
 	TooltipContent,
@@ -11,14 +16,14 @@ import {
 } from "@/components/ui/tooltip";
 
 interface DesktopComparisonTableProps {
-	readonly plans: PricingPlan[];
+	readonly plans: PricingPackage[];
 	readonly comparison: ComparisonFeature[];
 	readonly isYearly?: boolean;
 }
 
-function getButtonText(monthlyPrice: number | null): string {
-	if (monthlyPrice === 0) return "Sign up";
-	if (monthlyPrice === null) return "Contact us";
+function getButtonText(plan?: ApiPlan): string {
+	if (!plan) return "Contact us";
+	if (isPlanFree(plan)) return "Sign up";
 	return "Get started";
 }
 
@@ -42,6 +47,7 @@ export default function DesktopComparisonTable({
 	isYearly = true,
 }: DesktopComparisonTableProps) {
 	const planIds = plans.map((p) => p.id);
+	const billingCycle = isYearly ? "YEARLY" : "MONTHLY";
 
 	return (
 		<div className="w-full relative">
@@ -58,65 +64,80 @@ export default function DesktopComparisonTable({
 						<div></div>
 
 						{/* Plan Headers */}
-						{plans.map((plan) => (
-							<div key={plan.id} className="text-center px-4">
-								<div className="flex flex-col items-center gap-2">
-									{/* Plan Name */}
-									<h3 className="text-base font-semibold text-foreground">
-										{plan.name}
-									</h3>
+						{plans.map((plan) => {
+							const currentPlan = selectBillingPlan(plan, billingCycle);
+									const pricing = getDisplayPrice(currentPlan, billingCycle);
+							const checkoutId = currentPlan?.priceId ?? currentPlan?.planid;
+							const currency =
+								pricing.currencySymbol || pricing.currency || "$";
 
-									{/* Price */}
-									<div className="text-sm text-muted-foreground">
-										{plan.monthlyPrice === null ? (
-											<span className="text-foreground">Contact us →</span>
-										) : (
-											<>
-												<span className="text-foreground font-semibold">
-													{plan.currency}
-													{isYearly ? plan.yearlyPrice : plan.monthlyPrice}
-												</span>{" "}
-												per user/month
-											</>
-										)}
+							return (
+								<div key={plan.id} className="text-center px-4">
+									<div className="flex flex-col items-center gap-2">
+										{/* Plan Name */}
+										<h3 className="text-base font-semibold text-foreground">
+											{plan.name}
+										</h3>
+
+										{/* Price */}
+										<div className="text-sm text-muted-foreground">
+											{pricing.currentPrice === null ? (
+												<span className="text-foreground">Contact us</span>
+											) : (
+												<>
+													<span className="text-foreground font-semibold">
+														{currency}
+														{pricing.currentPrice}
+													</span>{" "}
+													per user/month
+												</>
+											)}
+										</div>
+
+										{/* CTA Button */}
+										<Button
+											variant={plan.popular ? "brand-primary" : "outline"}
+											size="sm"
+											className={`
+												w-full max-w-[140px] mt-1 text-sm font-medium cursor-pointer
+												${
+													plan.popular
+														? ""
+														: "border-border hover:bg-muted/50"
+												}
+											`}
+											asChild
+										>
+											{currentPlan && isPlanFree(currentPlan) ? (
+												<a
+													href="https://www.app.melp.us/spa/index#signup"
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													{getButtonText(currentPlan)}
+												</a>
+											) : checkoutId ? (
+												<Link
+													href={buildCheckoutUrl({
+														packageId: plan.packageId,
+														billingCycle,
+														checkoutId,
+														minquantity: plan.minquantity,
+														maxquantity: plan.maxquantity,
+													})}
+												>
+													{getButtonText(currentPlan)}
+												</Link>
+											) : (
+												<a href="mailto:sales@melp.us">
+													{getButtonText(currentPlan)}
+												</a>
+											)}
+										</Button>
 									</div>
-
-									{/* CTA Button */}
-									<Button
-										variant={plan.popular ? "brand-primary" : "outline"}
-										size="sm"
-										className={`
-											w-full max-w-[140px] mt-1 text-sm font-medium cursor-pointer
-											${
-												plan.popular
-													? ""
-													: "border-border hover:bg-muted/50"
-											}
-										`}
-										asChild
-									>
-										{plan.monthlyPrice === 0 ? (
-											<a
-												href="https://www.app.melp.us/spa/index#signup"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												{getButtonText(plan.monthlyPrice)}
-											</a>
-										) : (
-											<Link
-												href={buildCheckoutUrl(
-													plan.id,
-													isYearly ? "yearly" : "monthly"
-												)}
-											>
-												{getButtonText(plan.monthlyPrice)}
-											</Link>
-										)}
-									</Button>
 								</div>
-							</div>
-						))}
+							);
+						})}
 					</div>
 				</div>
 			</div>
