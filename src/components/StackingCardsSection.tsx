@@ -13,8 +13,25 @@ import {
 	ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CardImageComposition, {
+	type AccentImage,
+} from "@/components/CardImageComposition";
 
-const cards = [
+interface ImageConfig {
+	baseImage: string;
+	accents: AccentImage[];
+}
+
+const cards: {
+	id: number;
+	title: string;
+	description: string;
+	icon: typeof MessageSquare;
+	features: string[];
+	color: string;
+	iconColor: string;
+	imageConfig: ImageConfig;
+}[] = [
 	{
 		id: 1,
 		title: "Clarity in Every Conversation",
@@ -28,6 +45,18 @@ const cards = [
 		],
 		color: "from-blue-500/10 to-indigo-500/10",
 		iconColor: "text-blue-500",
+		imageConfig: {
+			baseImage: "/assets/message.png",
+			accents: [
+				{ src: "/assets/notification.svg", position: "top-left", size: "sm" },
+				{ src: "/assets/audio-wave.svg", position: "top-right", size: "md" },
+				{
+					src: "/assets/draft-for-me.svg",
+					position: "bottom-left",
+					size: "md",
+				},
+			],
+		},
 	},
 	{
 		id: 2,
@@ -42,6 +71,17 @@ const cards = [
 		],
 		color: "from-emerald-500/10 to-teal-500/10",
 		iconColor: "text-emerald-500",
+		imageConfig: {
+			baseImage: "/assets/videoCall.png",
+			accents: [
+				{ src: "/assets/video-call.svg", position: "top-right", size: "sm" },
+				{
+					src: "/assets/screen-share-video-call.png",
+					position: "bottom-left",
+					size: "sm",
+				},
+			],
+		},
 	},
 	{
 		id: 3,
@@ -56,6 +96,13 @@ const cards = [
 		],
 		color: "from-amber-500/10 to-orange-500/10",
 		iconColor: "text-amber-500",
+		imageConfig: {
+			baseImage: "/assets/melpdrive.png",
+			accents: [
+				{ src: "/assets/drive.png", position: "top-right", size: "sm" },
+				{ src: "/assets/drive2.png", position: "bottom-left", size: "sm" },
+			],
+		},
 	},
 	{
 		id: 4,
@@ -66,6 +113,13 @@ const cards = [
 		features: ["Smart summaries", "Intelligent routing", "Workflow automation"],
 		color: "from-purple-500/10 to-pink-500/10",
 		iconColor: "text-purple-500",
+		imageConfig: {
+			baseImage: "/assets/draft-for-me.svg",
+			accents: [
+				{ src: "/assets/audio-wave.svg", position: "top-right", size: "sm" },
+				{ src: "/assets/notification.svg", position: "top-left", size: "sm" },
+			],
+		},
 	},
 ];
 
@@ -178,77 +232,15 @@ function StackingCard({
 
 						{/* Right Visual */}
 						<div className="relative hidden lg:block">
-							<div className="relative aspect-square max-w-[400px] mx-auto">
-								{/* Background circles */}
-								<div className="absolute inset-0 flex items-center justify-center">
-									<div
-										className={`w-64 h-64 rounded-full bg-gradient-to-br ${card.color} opacity-50 blur-3xl`}
-									/>
-								</div>
-
-								{/* Floating elements */}
-								<motion.div
-									animate={{
-										y: [0, -10, 0],
-										rotate: [0, 5, 0],
-									}}
-									transition={{
-										duration: 4,
-										repeat: Infinity,
-										ease: "easeInOut",
-									}}
-									className="absolute top-1/4 left-1/4 w-20 h-20 rounded-2xl bg-gradient-to-br from-white/90 to-white/50 dark:from-white/20 dark:to-white/5 backdrop-blur-xl border border-white/60 dark:border-white/20 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15),0_4px_16px_-4px_rgba(0,0,0,0.2)] flex items-center justify-center"
-								>
-									<Icon className={`w-8 h-8 ${card.iconColor}`} />
-								</motion.div>
-
-								<motion.div
-									animate={{
-										y: [0, 10, 0],
-										rotate: [0, -3, 0],
-									}}
-									transition={{
-										duration: 3.5,
-										repeat: Infinity,
-										ease: "easeInOut",
-										delay: 0.5,
-									}}
-									className="absolute top-1/3 right-1/4 w-16 h-16 rounded-xl bg-gradient-to-br from-white/90 to-white/50 dark:from-white/20 dark:to-white/5 backdrop-blur-xl border border-white/60 dark:border-white/20 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15),0_4px_16px_-4px_rgba(0,0,0,0.2)] flex items-center justify-center"
-								>
-									<Zap className={`w-6 h-6 ${card.iconColor}`} />
-								</motion.div>
-
-								<motion.div
-									animate={{
-										y: [0, -8, 0],
-										x: [0, 5, 0],
-									}}
-									transition={{
-										duration: 5,
-										repeat: Infinity,
-										ease: "easeInOut",
-										delay: 1,
-									}}
-									className="absolute bottom-1/4 left-1/3 w-24 h-24 rounded-2xl bg-gradient-to-br from-white/90 to-white/50 dark:from-white/20 dark:to-white/5 backdrop-blur-xl border border-white/60 dark:border-white/20 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15),0_4px_16px_-4px_rgba(0,0,0,0.2)] flex items-center justify-center"
-								>
-									<Shield className={`w-10 h-10 ${card.iconColor}`} />
-								</motion.div>
-
-								<motion.div
-									animate={{
-										y: [0, 12, 0],
-									}}
-									transition={{
-										duration: 4.5,
-										repeat: Infinity,
-										ease: "easeInOut",
-										delay: 0.8,
-									}}
-									className="absolute bottom-1/3 right-1/3 w-14 h-14 rounded-xl bg-gradient-to-br from-white/90 to-white/50 dark:from-white/20 dark:to-white/5 backdrop-blur-xl border border-white/60 dark:border-white/20 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06),0_4px_16px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15),0_4px_16px_-4px_rgba(0,0,0,0.2)] flex items-center justify-center"
-								>
-									<Globe className={`w-5 h-5 ${card.iconColor}`} />
-								</motion.div>
-							</div>
+							<CardImageComposition
+								baseImage={card.imageConfig.baseImage}
+								accents={card.imageConfig.accents}
+								progress={progress}
+								entryStart={index === 0 ? 0 : cardStart - 0.05}
+								entryEnd={index === 0 ? 0.1 : cardStart + 0.1}
+								exitStart={cardEnd - 0.08}
+								exitEnd={cardEnd}
+							/>
 						</div>
 					</div>
 				</div>
