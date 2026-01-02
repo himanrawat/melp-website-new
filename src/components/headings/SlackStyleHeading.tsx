@@ -79,6 +79,7 @@ export const SlackStyleHeading: React.FC<SlackStyleHeadingProps> = ({
 
 		let rollTimeout: NodeJS.Timeout;
 		let wordIndex = 0;
+		let isFirstRun = true;
 
 		const rollNextWord = () => {
 			wordIndex++;
@@ -94,12 +95,24 @@ export const SlackStyleHeading: React.FC<SlackStyleHeadingProps> = ({
 		};
 
 		const startAnimation = () => {
-			wordIndex = 0;
-			setCurrentWordIndex(0);
-			// Expand to max width
+			// First expand to max width, then start rolling
 			setContainerWidth(maxWidth);
-			// Start rolling after expansion
-			rollTimeout = setTimeout(rollNextWord, wordDuration);
+
+			// Wait for container expansion to complete before rolling
+			rollTimeout = setTimeout(() => {
+				if (isFirstRun) {
+					// First run: start from index 0 (work), roll through all
+					wordIndex = 0;
+					setCurrentWordIndex(0);
+					rollTimeout = setTimeout(rollNextWord, wordDuration);
+					isFirstRun = false;
+				} else {
+					// Subsequent loops: skip "work" roll-out, start from index 1
+					wordIndex = 1;
+					setCurrentWordIndex(1);
+					rollTimeout = setTimeout(rollNextWord, wordDuration);
+				}
+			}, 400); // Wait for width expansion animation to complete
 		};
 
 		// Initial animation after 1s
@@ -153,11 +166,11 @@ export const SlackStyleHeading: React.FC<SlackStyleHeadingProps> = ({
 				}}
 				style={{ height: "1.15em" }}
 			>
-				<AnimatePresence mode="popLayout" initial={false}>
+				<AnimatePresence mode="wait" initial={false}>
 					<motion.span
 						key={currentWordIndex}
 						className={cn(
-							"whitespace-nowrap text-center",
+							"absolute inset-0 flex items-center justify-center whitespace-nowrap",
 							rotatingClassName
 						)}
 						initial={{ y: "100%" }}

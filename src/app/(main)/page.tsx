@@ -36,7 +36,7 @@ export default function Home() {
 						suffix="happens"
 						highlightWord="work"
 						cycleWords={["AI", "clarity", "teams", "meetings", "translation"]}
-						wordDuration={400}
+						wordDuration={800}
 						loopDelay={5000}
 						className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground"
 						rotatingClassName="bg-gradient-to-r from-[#F14C2F] to-[#FF0059] bg-clip-text text-transparent"
