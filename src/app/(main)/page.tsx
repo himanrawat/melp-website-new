@@ -28,9 +28,6 @@ export default function Home() {
 			<section className="py-20 px-4 space-y-24 max-w-5xl mx-auto">
 				{/* Slack Style Heading */}
 				<div className="text-center space-y-4">
-					<p className="text-sm text-muted-foreground uppercase tracking-wider">
-						Slack Style Heading
-					</p>
 					<SlackStyleHeading
 						prefix="Make"
 						suffix="Intelligent"
@@ -46,27 +43,6 @@ export default function Home() {
 						loopDelay={5000}
 						className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground"
 						rotatingClassName="bg-gradient-to-r from-[#F14C2F] to-[#FF0059] bg-clip-text text-transparent"
-					/>
-				</div>
-
-				{/* Encrypted Style Heading */}
-				<div className="text-center space-y-4">
-					<p className="text-sm text-muted-foreground uppercase tracking-wider">
-						Encrypted Style Heading
-					</p>
-					<EncryptedStyleHeading
-						staticText="Work securely. Collaborate with"
-						rotatingWords={[
-							"encrypted messaging",
-							"AI intelligence",
-							"protected storage",
-							"confidence",
-						]}
-						displayDurationMs={3000}
-						revealDelayMs={60}
-						className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground"
-						encryptedClassName="text-[#F14C2F]/50"
-						revealedClassName="bg-gradient-to-r from-[#F14C2F] to-[#FF0059] bg-clip-text text-transparent"
 					/>
 				</div>
 			</section>
