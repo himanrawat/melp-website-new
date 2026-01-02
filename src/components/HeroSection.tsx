@@ -13,14 +13,15 @@ import {
 } from "@/components/ui/aceternity";
 import { SlackStyleHeading } from "@/components/headings/SlackStyleHeading";
 
-const clientLogos = [
-	"Acme Corp",
-	"Globex",
-	"Initech",
-	"Umbrella",
-	"Stark Ind",
-	"Wayne Ent",
-];
+// Unused - client logos are defined in page.tsx
+// const clientLogos = [
+// 	"Acme Corp",
+// 	"Globex",
+// 	"Initech",
+// 	"Umbrella",
+// 	"Stark Ind",
+// 	"Wayne Ent",
+// ];
 
 // Get optimal video source based on screen width and connection
 const getOptimalVideoSrc = () => {
@@ -119,12 +120,12 @@ export default function HeroSection() {
 								</span>
 								<span className="text-center sm:text-left leading-tight">
 									<span className="hidden sm:inline">
-										Your people. Your partners. One intelligent workspace.
+										AI that understands, translates, and summarizes your work.
 									</span>
 									<span className="sm:hidden">
-										Your people. Your partners.
+										AI that understands, translates,
 										<br />
-										One intelligent workspace.
+										and summarizes your work.
 									</span>
 								</span>
 								<motion.span
@@ -140,15 +141,15 @@ export default function HeroSection() {
 
 					{/* Main Heading */}
 					<SlackStyleHeading
-						prefix="Make"
-						suffix="Intelligent"
-						highlightWord="work"
+						prefix="AI for"
+						suffix="Work"
+						highlightWord="Every"
 						cycleWords={[
-							"Knowledge",
-							"Communication",
-							"Collaboration",
-							"Decisions",
-							"translation",
+							"Document",
+							"Meeting",
+							"Conversation",
+							"Language",
+							"Decision",
 						]}
 						wordDuration={800}
 						loopDelay={5000}
@@ -183,11 +184,8 @@ export default function HeroSection() {
 						}}
 						className="mt-4 max-w-2xl text-base text-muted-foreground/80 leading-relaxed"
 					>
-						{/* Melp helps teams understand more, miss nothing, and communicate
-						better — without switching tools. */}
-						Translate files, summarize conversations, transcribe meetings, and
-						write professionally — all powered by AI, built into one intelligent
-						workspace.
+						Translate documents instantly. Summarize files and meetings. Transcribe in real time.
+						Write with AI assistance. Evaluate interviews with integrity signals.
 					</motion.p>
 
 					{/* CTA Buttons */}

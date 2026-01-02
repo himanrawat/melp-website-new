@@ -4,6 +4,7 @@ import { useMotionValueEvent, useScroll } from "motion/react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const neutralBackgrounds = {
 	light: ["#f5f5f5", "#e5e5e5", "#fafafa"],
@@ -133,6 +134,19 @@ export const StickyScroll = ({
 								>
 									{item.description}
 								</motion.p>
+								<motion.div
+									initial={{ opacity: 0, y: 20 }}
+									animate={{
+										opacity: activeCard === index ? 1 : 0.3,
+										y: activeCard === index ? 0 : 20,
+									}}
+									transition={{ duration: 0.5, delay: 0.3 }}
+									className="mt-8"
+								>
+									<Button variant="brand-primary" size="lg">
+										Get started free
+									</Button>
+								</motion.div>
 							</div>
 						</div>
 					))}

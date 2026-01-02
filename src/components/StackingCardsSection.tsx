@@ -17,53 +17,53 @@ import { Button } from "@/components/ui/button";
 const cards = [
 	{
 		id: 1,
-		title: "Clarity in Every Conversation",
+		title: "Understand Any Document",
 		description:
-			"Messages form glowing threads joining teams. Organized channels, instant translation, and structured collaboration.",
-		icon: MessageSquare,
+			"AI translates files to any language. Get instant summaries. Ask questions to extract key details — understanding without the manual work.",
+		icon: FolderOpen,
 		features: [
-			"Organized channels",
-			"Instant translation",
-			"Structured collaboration",
+			"AI file translation",
+			"Instant summaries",
+			"Q&A from documents",
 		],
-		color: "from-blue-500/10 to-indigo-500/10",
-		iconColor: "text-blue-500",
+		color: "from-amber-500/10 to-orange-500/10",
+		iconColor: "text-amber-500",
 	},
 	{
 		id: 2,
-		title: "Meet Like You're in the Same Room",
+		title: "Never Miss a Meeting Detail",
 		description:
-			"Seamless transitions from chat to call with enterprise-grade video and immersive clarity.",
+			"Every meeting generates AI summaries, action items, and searchable transcripts. Stay aligned even when you can't attend.",
 		icon: Video,
 		features: [
-			"Enterprise-grade video",
-			"Immersive clarity",
-			"Cross-organization meetings",
+			"AI meeting summaries",
+			"Real-time transcription",
+			"Automatic action items",
 		],
 		color: "from-emerald-500/10 to-teal-500/10",
 		iconColor: "text-emerald-500",
 	},
 	{
 		id: 3,
-		title: "Your Knowledge, Organized",
+		title: "Communicate with Confidence",
 		description:
-			"Files float into a structured library. Centralized, secure cloud storage engineered for discoverability.",
-		icon: FolderOpen,
+			"Draft for Me helps you write professionally in any tone. Instant translation breaks language barriers across global teams.",
+		icon: MessageSquare,
 		features: [
-			"Centralized storage",
-			"Smart discoverability",
-			"Effortless access",
+			"AI writing assistance",
+			"Tone customization",
+			"Instant translation",
 		],
-		color: "from-amber-500/10 to-orange-500/10",
-		iconColor: "text-amber-500",
+		color: "from-blue-500/10 to-indigo-500/10",
+		iconColor: "text-blue-500",
 	},
 	{
 		id: 4,
-		title: "Intelligence in Every Interaction",
+		title: "AI-Powered Evaluation",
 		description:
-			"AI light pulses through the system. Summaries, insights, workflows, and intelligent routing.",
+			"Interview integrity signals detect tab switching, screen changes, and gaze patterns. AI generates questions from job descriptions and resumes.",
 		icon: Bot,
-		features: ["Smart summaries", "Intelligent routing", "Workflow automation"],
+		features: ["Integrity monitoring", "AI question generation", "Trustworthy hiring"],
 		color: "from-purple-500/10 to-pink-500/10",
 		iconColor: "text-purple-500",
 	},
@@ -300,7 +300,7 @@ export default function StackingCardsSection() {
 						viewport={{ once: true }}
 						className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4"
 					>
-						Everything You Need
+						AI Outcomes
 					</motion.p>
 					<motion.h2
 						initial={{ opacity: 0, y: 20 }}
@@ -309,7 +309,7 @@ export default function StackingCardsSection() {
 						transition={{ delay: 0.1 }}
 						className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-6"
 					>
-						One platform to replace them all
+						AI that delivers real results
 					</motion.h2>
 					<motion.p
 						initial={{ opacity: 0, y: 20 }}
@@ -318,7 +318,7 @@ export default function StackingCardsSection() {
 						transition={{ delay: 0.2 }}
 						className="text-lg text-muted-foreground"
 					>
-						Say goodbye to app overload. Say hello to Melp.
+						Save time. Gain clarity. Make better decisions.
 					</motion.p>
 				</div>
 			</div>

@@ -24,7 +24,6 @@ import {
 	Shield,
 	ShieldCheck,
 	Cookie,
-	BarChart3,
 	Newspaper,
 	Users,
 	Briefcase,
@@ -262,12 +261,6 @@ const navItems: NavItemConfig[] = [
 						description: "Get support and find answers",
 						icon: HelpCircle,
 					},
-					// {
-					// 	label: "Success Stories",
-					// 	href: "/resources/success-stories",
-					// 	description: "See how teams succeed with Melp",
-					// 	icon: BarChart3,
-					// },
 					{
 						label: "Blog",
 						href: "/resources/blog",
@@ -837,7 +830,11 @@ interface MobileMenuProps {
 	isDarkRoute?: boolean;
 }
 
-function MobileMenu({ isOpen, onClose, isDarkRoute = false }: MobileMenuProps) {
+function MobileMenu({
+	isOpen,
+	onClose,
+	isDarkRoute = false,
+}: MobileMenuProps) {
 	const [expandedItem, setExpandedItem] = useState<string | null>(null);
 	const { resolvedTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);

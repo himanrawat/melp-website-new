@@ -42,7 +42,7 @@ export default function Home() {
 				className="mt-16 pb-8 mx-auto max-w-7xl"
 			>
 				<p className="text-sm text-muted-foreground mb-6 text-center">
-					Trusted by 10,000+ teams worldwide
+					AI-powered productivity for 10,000+ teams worldwide
 				</p>
 				{/* Client Logos */}
 				<div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">

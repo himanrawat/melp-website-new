@@ -23,30 +23,30 @@ import {
 const steps = [
 	{
 		id: 1,
-		title: "Work begins with connection",
+		title: "Upload, share, or start a conversation",
 		description:
-			"Create a workspace and invite your teams, partners, and clients. Across rooms, across cities, across continents.",
+			"Bring your documents, start meetings, or send messages — Melp AI is ready to help across every workflow.",
 		icon: MessageSquare,
 	},
 	{
 		id: 2,
-		title: "Communication becomes clarity",
+		title: "AI understands and translates",
 		description:
-			"Organized channels, instant translation, and structured collaboration where teams and partners move as one.",
-		icon: Users,
-	},
-	{
-		id: 3,
-		title: "Intelligence guides every moment",
-		description:
-			"AI summaries, real-time translation, meeting insights, and action items generated automatically by Melp AI.",
+			"Documents get translated to any language. Files are summarized instantly. Conversations are transcribed in real time.",
 		icon: Sparkles,
 	},
 	{
-		id: 4,
-		title: "Your knowledge, accessible anywhere",
+		id: 3,
+		title: "Get answers and insights",
 		description:
-			"Access recordings, notes, and files in Melp Drive. Where work is accessible anywhere and complexity transforms into focus.",
+			"Ask questions from documents. Receive meeting summaries with action items. Write with AI assistance in any tone.",
+		icon: Users,
+	},
+	{
+		id: 4,
+		title: "Act on intelligence, not noise",
+		description:
+			"Key decisions surfaced. Important details captured. Your team stays aligned with AI-powered clarity.",
 		icon: CheckCircle,
 	},
 ];
@@ -104,7 +104,7 @@ export default function HowItWorksSection() {
 							{/* Header */}
 							<div>
 								<h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-									<span className="text-primary">How</span> it works
+									<span className="text-primary">How AI</span> works for you
 								</h2>
 							</div>
 
@@ -129,7 +129,7 @@ export default function HowItWorksSection() {
 								transition={{ delay: 0.5 }}
 							>
 								<Button variant="brand-primary" className="px-5 py-2.5 text-sm shadow-sm">
-									Get started free
+									Try AI Features
 								</Button>
 								<Button variant="brand-secondary" className="px-5 py-2.5 text-sm">
 									<Image

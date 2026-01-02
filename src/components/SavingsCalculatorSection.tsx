@@ -406,13 +406,13 @@ export default function SavingsCalculatorSection() {
 					className="mt-12 flex flex-wrap justify-center gap-3"
 				>
 					{[
-						"Chat & Messaging",
-						"Video Conferencing",
-						"Screen Sharing",
-						"Calendar & Scheduling",
-						"Cloud Storage",
-						"AI Transcription",
-						"Real-time Translation",
+						"AI File Translation",
+						"AI Meeting Summaries",
+						"Real-time Transcription",
+						"Draft for Me",
+						"AI Q&A from Documents",
+						"Interview Evaluation Mode",
+						"40+ Languages",
 					].map((feature) => (
 						<span
 							key={feature}

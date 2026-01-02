@@ -8,7 +8,7 @@ const testimonials = [
 		name: "Sarah Chen",
 		role: "VP of Engineering, TechFlow",
 		quote:
-			"Melp brought our global team, partners, and vendors together in one intelligent workspace. Conversations flow naturally, and the AI summaries save us hours every week.",
+			"AI file translation is incredible — we translate technical docs for our global team instantly. Meeting summaries have cut our documentation time by 40%.",
 		avatar: "SC",
 		rating: 5,
 	},
@@ -16,7 +16,7 @@ const testimonials = [
 		name: "Marcus Rodriguez",
 		role: "Head of Partnerships, GrowthLabs",
 		quote:
-			"The professional networking feature is game-changing. Our agencies, clients, and vendors collaborate on real projects seamlessly. It's like LinkedIn meets Slack meets enterprise power.",
+			"Draft for Me transformed how we communicate with international clients. We write proposals in minutes, and the AI always gets the professional tone right.",
 		avatar: "MR",
 		rating: 5,
 	},
@@ -24,7 +24,7 @@ const testimonials = [
 		name: "Emily Watson",
 		role: "CEO, CreativeStudio",
 		quote:
-			"Where conversations flow, meetings feel natural, and files live where you need them. Melp truly delivers on the promise of one intelligent workspace for the world.",
+			"Real-time transcription in multiple languages changed everything for global creative reviews. Everyone follows along in their preferred language — no one falls behind.",
 		avatar: "EW",
 		rating: 5,
 	},
@@ -73,13 +73,13 @@ export default function TestimonialsSection() {
 						viewport={{ once: false }}
 						transition={{ duration: 0.4 }}
 					>
-						Testimonials
+						AI Success Stories
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Loved by enterprises worldwide
+						Teams achieving more with AI
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						See what leaders say about bringing teams, partners, and clients together in one intelligent workspace.
+						Leaders share how AI translation, summarization, and intelligent drafting transformed their workflows.
 					</p>
 				</RevealOnScroll>
 
