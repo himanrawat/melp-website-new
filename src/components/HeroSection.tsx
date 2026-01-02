@@ -11,10 +11,7 @@ import {
 	TextShimmer,
 	HoverTiltCard,
 } from "@/components/ui/aceternity";
-import {
-	EncryptedText,
-	RotatingEncryptedText,
-} from "@/components/ui/encrypted-text";
+import { SlackStyleHeading } from "@/components/headings/SlackStyleHeading";
 
 const clientLogos = [
 	"Acme Corp",
@@ -98,7 +95,7 @@ export default function HeroSection() {
 
 			<motion.div
 				style={{ y, opacity }}
-				className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-32 lg:pt-40"
+				className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20"
 			>
 				<div className="flex flex-col items-center text-center">
 					{/* Badge */}
@@ -142,34 +139,25 @@ export default function HeroSection() {
 					</motion.div>
 
 					{/* Main Heading */}
-					<motion.h1
-						initial={{ opacity: 0, y: 30 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{
-							duration: 0.8,
-							delay: 0.1,
-							ease: [0.21, 0.47, 0.32, 0.98],
-						}}
-						className="max-w-5xl text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl leading-[1.1]"
-					>
-						Work securely. Collaborate with{" "}
-						<RotatingEncryptedText
-							texts={[
-								"encrypted messaging",
-								"AI intelligence",
-								"protected storage",
-								"confidence",
-							]}
-							encryptedClassName="text-[#F14C2F]/50"
-							revealedClassName="bg-gradient-to-r from-[#F14C2F] to-[#FF0059] bg-clip-text text-transparent"
-							revealDelayMs={60}
-							displayDurationMs={3000}
-							className="font-bold"
-						/>
-					</motion.h1>
+					<SlackStyleHeading
+						prefix="Make"
+						suffix="Intelligent"
+						highlightWord="work"
+						cycleWords={[
+							"Knowledge",
+							"Communication",
+							"Collaboration",
+							"Decisions",
+							"translation",
+						]}
+						wordDuration={800}
+						loopDelay={5000}
+						className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground"
+						rotatingClassName="bg-gradient-to-r from-[#F14C2F] to-[#FF0059] bg-clip-text text-transparent"
+					/>
 
 					{/* Subheading */}
-					<motion.p
+					{/* <motion.p
 						initial={{ opacity: 0, y: 30 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{
@@ -179,8 +167,27 @@ export default function HeroSection() {
 						}}
 						className="mt-8 max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed"
 					>
-						Bring teams, partners, clients, and global workforces together in
-						one intelligent platform blending emotion and enterprise power.
+						Translate files, summarize conversations, transcribe meetings, and
+						write professionally — all powered by AI, built into one intelligent
+						workspace.
+					</motion.p> */}
+
+					{/* Supporting Line */}
+					<motion.p
+						initial={{ opacity: 0, y: 30 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{
+							duration: 0.8,
+							delay: 0.25,
+							ease: [0.21, 0.47, 0.32, 0.98],
+						}}
+						className="mt-4 max-w-2xl text-base text-muted-foreground/80 leading-relaxed"
+					>
+						{/* Melp helps teams understand more, miss nothing, and communicate
+						better — without switching tools. */}
+						Translate files, summarize conversations, transcribe meetings, and
+						write professionally — all powered by AI, built into one intelligent
+						workspace.
 					</motion.p>
 
 					{/* CTA Buttons */}
@@ -201,7 +208,7 @@ export default function HeroSection() {
 								className="px-8 h-12 text-base transition-all duration-300 group"
 							>
 								<span className="flex items-center gap-2">
-									Start for free
+									Explore AI Features
 									<motion.svg
 										width="16"
 										height="16"
@@ -227,67 +234,10 @@ export default function HeroSection() {
 								className="px-8 h-12 text-base "
 								asChild
 							>
-								Watch demo
+								Book a Demo
 							</Button>
 						</motion.div>
 					</motion.div>
-
-					{/* Trust Line */}
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ duration: 0.8, delay: 0.5 }}
-						className="mt-16"
-					>
-						<p className="text-sm text-muted-foreground mb-6">
-							Trusted by 10,000+ teams worldwide
-						</p>
-						{/* Client Logos */}
-						<div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-							{clientLogos.map((logo, index) => (
-								<motion.div
-									key={index}
-									initial={{ opacity: 0, y: 10 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-									whileHover={{ scale: 1.05, y: -2 }}
-									className="flex h-10 items-center justify-center px-4 text-sm font-medium text-muted-foreground/60 hover:text-muted-foreground transition-colors cursor-pointer"
-								>
-									{logo}
-								</motion.div>
-							))}
-						</div>
-					</motion.div>
-
-					{/* Hero Image in Desktop Frame */}
-					{/* <motion.div
-						initial={{ opacity: 0, y: 60, scale: 0.95 }}
-						animate={{ opacity: 1, y: 0, scale: 1 }}
-						transition={{
-							duration: 1,
-							delay: 0.7,
-							ease: [0.21, 0.47, 0.32, 0.98],
-						}}
-						className="mt-20 w-full max-w-6xl"
-					>
-						<div className="relative aspect-[16/10] w-full rounded-2xl border border-border/50 bg-muted/30 shadow-2xl overflow-hidden">
-							<div className="absolute top-4 left-4 flex gap-2 z-10">
-								<div className="w-3 h-3 rounded-full bg-red-400/60" />
-								<div className="w-3 h-3 rounded-full bg-yellow-400/60" />
-								<div className="w-3 h-3 rounded-full bg-green-400/60" />
-							</div>
-
-							<img
-								src={
-									mounted && resolvedTheme === "dark"
-										? "/dark-s1.png"
-										: "/S1.png"
-								}
-								alt="Product screenshot"
-								className="absolute inset-0 w-full h-full object-contain object-top pt-8"
-							/>
-						</div>
-					</motion.div> */}
 
 					{/* Video in Desktop Frame */}
 					<motion.div
@@ -301,9 +251,9 @@ export default function HeroSection() {
 						}}
 						className="relative z-20 mt-20 w-full max-w-6xl"
 					>
-						<div className="relative aspect-[16/10] w-full rounded-2xl border border-border/50 bg-muted/30 shadow-2xl overflow-hidden">
+						<div className="flex flex-col w-full rounded-2xl border border-border/50 bg-muted/30 shadow-2xl overflow-hidden">
 							{/* Decorative elements - Desktop window buttons */}
-							<div className="absolute top-4 left-4 flex gap-2 z-10">
+							<div className="flex gap-2 p-4">
 								<div className="w-3 h-3 rounded-full bg-red-400/60" />
 								<div className="w-3 h-3 rounded-full bg-yellow-400/60" />
 								<div className="w-3 h-3 rounded-full bg-green-400/60" />
@@ -312,7 +262,7 @@ export default function HeroSection() {
 							{/* Video */}
 							<video
 								ref={videoRef}
-								className="absolute inset-0 w-full h-full pt-8 object-fit object-top"
+								className="w-full h-auto object-contain"
 								src={videoSrc}
 								poster={
 									mounted && resolvedTheme === "dark"
