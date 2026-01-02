@@ -32,10 +32,16 @@ export default function Home() {
 						Slack Style Heading
 					</p>
 					<SlackStyleHeading
-						prefix="Where"
-						suffix="happens"
+						prefix="Make"
+						suffix="Intelligent"
 						highlightWord="work"
-						cycleWords={["AI", "clarity", "teams", "meetings", "translation"]}
+						cycleWords={[
+							"Knowledge",
+							"Communication",
+							"Collaboration",
+							"Decisions",
+							"translation",
+						]}
 						wordDuration={800}
 						loopDelay={5000}
 						className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground"
