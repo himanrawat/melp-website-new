@@ -178,12 +178,14 @@ export function HeroSection() {
 				</div>
 			</section>
 
-			{/* Blue Section (Bottom) - moved outside main section, with parallax */}
-			{/* Added padding-bottom to account for parallax movement */}
 			<div className="relative pb-[350px] -mt-36">
 				<motion.div
-					style={{ y: blueSpring }}
-					className="relative w-full py-28 rounded-[3rem] overflow-hidden bg-linear-to-r from-[#F14C2F] to-[#FF0059]"
+					style={{
+						y: blueSpring,
+						background:
+							"radial-gradient(ellipse at bottom center, #FF6B5B 0%, #FF0059 50%, #C0003D 100%)",
+					}}
+					className="relative w-full py-28 rounded-[3rem] overflow-hidden"
 				>
 					{/* Marquee Inside Blue Section - Background Layer */}
 					<div className="w-full pointer-events-none flex items-center justify-center">

@@ -2,18 +2,20 @@ import { motion } from "framer-motion";
 
 export const Marquee = () => {
 	return (
-		<div className="relative flex overflow-x-hidden text-white/80 py-4 md:py-6">
-			{/* Left fade gradient */}
-			<div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-linear-to-r from-[#F14C2F] to-transparent z-10 pointer-events-none" />
-
-			{/* Right fade gradient */}
-			<div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-linear-to-l from-[#FF0059] to-transparent z-10 pointer-events-none" />
-
+		<div
+			className="relative flex overflow-x-hidden text-white/80 py-4 md:py-6"
+			style={{
+				WebkitMaskImage:
+					"linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+				maskImage:
+					"linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+			}}
+		>
 			<motion.div
 				className="flex whitespace-nowrap text-4xl md:text-8xl font-extrabold tracking-wider uppercase"
 				animate={{ x: ["0%", "-50%"] }}
 				transition={{
-					duration: 60,
+					duration: 150,
 					ease: "linear",
 					repeat: Infinity,
 				}}
