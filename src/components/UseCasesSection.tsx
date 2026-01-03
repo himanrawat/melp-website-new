@@ -9,7 +9,7 @@ const industryUseCases = [
 	{
 		title: "Technology",
 		description:
-			"Unite engineering teams, vendors, and partners across continents. Ship faster with AI-powered workflows and structured collaboration.",
+			"AI summaries for sprint reviews, instant translation for global teams, and meeting transcripts that become searchable documentation.",
 		gradient: "from-violet-500/20 via-purple-500/10",
 		image: "/assets/video-gallery-grid.png",
 		alt: "Technology teams collaborating in a video gallery grid",
@@ -17,7 +17,7 @@ const industryUseCases = [
 	{
 		title: "Healthcare",
 		description:
-			"Secure, compliant communication for care teams, partners, and agencies. Coordinate seamlessly with trust engineered at every layer.",
+			"AI-powered multilingual communication for care teams. Instant document translation and compliant meeting summaries.",
 		gradient: "from-emerald-500/20 via-green-500/10",
 		image: "/assets/team-collaboration-translation.png",
 		alt: "Healthcare professionals collaborating with translation assistance",
@@ -25,7 +25,7 @@ const industryUseCases = [
 	{
 		title: "Finance",
 		description:
-			"Connect clients, partners, and internal teams. Enterprise-grade security meets lightning-fast deal flow and compliance tracking.",
+			"AI summaries of client meetings, translated compliance documents, and intelligent drafting for client communications.",
 		gradient: "from-blue-500/20 via-cyan-500/10",
 		image: "/assets/video-call-invite-panel.png",
 		alt: "Client meeting invite panel during a secure video call",
@@ -33,7 +33,7 @@ const industryUseCases = [
 	{
 		title: "Professional Services",
 		description:
-			"One workspace for consultants, clients, and vendors. A professional graph where real projects come together.",
+			"AI extracts key details from client documents. Meeting summaries with action items. Draft proposals in any professional tone.",
 		image: "/assets/meeting-scheduling-ui-collage.png",
 		alt: "Scheduling and invitation UI for professional services projects",
 		imageFit: "object-contain",
@@ -41,7 +41,7 @@ const industryUseCases = [
 	{
 		title: "Agencies",
 		description:
-			"Collaborate with clients and vendors like you're in the same room. Instant sharing, precision permissions, frictionless teamwork.",
+			"AI translation for global creative briefs. Summarize client feedback instantly. Draft responses in the right tone.",
 		gradient: "from-pink-500/20 via-rose-500/10",
 		image: "/assets/live-broadcast-thumbnail-collage.png",
 		alt: "Live broadcast and recording controls for creative teams",
@@ -49,7 +49,7 @@ const industryUseCases = [
 	{
 		title: "Manufacturing",
 		description:
-			"Connect the shop floor to global suppliers and partners. Real-time updates with instant translation across languages.",
+			"Real-time translation across supplier languages. AI summaries of supply chain updates. Instant document translation.",
 		gradient: "from-slate-500/20 via-gray-500/10",
 		image: "/assets/mobile-meeting-scheduling-screens.png",
 		alt: "Mobile scheduling for distributed manufacturing teams",
@@ -61,7 +61,7 @@ const roleUseCases = [
 	{
 		title: "Product Teams",
 		description:
-			"From roadmap to launch, keep teams and external partners aligned. Where complexity transforms into focus.",
+			"AI summarizes stakeholder meetings. Translate PRDs for global teams. Ask questions to extract requirements from any document.",
 		gradient: "from-indigo-500/20 via-blue-500/10",
 		image: "/assets/mobile-groups-teams-screens.png",
 		alt: "Mobile view of product team groups and threads",
@@ -70,19 +70,19 @@ const roleUseCases = [
 	{
 		title: "Engineering",
 		description:
-			"Async-first collaboration with context. Connect distributed teams and vendors where conversations flow naturally.",
+			"AI meeting summaries capture technical decisions. Translate documentation for distributed teams. Q&A from spec documents.",
 		gradient: "from-cyan-500/20 via-teal-500/10",
 	},
 	{
 		title: "Marketing",
 		description:
-			"Coordinate with agencies, vendors, and internal teams. Intelligence guides every campaign moment.",
+			"AI drafts campaign copy in any tone. Translate assets for global markets. Summarize campaign performance reports instantly.",
 		gradient: "from-orange-500/20 via-amber-500/10",
 	},
 	{
 		title: "Sales",
 		description:
-			"Close deals with real-time client collaboration. Partners, vendors, and customers united in deal rooms.",
+			"AI summaries of client calls with action items. Draft follow-ups professionally. Translate proposals for international deals.",
 		gradient: "from-green-500/20 via-emerald-500/10",
 		image: "/assets/customer-support-call-collage.png",
 		alt: "Sales demo style video call with quick access actions",
@@ -91,13 +91,13 @@ const roleUseCases = [
 	{
 		title: "HR & People",
 		description:
-			"Onboard global teams seamlessly. Build culture across rooms, cities, and continents.",
+			"AI evaluation mode for interviews with integrity signals. Generate questions from job descriptions. Summarize candidate sessions.",
 		gradient: "from-purple-500/20 via-violet-500/10",
 	},
 	{
 		title: "Operations",
 		description:
-			"Automate workflows with vendors and partners. AI summaries and intelligent routing reduce noise.",
+			"AI summaries of vendor meetings. Translate supplier documents. Extract key details from contracts and SOWs.",
 		gradient: "from-red-500/20 via-rose-500/10",
 	},
 ];
@@ -211,14 +211,14 @@ export default function UseCasesSection() {
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}
 					>
-						Use Cases
+						AI Use Cases
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Partners. Clients. Vendors. United.
+						AI outcomes for every team
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Whether you&apos;re connecting with internal teams or global
-						partners, Melp adapts to your workflow.
+						Translation, summarization, intelligent drafting, and interview evaluation —
+						AI that delivers value across industries and roles.
 					</p>
 				</RevealOnScroll>
 

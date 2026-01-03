@@ -41,32 +41,32 @@ const orbitalIntegrations = [
 const integrations = [
 	{
 		name: "Google Drive",
-		description: "Sync files & documents",
+		description: "AI translation & summaries for Drive files",
 		logo: "https://www.gstatic.com/images/branding/product/2x/drive_2020q4_48dp.png",
 	},
 	{
 		name: "OneDrive",
-		description: "Access your cloud storage",
+		description: "AI-powered insights from your storage",
 		logo: "/onedrive.svg",
 	},
 	{
 		name: "Google Calendar",
-		description: "Schedule meetings instantly",
+		description: "Smart scheduling with AI assistance",
 		logo: "https://www.gstatic.com/images/branding/product/2x/calendar_2020q4_48dp.png",
 	},
 	{
 		name: "Outlook Calendar",
-		description: "Sync your Microsoft calendar",
+		description: "AI-synced scheduling across teams",
 		logo: "/outlook-calendar.svg",
 	},
 	{
 		name: "Jira",
-		description: "Track projects & tasks",
+		description: "AI summaries of project updates",
 		logo: "https://cdn.worldvectorlogo.com/logos/jira-1.svg",
 	},
 	{
 		name: "Salesforce",
-		description: "Connect your CRM data",
+		description: "AI insights from your CRM data",
 		logo: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg",
 	},
 ];
@@ -150,14 +150,14 @@ export default function IntegrationsSection() {
 						viewport={{ once: false }}
 						transition={{ duration: 0.4 }}
 					>
-						Integrations
+						AI + Integrations
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Deep connectivity with your ecosystem
+						AI intelligence across your tools
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Seamless connectivity with CRMs, project tools, automation
-						platforms, and enterprise systems you already use.
+						Connect your existing tools and let AI translate, summarize, and extract
+						insights from documents across your entire ecosystem.
 					</p>
 				</RevealOnScroll>
 

@@ -44,13 +44,13 @@ export default function SecuritySection() {
 							className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
 							style={{ opacity: 1, transform: "none" }}
 						>
-							Enterprise Security
+							Enterprise AI Security
 						</span>
 						<h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-2">
-							Your data stays private and under your control
+							AI with enterprise-grade privacy
 						</h2>
 						<p className="text-muted-foreground text-lg mb-8">
-							Melp encrypts data in transit and at rest, doesn’t use your information for ads, and limits access based on roles, so your organization stays in charge of its own privacy.
+							Your data never trains our AI models. All AI processing is encrypted end-to-end. Role-based access controls ensure your information stays under your control.
 						</p>
 
 						{/* Trust indicators */}
@@ -142,7 +142,7 @@ export default function SecuritySection() {
 						href="/security"
 						className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
 					>
-						Learn more about our security practices
+						Learn more about our AI security practices
 						<svg
 							className="w-4 h-4"
 							fill="none"

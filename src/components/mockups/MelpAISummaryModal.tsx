@@ -13,6 +13,7 @@ interface SummaryItem {
 
 interface MelpAISummaryModalProps {
 	className?: string;
+	contentClassName?: string;
 }
 
 const summaryItems: SummaryItem[] = [
@@ -51,6 +52,7 @@ const categoryColors = {
 
 export default function MelpAISummaryModal({
 	className = "",
+	contentClassName = "",
 }: MelpAISummaryModalProps) {
 	const [visibleItems, setVisibleItems] = useState<number[]>([]);
 	const [isGenerating, setIsGenerating] = useState(false);
@@ -164,7 +166,7 @@ export default function MelpAISummaryModal({
 
 			{/* Content */}
 			<div
-				className="p-4 h-[300px] overflow-y-auto scrollbar-hide"
+				className={`p-4 h-[300px] overflow-y-auto scrollbar-hide ${contentClassName}`}
 				style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 			>
 				{/* Generating State */}
