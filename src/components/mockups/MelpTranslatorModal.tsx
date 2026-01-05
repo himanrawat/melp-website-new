@@ -224,7 +224,7 @@ export default function MelpTranslatorModal({
 
 			{/* Text Area */}
 			<div className="p-4">
-				<div className="bg-[#1a1a1a] rounded-lg p-4 min-h-[120px] relative">
+				<div className="bg-[#1a1a1a] rounded-lg p-4 h-40 relative">
 					{/* Translating indicator */}
 					<AnimatePresence>
 						{isTranslating && (

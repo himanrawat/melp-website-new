@@ -5,19 +5,16 @@ import {
 	SectionTitle,
 	SectionDescription,
 	FeatureCard,
-	TestimonialCard,
-	RatingBadge,
 	FAQAccordion,
-	TrustIndicators,
 	CTAButtons,
 	HeroBadge,
 	ImagePlaceholder,
 } from "@/components/alternative";
 
 export const metadata: Metadata = {
-	title: "Best Microsoft Teams Alternative for Seamless Collaboration | Melp App",
+	title: "Best Microsoft Teams Alternative | Melp App",
 	description:
-		"Looking for a Microsoft Teams alternative? Melp App simplifies team communication with structured workspaces, secure messaging, and AI-powered productivity.",
+		"Looking for the best Microsoft Teams alternative or a free Teams alternative? Melp is a powerful collaboration tool and digital workplace platform that combines chat, video conferencing, calendar, and team collaboration - all in one app.",
 	keywords: [
 		"Microsoft Teams alternative",
 		"teams alternative",
@@ -31,9 +28,9 @@ export const metadata: Metadata = {
 		"digital workplace platform",
 	],
 	openGraph: {
-		title: "Best Microsoft Teams Alternative for Seamless Collaboration | Melp App",
+		title: "Best Microsoft Teams Alternative | Melp App",
 		description:
-			"Looking for a Microsoft Teams alternative? Melp App simplifies team communication with structured workspaces, secure messaging, and AI-powered productivity.",
+			"Looking for the best Microsoft Teams alternative or a free Teams alternative? Melp is a powerful collaboration tool and digital workplace platform that combines chat, video conferencing, calendar, and team collaboration - all in one app.",
 		url: "https://melp.us/microsoft-teams-alternative",
 		siteName: "Melp",
 		type: "website",
@@ -50,30 +47,32 @@ export default function MicrosoftTeamsAlternativePage() {
 
 				<div className="relative z-10 text-center">
 					<div className="flex items-center justify-center mb-10">
-						<HeroBadge>A Modern Teams Alternative</HeroBadge>
+						<HeroBadge>Your all-in-one Microsoft Teams alternative</HeroBadge>
 					</div>
 
 					<SectionTitle
 						as="h1"
 						className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl max-w-4xl mx-auto leading-[1.1]"
 					>
-						<span className="text-primary">Microsoft Teams Alternative</span> for
-						Simpler, Smarter Collaboration
+						Your all-in-one{" "}
+						<span className="text-primary">Microsoft Teams alternative</span> for
+						seamless collaboration
 					</SectionTitle>
 
 					<SectionDescription className="mt-6 text-lg sm:text-xl max-w-2xl mx-auto">
-						Melp App is a modern Microsoft Teams alternative built for teams that
-						want structured, secure collaboration without the complexity. Bring
-						messaging, meetings, shared workspaces, and AI assistance into one
-						lightweight, intuitive platform.
+						Melp App is a powerful Microsoft Teams alternative that helps your
+						business communicate and collaborate with ease. It keeps every
+						conversation organized and every project moving smoothly, regardless
+						of where your team members work. Teams inside and outside your
+						organization can connect in one shared workspace built for clarity and
+						results. Melp brings structure to communication, allowing ideas to
+						flow naturally and decisions to be made faster. As a modern teams
+						alternative, it helps your business stay focused, productive, and truly
+						connected without the noise or confusion of juggling multiple tools.
 					</SectionDescription>
 
 					<div className="mt-10">
 						<CTAButtons />
-					</div>
-
-					<div className="mt-12">
-						<TrustIndicators />
 					</div>
 
 					<div className="mt-16">
@@ -90,33 +89,45 @@ export default function MicrosoftTeamsAlternativePage() {
 			{/* Why Switch Section */}
 			<SectionWrapper className="bg-background">
 				<div className="text-center mb-14">
-					<SectionLabel>Why Switch?</SectionLabel>
+					<SectionLabel>Key reasons businesses are switching:</SectionLabel>
 					<SectionTitle className="max-w-3xl mx-auto">
-						Why Businesses Are Looking for an Alternative to Microsoft Teams
+						Why are businesses switching to Microsoft Teams alternatives?
 					</SectionTitle>
 					<SectionDescription className="mx-auto">
-						Microsoft Teams is a powerful tool for businesses already committed to
-						the Microsoft ecosystem. But its depth comes with trade-offs. Many
-						teams struggle with Teams&apos; complexity, rigid structure, and
-						friction when collaborating across organizations.
+						Businesses are turning to Microsoft Teams alternatives to overcome
+						tool overload, scattered communication, and slow collaboration. As
+						teams grow and work with external partners, they need a platform that
+						keeps everything organized and connected. Melp App simplifies how
+						teams communicate, share ideas, and stay aligned - all in one seamless
+						workspace.
 					</SectionDescription>
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
 					<FeatureCard
 						icon="Layers"
-						title="Tool overload and fragmented communication"
-						description="Teams requires switching between channels, chats, meetings, files, and apps. Important updates often get buried in long threads or scattered across tools."
-					/>
-					<FeatureCard
-						icon="SlidersHorizontal"
-						title="Complex user interface and learning curve"
-						description="From permissions and team roles to threaded replies and notifications, Teams can feel unintuitive—especially for non-technical users or external guests."
+						title="Eliminates tool overload"
+						description="Eliminates tool overload and scattered workflows."
 					/>
 					<FeatureCard
 						icon="Users"
-						title="Challenges with external collaboration"
-						description="Working with clients, freelancers, or partners in Teams involves tenant switching, guest access, or admin setup. This slows down external collaboration."
+						title="Smooth external and internal collaboration"
+						description="Enables smooth external and internal collaboration."
+					/>
+					<FeatureCard
+						icon="Zap"
+						title="Communication speed and clarity"
+						description="Improves communication speed and clarity."
+					/>
+					<FeatureCard
+						icon="LayoutGrid"
+						title="Well-structured conversations and teamwork"
+						description="Keeps conversations and teamwork well-structured."
+					/>
+					<FeatureCard
+						icon="Sparkles"
+						title="Productivity and team alignment"
+						description="Boosts productivity and team alignment."
 					/>
 				</div>
 
@@ -127,19 +138,25 @@ export default function MicrosoftTeamsAlternativePage() {
 					size="full"
 				/>
 			</SectionWrapper>
-
 			{/* Benefits Section */}
 			<SectionWrapper className="bg-muted/30">
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 					<div className="lg:sticky lg:top-24">
-						<SectionLabel>Why Melp</SectionLabel>
+						<SectionLabel>Why businesses prefer Melp App:</SectionLabel>
 						<SectionTitle className="text-2xl sm:text-3xl lg:text-4xl">
-							Melp App — A Flexible Microsoft Teams Alternative
+							Key reasons Melp App is becoming the preferred Microsoft Teams
+							alternative
 						</SectionTitle>
 						<SectionDescription className="mb-8">
-							Melp App is designed for teams who want to communicate clearly,
-							collaborate confidently, and stay aligned—without navigating a maze
-							of channels or juggling disconnected tools.
+							Melp App gives organizations a smarter way to manage teamwork and
+							communication. It replaces scattered tools with one structured space
+							built around teams, topics, and real-time interaction. Conversations
+							stay organized, and collaboration feels natural whether you're
+							working internally or with external partners. Melp adapts to how
+							modern teams actually work - helping reduce meeting fatigue,
+							eliminate tool overload, and keep communication clear. As a reliable
+							alternative to Teams, it connects people, ideas, and workstreams
+							effortlessly, turning everyday collaboration into real progress.
 						</SectionDescription>
 
 						<CTAButtons
@@ -158,180 +175,93 @@ export default function MicrosoftTeamsAlternativePage() {
 					<div className="space-y-5">
 						<FeatureCard
 							icon="LayoutGrid"
-							title="Organized workspaces, not chaotic channels"
-							description="Melp's interface focuses on clarity. Conversations stay structured by team or topic, so context is never lost and updates are easy to find."
-						/>
-						<FeatureCard
-							icon="Layers"
-							title="No tool overload"
-							description="Melp combines chat, meetings, scheduling, and file sharing in one connected workspace—no need to toggle between apps to get work done."
+							title="Communication organized and focused"
+							description="Keeps communication organized and focused."
 						/>
 						<FeatureCard
 							icon="Users"
-							title="Built-in external collaboration"
-							description="Invite clients, vendors, or freelancers securely—without needing IT or complex identity management. External users can participate with full context."
+							title="External and cross-functional teamwork"
+							description="Supports external and cross-functional teamwork."
 						/>
 						<FeatureCard
-							icon="Bot"
-							title="AI-powered clarity"
-							description="Melp includes automatic meeting summaries, multilingual translation, and real-time collaboration tools that help teams communicate efficiently and stay on track."
+							icon="MessageSquareOff"
+							title="Less tool switching and fatigue"
+							description="Reduces tool switching and fatigue."
+						/>
+						<FeatureCard
+							icon="Calendar"
+							title="Clarity and real-time coordination"
+							description="Improves clarity and real-time coordination."
+						/>
+						<FeatureCard
+							icon="Sparkles"
+							title="Measurable collaboration outcomes"
+							description="Turns collaboration into measurable outcomes."
 						/>
 					</div>
 				</div>
 			</SectionWrapper>
-
-			{/* Differentiators Section */}
-			<SectionWrapper className="bg-background">
-				<div className="text-center mb-14">
-					<SectionLabel>Why Teams Choose Melp</SectionLabel>
-					<SectionTitle className="max-w-3xl mx-auto">
-						Why Teams Choose Melp Over Traditional Collaboration Suites
-					</SectionTitle>
-					<SectionDescription className="mx-auto">
-						Teams switching from Microsoft Teams are often looking for a clearer,
-						more streamlined way to collaborate. Melp provides structure,
-						flexibility, and focus—without sacrificing security or scalability.
-					</SectionDescription>
-				</div>
-
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
-					<FeatureCard
-						icon="Sparkles"
-						title="Less clutter, more clarity"
-						description="Conversations are easy to follow. No more buried threads or lost follow-ups."
-					/>
-					<FeatureCard
-						icon="Zap"
-						title="Fast onboarding"
-						description="New users—including external collaborators—can get started without training or account friction."
-					/>
-					<FeatureCard
-						icon="Globe"
-						title="Works across teams and organizations"
-						description="Melp adapts to internal and cross-functional collaboration, making it ideal for client-facing or distributed teams."
-					/>
-					<FeatureCard
-						icon="Shield"
-						title="Security and compliance by design"
-						description="Melp supports SOC 2, GDPR, HIPAA, and enterprise-grade security features like MFA and encrypted communication."
-					/>
-				</div>
-
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-					<ImagePlaceholder
-						imageType="Feature Screenshot"
-						description="Screenshot showing external collaboration in action. Display a shared workspace with both internal team members and external guests (clients/partners) collaborating together. Highlight how easy it is to invite external users."
-						aspectRatio="aspect-video"
-						size="full"
-					/>
-					<ImagePlaceholder
-						imageType="Security Visual"
-						description="Visual showing Melp's security features and compliance badges. Could be a screenshot of admin security settings, or an illustration featuring SOC 2, GDPR, HIPAA badges with security icons (encryption, MFA, etc.)."
-						aspectRatio="aspect-video"
-						size="full"
-					/>
-				</div>
-			</SectionWrapper>
-
-			{/* Testimonials Section */}
-			<SectionWrapper className="bg-muted/20">
-				<div className="text-center mb-14">
-					<SectionLabel>Trusted by Teams Worldwide</SectionLabel>
-					<SectionTitle>Trusted by Teams Replacing Microsoft Teams</SectionTitle>
-					<SectionDescription className="max-w-2xl mx-auto">
-						From fast-growing startups to global enterprises, teams use Melp to
-						simplify how they collaborate—internally and externally. Melp gives
-						you all the benefits of modern collaboration software, without the
-						noise, friction, or complexity.
-					</SectionDescription>
-				</div>
-
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-					<TestimonialCard
-						quote="We needed a tool that external partners could use without complex onboarding. Melp made collaboration seamless from day one."
-						author="Sarah Mitchell"
-						role="Head of Operations"
-						company="TechVentures Inc."
-						avatar="/users/user-1.png"
-					/>
-					<TestimonialCard
-						quote="Teams was too complex for our team. With Melp, everyone knows where to find conversations and how to stay aligned—no training required."
-						author="Michael Chen"
-						role="CTO"
-						company="StartupFlow"
-						avatar="/users/user-2.png"
-					/>
-				</div>
-
-				<div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
-					<RatingBadge platform="G2 Crowd" rating="4.8" />
-					<RatingBadge platform="Capterra" rating="4.7" />
-				</div>
-			</SectionWrapper>
-
 			{/* FAQ Section */}
 			<SectionWrapper className="bg-background">
 				<div className="max-w-3xl mx-auto">
 					<div className="text-center mb-12">
-						<SectionLabel>Frequently Asked Questions</SectionLabel>
-						<SectionTitle>
-							Frequently Asked Questions About Microsoft Teams Alternatives
-						</SectionTitle>
+						<SectionTitle>Frequently Asked Questions</SectionTitle>
 					</div>
 
 					<FAQAccordion
 						faqs={[
 							{
 								question:
-									"What is the best Microsoft Teams alternative for modern teams?",
+									"What is the best Microsoft Teams alternative for modern businesses?",
 								answer:
-									"The best Microsoft Teams alternative is one that fits your team's workflow. Melp App helps teams communicate clearly, stay organized, and work across organizations in one secure platform.",
+									"The strongest Microsoft Teams alternative for many growing companies is Melp App. It gives teams one dependable place to talk, meet, and share information instead of bouncing between several programs. By keeping everything in a single, organized space, the Melp App helps people stay connected and focused on work that actually matters.",
 							},
 							{
 								question:
-									"Why are companies switching away from Microsoft Teams?",
+									"Which Microsoft Teams alternatives offer better collaboration options?",
 								answer:
-									"Many teams find Microsoft Teams overwhelming due to its interface complexity, heavy structure, and difficulty onboarding external users. Alternatives like Melp offer a lighter, more intuitive experience.",
+									"Among today's Microsoft Teams alternatives, Melp AI Digital Workplace draws attention because it keeps communication organized and easy to follow. Conversations are grouped by teams and topics so everyone knows where to find what they need. Whether people work from home or at the office, the Melp App helps them stay coordinated without confusion.",
 							},
 							{
-								question: "Are there free alternatives to Microsoft Teams?",
+								question:
+									"How do alternatives to Microsoft Teams improve communication?",
 								answer:
-									"Yes. Melp offers a free plan with structured messaging, meetings, file sharing, and AI summaries—making it ideal for small and growing teams.",
+									"Alternatives to Microsoft Teams aim to make everyday communication smoother. Melp App brings chats, meetings, and shared updates into one place so employees don't have to jump between windows. It keeps information visible, encourages faster replies, and helps departments work together naturally.",
 							},
 							{
-								question: "How is Melp different from Teams?",
+								question:
+									"Why do businesses prefer an alternative to Teams for daily collaboration?",
 								answer:
-									"Melp focuses on simplicity and structure. It reduces tool overload, simplifies external collaboration, and supports multilingual, AI-assisted communication—all in one platform.",
+									"Many organizations look for an alternative to Teams because they want tools that are lighter, clearer, and easier for everyone to use. Melp App removes the clutter of too many platforms and gives teams a single, steady rhythm for sharing ideas. With Melp AI Digital Workplace, people can focus on the work itself instead of figuring out how to stay in touch.",
+							},
+							{
+								question:
+									"Are there any free alternatives to Microsoft Teams for small organizations?",
+								answer:
+									"Some free alternatives to Microsoft Teams exist, but Melp App offers more than most. Its free plan covers essential communication and meeting tools so small teams can start working together right away. As the business grows, Melp App expands with it - keeping the same smooth experience without extra complexity.",
 							},
 						]}
 					/>
 				</div>
 			</SectionWrapper>
-
 			{/* CTA Section */}
 			<SectionWrapper className="bg-gradient-to-b from-muted/30 via-background to-muted/30 overflow-hidden relative">
 				{/* Grid pattern */}
 				<div className="absolute inset-0 bg-[linear-gradient(to_right,#22202008_1px,transparent_1px),linear-gradient(to_bottom,#22202008_1px,transparent_1px)]" />
 
 				<div className="relative text-center">
-					<SectionLabel>Ready to Switch?</SectionLabel>
 					<SectionTitle className="sm:text-4xl lg:text-5xl">
-						Ready to Switch from Microsoft Teams?
+						Your search stops here.
 					</SectionTitle>
 					<SectionDescription className="max-w-2xl mx-auto mb-8">
-						If your team wants more clarity, less clutter, and better
-						collaboration across departments and organizations—Melp is the
-						Microsoft Teams alternative built for you. Start for free or schedule
-						a demo today.
+						Experience Melp App and bring effortless communication and teamwork to
+						your entire business.
 					</SectionDescription>
 
 					<CTAButtons />
-
-					<p className="mt-8 text-sm text-muted-foreground">
-						No credit card required • Free migration support • Cancel anytime
-					</p>
 				</div>
 			</SectionWrapper>
+
 		</>
 	);
 }

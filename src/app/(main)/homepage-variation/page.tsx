@@ -1,5 +1,8 @@
 import React from "react";
 import { HeroSection } from "@/components/homepage-variation-component/HeroSection";
+import { BentoFeatures } from "@/components/homepage-variation-component/BentoFeatures";
+import { StackingCards } from "@/components/homepage-variation-component/StackingCards";
+import CustomerTestimonialsSection from "@/components/ui/customer-testimonials-section";
 
 export const metadata = {
 	title: "Melp - Work Faster, Work Flexible",
@@ -24,6 +27,9 @@ export default function AppleHomePage() {
 	return (
 		<main className="min-h-screen max-w-[1296px] mx-auto">
 			<HeroSection />
+			<BentoFeatures />
+			<StackingCards />
+			<CustomerTestimonialsSection />
 		</main>
 	);
 }

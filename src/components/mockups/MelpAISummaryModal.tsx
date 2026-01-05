@@ -164,7 +164,7 @@ export default function MelpAISummaryModal({
 
 			{/* Content */}
 			<div
-				className="p-4 h-[300px] overflow-y-auto scrollbar-hide"
+				className="p-4 h-80 overflow-y-auto scrollbar-hide"
 				style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 			>
 				{/* Generating State */}

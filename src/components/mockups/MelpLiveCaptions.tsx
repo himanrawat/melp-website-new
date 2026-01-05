@@ -14,6 +14,7 @@ interface Caption {
 
 interface MelpLiveCaptionsProps {
 	className?: string;
+	expanded?: boolean;
 }
 
 const captions: Caption[] = [
@@ -120,6 +121,7 @@ const languageCodes: Record<string, string> = {
 
 export default function MelpLiveCaptions({
 	className = "",
+	expanded = false,
 }: MelpLiveCaptionsProps) {
 	const [visibleCaptions, setVisibleCaptions] = useState<number[]>([]);
 	const [currentLanguage, setCurrentLanguage] = useState("English");
@@ -236,9 +238,9 @@ export default function MelpLiveCaptions({
 			className={`relative bg-[#1a1a1a] rounded-xl overflow-hidden border border-gray-800 ${className}`}
 		>
 			{/* Two column layout - Video on left, Captions on right */}
-			<div className="grid grid-cols-2 h-[320px] max-h-[320px] overflow-hidden">
+			<div className={`grid overflow-hidden ${expanded ? "grid-cols-12 h-[420px] max-h-[420px]" : "grid-cols-2 h-[320px] max-h-[320px]"}`}>
 				{/* Video Call Area - Left Side */}
-				<div className="relative bg-[#0d0d0d] border-r border-gray-800">
+				<div className={`relative bg-[#0d0d0d] border-r border-gray-800 ${expanded ? "col-span-8" : ""}`}>
 					{/* Meeting Header */}
 					<div className="flex items-center justify-center gap-2 px-3 py-2 bg-[#1a1a1a] border-b border-gray-800">
 						<div className="w-2 h-2 bg-green-500 rounded-full" />
@@ -281,7 +283,7 @@ export default function MelpLiveCaptions({
 				</div>
 
 				{/* Captions Panel - Right Side */}
-				<div className="flex flex-col bg-[#1a1a1a] h-[320px] max-h-[320px] overflow-hidden">
+				<div className={`flex flex-col bg-[#1a1a1a] overflow-hidden ${expanded ? "col-span-4 h-[420px] max-h-[420px]" : "h-[320px] max-h-[320px]"}`}>
 					{/* Captions Header */}
 					<div className="flex items-center justify-between px-3 py-2 bg-[#242424] border-b border-gray-800">
 						<div className="flex items-center gap-2">
@@ -319,7 +321,7 @@ export default function MelpLiveCaptions({
 												}`}
 												whileHover={{ backgroundColor: "#3d3d3d" }}
 											>
-												<span className="text-xs">{languageCodes[lang]}</span>
+												<span className="text-white text-xs">{languageCodes[lang]}</span>
 												<span className="text-white text-xs">{lang}</span>
 											</motion.div>
 										))}

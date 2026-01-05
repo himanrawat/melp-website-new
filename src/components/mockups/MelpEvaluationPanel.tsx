@@ -130,7 +130,7 @@ export default function MelpEvaluationPanel({
 			</div>
 
 			{/* Content */}
-			<div className="p-4 min-h-[280px]">
+			<div className="p-4 h-80">
 				{/* Upload Phase */}
 				<AnimatePresence mode="wait">
 					{phase === "upload" && (
