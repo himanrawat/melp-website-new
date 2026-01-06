@@ -597,10 +597,10 @@ function NavDropdown({
 						initial="hidden"
 						animate="visible"
 						exit="exit"
-						className={`fixed left-0 right-0 ${dropdownTop} w-full flex justify-center px-6 z-50`}
+						className={`fixed left-0 right-0 ${dropdownTop} w-full flex justify-center px-6 z-50 pointer-events-none`}
 					>
 						<motion.div
-							className={`w-full max-w-6xl border shadow-xl overflow-hidden ${
+							className={`w-full max-w-6xl border shadow-xl overflow-hidden pointer-events-auto ${
 								isDarkRoute
 									? "bg-gray-950/95 border-white/20 shadow-purple-500/20 backdrop-blur-md"
 									: "bg-background border-border/50 shadow-black/5 dark:shadow-black/20"
