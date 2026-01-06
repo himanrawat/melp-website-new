@@ -73,8 +73,8 @@ export function AudienceSection() {
 						viewport={{ once: true }}
 						className="group p-8 lg:p-10 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-lg"
 					>
-						<div className="w-12 h-12 rounded-xl bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center mb-6 group-hover:bg-[#EE4136]/10 transition-colors">
-							<audience.icon className="w-6 h-6 text-neutral-600 dark:text-neutral-400 group-hover:text-[#EE4136] transition-colors" />
+						<div className="w-12 h-12 rounded-xl bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center mb-6 group-hover:bg-neutral-300 transition-colors">
+							<audience.icon className="w-6 h-6 text-neutral-600 dark:text-neutral-400 group-hover:text-neutral-800 transition-colors" />
 						</div>
 						<h3 className="text-xl lg:text-2xl font-medium text-neutral-900 dark:text-white mb-3">
 							{audience.title}

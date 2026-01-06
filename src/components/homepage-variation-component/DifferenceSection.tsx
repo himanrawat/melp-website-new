@@ -52,7 +52,7 @@ export function DifferenceSection() {
 				className="text-center mb-12 lg:mb-16 flex flex-col items-center"
 				style={{ opacity: headerOpacity, scale: headerScale, y: headerY }}
 			>
-				<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-500/10 text-[#EE4136] text-sm font-medium mb-6">
+				<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-sm font-medium mb-6">
 					<svg
 						className="w-4 h-4"
 						viewBox="0 0 22 22"
@@ -85,7 +85,7 @@ export function DifferenceSection() {
 						viewport={{ once: true }}
 						className="relative p-6 lg:p-8"
 					>
-						<div className="absolute left-0 top-6 lg:top-8 w-1 h-12 bg-gradient-to-b from-[#EE4136] to-[#EE4136]/20 rounded-full" />
+						<div className="absolute left-0 top-6 lg:top-8 w-1 h-12 bg-linear-to-b from-neutral-400 to-neutral-400/20 rounded-full" />
 						<div className="pl-6">
 							<h3 className="text-xl lg:text-2xl font-medium text-neutral-900 dark:text-white mb-3">
 								{item.title}

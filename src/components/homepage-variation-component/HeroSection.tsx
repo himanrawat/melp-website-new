@@ -234,25 +234,33 @@ export function HeroSection() {
 						<Marquee />
 					</div>
 
-					{/* Content inside blue section (Bottom) */}
-					<div className="container mx-auto text-center relative z-10 pt-12 sm:pt-16 md:pt-20 px-4">
-						<h2 className="text-white text-xl sm:text-2xl md:text-3xl font-medium mb-6 sm:mb-8 max-w-2xl mx-auto border-t border-white/10 pt-6 sm:pt-10">
-							Trusted by forward-thinking teams
-						</h2>
-						{/* Logo Strip Placeholder */}
-						<div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-16 opacity-80 mt-8 sm:mt-14">
-							{["Acme", "Globex", "Initech", "Umbrella", "Weyland"].map(
-								(logo, i) => (
-									<span
-										key={i}
-										className="text-base sm:text-lg md:text-xl font-bold text-white tracking-widest uppercase"
-									>
-										{logo}
-									</span>
-								)
-							)}
-						</div>
+					{/* AI Features - Core Capabilities */}
+				<div className="container mx-auto text-center relative z-10 pt-12 sm:pt-16 md:pt-20 px-4">
+					<h2 className="text-white text-xl sm:text-2xl md:text-3xl font-medium mb-6 sm:mb-8 max-w-2xl mx-auto border-t border-white/10 pt-6 sm:pt-10">
+						AI that works for you
+					</h2>
+					{/* AI Feature Cards */}
+					<div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-10">
+						{[
+							{ title: "Real-time Translation", icon: "🌐" },
+							{ title: "Smart Summaries", icon: "📝" },
+							{ title: "Context Awareness", icon: "🧠" },
+							{ title: "Automated Recaps", icon: "🎯" },
+						].map((feature, i) => (
+							<motion.div
+								key={i}
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.4, delay: i * 0.1 }}
+								viewport={{ once: true }}
+								className="flex flex-col items-center p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+							>
+								<span className="text-2xl sm:text-3xl mb-2">{feature.icon}</span>
+								<span className="text-white/90 text-sm sm:text-base font-medium">{feature.title}</span>
+							</motion.div>
+						))}
 					</div>
+				</div>
 				</motion.div>
 			</div>
 		</>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "../ui/button";
@@ -19,14 +20,51 @@ export function CTASection() {
 		[0.95, 1, 1, 0.95]
 	);
 
+	// Parallax for floating images
+	const leftImageY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+	const rightImageY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
+	const leftImageRotate = useTransform(scrollYProgress, [0, 1], [-5, 5]);
+	const rightImageRotate = useTransform(scrollYProgress, [0, 1], [5, -5]);
+
 	return (
 		<section
 			ref={sectionRef}
-			className="relative z-20 py-20 lg:py-32 px-4 sm:px-6 lg:px-8"
+			className="relative z-20 py-20 lg:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
 		>
+			{/* Background gradient */}
+			<div className="absolute inset-0 bg-linear-to-br from-blue-600 via-blue-500 to-indigo-600 rounded-3xl mx-4 sm:mx-8" />
+
+			{/* Floating Image - Left */}
+			<motion.div
+				style={{ y: leftImageY, rotate: leftImageRotate }}
+				className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/4 hidden lg:block pointer-events-none"
+			>
+				<Image
+					src="/assets/mobile-chat-translation-screens.png"
+					alt="Melp mobile chat"
+					width={300}
+					height={400}
+					className="w-56 h-auto drop-shadow-2xl"
+				/>
+			</motion.div>
+
+			{/* Floating Image - Right */}
+			<motion.div
+				style={{ y: rightImageY, rotate: rightImageRotate }}
+				className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 hidden lg:block pointer-events-none"
+			>
+				<Image
+					src="/assets/mobile-groups-teams-screens.png"
+					alt="Melp teams view"
+					width={300}
+					height={400}
+					className="w-56 h-auto drop-shadow-2xl"
+				/>
+			</motion.div>
+
 			<motion.div
 				style={{ opacity, scale }}
-				className="max-w-4xl mx-auto text-center"
+				className="relative max-w-4xl mx-auto text-center z-10"
 			>
 				{/* Decorative element */}
 				<motion.div
@@ -42,7 +80,7 @@ export function CTASection() {
 						viewBox="0 0 22 22"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
-						className="text-[#EE4136]"
+						className="text-white/80"
 					>
 						<path
 							d="M11.4663 22C11.2835 17.739 11.2835 17.739 11.4663 22C8.6409 15.7182 6.50125 13.7431 0 11.4663C4.26101 11.2835 4.26101 11.2835 0 11.4663C6.2818 8.6409 8.25686 6.50125 10.5337 0C10.7165 4.26101 10.7165 4.26101 10.5337 0C13.3591 6.2818 15.4988 8.25686 22 10.5337C17.739 10.7165 17.739 10.7165 22 10.5337C15.7182 13.3591 13.7431 15.4988 11.4663 22Z"
@@ -56,7 +94,7 @@ export function CTASection() {
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5, delay: 0.1 }}
 					viewport={{ once: true }}
-					className="text-3xl sm:text-4xl lg:text-5xl font-medium text-neutral-900 dark:text-white mb-4"
+					className="text-3xl sm:text-4xl lg:text-5xl font-medium text-white mb-4"
 				>
 					Ready to work without friction?
 				</motion.h2>
@@ -66,7 +104,7 @@ export function CTASection() {
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5, delay: 0.2 }}
 					viewport={{ once: true }}
-					className="text-lg lg:text-xl text-neutral-500 dark:text-neutral-400 mb-10 max-w-2xl mx-auto"
+					className="text-lg lg:text-xl text-white/80 mb-10 max-w-2xl mx-auto"
 				>
 					See how MELP brings clarity to your team. One workspace. Zero
 					friction. AI that actually works.
@@ -80,9 +118,9 @@ export function CTASection() {
 					className="flex flex-col sm:flex-row items-center justify-center gap-4"
 				>
 					<Button
-						variant="brand-primary"
+						variant="default"
 						size="lg"
-						className="px-8 h-12 text-base transition-all duration-300 group"
+						className="px-8 h-12 text-base bg-white text-blue-600 hover:bg-white/90 transition-all duration-300 group"
 					>
 						<span className="flex items-center gap-2">
 							Request a Demo
@@ -95,7 +133,7 @@ export function CTASection() {
 					<Button
 						variant="outline"
 						size="lg"
-						className="px-8 h-12 text-base border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+						className="px-8 h-12 text-base border-white/30 text-white hover:bg-white/10"
 					>
 						Talk to Sales
 					</Button>

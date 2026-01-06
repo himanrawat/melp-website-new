@@ -78,7 +78,7 @@ export function BentoFeatures() {
 				className="text-center mb-12 flex flex-col items-center"
 				style={{ opacity: headerOpacity, scale: headerScale, y: headerY }}
 			>
-				<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-500/10 text-[#EE4136] text-sm font-medium mb-6">
+				<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-sm font-medium mb-6">
 					<svg
 						className="w-5 h-5"
 						viewBox="0 0 22 22"
