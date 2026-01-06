@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, MotionValue } from "motion/react";
+import { motion, useInView } from "motion/react";
 
 // Tool logos arranged around Melp - better spaced positions
 const toolLogos = [
@@ -18,23 +18,31 @@ const toolLogos = [
 	{ src: "/melp/asana-logo.svg", alt: "Asana", x: 180, y: 140 },
 ];
 
-// Component for individual logo with animation
+// Component for individual logo with viewport-triggered animation
 function AnimatedLogo({
 	logo,
-	animationProgress,
+	index,
+	isInView,
 }: {
 	logo: (typeof toolLogos)[0];
-	animationProgress: MotionValue<number>;
+	index: number;
+	isInView: boolean;
 }) {
-	const x = useTransform(animationProgress, [0, 1], [0, logo.x]);
-	const y = useTransform(animationProgress, [0, 1], [0, logo.y]);
-	const scale = useTransform(animationProgress, [0, 0.5, 1], [0, 0.8, 1]);
-	const opacity = useTransform(animationProgress, [0, 0.3, 1], [0, 0.5, 1]);
-
 	return (
 		<motion.div
 			className="absolute w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white shadow-lg border border-neutral-200 flex items-center justify-center overflow-hidden p-2"
-			style={{ x, y, scale, opacity, zIndex: 10 }}
+			initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
+			animate={
+				isInView
+					? { x: logo.x, y: logo.y, scale: 1, opacity: 1 }
+					: { x: 0, y: 0, scale: 0, opacity: 0 }
+			}
+			transition={{
+				duration: 0.6,
+				delay: index * 0.08,
+				ease: [0.34, 1.56, 0.64, 1], // Spring-like bounce
+			}}
+			style={{ zIndex: 10 }}
 		>
 			<Image
 				src={logo.src}
@@ -50,45 +58,42 @@ function AnimatedLogo({
 // Component for hand-drawn style arrow line
 function ArrowLine({
 	logo,
-	animationProgress,
 	index,
+	isInView,
 }: {
 	logo: (typeof toolLogos)[0];
-	animationProgress: MotionValue<number>;
 	index: number;
+	isInView: boolean;
 }) {
+	// Helper to round values for consistent SSR/client rendering
+	const r = (n: number) => Math.round(n * 100) / 100;
+
 	// Calculate positions
 	const angle = Math.atan2(-logo.y, -logo.x);
-	const startX = logo.x * 0.72;
-	const startY = logo.y * 0.72;
-	const endX = logo.x * 0.28;
-	const endY = logo.y * 0.28;
+	const startX = r(logo.x * 0.72);
+	const startY = r(logo.y * 0.72);
+	const endX = r(logo.x * 0.28);
+	const endY = r(logo.y * 0.28);
 
-	// Create slight curve offset for hand-drawn look (alternating direction)
+	// Create slight curve offset for hand-drawn look
 	const curveOffset = (index % 2 === 0 ? 1 : -1) * 15;
-	const midX = (startX + endX) / 2 + curveOffset * Math.cos(angle + Math.PI / 2);
-	const midY = (startY + endY) / 2 + curveOffset * Math.sin(angle + Math.PI / 2);
+	const midX = r((startX + endX) / 2 + curveOffset * Math.cos(angle + Math.PI / 2));
+	const midY = r((startY + endY) / 2 + curveOffset * Math.sin(angle + Math.PI / 2));
 
-	// Hand-drawn style arrow head (V-shape, not filled)
+	// Hand-drawn style arrow head
 	const arrowSize = 10;
 	const arrowAngle1 = angle + 2.6;
 	const arrowAngle2 = angle - 2.6;
-	const arrowX1 = endX + arrowSize * Math.cos(arrowAngle1);
-	const arrowY1 = endY + arrowSize * Math.sin(arrowAngle1);
-	const arrowX2 = endX + arrowSize * Math.cos(arrowAngle2);
-	const arrowY2 = endY + arrowSize * Math.sin(arrowAngle2);
+	const arrowX1 = r(endX + arrowSize * Math.cos(arrowAngle1));
+	const arrowY1 = r(endY + arrowSize * Math.sin(arrowAngle1));
+	const arrowX2 = r(endX + arrowSize * Math.cos(arrowAngle2));
+	const arrowY2 = r(endY + arrowSize * Math.sin(arrowAngle2));
 
-	const lineOpacity = useTransform(animationProgress, [0, 1], [0, 0.8]);
-
-	// Hand-drawn curved path
 	const curvePath = `M ${startX} ${startY} Q ${midX} ${midY} ${endX} ${endY}`;
-	
-	// Hand-drawn arrow head (two lines forming a V)
 	const arrowPath = `M ${arrowX1} ${arrowY1} L ${endX} ${endY} L ${arrowX2} ${arrowY2}`;
 
 	return (
 		<g>
-			{/* Curved line with sketchy style */}
 			<motion.path
 				d={curvePath}
 				stroke="#9ca3af"
@@ -96,9 +101,10 @@ function ArrowLine({
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				fill="none"
-				style={{ opacity: lineOpacity }}
+				initial={{ opacity: 0, pathLength: 0 }}
+				animate={isInView ? { opacity: 0.8, pathLength: 1 } : { opacity: 0, pathLength: 0 }}
+				transition={{ duration: 0.5, delay: index * 0.08 + 0.2 }}
 			/>
-			{/* Hand-drawn V-shaped arrow head */}
 			<motion.path
 				d={arrowPath}
 				stroke="#9ca3af"
@@ -106,7 +112,9 @@ function ArrowLine({
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				fill="none"
-				style={{ opacity: lineOpacity }}
+				initial={{ opacity: 0 }}
+				animate={isInView ? { opacity: 0.8 } : { opacity: 0 }}
+				transition={{ duration: 0.3, delay: index * 0.08 + 0.4 }}
 			/>
 		</g>
 	);
@@ -114,16 +122,7 @@ function ArrowLine({
 
 export function MelpFeaturesOrbit() {
 	const containerRef = useRef<HTMLDivElement>(null);
-	const { scrollYProgress } = useScroll({
-		target: containerRef,
-		offset: ["start end", "end start"],
-	});
-
-	// Animation progress for logos emerging from center
-	const animationProgress = useTransform(scrollYProgress, [0.1, 0.5], [0, 1]);
-	const centerScale = useTransform(animationProgress, [0, 0.3, 0.5], [1.2, 1, 1]);
-	const glowScale = useTransform(animationProgress, [0, 1], [0.5, 1.2]);
-	const glowOpacity = useTransform(animationProgress, [0, 1], [0.3, 0.6]);
+	const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
 	return (
 		<div
@@ -140,25 +139,28 @@ export function MelpFeaturesOrbit() {
 					<ArrowLine
 						key={`arrow-${index}`}
 						logo={logo}
-						animationProgress={animationProgress}
 						index={index}
+						isInView={isInView}
 					/>
 				))}
 			</svg>
 
-			{/* Tool logos - emerge from behind Melp */}
+			{/* Tool logos - burst out when in view */}
 			{toolLogos.map((logo, index) => (
 				<AnimatedLogo
 					key={index}
 					logo={logo}
-					animationProgress={animationProgress}
+					index={index}
+					isInView={isInView}
 				/>
 			))}
 
 			{/* Central Melp Logo */}
 			<motion.div
-				className="relative z-20 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white shadow-2xl border-2 border-neutral-100 flex items-center justify-center"
-				style={{ scale: centerScale }}
+				className="relative z-20 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center"
+				initial={{ scale: 1.2 }}
+				animate={isInView ? { scale: 1 } : { scale: 1.2 }}
+				transition={{ duration: 0.5, ease: "easeOut" }}
 			>
 				<Image
 					src="/logo-short.svg"
@@ -172,7 +174,9 @@ export function MelpFeaturesOrbit() {
 			{/* Decorative glow behind Melp logo */}
 			<motion.div
 				className="absolute w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-blue-500/10 blur-2xl z-10"
-				style={{ scale: glowScale, opacity: glowOpacity }}
+				initial={{ scale: 0.5, opacity: 0.3 }}
+				animate={isInView ? { scale: 1.2, opacity: 0.6 } : { scale: 0.5, opacity: 0.3 }}
+				transition={{ duration: 0.8 }}
 			/>
 		</div>
 	);

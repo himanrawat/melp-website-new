@@ -9,7 +9,7 @@ import {
 	useSpring,
 	useMotionValue,
 } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Globe, FileText, Brain, Target } from "lucide-react";
 import { Marquee } from "./Marquee";
 import { Button } from "../ui/button";
 
@@ -242,10 +242,10 @@ export function HeroSection() {
 					{/* AI Feature Cards */}
 					<div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-10">
 						{[
-							{ title: "Real-time Translation", icon: "🌐" },
-							{ title: "Smart Summaries", icon: "📝" },
-							{ title: "Context Awareness", icon: "🧠" },
-							{ title: "Automated Recaps", icon: "🎯" },
+							{ title: "Real-time Translation", Icon: Globe },
+							{ title: "Smart Summaries", Icon: FileText },
+							{ title: "Context Awareness", Icon: Brain },
+							{ title: "Automated Recaps", Icon: Target },
 						].map((feature, i) => (
 							<motion.div
 								key={i}
@@ -255,7 +255,7 @@ export function HeroSection() {
 								viewport={{ once: true }}
 								className="flex flex-col items-center p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
 							>
-								<span className="text-2xl sm:text-3xl mb-2">{feature.icon}</span>
+								<feature.Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white/80 mb-2" />
 								<span className="text-white/90 text-sm sm:text-base font-medium">{feature.title}</span>
 							</motion.div>
 						))}

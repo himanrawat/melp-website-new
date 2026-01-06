@@ -6,7 +6,11 @@ import { StackingCards } from "@/components/homepage-variation-component/Stackin
 import { AudienceSection } from "@/components/homepage-variation-component/AudienceSection";
 import { TrustSection } from "@/components/homepage-variation-component/TrustSection";
 import CustomerTestimonialsSection from "@/components/ui/customer-testimonials-section";
-import { CTASection } from "@/components/homepage-variation-component/CTASection";
+import CtaSection from "@/components/CtaSection";
+import PlatformsSection from "@/components/PlatformsSection";
+import SecuritySection from "@/components/SecuritySection";
+import SavingsCalculatorSection from "@/components/SavingsCalculatorSection";
+// import { CTASection } from "@/components/homepage-variation-component/CTASection";
 
 export const metadata = {
 	title: "MELP - One Workspace. Zero Friction.",
@@ -22,10 +26,13 @@ export default function HomePage() {
 			<DifferenceSection />
 			<BentoFeatures />
 			<StackingCards />
-			<AudienceSection />
-			<TrustSection />
+			{/* <AudienceSection /> */}
+			{/* <TrustSection /> */}
+			<SavingsCalculatorSection />
+			<SecuritySection />
 			<CustomerTestimonialsSection />
-			<CTASection />
+			<CtaSection />
+			<PlatformsSection />
 		</main>
 	);
 }
