@@ -275,11 +275,10 @@ function SectionHeader() {
 		<motion.div
 			ref={headerRef}
 			className="flex flex-col items-center justify-center text-center px-4"
-			style={{ opacity, scale, y }}
 		>
-			<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-sm font-medium mb-6">
-				How it works
-			</motion.span>
+			<motion.span className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase">
+			How It Works
+		</motion.span>
 
 			<motion.h2
 				className="text-4xl lg:text-6xl font-medium text-neutral-900 dark:text-white mb-4"

@@ -173,7 +173,7 @@ export function MelpFeaturesOrbit() {
 
 			{/* Decorative glow behind Melp logo */}
 			<motion.div
-				className="absolute w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-blue-500/10 blur-2xl z-10"
+				className="absolute w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-[#EE4136]/10 blur-2xl z-10"
 				initial={{ scale: 0.5, opacity: 0.3 }}
 				animate={isInView ? { scale: 1.2, opacity: 0.6 } : { scale: 0.5, opacity: 0.3 }}
 				transition={{ duration: 0.8 }}

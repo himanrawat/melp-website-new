@@ -50,22 +50,10 @@ export function DifferenceSection() {
 			<motion.div
 				ref={headerRef}
 				className="text-center mb-12 lg:mb-16 flex flex-col items-center"
-				style={{ opacity: headerOpacity, scale: headerScale, y: headerY }}
 			>
-				<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-sm font-medium mb-6">
-					<svg
-						className="w-4 h-4"
-						viewBox="0 0 22 22"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path
-							d="M11.4663 22C11.2835 17.739 11.2835 17.739 11.4663 22C8.6409 15.7182 6.50125 13.7431 0 11.4663C4.26101 11.2835 4.26101 11.2835 0 11.4663C6.2818 8.6409 8.25686 6.50125 10.5337 0C10.7165 4.26101 10.7165 4.26101 10.5337 0C13.3591 6.2818 15.4988 8.25686 22 10.5337C17.739 10.7165 17.739 10.7165 22 10.5337C15.7182 13.3591 13.7431 15.4988 11.4663 22Z"
-							fill="currentColor"
-						/>
-					</svg>
-					The MELP difference
-				</motion.span>
+				<motion.span className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase">
+				The Melp Difference
+			</motion.span>
 
 				<motion.h2 className="text-3xl lg:text-5xl font-medium text-neutral-900 dark:text-white mb-3">
 					AI that works inside your workflow.

@@ -51,9 +51,9 @@ export function ProblemSection() {
 				viewport={{ once: true }}
 				className="text-center mb-12 lg:mb-16 flex flex-col items-center"
 			>
-				<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-sm font-medium mb-6">
-					The problem
-				</motion.span>
+				<motion.span className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase">
+				The Problem
+			</motion.span>
 
 				<motion.h2 className="text-3xl lg:text-5xl font-medium text-neutral-900 dark:text-white mb-3">
 					Work today is broken.
