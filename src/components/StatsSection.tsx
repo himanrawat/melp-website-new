@@ -11,30 +11,30 @@ const stats = [
 	{
 		value: 35,
 		suffix: "%",
-		label: "Reduced Meeting Time",
+		label: "Time Saved on Documentation",
 		description:
-			"Teams communicate clearly with AI summaries, intelligent routing, and structured channels.",
+			"AI summaries and transcriptions eliminate manual note-taking and follow-up work.",
 	},
 	{
 		value: 2.5,
 		suffix: "x",
-		label: "Faster Decisions",
+		label: "Faster Content Understanding",
 		description:
-			"Intelligence guides every moment reducing noise and accelerating decisions across organizations.",
+			"AI file summaries and Q&A help teams understand documents in minutes, not hours.",
 	},
 	{
-		value: 10,
-		suffix: "M+",
-		label: "Global Connections Daily",
+		value: 40,
+		suffix: "+",
+		label: "Languages Supported",
 		description:
-			"Teams, partners, and clients connected across rooms, cities, and continents.",
+			"Real-time translation and document translation across 40+ languages.",
 	},
 	{
 		value: 99.9,
 		suffix: "%",
-		label: "Uptime SLA",
+		label: "Enterprise Uptime",
 		description:
-			"Enterprise-grade reliability with trust engineered at every layer.",
+			"AI capabilities backed by enterprise-grade reliability and security.",
 	},
 ];
 
@@ -100,13 +100,13 @@ export default function StatsSection() {
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}
 					>
-						By the Numbers
+						AI Impact
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Measurable impact for your enterprise
+						Measurable AI outcomes
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Built for enterprises. Designed for people. See the real results organizations achieve with Melp.
+						AI translation, summarization, and transcription deliver real results — time saved, clarity gained, decisions accelerated.
 					</p>
 				</RevealOnScroll>
 

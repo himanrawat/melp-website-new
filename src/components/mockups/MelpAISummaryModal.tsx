@@ -13,6 +13,7 @@ interface SummaryItem {
 
 interface MelpAISummaryModalProps {
 	className?: string;
+	contentClassName?: string;
 }
 
 const summaryItems: SummaryItem[] = [
@@ -51,6 +52,7 @@ const categoryColors = {
 
 export default function MelpAISummaryModal({
 	className = "",
+	contentClassName = "",
 }: MelpAISummaryModalProps) {
 	const [visibleItems, setVisibleItems] = useState<number[]>([]);
 	const [isGenerating, setIsGenerating] = useState(false);

@@ -39,13 +39,13 @@ export default function PlatformsSection() {
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}
 					>
-						Available Everywhere
+						AI Everywhere
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Accessible anywhere, anytime
+						AI capabilities on every device
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Built for enterprises. Designed for people. Powered by AI. Native apps for every platform, synced in real-time.
+						Translation, summarization, and intelligent drafting — available on desktop, mobile, and web. AI that works wherever you work.
 					</p>
 				</RevealOnScroll>
 
