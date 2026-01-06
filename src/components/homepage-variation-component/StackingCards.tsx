@@ -20,13 +20,13 @@ const cards: CardData[] = [
 	{
 		id: 1,
 		label: "Melp Drive",
-		title: "Translate any file and keep originals safe",
+		title: "Files that speak every language",
 		description:
-			"Drop in a document, choose a language, and Melp returns a fresh copy without losing structure.",
+			"Upload once. Translate instantly. Originals stay safe and formatting stays intact.",
 		features: [
-			"Side-by-side preview of before/after",
-			"Keeps the original untouched",
-			"Works across docs, slides, and PDFs",
+			"Preserves layout across docs, slides, and PDFs",
+			"Side-by-side preview before and after",
+			"Original files never modified",
 		],
 		image: "Translation flow placeholder",
 		bgColor: "bg-gradient-to-br from-neutral-100 to-white",
@@ -36,13 +36,13 @@ const cards: CardData[] = [
 	{
 		id: 2,
 		label: "Melp Chats",
-		title: "Summaries, answers, and better drafts in your language",
+		title: "Conversations with context",
 		description:
-			"Ask Melp to summarize files, probe deeper, or rewrite your reply in the tone you choose.",
+			"Summaries on demand. Drafts that match your voice. Context that never gets lost.",
 		features: [
-			"Instant TL;DR with follow-up questions",
-			"Pick your language for every response",
-			"Draft for me - professional, casual, or concise",
+			"Instant summaries with follow-up questions",
+			"Draft messages in your preferred tone",
+			"Every response in your language",
 		],
 		image: "Chat + summary placeholder",
 		bgColor: "bg-gradient-to-br from-neutral-100 to-white",
@@ -51,13 +51,13 @@ const cards: CardData[] = [
 	},
 	{
 		id: 3,
-		label: "Meeting intelligence",
-		title: "Real-time transcription and meeting recaps",
+		label: "Meeting Intelligence",
+		title: "Meetings you don't have to attend",
 		description:
-			"Live captions keep the room aligned while Melp tags decisions, owners, and next steps.",
+			"Live captions. Auto-recaps. Decisions captured. Know what happened without being there.",
 		features: [
-			"Live transcription in multiple languages",
-			"Highlights, decisions, and action items",
+			"Real-time transcription in any language",
+			"Automatic highlights and action items",
 			"Recap ready before the call ends",
 		],
 		image: "Meeting summary placeholder",
@@ -67,14 +67,14 @@ const cards: CardData[] = [
 	},
 	{
 		id: 4,
-		label: "AI evaluation mode",
-		title: "Interviews with focus and transparency",
+		label: "AI Evaluation",
+		title: "Interviews with integrity",
 		description:
-			"Melp spots tab switches and eye gaze shifts while suggesting JD- and resume-based questions.",
+			"Focus signals. Smart questions. Fair assessments. Better hiring decisions.",
 		features: [
-			"Eye gaze + tab change alerts for interviewers",
-			"AI questions tailored to the JD and resume",
-			"Lightweight signals that keep candidates aware",
+			"Attention monitoring for fair evaluation",
+			"AI-generated questions from JD and resume",
+			"Structured insights for every interview",
 		],
 		image: "Evaluation mode placeholder",
 		bgColor: "bg-gradient-to-br from-neutral-100 to-white",
@@ -277,36 +277,25 @@ function SectionHeader() {
 			className="flex flex-col items-center justify-center text-center px-4"
 			style={{ opacity, scale, y }}
 		>
-			<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-500/10 text-[#EE4136] text-sm font-medium mb-6">
-				<svg
-					className="w-5 h-5"
-					viewBox="0 0 22 22"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M11.4663 22C11.2835 17.739 11.2835 17.739 11.4663 22C8.6409 15.7182 6.50125 13.7431 0 11.4663C4.26101 11.2835 4.26101 11.2835 0 11.4663C6.2818 8.6409 8.25686 6.50125 10.5337 0C10.7165 4.26101 10.7165 4.26101 10.5337 0C13.3591 6.2818 15.4988 8.25686 22 10.5337C17.739 10.7165 17.739 10.7165 22 10.5337C15.7182 13.3591 13.7431 15.4988 11.4663 22Z"
-						fill="currentColor"
-					/>
-				</svg>
-				Powered by AI
+			<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-sm font-medium mb-6">
+				How it works
 			</motion.span>
 
 			<motion.h2
 				className="text-4xl lg:text-6xl font-medium text-neutral-900 dark:text-white mb-4"
 			>
-				Everything you need
+				Everything connected.
 			</motion.h2>
 			<motion.h2
 				className="text-4xl lg:text-6xl font-medium text-neutral-500 dark:text-neutral-400 mb-6"
 			>
-				in one place
+				Nothing scattered.
 			</motion.h2>
 			<motion.p
 				className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl"
 			>
-				From real-time translation to intelligent meeting summaries, Melp AI
-				transforms how your team communicates and collaborates.
+				One workspace where files, chats, meetings, and AI work together.
+				No more switching. No more searching. Just flow.
 			</motion.p>
 		</motion.div>
 	);

@@ -30,41 +30,41 @@ export function BentoFeatures() {
 
 	const features = [
 		{
-			title: "Translate any file",
+			title: "Instant translation",
 			description:
-				"Pick a language in Melp Drive and we return a fresh copy without touching the original layout.",
+				"Documents stay formatted. Meaning stays intact. Any language, any file.",
 			skeleton: <MelpTranslatorModal className="mt-4 scale-95 origin-top" />,
 			className: "col-span-1 lg:col-span-3",
 			cardBg: "bg-gradient-to-br from-neutral-100 to-white dark:from-neutral-800 dark:to-neutral-900",
 		},
 		{
-			title: "Instant file summaries",
+			title: "Smart summaries",
 			description:
-				"Open a file in Melp Chats, ask for a summary, and follow up in the language you prefer.",
+				"Get the point in seconds. Ask follow-ups in any language you prefer.",
 			skeleton: <MelpAISummaryModal className="mt-4 scale-95 origin-top" />,
 			className: "col-span-1 lg:col-span-3",
 			cardBg: "bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-800/50 dark:to-neutral-900",
 		},
 		{
-			title: "Real-time transcription",
+			title: "Live understanding",
 			description:
-				"Live multilingual captions keep everyone in sync across calls and presentations.",
+				"Every word captured. Every language supported. Real-time clarity for every call.",
 			skeleton: <MelpLiveCaptions className="mt-4" expanded />,
 			className: "col-span-1 lg:col-span-6",
 			cardBg: "bg-gradient-to-br from-neutral-100 to-white dark:from-neutral-800 dark:to-neutral-900",
 		},
 		{
-			title: "AI evaluation mode",
+			title: "Interview intelligence",
 			description:
-				"See tab switches, eye gaze, and AI-suggested questions tailored to the JD and resume.",
+				"AI-powered insights that keep interviews fair, focused, and effective.",
 			skeleton: <MelpEvaluationPanel className="mt-4 scale-95 origin-top" />,
 			className: "col-span-1 lg:col-span-3",
 			cardBg: "bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-800/50 dark:to-neutral-900",
 		},
 		{
-			title: "Draft for me",
+			title: "Write with AI",
 			description:
-				"Turn rough notes into polished responses in any tone - professional, casual, or concise.",
+				"From rough notes to polished messages. Your tone, perfected.",
 			skeleton: <MelpChatPanel className="mt-4 scale-95 origin-top" />,
 			className: "col-span-1 lg:col-span-3",
 			cardBg: "bg-gradient-to-br from-neutral-100 to-white dark:from-neutral-800 dark:to-neutral-900",
@@ -94,10 +94,10 @@ export function BentoFeatures() {
 				</motion.span>
 
 				<motion.h2 className="text-3xl lg:text-5xl font-medium text-neutral-900 dark:text-white mb-4">
-					Where your work
+					AI that understands.
 				</motion.h2>
 				<motion.h2 className="text-3xl lg:text-5xl font-medium text-neutral-700 dark:text-neutral-300">
-					meets instant assistance
+					AI that acts.
 				</motion.h2>
 			</motion.div>
 

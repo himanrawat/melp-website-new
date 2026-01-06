@@ -20,21 +20,21 @@ export const Marquee = () => {
 					repeat: Infinity,
 				}}
 			>
-				<span className="mx-8">Unified Workspace</span>
+				<span className="mx-8">One Workspace</span>
 				<span className="mx-8 w-5 h-5 bg-white rounded-full my-auto"></span>
-				<span className="mx-8">Intelligent Collaboration</span>
+				<span className="mx-8">AI-Native</span>
 				<span className="mx-8 w-5 h-5 bg-white rounded-full my-auto"></span>
-				<span className="mx-8">AI Summaries</span>
+				<span className="mx-8">Instant Clarity</span>
 				<span className="mx-8 w-5 h-5 bg-white rounded-full my-auto"></span>
-				<span className="mx-8">Smart Search</span>
+				<span className="mx-8">Context Everywhere</span>
 				<span className="mx-8 w-5 h-5 bg-white rounded-full my-auto"></span>
-				<span className="mx-8">Real-Time Translation</span>
+				<span className="mx-8">No Language Barriers</span>
 				<span className="mx-8 w-5 h-5 bg-white rounded-full my-auto"></span>
-				<span className="mx-8">Secure by Design</span>
+				<span className="mx-8">Enterprise Security</span>
 				<span className="mx-8 w-5 h-5 bg-white rounded-full my-auto"></span>
-				<span className="mx-8">Enterprise Ready</span>
+				<span className="mx-8">Built for Scale</span>
 				<span className="mx-8 w-5 h-5 bg-white rounded-full my-auto"></span>
-				<span className="mx-8">Scales with Teams</span>
+				<span className="mx-8">Global Teams</span>
 				<span className="mx-8 w-5 h-5 bg-white rounded-full my-auto"></span>
 			</motion.div>
 		</div>

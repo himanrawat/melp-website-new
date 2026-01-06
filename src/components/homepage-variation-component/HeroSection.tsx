@@ -84,23 +84,32 @@ export function HeroSection() {
 							transition={{ duration: 0.6 }}
 							className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 dark:text-white leading-[1.2] w-fit mx-auto lg:mx-0"
 						>
-							Bring all your work <br />
-							into one intelligent flow.
+							One workspace. <br />
+							Zero friction.
 							<div className="text-neutral-400 flex items-center justify-center lg:justify-end gap-3 sm:gap-6 font-normal text-base sm:text-lg md:text-xl mt-2">
 								<span className="bg-neutral-400 w-12 sm:w-20 h-0.5 flex-1"></span>{" "}
-								Powered by AI
+								AI-native collaboration
 							</div>
 						</motion.h1>
-						<Button
-							variant="brand-primary"
-							size="lg"
-							className="px-6 sm:px-8 h-10 sm:h-12 text-sm sm:text-base transition-all duration-300 group mx-auto lg:mx-2 mt-8 sm:mt-12 lg:mt-20 flex"
-						>
-							<span className="flex items-center gap-2">
-								Get Started Free
-								<ArrowUpRight size={20} className="sm:w-6 sm:h-6" />
-							</span>
-						</Button>
+						<div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mx-auto lg:mx-2 mt-8 sm:mt-12 lg:mt-20">
+							<Button
+								variant="brand-primary"
+								size="lg"
+								className="px-6 sm:px-8 h-10 sm:h-12 text-sm sm:text-base transition-all duration-300 group"
+							>
+								<span className="flex items-center gap-2">
+									Request a Demo
+									<ArrowUpRight size={20} className="sm:w-6 sm:h-6" />
+								</span>
+							</Button>
+							<Button
+								variant="ghost"
+								size="lg"
+								className="px-6 sm:px-8 h-10 sm:h-12 text-sm sm:text-base text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white"
+							>
+								See How It Works
+							</Button>
+						</div>
 					</div>
 
 					{/* Right: Description & stats/CTA */}
@@ -143,8 +152,9 @@ export function HeroSection() {
 								</div>
 
 								<p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-50 max-w-xs mb-6 sm:mb-8 leading-relaxed mx-auto lg:mx-0">
-									Replace scattered tools with a single AI-powered workspace
-									built for modern teams.
+									Stop switching between tools. Start understanding your work.
+									MELP brings chat, meetings, files, and AI into one intelligent
+									workspace.
 								</p>
 							</div>
 
@@ -161,11 +171,11 @@ export function HeroSection() {
 										))}
 									</div>
 									<div className="text-center lg:text-left">
-										<div className="text-6xl">2.3M+</div>
+										<div className="text-5xl sm:text-6xl font-semibold text-neutral-900 dark:text-white">100+</div>
 									</div>
 								</div>
 								<div className="text-xs text-neutral-500 tracking-wide">
-									Trusted to use by millions users over 100 countries
+									Trusted by teams in 100+ countries
 								</div>
 							</div>
 						</motion.div>
@@ -227,12 +237,11 @@ export function HeroSection() {
 					{/* Content inside blue section (Bottom) */}
 					<div className="container mx-auto text-center relative z-10 pt-12 sm:pt-16 md:pt-20 px-4">
 						<h2 className="text-white text-xl sm:text-2xl md:text-3xl font-medium mb-6 sm:mb-8 max-w-2xl mx-auto border-t border-white/10 pt-6 sm:pt-10">
-							Partnering with top tier brands to revolutionize{" "}
-							<br className="hidden sm:block" /> financial services.
+							Trusted by forward-thinking teams
 						</h2>
 						{/* Logo Strip Placeholder */}
 						<div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-16 opacity-80 mt-8 sm:mt-14">
-							{["Logoipsum", "Ipsum", "Logo", "Brand", "Tech"].map(
+							{["Acme", "Globex", "Initech", "Umbrella", "Weyland"].map(
 								(logo, i) => (
 									<span
 										key={i}

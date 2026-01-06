@@ -68,30 +68,19 @@ export default function CustomerTestimonialsSection() {
 				className="flex flex-col items-center text-center gap-3 px-4"
 				style={{ opacity: headerOpacity, scale: headerScale, y: headerY }}
 			>
-				<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-500/10 text-[#EE4136] text-sm font-medium">
-					<svg
-						className="w-5 h-5"
-						viewBox="0 0 22 22"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path
-							d="M11.4663 22C11.2835 17.739 11.2835 17.739 11.4663 22C8.6409 15.7182 6.50125 13.7431 0 11.4663C4.26101 11.2835 4.26101 11.2835 0 11.4663C6.2818 8.6409 8.25686 6.50125 10.5337 0C10.7165 4.26101 10.7165 4.26101 10.5337 0C13.3591 6.2818 15.4988 8.25686 22 10.5337C17.739 10.7165 17.739 10.7165 22 10.5337C15.7182 13.3591 13.7431 15.4988 11.4663 22Z"
-							fill="currentColor"
-						/>
-					</svg>
-					Customer stories
+				<motion.span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 text-sm font-medium">
+					From our customers
 				</motion.span>
 
 				<motion.h2 className="text-3xl lg:text-5xl font-medium text-neutral-900 dark:text-white">
-					What teams say
+					Teams work differently now.
 				</motion.h2>
 				<motion.h3 className="text-3xl lg:text-5xl font-medium text-neutral-600 dark:text-neutral-300">
-					when Melp is in the room
+					Here's what they say.
 				</motion.h3>
 				<motion.p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl">
-					Proof from product leaders, operators, and engineering teams using
-					Melp to keep every conversation clear.
+					From product leaders to engineering teams, MELP transforms how
+					organizations communicate and collaborate.
 				</motion.p>
 			</motion.div>
 
