@@ -13,6 +13,19 @@ import {
 	Video,
 	MessageSquareOff,
 	Calendar,
+	AlertCircle,
+	Clock,
+	CheckCircle,
+	ArrowRight,
+	MessageSquare,
+	Network,
+	MessageCircle,
+	ListChecks,
+	Link,
+	Eye,
+	AlertTriangle,
+	Lock,
+	FileText,
 	LucideIcon,
 } from "lucide-react";
 import { IconName } from "./types";
@@ -30,6 +43,19 @@ const iconMap: Record<IconName, LucideIcon> = {
 	Video,
 	MessageSquareOff,
 	Calendar,
+	AlertCircle,
+	Clock,
+	CheckCircle,
+	ArrowRight,
+	MessageSquare,
+	Network,
+	MessageCircle,
+	ListCheck: ListChecks,
+	Link,
+	Eye,
+	AlertTriangle,
+	Lock,
+	FileText,
 };
 
 interface IconProps {
@@ -48,3 +74,4 @@ export function Icon({ name, className }: IconProps) {
 export function getIcon(name: IconName): LucideIcon {
 	return iconMap[name];
 }
+

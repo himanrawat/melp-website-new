@@ -26,6 +26,7 @@ const footerLinks = {
 		{ label: "Zoom Alternative", href: "/zoom-alternative" },
 		{ label: "Google Meet Alternative", href: "/google-meet-alternative" },
 		{ label: "Discord Alternative", href: "#" },
+		{ label: "Video Interview Software", href: "/video-interview-software" },
 	],
 	Compare: [
 		{ label: "Melp vs Microsoft Teams", href: "/microsoft-teams-alternative" },

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -52,23 +52,35 @@ export const SlackStyleHeading: React.FC<SlackStyleHeadingProps> = ({
 
 	const measureRef = useRef<HTMLSpanElement>(null);
 	const wordWidths = useRef<Map<number, number>>(new Map());
+	const hasMeasured = useRef(false);
 
-	// Measure all word widths on mount
-	useEffect(() => {
-		if (measureRef.current) {
-			let max = 0;
-			allWords.forEach((word, index) => {
-				if (measureRef.current) {
-					measureRef.current.textContent = word;
-					const width = measureRef.current.offsetWidth;
+	// Measure all word widths on mount using useLayoutEffect for synchronous measurement
+	useLayoutEffect(() => {
+		// Only measure once to prevent scroll-triggered re-measurements
+		if (hasMeasured.current || !measureRef.current) return;
+
+		let max = 0;
+		allWords.forEach((word, index) => {
+			if (measureRef.current) {
+				measureRef.current.textContent = word;
+				// Use getBoundingClientRect for more reliable measurements
+				const width = measureRef.current.getBoundingClientRect().width;
+				// Only store valid measurements
+				if (width > 0) {
 					wordWidths.current.set(index, width);
 					if (width > max) max = width;
 				}
-			});
+			}
+		});
+
+		// Only proceed if we got valid measurements
+		if (max > 0) {
 			setMaxWidth(max);
-			// Set initial width to highlightWord width
 			const initialWidth = wordWidths.current.get(0) || 0;
-			setContainerWidth(initialWidth);
+			if (initialWidth > 0) {
+				setContainerWidth(initialWidth);
+			}
+			hasMeasured.current = true;
 			setIsMounted(true);
 		}
 	}, [allWords]);
@@ -84,9 +96,13 @@ export const SlackStyleHeading: React.FC<SlackStyleHeadingProps> = ({
 		const rollNextWord = () => {
 			wordIndex++;
 			if (wordIndex >= allWords.length) {
-				// Animation complete - shrink back
+				// Animation complete - shrink back to initial width
 				setTimeout(() => {
-					setContainerWidth(wordWidths.current.get(0) || 0);
+					const initialWidth = wordWidths.current.get(0);
+					// Only update if we have a valid cached width
+					if (initialWidth && initialWidth > 0) {
+						setContainerWidth(initialWidth);
+					}
 				}, 300);
 				return;
 			}
