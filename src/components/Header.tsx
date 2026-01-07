@@ -14,6 +14,7 @@ import {
 	Video,
 	Cloud,
 	Sparkles,
+	Activity,
 	Building2,
 	TrendingUp,
 	Landmark,
@@ -260,6 +261,12 @@ const navItems: NavItemConfig[] = [
 						href: "/resources/help",
 						description: "Get support and find answers",
 						icon: HelpCircle,
+					},
+					{
+						label: "System Status",
+						href: "/status",
+						description: "Live uptime and incident history",
+						icon: Activity,
 					},
 					{
 						label: "Blog",

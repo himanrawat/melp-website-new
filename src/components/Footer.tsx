@@ -45,6 +45,7 @@ const footerLinks = {
 	Resources: [
 		{ label: "Documentation", href: "#" },
 		{ label: "Help Center", href: "#" },
+		{ label: "System Status", href: "/status" },
 		{ label: "Community", href: "#" },
 		{ label: "Contact", href: "#" },
 	],
