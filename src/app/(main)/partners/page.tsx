@@ -313,7 +313,7 @@ export default function PartnersPage() {
 								className="h-12 px-8 text-base"
 								onClick={openModal}
 							>
-								Get a demo
+								Apply Now
 								<ArrowRight className="w-4 h-4 ml-1" />
 							</Button>
 						</motion.div>
@@ -736,10 +736,10 @@ export default function PartnersPage() {
 											</p>
 										</div>
 										<div className="flex justify-center gap-3">
-											<Button variant="brand-primary" onClick={closeModal}>
+											<Button variant="outline" onClick={closeModal}>
 												Close
 											</Button>
-											<Button variant="outline" asChild>
+											<Button variant="brand-primary" asChild>
 												<a href="/resources">Explore resources</a>
 											</Button>
 										</div>

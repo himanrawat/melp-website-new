@@ -155,7 +155,7 @@ export default function MelpChatPanel({
 			</div>
 
 			{/* Messages Area */}
-			<div className="p-4 h-[280px] overflow-hidden">
+			<div className="p-4 h-80 overflow-hidden">
 				<AnimatePresence mode="popLayout">
 					{messages.map((msg) => (
 						<motion.div

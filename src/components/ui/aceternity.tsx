@@ -92,7 +92,7 @@ interface TextShimmerProps {
 export function TextShimmer({ children, className = "" }: TextShimmerProps) {
 	return (
 		<span
-			className={`inline-flex animate-text-shimmer bg-[linear-gradient(110deg,#222020,45%,#666666,55%,#222020)] bg-[length:250%_100%] bg-clip-text text-transparent ${className}`}
+			className={`inline-flex pb-2 animate-text-shimmer bg-[linear-gradient(110deg,#222020,45%,#666666,55%,#222020)] bg-[length:250%_100%] bg-clip-text text-transparent ${className}`}
 		>
 			{children}
 		</span>

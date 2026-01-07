@@ -9,3 +9,5 @@ export { default as MelpAILivecaptionHero } from "./MelpAILivecaptionHero";
 export { default as MelpAIAssistant } from "./MelpAIAssistant";
 export { default as MelpEvaluationPanel } from "./MelpEvaluationPanel";
 export { default as MelpMeetingSidebar } from "./MelpMeetingSidebar";
+export { default as MelpFileSummaryMockup } from "./MelpFileSummaryMockup";
+export { default as MelpFileTranslationMockup } from "./MelpFileTranslationMockup";

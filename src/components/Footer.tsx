@@ -26,6 +26,7 @@ const footerLinks = {
 		{ label: "Zoom Alternative", href: "/zoom-alternative" },
 		{ label: "Google Meet Alternative", href: "/google-meet-alternative" },
 		{ label: "Discord Alternative", href: "#" },
+		{ label: "Video Interview Software", href: "/video-interview-software" },
 	],
 	Compare: [
 		{ label: "Melp vs Microsoft Teams", href: "/microsoft-teams-alternative" },
@@ -37,13 +38,14 @@ const footerLinks = {
 	Company: [
 		{ label: "Partners", href: "/partners" },
 		{ label: "About", href: "#" },
-		{ label: "Blog", href: "#" },
-		{ label: "Careers", href: "#" },
+		{ label: "Blog", href: "/blog" },
+		{ label: "Careers", href: "/careers" },
 		{ label: "Press", href: "#" },
 	],
 	Resources: [
 		{ label: "Documentation", href: "#" },
 		{ label: "Help Center", href: "#" },
+		{ label: "System Status", href: "/status" },
 		{ label: "Community", href: "#" },
 		{ label: "Contact", href: "#" },
 	],

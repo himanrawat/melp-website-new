@@ -14,6 +14,7 @@ import {
 	Video,
 	Cloud,
 	Sparkles,
+	Activity,
 	Building2,
 	TrendingUp,
 	Landmark,
@@ -24,7 +25,6 @@ import {
 	Shield,
 	ShieldCheck,
 	Cookie,
-	BarChart3,
 	Newspaper,
 	Users,
 	Briefcase,
@@ -262,12 +262,12 @@ const navItems: NavItemConfig[] = [
 						description: "Get support and find answers",
 						icon: HelpCircle,
 					},
-					// {
-					// 	label: "Success Stories",
-					// 	href: "/resources/success-stories",
-					// 	description: "See how teams succeed with Melp",
-					// 	icon: BarChart3,
-					// },
+					{
+						label: "System Status",
+						href: "/status",
+						description: "Live uptime and incident history",
+						icon: Activity,
+					},
 					{
 						label: "Blog",
 						href: "/resources/blog",
@@ -604,10 +604,10 @@ function NavDropdown({
 						initial="hidden"
 						animate="visible"
 						exit="exit"
-						className={`fixed left-0 right-0 ${dropdownTop} w-full flex justify-center px-6 z-50`}
+						className={`fixed left-0 right-0 ${dropdownTop} w-full flex justify-center px-6 z-50 pointer-events-none`}
 					>
 						<motion.div
-							className={`w-full max-w-6xl border shadow-xl overflow-hidden ${
+							className={`w-full max-w-6xl border shadow-xl overflow-hidden pointer-events-auto ${
 								isDarkRoute
 									? "bg-gray-950/95 border-white/20 shadow-purple-500/20 backdrop-blur-md"
 									: "bg-background border-border/50 shadow-black/5 dark:shadow-black/20"
@@ -837,7 +837,11 @@ interface MobileMenuProps {
 	isDarkRoute?: boolean;
 }
 
-function MobileMenu({ isOpen, onClose, isDarkRoute = false }: MobileMenuProps) {
+function MobileMenu({
+	isOpen,
+	onClose,
+	isDarkRoute = false,
+}: MobileMenuProps) {
 	const [expandedItem, setExpandedItem] = useState<string | null>(null);
 	const { resolvedTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);

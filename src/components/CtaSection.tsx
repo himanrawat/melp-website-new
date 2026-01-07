@@ -26,16 +26,16 @@ export default function CtaSection() {
 					className="text-center"
 				>
 					<motion.span
-						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase"
+						className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase leading-normal"
 						initial={{ opacity: 0 }}
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}
 					>
-						Get Started Today
+						Experience AI Now
 					</motion.span>
 
 					<TextShimmer className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
-						Your people. Your partners. One intelligent workspace.
+						AI that translates, summarizes, and elevates your work.
 					</TextShimmer>
 
 					<motion.p
@@ -45,7 +45,7 @@ export default function CtaSection() {
 						transition={{ delay: 0.2 }}
 						className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto"
 					>
-						Where conversations flow, meetings feel natural, files live where you need them, and intelligence guides every moment.
+						Translate documents. Summarize meetings. Transcribe in real time. Draft with confidence. Evaluate with integrity.
 					</motion.p>
 
 					<motion.div
@@ -57,7 +57,7 @@ export default function CtaSection() {
 					>
 						<MagneticButton>
 							<Button variant="brand-primary" size="lg" className="px-8 h-12 text-base group">
-								Start for Free
+								Try AI Features Free
 								<motion.svg
 									className="ml-2 w-4 h-4"
 									fill="none"
@@ -95,7 +95,7 @@ export default function CtaSection() {
 						transition={{ delay: 0.5 }}
 						className="mt-6 text-sm text-muted-foreground"
 					>
-						• Communicate clearly • Collaborate instantly • Work smarter with AI
+						• AI Translation • Meeting Summaries • Draft for Me • Evaluation Mode
 					</motion.p>
 				</motion.div>
 			</div>

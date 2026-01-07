@@ -11,7 +11,20 @@ export type IconName =
 	| "Shield"
 	| "Video"
 	| "MessageSquareOff"
-	| "Calendar";
+	| "Calendar"
+	| "AlertCircle"
+	| "Clock"
+	| "CheckCircle"
+	| "ArrowRight"
+	| "MessageSquare"
+	| "Network"
+	| "MessageCircle"
+	| "ListCheck"
+	| "Link"
+	| "Eye"
+	| "AlertTriangle"
+	| "Lock"
+	| "FileText";
 
 // FAQ type for FAQAccordion
 export interface FAQ {

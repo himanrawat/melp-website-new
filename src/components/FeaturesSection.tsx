@@ -31,9 +31,9 @@ type Feature = {
 const features: Feature[] = [
 	{
 		kind: "video",
-		title: "Messaging & Channels",
+		title: "AI-Powered Messaging",
 		description:
-			"Clarity in every conversation through organized channels, instant translation, and structured collaboration.",
+			"Organized channels with instant AI translation and Draft for Me assistance. Write clearly in any tone — professional, casual, or custom.",
 		video: "/video/message.mp4",
 		alt: "Mobile messaging with instant translation overlay",
 		imageFit: "object-cover",
@@ -41,9 +41,9 @@ const features: Feature[] = [
 	},
 	{
 		kind: "video",
-		title: "Meetings & Calls",
+		title: "Smart Meetings",
 		description:
-			"Seamless transitions from chat to call with enterprise-grade video, immersive clarity, and dependable cross-organization meetings.",
+			"Enterprise-grade video with AI-generated summaries, real-time transcription, and automatic action items — every meeting becomes documentation.",
 		video: "/video/call.mp4",
 		alt: "Screen sharing during a multi-participant video call",
 		imageFit: "object-cover",
@@ -51,9 +51,9 @@ const features: Feature[] = [
 	},
 	{
 		kind: "video",
-		title: "Drive & Storage",
+		title: "Intelligent Drive",
 		description:
-			"Centralized, secure cloud storage engineered for discoverability, governance, and effortless access.",
+			"Secure cloud storage with AI file translation and instant summaries. Translate documents to any language; ask questions to find answers fast.",
 		video: "/video/drive.mp4",
 		alt: "Laptop and mobile view of shared workspace content",
 		imageFit: "object-cover",
@@ -61,9 +61,9 @@ const features: Feature[] = [
 	},
 	{
 		kind: "video",
-		title: "Professional Networking",
+		title: "Professional Network",
 		description:
-			"A LinkedIn-like professional graph where vendors, agencies, clients, and partners collaborate on real projects.",
+			"Connect with vendors, agencies, and partners on real projects. AI-assisted collaboration across organizational boundaries.",
 		video: "/video/network.mp4",
 		alt: "Professional contacts list on mobile",
 		imageFit: "object-contain",
@@ -71,9 +71,9 @@ const features: Feature[] = [
 	},
 	{
 		kind: "video",
-		title: "Live Translation & AI",
+		title: "Real-Time AI Translation",
 		description:
-			"Live translation overlays with bilingual captions, plus summaries, workflows, and intelligent routing that keep teams in sync instantly.",
+			"Live multilingual transcription and translation. Every participant reads in their own language — global teams, zero language barriers.",
 		video: "/video/language.mp4",
 		alt: "Live captions in multiple languages during a call",
 		imageFit: "object-cover",
@@ -81,9 +81,9 @@ const features: Feature[] = [
 	},
 	{
 		kind: "video",
-		title: "Scheduling & Calendar",
+		title: "Smart Scheduling",
 		description:
-			"Smart scheduling with shared calendars, time zone awareness, and automated reminders so teams can book, join, and stay in sync.",
+			"AI-assisted scheduling with time zone awareness. Automatic reminders and calendar sync keep distributed teams aligned.",
 		video: "/video/calendar.mp4",
 		alt: "Team calendar and scheduling dashboard",
 		imageFit: "object-cover",
@@ -113,14 +113,14 @@ export default function FeaturesSection() {
 						whileInView={{ opacity: 1 }}
 						viewport={{ once: true }}
 					>
-						Features
+						AI-First Platform
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Everything your enterprise needs
+						AI built into every workflow
 					</h2>
 					<p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-						Powerful features designed to help global teams communicate clearly,
-						collaborate instantly, and work smarter with AI.
+						Translation, summarization, transcription, and intelligent writing assistance —
+						AI capabilities that deliver clarity, save time, and improve quality.
 					</p>
 				</RevealOnScroll>
 

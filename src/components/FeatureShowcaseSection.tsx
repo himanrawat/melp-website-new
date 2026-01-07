@@ -12,39 +12,39 @@ type Feature = {
 
 const features: Feature[] = [
 	{
-		title: "Messaging & Channels",
+		title: "AI-Powered Messaging",
 		description:
-			"Clarity in every conversation through organized channels, instant translation, and structured collaboration.",
+			"Write with AI assistance using Draft for Me — professional, casual, or custom tone. Instant translation keeps global teams aligned.",
 		video: "/video/message.mp4",
 	},
 	{
-		title: "Meetings & Calls",
+		title: "Smart Meetings",
 		description:
-			"Seamless transitions from chat to call with enterprise-grade video, immersive clarity, and dependable cross-organization meetings.",
+			"AI-generated summaries, real-time transcription, and automatic action items. Every meeting becomes searchable documentation.",
 		video: "/video/call.mp4",
 	},
 	{
-		title: "Drive & Storage",
+		title: "Intelligent Drive",
 		description:
-			"Centralized, secure cloud storage engineered for discoverability, governance, and effortless access.",
+			"Translate documents to any language. Get instant AI summaries. Ask questions and extract key details from any file.",
 		video: "/video/drive.mp4",
 	},
 	{
-		title: "Professional Networking",
+		title: "Professional Network",
 		description:
-			"A LinkedIn-like professional graph where vendors, agencies, clients, and partners collaborate on real projects.",
+			"Connect with vendors, agencies, and partners on real projects. AI-assisted collaboration across organizational boundaries.",
 		video: "/video/network.mp4",
 	},
 	{
-		title: "Live Translation & AI",
+		title: "Real-Time Translation",
 		description:
-			"Live translation overlays with bilingual captions, plus summaries, workflows, and intelligent routing that keep teams in sync instantly.",
+			"Live multilingual transcription during every conversation. Each participant reads in their preferred language — zero barriers.",
 		video: "/video/language.mp4",
 	},
 	{
-		title: "Scheduling & Calendar",
+		title: "Smart Scheduling",
 		description:
-			"Smart scheduling with shared calendars, time zone awareness, and automated reminders so teams can book, join, and stay in sync.",
+			"AI-assisted scheduling with time zone intelligence. Automatic reminders and calendar sync for distributed teams.",
 		video: "/video/calendar.mp4",
 	},
 ];
@@ -128,14 +128,14 @@ export default function FeatureShowcaseSection() {
 				{/* Section Header */}
 				<div className="text-center mb-16">
 					<span className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase">
-						Platform
+						AI Capabilities
 					</span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						One platform, endless possibilities
+						AI that works across everything you do
 					</h2>
 					<p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-						Explore how Melp transforms the way teams work together across
-						borders and time zones.
+						Translation, transcription, summaries, and intelligent drafting —
+						built into every workflow to save time and improve clarity.
 					</p>
 				</div>
 

@@ -78,14 +78,14 @@ export default function CollaborationSection() {
 						viewport={{ once: false }}
 						transition={{ duration: 0.4 }}
 					>
-						File Sharing & Collaboration
+						AI-Enhanced Collaboration
 					</motion.span>
 					<h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-						Frictionless teamwork
+						Work smarter with AI assistance
 					</h2>
 					<p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-						Instant sharing, real-time co-editing, precision permissions, and
-						seamless collaboration across teams and partners.
+						AI translation, intelligent drafting, and real-time insights
+						embedded into every collaborative workflow.
 					</p>
 				</RevealOnScroll>
 
@@ -304,13 +304,13 @@ export default function CollaborationSection() {
 					transition={{ duration: 0.5, delay: 0.5 }}
 				>
 					<p className="text-muted-foreground mb-4">
-						Experience the future of team collaboration
+						AI-powered collaboration that saves time and improves clarity
 					</p>
 					<motion.button
 						className="text-sm font-medium text-primary hover:underline underline-offset-4 inline-flex items-center gap-1"
 						whileHover={{ x: 3 }}
 					>
-						See collaboration in action
+						Explore AI capabilities
 						<svg
 							className="w-4 h-4"
 							fill="none"
