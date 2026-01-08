@@ -45,10 +45,10 @@ export default async function PricingPage() {
 
 	const individualComparison = individualSegment
 		? buildComparisonFromSegment(individualSegment, individualPackages)
-		: buildComparisonFromPackages(individualPackages);
+		: [];
 	const businessComparison = businessSegment
 		? buildComparisonFromSegment(businessSegment, businessPackages)
-		: buildComparisonFromPackages(businessPackages);
+		: [];
 
 	return (
 		<PricingPageClient

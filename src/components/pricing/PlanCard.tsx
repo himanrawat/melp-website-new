@@ -64,19 +64,20 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 	const currentPrice = pricing.currentPrice;
 	const originalPrice = pricing.originalPrice;
 	const currency = pricing.currencySymbol || pricing.currency || "$";
-	const period = currentPrice !== null ? "per user / month" : "";
-	const billingNote = isYearly && currentPlan ? "billed annually" : "";
-	const showDiscount = pricing.hasDiscount;
-	const discountLabel =
-		pricing.hasDiscount && currentPrice !== null && originalPrice
-			? `Save ${Math.round((1 - currentPrice / originalPrice) * 100)}%`
-			: "Save";
+	const isEnterprisePlan = plan.name.toLowerCase().includes("enterprise");
+	const period =
+		currentPrice !== null && !isEnterprisePlan ? "per user / month" : "";
+	const billingNote =
+		isYearly && currentPlan && !isEnterprisePlan ? "billed annually" : "";
+	const showDiscount = false;
 	const checkoutId = currentPlan?.priceId ?? currentPlan?.planid;
-	const ctaLabel = currentPlan
-		? isPlanFree(currentPlan)
-			? "Sign up"
-			: "Get started"
-		: "Contact sales";
+	const ctaLabel = isEnterprisePlan
+		? "Contact sales"
+		: currentPlan
+			? isPlanFree(currentPlan)
+				? "Sign up"
+				: "Get started"
+			: "Contact sales";
 
 	const CardWrapper = plan.popular ? AnimatedGradientBorder : GlowingBorderCard;
 
@@ -91,19 +92,6 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 		>
 			<CardWrapper className="h-full">
 				<div className="relative h-full p-6 lg:p-8 flex flex-col bg-card rounded-xl">
-					{/* Discount Ribbon - Top Right Corner */}
-					{showDiscount && (
-						<motion.div
-							initial={{ opacity: 0, x: 20 }}
-							animate={{ opacity: 1, x: 0 }}
-							transition={{ delay: 0.3, type: "spring", stiffness: 400 }}
-							className="absolute top-4 right-4 z-20"
-						>
-							<span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20">
-								{discountLabel}
-							</span>
-						</motion.div>
-					)}
 
 					{/* Popular Badge */}
 					{plan.popular && (
@@ -150,7 +138,7 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 
 					{/* Price with Strikethrough */}
 					<div className="mt-5 h-[60px]">
-						{currentPrice !== null ? (
+						{currentPrice !== null && !isEnterprisePlan ? (
 							<div className="flex items-baseline gap-2 flex-wrap">
 								{/* Strikethrough original price when yearly */}
 								{showDiscount && originalPrice !== currentPrice && (
@@ -165,6 +153,10 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 								</span>
 								<span className="text-muted-foreground">{period}</span>
 							</div>
+						) : isEnterprisePlan ? (
+							<span className="text-3xl lg:text-4xl font-bold text-foreground">
+								Let's Talk
+							</span>
 						) : (
 							<span className="text-3xl lg:text-4xl font-bold text-foreground">
 								Custom
@@ -249,7 +241,11 @@ export default function PlanCard({ plan, isYearly, index }: PlanCardProps) {
 							variant={plan.popular ? "brand-primary" : "outline"}
 							asChild
 						>
-							{currentPlan && isPlanFree(currentPlan) ? (
+							{isEnterprisePlan ? (
+								<a href="mailto:sales@melp.us">
+									<span>{ctaLabel}</span>
+								</a>
+							) : currentPlan && isPlanFree(currentPlan) ? (
 								<a
 									href="https://www.app.melp.us/spa/index#signup"
 									target="_blank"

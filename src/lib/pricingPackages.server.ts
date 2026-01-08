@@ -52,7 +52,7 @@ export async function fetchPackages(): Promise<ApiPackage[]> {
 	}
 
 	const payload = (await response.json()) as PackagesApiResponse;
-
+	console.log("Fetched pricing packages payload:", payload);
 	if (!payload || payload.status !== "SUCCESS" || !Array.isArray(payload.data)) {
 		throw new Error("Unexpected pricing packages response format.");
 	}
@@ -81,7 +81,7 @@ export async function fetchPlanComparison(): Promise<ApiPlanComparisonSegment[]>
 	}
 
 	const payload = (await response.json()) as ComparisonApiResponse;
-
+console.log("Fetched plan comparison payload:", payload);
 	if (
 		!payload ||
 		payload.status !== "SUCCESS" ||
