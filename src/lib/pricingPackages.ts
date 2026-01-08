@@ -2,6 +2,8 @@ import type {
 	ApiConstraint,
 	ApiPackage,
 	ApiPlan,
+	ApiPlanComparisonSegment,
+	ApiPlanComparisonValue,
 	BillingCycle,
 	ComparisonFeature,
 	PricingPackage,
@@ -162,6 +164,54 @@ export function buildComparisonFromPackages(
 	});
 }
 
+export function buildComparisonFromSegment(
+	segment: ApiPlanComparisonSegment,
+	packages: PricingPackage[]
+): ComparisonFeature[] {
+	const planIdToPackageId = new Map<string, string>();
+	const planNameToPackageId = new Map<string, string>();
+	const packageNameToId = new Map(
+		packages.map((pkg) => [pkg.name.toLowerCase(), pkg.id])
+	);
+
+	segment.plans.forEach((plan) => {
+		const packageId =
+			plan.monthlyPricing?.packageId || plan.yearlyPricing?.packageId || "";
+		if (!packageId) return;
+		planIdToPackageId.set(plan.id, packageId);
+		planNameToPackageId.set(plan.name.toLowerCase(), packageId);
+	});
+
+	return (segment.sections || []).map((section) => {
+		const category = (section.title || "Features").trim() || "Features";
+		const features =
+			section.features?.map((feature) => {
+				const plans: Record<string, boolean | string> = {};
+
+				feature.values?.forEach((value) => {
+					const planKey =
+						planIdToPackageId.get(value.planId) ||
+						planNameToPackageId.get(value.planName.toLowerCase()) ||
+						packageNameToId.get(value.planName.toLowerCase());
+
+					if (!planKey) return;
+					plans[planKey] = mapComparisonValue(value);
+				});
+
+				return {
+					name: (feature.label || "Feature").trim(),
+					tooltip: (feature.tooltip || "").trim() || undefined,
+					plans,
+				};
+			}) || [];
+
+		return {
+			category,
+			features,
+		};
+	});
+}
+
 function isConstraintIncluded(constraint: ApiConstraint) {
 	if (constraint.type === "ON_OFF") {
 		return constraint.limit > 0;
@@ -209,4 +259,12 @@ function formatUnit(unit: string) {
 	if (unit === "YEAR" || unit === "YEARS") return "year";
 	if (unit === "HOUR" || unit === "HOURS") return "hour";
 	return unit.toLowerCase();
+}
+
+function mapComparisonValue(value: ApiPlanComparisonValue): boolean | string {
+	if (value.valueType === "INCLUDED") return true;
+	if (value.valueType === "NOT_INCLUDED") return false;
+
+	const textValue = (value.valueText || "").trim();
+	return textValue.length > 0 ? textValue : "Yes";
 }

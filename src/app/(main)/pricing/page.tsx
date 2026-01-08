@@ -1,14 +1,19 @@
 import PricingPageClient from "@/components/pricing/PricingPageClient";
 import {
+	buildComparisonFromSegment,
 	buildComparisonFromPackages,
 	mapPackagesToPricingPackages,
 } from "@/lib/pricingPackages";
-import { fetchPackages } from "@/lib/pricingPackages.server";
-import type { PricingPackage } from "@/types/pricing";
+import {
+	fetchPackages,
+	fetchPlanComparison,
+} from "@/lib/pricingPackages.server";
+import type { ApiPlanComparisonSegment, PricingPackage } from "@/types/pricing";
 
 export default async function PricingPage() {
 	let individualPackages: PricingPackage[] = [];
 	let businessPackages: PricingPackage[] = [];
+	let comparisonSegments: ApiPlanComparisonSegment[] = [];
 
 	try {
 		const apiPackages = await fetchPackages();
@@ -25,8 +30,25 @@ export default async function PricingPage() {
 		console.error("[PRICING] Failed to load packages", error);
 	}
 
-	const individualComparison = buildComparisonFromPackages(individualPackages);
-	const businessComparison = buildComparisonFromPackages(businessPackages);
+	try {
+		comparisonSegments = await fetchPlanComparison();
+	} catch (error) {
+		console.error("[PRICING] Failed to load plan comparison", error);
+	}
+
+	const individualSegment = comparisonSegments.find(
+		(segment) => segment.audienceType === "INDIVIDUAL"
+	);
+	const businessSegment = comparisonSegments.find(
+		(segment) => segment.audienceType === "BUSINESS"
+	);
+
+	const individualComparison = individualSegment
+		? buildComparisonFromSegment(individualSegment, individualPackages)
+		: [];
+	const businessComparison = businessSegment
+		? buildComparisonFromSegment(businessSegment, businessPackages)
+		: [];
 
 	return (
 		<PricingPageClient

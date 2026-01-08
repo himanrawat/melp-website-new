@@ -169,7 +169,7 @@ export default function PricingHero({
 								}}
 								transition={{ duration: 0.2 }}
 							>
-								Save 22%
+								{" "}
 							</motion.span>
 						</div>
 					</motion.div>

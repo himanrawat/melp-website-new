@@ -1,6 +1,6 @@
 const paymentBaseUrl = (
 	process.env.NEXT_PUBLIC_PAYMENT_BASE_URL ||
-	"https://melp-payment-module.vercel.app/"
+	"http://localhost:3001"
 ).replace(/\/$/, "");
 
 function buildPaymentUrl(path: string) {
@@ -29,7 +29,7 @@ export function buildCheckoutUrl(
 			? {
 					packageId: paramsOrPlanId,
 					billingCycle: billing === "monthly" ? "MONTHLY" : "YEARLY",
-					checkoutId: paramsOrPlanId,
+					checkoutId: paramsOrPlanId
 			  }
 			: paramsOrPlanId;
 
