@@ -1,12 +1,18 @@
 import type { ApiPackage } from "@/types/pricing";
 
-const DEFAULT_PACKAGES_URL =
-	"http://139.59.25.211:8090/payment/subscriptionPackage/activePackages/NoVal";
+const DEFAULT_API_BASE_URL = "http://139.59.25.211:8090";
+const DEFAULT_PACKAGES_ENDPOINT =
+	"/payment/subscriptionPackage/activePackages/NoVal";
 
-const PACKAGES_URL = (process.env.PRICING_PACKAGES_URL || DEFAULT_PACKAGES_URL).replace(
-	/\/$/,
-	""
-);
+const API_BASE_URL = (
+	process.env.NEXT_PUBLIC_API_BASE_URL || DEFAULT_API_BASE_URL
+).replace(/\/$/, "");
+const PACKAGES_ENDPOINT =
+	process.env.PRICING_PACKAGES_ENDPOINT || DEFAULT_PACKAGES_ENDPOINT;
+
+const PACKAGES_URL = `${API_BASE_URL}${
+	PACKAGES_ENDPOINT.startsWith("/") ? "" : "/"
+}${PACKAGES_ENDPOINT}`;
 
 const API_TOKEN = process.env.PAYMENTS_API_TOKEN;
 
